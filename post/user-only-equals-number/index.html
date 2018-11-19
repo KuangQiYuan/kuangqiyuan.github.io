@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="技术人生,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="这两天有种忙得不亦乐乎的感觉，倦怠了写博客。 用户就是个数字要说的是关于鹅厂邮箱的事儿。标题是很多大公司做产品的哲学，当然也包括鹅厂自己家的。 我是鹅厂毕业，也算是鹅厂粉丝，但凡能鹅厂产品能满足要求的地方，就不会用别家的产品。企业邮箱就是一个例子。 我的个人常用邮箱以自己的域名作为后缀，最初放在腾讯邮箱的『企业邮箱免费版』上，用了有两年左右的时间，一直很正常。一直到这周朋友给我发送邮件，被退回来，">
+<meta name="keywords" content="技术人生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户就是个数字（外两则）">
+<meta property="og:url" content="http://i.am.simonkuang.com/post/user-only-equals-number/index.html">
+<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
+<meta property="og:description" content="这两天有种忙得不亦乐乎的感觉，倦怠了写博客。 用户就是个数字要说的是关于鹅厂邮箱的事儿。标题是很多大公司做产品的哲学，当然也包括鹅厂自己家的。 我是鹅厂毕业，也算是鹅厂粉丝，但凡能鹅厂产品能满足要求的地方，就不会用别家的产品。企业邮箱就是一个例子。 我的个人常用邮箱以自己的域名作为后缀，最初放在腾讯邮箱的『企业邮箱免费版』上，用了有两年左右的时间，一直很正常。一直到这周朋友给我发送邮件，被退回来，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-09T12:37:20.162Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用户就是个数字（外两则）">
+<meta name="twitter:description" content="这两天有种忙得不亦乐乎的感觉，倦怠了写博客。 用户就是个数字要说的是关于鹅厂邮箱的事儿。标题是很多大公司做产品的哲学，当然也包括鹅厂自己家的。 我是鹅厂毕业，也算是鹅厂粉丝，但凡能鹅厂产品能满足要求的地方，就不会用别家的产品。企业邮箱就是一个例子。 我的个人常用邮箱以自己的域名作为后缀，最初放在腾讯邮箱的『企业邮箱免费版』上，用了有两年左右的时间，一直很正常。一直到这周朋友给我发送邮件，被退回来，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://i.am.simonkuang.com/post/user-only-equals-number/">
+
+
+
+
+
+  <title>用户就是个数字（外两则） | 旷{<i>氏</i> }淇元</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-45245769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">旷{<i>氏</i> }淇元</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/user-only-equals-number/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用户就是个数字（外两则）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-30T14:16:45+08:00">
+                2016-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/user-only-equals-number/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/user-only-equals-number/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>这两天有种忙得不亦乐乎的感觉，倦怠了写博客。</p>
+<h2><span id="用户就是个数字">用户就是个数字</span></h2><p>要说的是关于鹅厂邮箱的事儿。标题是很多大公司做产品的哲学，当然也包括鹅厂自己家的。</p>
+<p>我是鹅厂毕业，也算是鹅厂粉丝，但凡能鹅厂产品能满足要求的地方，就不会用别家的产品。企业邮箱就是一个例子。</p>
+<p>我的个人常用邮箱以自己的域名作为后缀，最初放在腾讯邮箱的『企业邮箱免费版』上，用了有两年左右的时间，一直很正常。一直到这周朋友给我发送邮件，被退回来，提示邮箱不存在一类的错误。我才注意到，<strong>原来我的免费版的企业邮箱被腾讯单方面终止了服务，正在使用中的邮箱无法收发邮件，甚至无法登陆，从管理后台登陆上去才了解到是域名无故被解绑。而在这之前，无论是我绑定了该企业邮箱的微信，还是企业邮箱本身，被抑或企业邮箱的管理账号，都没有收到任何相关的提示信息。</strong></p>
+<p>我首先排除管理账号被盗、黑客为之的可能性。很简单，腾讯企业邮箱的那个管理账号我很长很长时间没有使用过，账号名是一个我从来没有在别的地方使用过的字符串，不存在被社工被钓鱼的可能性。而且管理后台中，我的企业邮箱绑定过三个域名，除开今年有一个因为域名到期没续费自动失效当即被清理，一个我一直在使用中的域名无故清除，只剩下一个绑定后几乎没有使用过的域名。如果是黑客捣鬼，为什么单独给我留一个没使用过的域名？这讲不通。</p>
+<p>后来有朋友在朋友圈中留言，了解到原来有朋友也遇到过，也是腾讯企业邮箱免费版，绑定的域名下有一个用来做客服的邮箱，经常在登录使用，也是毫无预警的情况下被清理，并且也是从后台直接解除了整个域名的绑定。</p>
+<p>不同的是，朋友用的邮箱在两个月前失效，我的邮箱是在一个月前失效。分批分次在清理免费邮箱——而且是<strong>不给你任何预警、提示、通告、宽限期、选择项……</strong> 直接让你的邮箱和邮件消失掉的清理。</p>
+<p>到现在，这事儿几乎很明显是腾讯邮箱人为在清理的动作。因为太没底线了。按照腾讯一贯的价值观，这绝对不是一个『正直』的事情，这样的服务态度也不完全不符合『水和电』的特征，更加不『值得尊敬』。</p>
+<p>在大厂做过 2C 产品的同学都知道，用户不过是一个庞大的数字，和员工自身利益休息相关的 KPI 也是通过评价这些数字，来调节对员工的奖惩。对于每一个单一的用户，大厂的产品真的是多你一个不多少你一个不少。</p>
+<p>今天正好看到广研大 boss 张小龙在微信事业群管理大会上的一个演讲，<a href="http://mp.weixin.qq.com/s?__biz=MTE3MzE4MTAyMQ==&amp;mid=2651138374&amp;idx=2&amp;sn=15f7fefcb7bae4e160883ae0b37558b1&amp;chksm=76232c744154a562889646a2a21f22588961132b943056a3578275d47f14058492785945ad9e&amp;mpshare=1&amp;scene=1&amp;srcid=1030ou2wbXq0myYXdiIm8gkI#rd" target="_blank" rel="noopener">明确要求内部不要盲从流程和 KPI，要坚持用户价值导向</a>。真的说得很好。他还特别举了 QQ 邮箱的例子，这是个大家都比较熟悉的例子。当年 QQ 邮箱从上不了邮箱服务 Top10 排名到后来逆袭压倒 Hotmail 和网易邮箱，方法是小团对敏捷开发，背后的思想仍然是坚持用户价值导向。如果企业邮箱的团队能够坚持用户价值导向，是一定不会做这么出格的事情。</p>
+<p>希望老东家能越来越好。千万守住自己的底线。</p>
+<hr>
+<h2><span id="139-邮箱之乱象">139 邮箱之乱象</span></h2><p>又是邮箱的故事。</p>
+<p>我的 139 邮箱在 2014 年设置过一个别名，这样可以用英文名而不是手机号作为邮箱前缀，识别度更高。我拿 139 邮箱主要是在国企那段时间用来收发工作上的邮件。</p>
+<p>然而自开通邮箱别名开始，就经常收到一些莫名其妙的邮件，邮件经常开头有名有姓，称谓是我没听过的名字。刚开始以为是骚扰邮件，没有管，后面类似的邮件来得越来越多，我也听之任之，反正这个邮箱后来几乎就没有怎么用过了。</p>
+<p>这周忽然收到一封邮件，是<a href="https://weibo.com/" target="_blank" rel="noopener">微博</a>发送的，提醒我登录别名邮箱对应的微博账号。很奇怪，我不可能用 139 邮箱注册微博账号。担心邮箱帐密被盗用作什么不好的事情，于是通过微博的找回密码服务找回了账号对应的密码（后来知道，微博账号如果没有绑定手机，那么别人拿到你的邮箱，随便使用一个手机也能找回密码），发现是一个运营了三四年的企业微博，企业地址在上海。到此我才恍然大悟。</p>
+<p><strong>在我设置 139 邮箱别名的时候，我设置的这个别名其实是有人在使用的。不知为何，139 邮箱仍然把这个别名分配给我。所以我经常收到本该属于另一个用户的邮件，而且猜想那个用户同时也能收到本该属于我的邮件吧。一个别名邮箱，我们俩都有在使用，不论谁发送邮件，我们俩都能收到。</strong></p>
+<p>最后我给我们俩『共用』的别名邮箱发了消息，告诉他这个情况，并承诺把微博密码还给他。希望他能看到。</p>
+<p>邮箱作为互联网基础服务，服务的稳定性应该要有最基本的保障，安全和隐私也应该要能做到最基础的保障。这跟邮局里面申请一个邮箱一样的。可是一周内竟然遇到两次大乌龙，我也是醉了。</p>
+<p>所幸我还有一个 gmail 注册的企业邮箱。从今天起，免不了后续会逐步把常用邮箱换成那个。</p>
+<p>在天朝，用个邮箱都能吓死宝宝。</p>
+<hr>
+<h2><span id="关于运维的笑话">关于运维的笑话</span></h2><p>有个运维跟中学同学聚餐，接了个电话，大家都吓尿了。。。。</p>
+<p>『喂，是我。』<br>『怎么回事？……卡在哪儿了？』<br>『不行就杀了吧，做事别磨磨唧唧的。先保证业务正常。』<br>『啥？找不到？杀不了？你不知道 killall 啊！把这个名字的全干了。』<br>『嗯。』<br>『诶？怎么还报警了！』<br>『你让胡总赶紧把警报先关了。你就在现场，报警有个屁用。』<br>『你跟他好好说一下，就说是我说的。这破事儿二十分钟内就能搞定，不要动不动就报警。』<br>『嗯。』<br>『对，挂了也要拉起来，就没什么不行的！他敢挂掉你就再拉一个。』<br>『擦！早不挂晚不挂，这会儿挂，真特么不是时候！』<br>『行了，我马上过来。都特么不给老子清净！擦！』<br>………… (o_o)<br>『我不吃了，要去加个班。喂，你们都看着我干嘛…… 』</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术人生/" rel="tag"># 技术人生</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/cold-knowledge-about-plane-taking-off/" rel="next" title="『东航两飞机险相撞』事件中的飞行知识">
+                <i class="fa fa-chevron-left"></i> 『东航两飞机险相撞』事件中的飞行知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/check-in-app-accessing-with-openresty/" rel="prev" title="用 openresty 来做 app api 接口的验真">
+                用 openresty 来做 app api 接口的验真 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
+          <p class="site-author-name" itemprop="name">Simon Kuang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/simonkuang" target="_blank" title="GayHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      GayHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">用户就是个数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">139 邮箱之乱象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">关于运维的笑话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56218002";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://i.am.simonkuang.com/post/user-only-equals-number/';
+          this.page.identifier = 'post/user-only-equals-number/';
+          this.page.title = '用户就是个数字（外两则）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kuangqiyuan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

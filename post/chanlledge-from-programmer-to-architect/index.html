@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="技术人生,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="从程序员到架构师的成长，变化就像从小学生到高中生一样巨大。 不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，培养培养，就可以成为架构师了。架构师都是摔打出来的。 看到过对做架构有一个不错的定义：系统架构的目标是解决利益相关者的关注点。 所">
+<meta name="keywords" content="技术人生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从程序猿到架构狮的转变">
+<meta property="og:url" content="http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/index.html">
+<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
+<meta property="og:description" content="从程序员到架构师的成长，变化就像从小学生到高中生一样巨大。 不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，培养培养，就可以成为架构师了。架构师都是摔打出来的。 看到过对做架构有一个不错的定义：系统架构的目标是解决利益相关者的关注点。 所">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-09T12:37:20.164Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从程序猿到架构狮的转变">
+<meta name="twitter:description" content="从程序员到架构师的成长，变化就像从小学生到高中生一样巨大。 不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，培养培养，就可以成为架构师了。架构师都是摔打出来的。 看到过对做架构有一个不错的定义：系统架构的目标是解决利益相关者的关注点。 所">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/">
+
+
+
+
+
+  <title>从程序猿到架构狮的转变 | 旷{<i>氏</i> }淇元</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-45245769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">旷{<i>氏</i> }淇元</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从程序猿到架构狮的转变</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T22:04:38+08:00">
+                2017-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/chanlledge-from-programmer-to-architect/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/chanlledge-from-programmer-to-architect/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>从程序员到架构师的成长，变化就像从小学生到高中生一样巨大。</p>
+<p>不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，<em>培养培养</em>，就可以成为架构师了。架构师都是摔打出来的。</p>
+<p>看到过对<em>做架构</em>有一个不错的定义：<a href="https://36kr.com/p/5042735.html" target="_blank" rel="noopener">系统架构的目标是解决利益相关者的关注点</a>。</p>
+<p>所以你看，做架构的架构师，其实是解决人的利益问题，目标是让各方利益尽可能达成一致，做 trade off 的工作，权衡。技术只是实现这个目标的一种手段，一种重要的手段，手段之一，不是全部，甚至于不是最重要的。执行层面成长起来的、技术能力过关的工程师，想要成长为架构师，首先考验的是你<strong>听 + 说</strong>的能力，也就是沟通表达的能力。<strong>沟通能力才是一个合格的架构师最重要的能力</strong>。</p>
+<h2><span id="一-听的能力">一、听的能力</span></h2><p>这个很有学问。</p>
+<p><strong>我们常常假设与我们沟通的都是理性人，他们清楚自己说的是什么意思，他们也确实想要表达这个意思</strong>。实际上，几乎不存在这样的理性人。为了避免尴尬、隐藏真实想法，大家说的往往是加以润色的话。即便死党之间畅无不言，潜意识也会偷偷在话里打掩护，顾左右而言他。若是拿别人告诉你的话当个准，九成九会遇到『当初我怎么知道』的情况。</p>
+<p>工作中也是如此，系统架构牵扯利益，各方都希望架构师做出有利于己方的设计，所以表达己方利益关切的时候，明明可以『关注』的，他可能用『严重关切』来表达。你没法儿指责他说谎，也许他的表达习惯就是如此，也许是大家对轻重缓急的表达方式不同。但作为架构师，你自己心里就得有个判断：他的话我到底该不该信？信几分？可信的部分在我的架构中轻重缓急怎么判断？</p>
+<p>所以，听的能力非常重要。</p>
+<h3><span id="首先学会听别人的话外音">首先，学会听别人的话外音。</span></h3><p>职场上，大部分人是理性的，他们对自己手头的事情能有理性的判断。大多数时候，他们也能清楚知道自己想要什么。只是，他们往往会<em>委婉</em>地表达自己的目的。旁推侧击、敲山震虎、隔山打牛、杀鸡儆猴…… 就是不会直来直去。</p>
+<p>作为架构师，你得学会听懂别人背后表达的意思，这是最基本的功力了。</p>
+<h3><span id="其次听懂别人背后的意图">其次，听懂别人背后的意图。</span></h3><p>再聪明的人也有犯糊涂的时候。有些时候，跟你沟通的某人，会忽然卡壳，不知道接下来要怎么表达/表达什么。他隐约觉得自己想要个小功能，但就是不知道怎么表达出来。这时候如果架构师对这个人有一定了解，知道他关心的点，知道他的风格，就有可能顺着他的思路去提醒他。</p>
+<p>倒不是让架构师去做别人肚子里面的蛔虫。这样做至少有两点好处。</p>
+<ol>
+<li>架构师主动提，比一个有明确利益偏向的人来提，提出来的方案合适得多。他讲不清楚的时候，你能讲清楚，还照顾到他的关切，他接受你的方案的概率也很高；</li>
+<li>如果架构师对利益方能达到这种程度的了解，可以把利益方的偏好尽可能纳入架构设计的考量中去，就可以做好预埋，防止无谓的需求变更。</li>
+</ol>
+<h3><span id="最后听懂别人没说出口的话">最后，听懂别人没说出口的话。</span></h3><p>有些话，不一定要说出口，就像上面提到的。另外有些话，说的时候还没想到，或者，说的时候就没怎么想，反正可以以后想到再说。</p>
+<p>对架构师，后面两种情况真的够呛。你遇到的是一个<em>职场 baby</em>，一个不能为自己的行为负完全责任的人。<strong>这种情况下，最好的解决办法是，你能帮他想好，反过来引导他，通过他的嘴讲出来</strong>。避免在系统评审会之后，频繁变更带来的成本开销。<strong>评审会之后变更架构设计的开销是客观的，成本存在压缩极限；而考虑提前量的开销是可控的，通过人为努力可以使成本逼近零</strong>。因此在系统架构设计阶段，尽可能多考虑一些未来的变化，从长远来看，是相当划算的。</p>
+<p>这种场景下，考验的是架构师的业务能力、经验和宽泛的倾听技巧。这种能力通过练习可以培养，但成长不会很快。属于二八原理中要花 80% 精力去积累的 20% 那部分。锻炼的时候，要有耐心和信心。</p>
+<h2><span id="说的能力">说的能力</span></h2><p>说，或者说表达，也是沟通中重要的一部分。<strong>对于架构师而言，架构设计就是最好的表达</strong>。相对的，就工程师成长起来的架构师，我更提倡学会倾听，而不是表达。</p>
+<p>如果硬要说在表达方面有什么建议或者窍门，就下面几句话。</p>
+<ul>
+<li>先<strong>听</strong>别人说完，自己再说；</li>
+<li>说之前，想清楚，尽量言简意赅。话说得太多，在别人耳朵里，就没什么效果了。不如一字千钧有威力；</li>
+<li>想表达不同意见的时候，先停顿三秒，再说出口；</li>
+<li><strong>有理不在声高</strong>；</li>
+<li><strong>对事不对人</strong>，对过人的自己请客吃饭；</li>
+</ul>
+<h2><span id="培养能力">培养能力</span></h2><p>沟通的能力也是可以靠锻炼来的，不是谁生下来就是《九品芝麻官》里面的包大人。关于沟通的锻炼方法，极限一点的，请自行谷歌销售技巧培训方法。哈哈</p>
+<p>最后补充一句，沟通 + 技术能力，是成为一个架构师的必要条件，还不是充分条件。这两条具备了，才可以说你达到了做架构师的最最基本的要求，有可能做出大家满意的架构设计。后面的，有机会再补充。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术人生/" rel="tag"># 技术人生</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/nodejs-abuse-of-software-design-philosophy/" rel="next" title="吐槽被NodeJS用滥的软件设计哲学">
+                <i class="fa fa-chevron-left"></i> 吐槽被NodeJS用滥的软件设计哲学
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/evil-coding-pages/" rel="prev" title="为了打个广告，coding pages 变得好邪恶">
+                为了打个广告，coding pages 变得好邪恶 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
+          <p class="site-author-name" itemprop="name">Simon Kuang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/simonkuang" target="_blank" title="GayHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      GayHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">一、听的能力</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">首先，学会听别人的话外音。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">其次，听懂别人背后的意图。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">最后，听懂别人没说出口的话。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">说的能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">培养能力</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56218002";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/';
+          this.page.identifier = 'post/chanlledge-from-programmer-to-architect/';
+          this.page.title = '从程序猿到架构狮的转变';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kuangqiyuan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

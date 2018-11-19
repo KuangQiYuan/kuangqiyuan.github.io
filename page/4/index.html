@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="simonkuang, blog, engineer, architecture, microservice, platform">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
+<meta property="og:url" content="http://i.am.simonkuang.com/page/4/index.html">
+<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://i.am.simonkuang.com/page/4/">
+
+
+
+
+
+  <title>旷{<i>氏</i> }淇元</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-45245769-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">旷{<i>氏</i> }淇元</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/" itemprop="url">redis + supervisor 时苦大仇深的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-04T17:44:22+08:00">
+                2016-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>在我记忆中，CentOS 从很早开始，就没有和各种的问题挂钩过。得益于它保守的升级策略，它自己几乎从来不是问题专业户，我对它的印象更多是因为太过保守导致的库升级不及时问题。</p>
+<p>可是最近，CentOS7 某个版本发行之后，偶尔的，会出现 supervisor 拉 redis 失败的问题。从日志的内容来看，全是 <code>Permission denied</code> 相关的问题，bind socket 的时候权限不够，write log 的时候权限不够，dump snapshot 的时候权限不够，只要跟写磁盘相关的，都有这个问题。</p>
+<p>单独执行 <code>/usr/bin/redis-server /etc/redis.conf</code>，又一点儿问题没有，命令本身没有问题，一切正常。</p>
+<p>关键，supervisor 是以 root 去拉 redis 的啊！表示很无辜 (o´・ェ・｀o)</p>
+<p>supervisor 的配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[program:redis]</span><br><span class="line">command = /usr/bin/redis-server /etc/redis.conf</span><br><span class="line">;process_name=%(program_name)s ; process_name expr (default %(program_name)s)</span><br><span class="line">numprocs=1                    ; number of processes copies to start (def 1)</span><br><span class="line">directory=/data                ; directory to cwd to before exec (def no cwd)</span><br><span class="line">;umask=022                     ; umask for process (default None)</span><br><span class="line">;priority=999                  ; the relative start priority (default 999)</span><br><span class="line">autostart=true                ; start at supervisord start (default: true)</span><br><span class="line">autorestart=true        ; whether/when to restart (default: unexpected)</span><br><span class="line">startsecs=1                   ; number of secs prog must stay running (def. 1)</span><br><span class="line">startretries=30                ; max # of serial start failures (default 3)</span><br><span class="line">exitcodes=0,2                 ; &apos;expected&apos; exit codes for process (default 0,2)</span><br><span class="line">stopsignal=QUIT               ; signal used to kill process (default TERM)</span><br><span class="line">;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)</span><br><span class="line">;stopasgroup=false             ; send stop signal to the UNIX process group (default false)</span><br><span class="line">;killasgroup=false             ; SIGKILL the UNIX process group (def false)</span><br><span class="line">user=root                   ; setuid to this UNIX account to run the program</span><br><span class="line">;redirect_stderr=true          ; redirect proc stderr to stdout (default false)</span><br><span class="line">stdout_logfile=/data/log/supervisor/redis.stdout.log        ; stdout log path, NONE for none; default AUTO</span><br><span class="line">stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)</span><br><span class="line">stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)</span><br><span class="line">stdout_capture_maxbytes=1MB   ; number of bytes in &apos;capturemode&apos; (default 0)</span><br><span class="line">stdout_events_enabled=false   ; emit events on stdout writes (default false)</span><br><span class="line">stderr_logfile=/data/log/supervisor/redis.stderr.log        ; stderr log path, NONE for none; default AUTO</span><br><span class="line">stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)</span><br><span class="line">stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)</span><br><span class="line">stderr_capture_maxbytes=1MB   ; number of bytes in &apos;capturemode&apos; (default 0)</span><br><span class="line">stderr_events_enabled=false   ; emit events on stderr writes (default false)</span><br><span class="line">;environment=A=1,B=2           ; process environment additions (def no adds)</span><br><span class="line">;serverurl=AUTO                ; override serverurl computation (childutils)</span><br></pre></td></tr></table></figure>
+<p>redis 的配置中，相关的配置选项如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">daemonize no</span><br><span class="line"># 实际上，在出现问题的服务器上，pid 貌似一直没有落地成功，但所幸 redis 没有报错</span><br><span class="line">pidfile /data/log/redis/redis.pid</span><br><span class="line">port 6379</span><br><span class="line">tcp-backlog 128</span><br><span class="line">bind 127.0.0.1</span><br><span class="line"># 只要开启 socket 监听就一定报错。临时解决办法：不使用 socket 方式监听</span><br><span class="line">unixsocket /dev/shm/redis.sock</span><br><span class="line">unixsocketperm 777</span><br><span class="line">timeout 0</span><br><span class="line">tcp-keepalive 0</span><br><span class="line">loglevel notice</span><br><span class="line"># 只要开启 log 就一定报错。临时解决办法：日志路径改成黑洞 /dev/null</span><br><span class="line">logfile /data/log/redis/redis.log</span><br><span class="line">databases 16</span><br><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line">stop-writes-on-bgsave-error yes</span><br><span class="line">rdbcompression yes</span><br><span class="line">rdbchecksum yes</span><br><span class="line"># 出现问题时，dump 文件也没有落地成功，不过不影响 redis 继续执行</span><br><span class="line">dbfilename dump.rdb</span><br><span class="line">dir /data/log/redis/</span><br></pre></td></tr></table></figure>
+<p>因为 redis 的报错是通过 <code>redis.stdout.log</code> 来暴露，我们只用关注这个日志文件就可以了。下面我截几段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">10640:M 01 Mar 18:04:10.932 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.</span><br><span class="line">10640:M 01 Mar 18:04:10.932 # Redis can&apos;t set maximum open files to 10032 because of OS error: Operation not permitted.</span><br><span class="line">10640:M 01 Mar 18:04:10.932 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase &apos;ulimit -n&apos;.</span><br><span class="line">10640:M 01 Mar 18:04:10.932 # Opening Unix socket: bind: Permission denied</span><br><span class="line">10641:M 01 Mar 18:04:41.022 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.</span><br><span class="line">10641:M 01 Mar 18:04:41.023 # Redis can&apos;t set maximum open files to 10032 because of OS error: Operation not permitted.</span><br><span class="line">10641:M 01 Mar 18:04:41.023 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase &apos;ulimit -n&apos;.</span><br><span class="line">10641:M 01 Mar 18:04:41.023 # Opening Unix socket: bind: Permission denied</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">                _._</span><br><span class="line">           _.-``__ &apos;&apos;-._</span><br><span class="line">      _.-``    `.  `_.  &apos;&apos;-._           Redis 3.0.7 (00000000/0) 64 bit</span><br><span class="line">  .-`` .-```.  ```\/    _.,_ &apos;&apos;-._</span><br><span class="line"> (    &apos;      ,       .-`  | `,    )     Running in standalone mode</span><br><span class="line"> |`-._`-...-` __...-.``-._|&apos;` _.-&apos;|     Port: 6379</span><br><span class="line"> |    `-._   `._    /     _.-&apos;    |     PID: 12967</span><br><span class="line">  `-._    `-._  `-./  _.-&apos;    _.-&apos;</span><br><span class="line"> |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|</span><br><span class="line"> |    `-._`-._        _.-&apos;_.-&apos;    |           http://redis.io</span><br><span class="line">  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;</span><br><span class="line"> |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|</span><br><span class="line"> |    `-._`-._        _.-&apos;_.-&apos;    |</span><br><span class="line">  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;</span><br><span class="line">      `-._    `-.__.-&apos;    _.-&apos;</span><br><span class="line">          `-._        _.-&apos;</span><br><span class="line">              `-.__.-&apos;</span><br><span class="line"></span><br><span class="line">11560:M 01 Mar 23:55:35.650 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</span><br><span class="line">11560:M 01 Mar 23:55:35.650 # Server started, Redis version 3.0.7</span><br><span class="line">11560:M 01 Mar 23:55:35.650 # Fatal error loading the DB: Permission denied. Exiting.</span><br><span class="line">11580:M 01 Mar 23:55:44.691 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.</span><br><span class="line">11580:M 01 Mar 23:55:44.691 # Redis can&apos;t set maximum open files to 10032 because of OS error: Operation not permitted.</span><br><span class="line">11580:M 01 Mar 23:55:44.692 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase &apos;ulimit -n&apos;.</span><br><span class="line">11580:M 01 Mar 23:55:44.692 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">3321:M 04 Mar 10:49:40.192 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.</span><br><span class="line">3321:M 04 Mar 10:49:40.192 # Redis can&apos;t set maximum open files to 10032 because of OS error: Operation not permitted.</span><br><span class="line">3321:M 04 Mar 10:49:40.192 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase &apos;ulimit -n&apos;.</span><br><span class="line">3321:M 04 Mar 10:49:40.193 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied. | uid: 0 | gid: 0 | sock family: 1 | sock path: /dev/shm/redis.sock | eno: 101</span><br><span class="line">3322:M 04 Mar 10:50:10.264 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.</span><br><span class="line">3322:M 04 Mar 10:50:10.264 # Redis can&apos;t set maximum open files to 10032 because of OS error: Operation not permitted.</span><br><span class="line">3322:M 04 Mar 10:50:10.264 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase &apos;ulimit -n&apos;.</span><br><span class="line">3322:M 04 Mar 10:50:10.264 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied. | uid: 0 | gid: 0 | sock family: 1 | sock path: /dev/shm/redis.sock | eno: 101</span><br></pre></td></tr></table></figure>
+<p>第二段日志中，socket 具体的路径和 uid/gid 是我修改源码之后打印出来的，用来证实 supervisor 确实是在指定的位置拉起 redis<br>socket，并且确实使用的是指定的用户（root）身份。</p>
+<p>实际上，无论是用 <a href="http://man7.org/linux/man-pages/man2/getuid.2.html" target="_blank" rel="noopener"><code>getuid</code></a> 还是 <a href="http://man7.org/linux/man-pages/man2/geteuid.2.html" target="_blank" rel="noopener"><code>geteuid</code></a> 都是一样的结果，确定 redis 的用户 ID 是 root（uid == 0）。</p>
+<p>因为不是每台电脑都能重现这个问题，而且有时候重做系统，两台服务器同时重做，一台 OK ，另外一台能重现此问题。只要重现一次，就能反复重现，100% 概率。</p>
+<p>此外还有一点需要注意的是，第二段和第三段都提示说需要用 <code>ulimit -n</code> 重新设置 file descriptors limit，可实际情况是，<code>/etc/profile</code> 里面已经设置了该值到 <code>102400</code>，而且肯定是已经生效的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -n  <span class="comment"># 1024000</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>supervisord 是 root 身份启动的，而且的确是以 root 身份拉 redis；</li>
+<li>redis 本身没有问题，shell 里面启动是 OK 的；</li>
+<li>supervisord + redis 就会在磁盘落地时报权限问题；</li>
+<li>redis 报错时，似乎还取到不合实际情况的系统变量；</li>
+<li>并不是每个 CentOS7 环境都报错，但报错的都是 CentOS7。服务器的差异点还没找到，有时候两台同时重做的服务器，一台不行一台行；</li>
+</ul>
+<p>直到现在还没找到问题根源以及解决办法。</p>
+<p>大写的囧……</p>
+<blockquote>
+<p>(UPDATED) 2017-08-17: 还没找到原因。不过相信大概率和 supervisor 的配置有关。<br>supervisor 拉起来的进程，系统环境不再是 euid 对应的环境，这点已经确认。<br>至于这样的变化是怎样导致 redis 的 socket 无法读写的，确实就不知道了。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/a-way-to-accelerate-creating-a-new-laravel-project/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/a-way-to-accelerate-creating-a-new-laravel-project/" itemprop="url">加速 Laravel 新建项目的办法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-19T14:07:04+08:00">
+                2015-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/a-way-to-accelerate-creating-a-new-laravel-project/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/a-way-to-accelerate-creating-a-new-laravel-project/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><blockquote>
+<p>2017-08-17 更新：因为服务器到期，下述方法已经失效。加速的方法<a href="https://pkg.phpcomposer.com/#-composer-" target="_blank" rel="noopener">请参照这里的方法</a>设置 composer 镜像源，并使用下面的方式创建项目。</p>
+<p><code>composer create-project --prefer-dist laravel/laravel [project_name]</code></p>
+<p>这样创建项目时，将使用镜像源下载框架，而不会从墙外的 <code>cabinet.laravel.com</code> 下载。</p>
+</blockquote>
+<p>前段时间有个项目用到了 <a href="http://laravel.com/" target="_blank" rel="noopener">laravel</a> 框架。laravel 本身是个很优秀的框架，OOP 的思想贯穿始终，大量使用已经开源的第三方类库，用反向控制（IoC）的思想对服务进行抽象和隔离，帮助程序员完成对服务的分治，大大提高了架构效率和开发效率、后期维护效率。</p>
+<p>laravel 目前最新的稳定版是 <a href="http://laravel.com/docs/5.1" target="_blank" rel="noopener">laravel 5.1</a>。因为我是从 5.1 开始使用 laravel 的，对 5.0 及 4.x 版本并不熟悉。但从网上大家的反馈来看，laravel 4.x 的使用方法和 5.x 相差较多，甚至 5.0 和 5.1 在细节处也有很多大的改进。<strong>我这里针对的主要是使用 laravel 5.1 的朋友</strong>，下面如果未明确提及版本，也默认指代 laravel ^5.1。</p>
+<p>laravel 中新建项目的方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new [project_name]</span><br></pre></td></tr></table></figure>
+<p>但是这个命令很慢，原因在于每次执行这个命令，laravel installer 都会从 <code>http://cabinet.laravel.com/latest.zip</code> 下载最新的稳定版 laravel 空项目代码，用以创新新项目。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.composer/vendor/laravel/installer/src/NewCommand.php  (Line.97)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Download the temporary Zip to the given file.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  string  $zipFile</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> $this</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">download</span><span class="params">($zipFile)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $response = (<span class="keyword">new</span> Client)-&gt;get(<span class="string">'http://cabinet.laravel.com/latest.zip'</span>);</span><br><span class="line"></span><br><span class="line">        file_put_contents($zipFile, $response-&gt;getBody());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// .......</span></span><br></pre></td></tr></table></figure>
+<p>恰好因为『你懂的』原因，我们访问 <code>cabinet.laravel.com</code> 这个站点的时候会比较慢，由此造成了新建项目的时候很慢。</p>
+<p>我们自己做了一个 mirror 来解决这个问题。</p>
+<p>修改 <code>/etc/hosts</code>（*nux / Mac OSX）或 <code>%SYSTEMROOT%\System32\drivers\etc\hosts</code>（Windows） 文件，新增下面一行：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">123<span class="selector-class">.59</span><span class="selector-class">.41</span><span class="selector-class">.89</span>    <span class="selector-tag">cabinet</span><span class="selector-class">.laravel</span><span class="selector-class">.com</span></span><br></pre></td></tr></table></figure>
+<p>这样新建项目的时候，就可以直接从我们的 mirror 上拉取最新的 laravel 发布版，很快完成新项目创建。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/algorithms-for-cardinality-estimation/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/algorithms-for-cardinality-estimation/" itemprop="url">推荐文章《解读Cardinality Estimation算法》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-09T11:04:31+08:00">
+                2015-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/algorithms-for-cardinality-estimation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/algorithms-for-cardinality-estimation/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>推荐一篇文章<a href="http://blog.codinglabs.org/articles/algorithms-for-cardinality-estimation-part-i.html" target="_blank" rel="noopener">《解读Cardinality Estimation算法》</a>。</p>
+<p>文章讲得很酷，还附带了一个电商数据统计的实际应用案例。</p>
+<p>鉴于文章写得太好，明显是博主原创，所以我就不转载了，大家直接光顾原处看吧。下面是系列文章的目录：</p>
+<ul>
+<li><a href="http://blog.codinglabs.org/articles/algorithms-for-cardinality-estimation-part-i.html" target="_blank" rel="noopener">解读Cardinality Estimation算法（第一部分：基础概念）</a></li>
+<li><a href="http://blog.codinglabs.org/articles/algorithms-for-cardinality-estimation-part-ii.html" target="_blank" rel="noopener">解读Cardinality Estimation算法（第二部分：Linear Counting）</a></li>
+<li><a href="http://blog.codinglabs.org/articles/algorithms-for-cardinality-estimation-part-iii.html" target="_blank" rel="noopener">解读Cardinality Estimation算法（第三部分：LogLog Counting）</a></li>
+<li><a href="http://blog.codinglabs.org/articles/algorithms-for-cardinality-estimation-part-iv.html" target="_blank" rel="noopener">解读Cardinality Estimation算法（第四部分：HyperLogLog Counting 和 Adaptive Counting）</a></li>
+</ul>
+<p>另外，作者还有一篇<a href="http://blog.codinglabs.org/articles/how-web-analytics-data-collection-system-work.html" target="_blank" rel="noopener">《网站统计中的数据收集原理及实现》</a>的科普文章，同样不错，有想了解数据统计基础原理的同学也可以看看。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/a-permission-problem-with-gitlab-and-linux-user/" itemprop="url">发现 Gitlab 的一个权限问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-05T17:28:07+08:00">
+                2015-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/a-permission-problem-with-gitlab-and-linux-user/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/a-permission-problem-with-gitlab-and-linux-user/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>用了好几年的 <a href="https://gitlab.com/" target="_blank" rel="noopener">gitlab</a>，前前后后搭建了好几次系统，解决了不少问题，还是非常熟悉了。昨天又遇到 gitlab 搭建中的一个新的问题。</p>
+<h3><span id="现象">现象</span></h3><p>gitlab 搭建好之后，建账号，加 ssh key，建项目，本地 push，然后就遇到 gitlab 问我要密码。</p>
+<blockquote>
+<p><a href="mailto:git@some.domain.name" target="_blank" rel="noopener">git@some.domain.name</a> password:</p>
+</blockquote>
+<p>项目是我创建的，ssh key 也有添加，还找我要密码，明显不科学。</p>
+<h3><span id="尝试解决">尝试解决</span></h3><p>首先，检查了服务器的 sshd 设定，确认启用了 ssh 登录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/ssh/sshd_config | grep PubkeyAuthentication</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PubkeyAuthentication yes</p>
+</blockquote>
+<p>以为是缓存，分别重启了 redis 和 gitlab。（PS：我的 redis 用 supervisor 管理起来的）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl restart redis</span><br><span class="line">service gitlab restart</span><br></pre></td></tr></table></figure>
+<p>然后等了五分钟再试（其实没有必要），还是不行。</p>
+<p>上网查，stackoverflow 上有一个非推荐答案说，重启服务器之后就好了。于是，又重启了服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now</span><br></pre></td></tr></table></figure>
+<p>还是不行……</p>
+<p>用 <code>ssh -T</code> 命令测试一下，看看结果。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -vvvT git@some.domain.name</span><br></pre></td></tr></table></figure>
+<p>…… 一串无关的日志我就省略了，只说重点。</p>
+<blockquote>
+<p>……<br>debug3: send_pubkey_test<br>debug2: we sent a publickey packet, wait for reply<br>debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password<br>debug2: we did not send a packet, disable method<br>debug3: authmethod_lookup password<br>debug3: remaining preferred: ,password<br>debug3: authmethod_is_enabled password<br>debug1: Next authentication method: password<br><a href="mailto:git@some.domain.name" target="_blank" rel="noopener">git@some.domain.name</a>‘s password:</p>
+</blockquote>
+<p>请注意省略号下面第四行，以 <code>debug2</code> 打头的那行。一次正确的、以 ssh publickey 方式登录的行为，应该是下面这样的：</p>
+<blockquote>
+<p>……<br>debug3: send_pubkey_test<br>debug2: we sent a publickey packet, wait for reply<br>debug1: Server accepts key: pkalg ssh-rsa blen 279<br>debug2: input_userauth_pk_ok: fp 14:8a:99:ec:b4:XX:XX:XX:XX:XX:67:1d:31:bb:fe<br>debug3: sign_and_send_pubkey: RSA 14:8a:99:ec:b4:XX:XX:XX:XX:XX:67:1d:31:bb:fe<br>debug1: key_parse_private2: missing begin marker<br>debug1: read PEM private key done: type RSA<br>debug1: Authentication succeeded (publickey).<br>Authenticated to some.domain.name ([XXX.XX.XX.69]:XXXX).</p>
+</blockquote>
+<p>很明显，还是 ssh publickey 方式过程中出了问题。</p>
+<p>那就上服务器看看吧，到底能有什么问题。</p>
+<h3><span id="找到问题">找到问题</span></h3><p>登录服务器，<code>tail /var/log/secure</code> 查看 ssh 的登录情况，果然发现一些情况。</p>
+<blockquote>
+<p>Dec  5 15:41:54 dev sshd[9417]: Authentication refused: bad ownership or modes for directory /home/git</p>
+</blockquote>
+<p><code>/home/git</code> 目录是按照 manually installation 里面 step by step 安装生成的，所有里面的内容都是原装，不可能出现意外啊。<code>/home/git</code> 也很委屈——『怪我咯』。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -la /home/git</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>total 84<br>drwxrwx—  13 git  git  4096 Dec  5 16:03 .<br>drwxr-xr-x.  3 root root 4096 Nov 28 23:38 ..<br>-rw——-   1 git  git  2239 Dec  5 15:57 .bash_history<br>-rw-r–r–   1 git  git    18 Mar  6  2015 .bash_logout<br>-rw-r–r–   1 git  git   193 Mar  6  2015 .bash_profile<br>-rw-r–r–   1 git  git   537 Nov 29 13:03 .bashrc<br>drwxrwxr-x   2 git  git  4096 Nov 29 09:35 bin<br>drwxrwxr-x   2 git  git  4096 Nov 29 01:01 .bundle<br>drwxrwxr-x   3 git  git  4096 Nov 28 23:38 .cache<br>drwxrwxr-x   3 git  git  4096 Nov 28 23:38 .config<br>-rw-r–r–   1 git  git    25 Nov 29 00:34 .gitconfig<br>drwxrwxr-x  20 git  git  4096 Nov 29 09:44 gitlab<br>drwxrwxr-x   8 git  git  4096 Dec  5 16:34 gitlab-shell<br>drwxrwxr-x   5 git  git  4096 Nov 29 09:48 gitlab-workhorse<br>-rw——-   1 git  git    13 Nov 29 09:53 .mysql_history<br>drwxr-xr-x   8 git  git  4096 Nov 29 09:39 n<br>drwxrw—-   3 git  git  4096 Nov 28 23:38 .pki<br>drwxrwx—  12 git  git  4096 Nov 30 19:49 repositories<br>drwx——   2 git  git  4096 Dec  5 16:13 .ssh<br>-rw——-   1 git  git  4938 Dec  5 16:03 .viminfo</p>
+</blockquote>
+<p><code>/home/git</code> 目录是 <code>0770</code>，不是应该是 <code>0700</code> 吗？</p>
+<h3><span id="解决办法">解决办法</span></h3><p>想一想，gitlab 和它附属的组件都是以 <code>git</code> 用户的身份启动的吧，<code>git</code> 用户组除了 <code>git</code> 用户之外，没有别的用户了。于是，动手将 <code>/home/git</code> 的权限修改为 <code>0700</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod g-rwx /home/git</span><br></pre></td></tr></table></figure>
+<p>结果还是悲剧了，<code>ssh -T</code> 通过，但是 <code>git push</code> 的时候报错了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>GitLab: API is not accessible<br>fatal: Could not read from remote repository.</p>
+<p>Please make sure you have the correct access rights and the repository exists.</p>
+</blockquote>
+<p>看来 <code>/home/git</code> 的权限还是修改不得，虽然是非安全的权限，但是非它不可。gitlab 这点太 low 了，竟然依赖于非安全的权限配置。</p>
+<p>最后还是万能的 stackoverflow 提点，帮忙解决了 sshd 安全限制的问题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+<p>查找 <code>StrictModes</code>，修改。</p>
+<blockquote>
+<p>StrictModes no</p>
+</blockquote>
+<p>保存，退出，重启 sshd，<code>service sshd restart</code>。再试，Ok。</p>
+<h3><span id="后记">后记</span></h3><p>为了能用 gitlab，将 sshd 的权限修改为不推荐的安全配置，实在是不情愿。考虑到服务器目前只有我一个人操作，因此暂时接受了这种方案。但在生产环境，这点应该是不能允许的吧。</p>
+<p>因为时间问题没有仔细去跟修改 home 目录权限后报错的原因，不知道是哪个 gitlab 的组件需要这个目录下的权限。跟踪之后也许可以不依赖 gitlab 完成修正。有兴趣的同学可以试一下。</p>
+<p>PS：补充各部分的版本号</p>
+<ul>
+<li>CentOS=<em>7.2</em></li>
+<li>Gitlab=<em>8.2.1</em></li>
+<li>Redis=<em>2.8.19</em></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/netease-enterprises-email-end-up-itself/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/netease-enterprises-email-end-up-itself/" itemprop="url">网易邮箱已死,有事请烧纸</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-31T09:15:22+08:00">
+                2015-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/netease-enterprises-email-end-up-itself/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/netease-enterprises-email-end-up-itself/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>有这么割裂和相互冲突的产品功能，有这么拙劣的安全事故应对机制，有这差的客户服务，还秉承了做安全『就是让你改不了密码和个人信息』的核心思想…… 就连想安安静静收发个邮件都不让了。网易邮箱已死，有事，请烧纸。</p>
+<p>前段时间传出<a href="http://www.wooyun.org/bugs/wooyun-2015-0147763" target="_blank" rel="noopener">网易邮箱被拖库</a>以后（科普：<a href="http://baike.baidu.com/view/7146795.htm" target="_blank" rel="noopener">什么是拖库</a>），我咨询过网易邮箱内部的资深人士，结果发现他们也不知道具体什么情况。从一开始跟我说不可能骂乌云不厚道，到后来让我赶紧去改密码，他们在网易邮箱内部工作的，比我这个外人还警醒得晚。网易邮箱有些事情把上下里外都瞒得棒棒哒，实际怎么样没人能知道。</p>
+<p>当初为了所谓『安全』，网易邮箱引导我设置了生日及密码问题、保密邮箱、关联手机、安全码，还引导我申请了密保卡（8X8 矩阵那种），设置了身份信息、关联了手机，最近还申请了结果修改个密码都只能去走『申诉』途径。</p>
+<p>我用邮箱无非希望（一）安全（二）无遗漏（三）服务稳定（四）收发及时，其余都属于次要需求。网易现在第一点没保证，第三点不能提供，四点要求出脱一半。关键是，我们还有可替代的方案。网易邮箱不死没天理。</p>
+<p>实在不知道网易到底要跟时代脱节到什么地步，到现在了，还固步自封在自己的小世界里，想着跟用户做生意吗？！</p>
+<p>只能从此不再用网易邮箱。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/dumping-mysql-failed-while-backup-gitlab-datas/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/dumping-mysql-failed-while-backup-gitlab-datas/" itemprop="url">Gitlab 备份时出现 Dumping MySQL FAILED 的错误</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-29T12:17:22+08:00">
+                2015-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/dumping-mysql-failed-while-backup-gitlab-datas/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/dumping-mysql-failed-while-backup-gitlab-datas/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>用 <a href="https://gitlab.com/" target="_blank" rel="noopener">gitlab</a> 很长一段时间了，从 2013 年开始，一直到现在，在每一个团队中都在推广使用 <a href="https://gitlab.com/gitlab-org/gitlab-ce" target="_blank" rel="noopener">gitlab-ce</a> 做版本管理和项目管理。本来一切好好的，一直到今天。</p>
+<p>今天我要做备份的时候。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u git -H bundle <span class="built_in">exec</span> rake gitlab:backup:create RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+<p>命令不灵了。</p>
+<blockquote>
+<p>Dumping database …<br>Dumping MySQL database gitlabhq_production … [FAILED]<br>Backup failed</p>
+</blockquote>
+<p><a href="http://guge.link" target="_blank" rel="noopener">谷歌</a>了解决办法，无非下面几个情况：</p>
+<ol>
+<li>没有装 mysql client library。<ul>
+<li>解决办法：安装一个 mysql client library 就好。</li>
+</ul>
+</li>
+<li><code>git</code> 用户没有写入 <code>config/gitlab.yml</code> 中设定的备份目录的权限<ul>
+<li>解决办法：修改备份目录所有者为 <code>git</code> 用户就好。</li>
+</ul>
+</li>
+<li>官网上有 issue 是关于 <code>PostgreSQL</code> 的，没有结论，参考价值不大</li>
+</ol>
+<p>我挨个排查了一下，上面几种情况都排除了。</p>
+<p>首先，我的 <code>gitlab</code> 站点完全正常访问， 所以第一种情况可以排除。</p>
+<p>其次，<code>tmp/backups/db/</code> 目录下还有一个空文件 <code>database.sql</code>，我删除之后再试，它还能生成，证明备份 DB 的效果是有的，就是不知道为什么，没有取到 DB 里面的内容，备份成空文件了。顺便检查了下备份目录的磁盘空间，完全充足，用下面的命令证明 <code>git</code> 写入文件到备份目录是完全没有问题的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u git -H cat VERSION &gt; tmp/backups/db/test_VERSION</span><br></pre></td></tr></table></figure>
+<p>最后，运行 <code>check</code> 命令检查了 <code>gitlab</code> 的环境，一点儿问题都没有。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u git -H bundle <span class="built_in">exec</span> rake gitlab:check RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+<p>很奇怪对吧？仔细看了遍文档，没有答案。很明显几乎没人会遇到这种问题，因为大家提的 issue 就上面那几个，不是已经被证明与我遇到的情况不符，就是与我的实际情况无关。</p>
+<p>然后，开动大脑，仔细想。。。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u git -H <span class="built_in">echo</span> `<span class="built_in">which</span> mysqldump`</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>/usr/bin/which: no mysqldump in (<em>blabla…</em>)</p>
+</blockquote>
+<p>不知道对不对，试了下这个。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/<span class="built_in">local</span>/mysql/bin/mysqldump /usr/bin/mysqldump</span><br></pre></td></tr></table></figure>
+<p><strong>OK了！</strong></p>
+<p>我就特别不喜欢那种假设各种工具都可以不需要指定路径直接调用的产品。特别是 gitlab 你都要我在配置文件里面指定 <code>git</code> 的全路径了，会用到 <code>mysqldump</code> 你也不说一声，悄悄咪咪地调用，出错也不直接出提示，只说『FAILED』。我去！</p>
+<hr>
+<p>后记：</p>
+<ul>
+<li>一开始还仔细检查了 <code>mysql</code> 的账号权限，才确信排除了数据库的问题；</li>
+<li>对 <code>mysqldump</code> 的设置一开始是通过修改 <code>.bashrc</code> + 添加 <code>PATH</code> 到 <code>visudo</code> 的 <code>env_keep</code> 变量的方法来实现，最终确认问题的根源。建立软链接的方式从安全性上不太可取，不过实现成本最低，性价比高；</li>
+<li>假如还不行，十多分钟后，我就准备开始读源码了。大约四五年前读过 <code>Ruby</code> 的代码，感觉不来电，倒是也不至于折磨人就是了。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/angular-js-docs-for-the-users-in-the-wall/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/angular-js-docs-for-the-users-in-the-wall/" itemprop="url">angularjs 的设计文档及部分官方资料</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-27T10:19:12+08:00">
+                2015-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/angular-js-docs-for-the-users-in-the-wall/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/angular-js-docs-for-the-users-in-the-wall/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><a href="https://angularjs.org/" target="_blank" rel="noopener">Angularjs</a> 是伟大的 <a href="http://www.google.com/" target="_blank" rel="noopener">Google</a> 贡献的 JS 框架。自问世以来，angularjs 以其独特的开发思维方式鹤立于 web 前端开发的圈子，并且以其出众的实际效果赢得大家的喜爱。</p>
+<p>Angularjs 自己提供了一整套的学习文档、设计文档、会议材料等等资料，帮助大家逐步深入了解和学习。可惜这些资料存放在谷歌自己的云盘（Google Drive）中，因为一些众所周知的原因，很不方便下载。我在这里把这些资料打包放在这里，以备不时之需，希望对大家有用。</p>
+<ul>
+<li><a href="http://7xna3w.com1.z0.glb.clouddn.com/Angular_Public-2015-10-26.zip" target="_blank" rel="noopener">Angular_Public_Design_Docs_And_Notes-2015-10-26</a></li>
+</ul>
+<p>PS：最爱 Google 系的一点就是不论是库、框架还是业务代码，文档总是有的，你能从中了解到工程师的初衷和思路，加以消化学习。哈哈！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/sticky-bit-of-files-under-linux/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/sticky-bit-of-files-under-linux/" itemprop="url">再学习 Linux 下的文件权限</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-22T10:37:23+08:00">
+                2015-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/sticky-bit-of-files-under-linux/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/sticky-bit-of-files-under-linux/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>最近遇到一个比较搞的问题，有关 linux 下的文件权限。因为发现解决问题之后的答案是我们很多工作多年的攻城狮以前都没有重视过的，所以特别写下来，帮助加深记忆。</p>
+<h3><span id="背景">【背景】</span></h3><p>同事学习 <code>lnmp</code>，搭好 <code>CentOS</code> 6.5 的环境之后，新建了一个用户组 <code>test</code>，在该组别下新建了一个用户 <code>test</code>，然后准备用这个用户模拟 <code>nginx</code> 和 <code>php-fpm</code> 进程的启动用户，跟着手册上做实践。</p>
+<h3><span id="关键信息">【关键信息】</span></h3><ul>
+<li>用户：<code>test:test</code></li>
+<li>目录：<code>/www/test</code></li>
+<li>目录权限：<code>drwxrwxrwx.  2 root  root      40 Oct 21 16:43 test</code></li>
+<li>文件：<code>/www/test/index.html</code></li>
+<li>文件权限：<code>-rw-r--r--. 1 root root   0 Oct 22 10:04 index.html</code></li>
+</ul>
+<h3><span id="现象">【现象】</span></h3><ol>
+<li>先用 <code>root</code> 的身份 <code>touch</code> 了一个空文件 <code>index.html</code>；</li>
+<li><code>su test</code>，然后以 <code>test</code> 用户的身份去删除这个空文件；</li>
+<li>WTF！！！ 竟然删除文件成功了？？？！！！</li>
+</ol>
+<p><strong>普通用户删除了 <code>root</code> 用户的文件</strong>，我保证，刚看到这个现象的时候，我内心绝对是崩溃的。</p>
+<h3><span id="解决的途径">【解决的途径】</span></h3><p>首先，检查了 <code>test</code> 用户的用户组，确认的确是 <code>test</code> 组。</p>
+<p>其次，检查文件和目录的权限，除了 <code>test</code> 目录没有按照惯例，被设置成 <code>0777</code> 之外，没有什么特别的。不可能一个 <code>0777</code> 还能捣蛋吧？！</p>
+<p>再次，<code>visudo</code> 命令检查有没有给 <code>test</code> 做高规格的授权。结论是：否。默认配置，没有可疑的配置。</p>
+<p>接下来检查 <code>rm</code> 命令有没有被动过手脚。考虑到这是一台从 min 发行版正常安装起来的<strong>测试机</strong>，到这里我觉得已经有点儿过了。不过没关系，面对系统『问题』，谨慎一些总是好的。</p>
+<p>之后又检查了 <code>uid</code> 和 <code>gid</code>，确保 <code>test:test</code> 没有占用一些有特殊作用的保留 id。</p>
+<p>最后，还找不到问题，已经过去了半个多小时。猛然想起什么，试了一下除开 <code>test</code> 的其它用户，发现都能重现这个问题。至此发现问题的源头不在 <code>test</code> 这个用户身上。</p>
+<h3><span id="答案">【答案】</span></h3><p>发现源头不在 <code>test</code> 用户身上之后，就走上了正路。如果不是用户或者用户组本身拥有超级权限，那么多半的多半，是权限本身的设计问题。</p>
+<p>按经验，对客观存在的东西，<strong>不是 bug，就是一个 feature</strong>。</p>
+<p>于是开始<a href="http://www.itechzero.com/google-mirror-sites-collect.html" target="_blank" rel="noopener">谷歌</a> Linux 文件权限相关的手册，终于终于找到了<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0210filepermission.php" target="_blank" rel="noopener">鸟哥 Linux 私房菜——第六章、Linux 的文件权限及目录配置</a>（很奇怪，鸟哥的文档以简体形式放在宝岛学校的官网上），以及 <a href="https://en.wikipedia.org/wiki/Sticky_bit" target="_blank" rel="noopener">Sticky bit</a> 的维基页。算是为这件事情做了一个注解。</p>
+<p>鸟哥说：</p>
+<blockquote>
+<ul>
+<li>权限对目录的重要性<ul>
+<li>r (read contents in directory)：<br>……</li>
+<li>w (modify contents of directory)：<br> 这个可写入的权限对目录来说，是很了不起的！ 因为他表示你具有异动该目录结构列表的权限，也就是底下这些权限：<ul>
+<li>建立新的文件与目录；</li>
+<li>删除已经存在的文件与目录(不论该文件的权限为何！)</li>
+<li>将已存在的文件或目录进行更名；</li>
+<li>搬移该目录内的文件、目录位置。<br>总之，目录的w权限就与该目录底下的文件名异动有关就对了啦！</li>
+</ul>
+</li>
+<li>x (access directory)：<br>……</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>维基说：</p>
+<blockquote>
+<p>…<br>When a directory’s sticky bit is set, the filesystem treats the files in such directories in a special way so only the file’s owner, the directory’s owner, or root can rename or delete the file. Without the sticky bit set, any user with write and execute permissions for the directory can rename or delete contained files, regardless of the file’s owner.</p>
+</blockquote>
+<h3><span id="解决办法">【解决办法】</span></h3><ol>
+<li>一定不要给多余的权限。这件事要养成习惯！任何可能接触到系统的人都要培养出来。</li>
+<li>对于共用目录，一定要对这个目录激活 <code>sticky bit</code>。比如 <code>/tmp</code> 目录就默认激活了 <code>sticky bit</code> 的，这样大家共用这个目录也不会混乱。</li>
+<li><code>sticky bit</code> 的限制不能继承，也就是说只对激活了 <code>sticky bit</code> 的当前目录有用。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
+          <p class="site-author-name" itemprop="name">Simon Kuang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/simonkuang" target="_blank" title="GayHub">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      GayHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56218002";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
