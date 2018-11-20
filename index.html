@@ -845,7 +845,17 @@
 <blockquote>
 <p>NOTE(simon, 2018-05-30):<br>  放弃使用 supervisor 的原因是，MacOS 作为生产力工具，supervisor 最友好方式的安装还是通过 brew。而 brew 安装的 supervisor 启动时，是当前用户权限，不是 root 身份。试了下，也没办法通过配置，提权到 root。再则，supervisor 的配置中，大量文件写到 <code>/usr/local</code> 目录下，如果以 root 身份启动 supervisord 进程，这些文件势必也是 root 权限的。而按照 brew 的指导意见，<code>/usr/local</code> 下还是要保留当前用户权限的，否则 brew 可能会挂。<br>  所以兜兜转换，又用回到老的土办法。毕竟，稳定就好。</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; ~/.bash_profile</span><br><span class="line"><span class="comment"># CoreDNS</span></span><br><span class="line">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)</span><br><span class="line">[ <span class="variable">$&#123;COREDNS_PROCESS_COUNT&#125;</span> -lt 1 ] &amp;&amp; \</span><br><span class="line">    nohup sudo /usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile &amp;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<strike><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; ~/.bash_profile</span><br><span class="line"><span class="comment"># CoreDNS</span></span><br><span class="line">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)</span><br><span class="line">[ <span class="variable">$&#123;COREDNS_PROCESS_COUNT&#125;</span> -lt 1 ] &amp;&amp; \</span><br><span class="line">    nohup sudo /usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile &amp;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure><br><br></strike>
+
+<blockquote>
+<p>NOTE(simon, 2018-11-20):<br>  更新一下脚本，实现下面几个功能：</p>
+<ol>
+<li>coredns 进程的 stderr 输出转到 stdout；</li>
+<li>coredns 进程不绑定到当前 tty 上，运行 <code>jobs</code> 命令不显示 coredns 进程；</li>
+<li>显式指定 nohup 将 coredns 进程的 stdout 输出打到 ~/nohup.out 文件；</li>
+</ol>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)</span><br><span class="line">[ <span class="variable">$&#123;COREDNS_PROCESS_COUNT&#125;</span> -lt 1 ] &amp;&amp; \</span><br><span class="line">  (2&gt;&amp;1 nohup sudo /usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile &gt;&gt; ~/nohup.out &amp;)</span><br></pre></td></tr></table></figure>
 <h3><span id="五-验证">五、验证</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup www.qq.com 127.0.0.1</span><br><span class="line">nslookup www.facebook.com 127.0.0.1</span><br><span class="line">nslookup test1.mod-a.company.com 127.0.0.1</span><br></pre></td></tr></table></figure>
 <p>公司内网 IP 几乎秒出。非死不可也能出。</p>
 <p>搞定。</p>
