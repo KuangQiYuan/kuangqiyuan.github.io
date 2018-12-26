@@ -257,6 +257,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/" itemprop="url">阿里云未备案云主机申请 letsencrypt ssl 证书</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T00:34:22+08:00">
+                2017-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。</p>
+<p>访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的<em>温馨提示</em>（如下图）。</p>
+<p><img src="http://7xna3w.com1.z0.glb.clouddn.com//misc/TestPage.png" alt="TestPage Screenshot"></p>
+<p>而一台不能提供 http 服务的阿里云 ECS 不是真正的服务器。解决这个问题的办法，将 http 换到 https 就可以了。</p>
+<h2><span id="https-选哪家">https 选哪家</span></h2><p>总所周知，自从 WoSign 被我大天朝数字公司收购之后，颇多周折，<a href="https://www.sslchina.com/chrome-final-removal-of-trust-in-wosign/" target="_blank" rel="noopener">跟同袍兄弟 StarSSL 一起被业界良心 chrome 拉黑</a>。现在使用 WoSign 签发的 ssl 证书会被 chrome 直接判定为证书无效。</p>
+<p>最近连商务范儿最重的 <a href="http://www.cnbeta.com/articles/soft/636841.htm" target="_blank" rel="noopener">Symantec 都被 chrome 一再警告之后拉黑</a>。除了认为 chrome 真任性之外，也提醒我们选择 ssl 服务商时一定要慎重。</p>
+<p>目前来看，从个人到中小企业，<strong>最佳选择是 google 投资的 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a></strong>。运用 ACME 协议自动签发、自动续期，技术宅最爱，不是技术宅也有现成工具简单操作即可。</p>
+<h2><span id="怎么生成-http-ssl-证书">怎么生成 http ssl 证书</span></h2><p>首先注明，申请 Let’s Encrypt 家的 http ssl 证书，不需要提前准备啥资料，不需要书面申请，这跟国内的『管理』方法不一样。你只需要证明这个域名归你所有，http ssl 的证书就可以签发给你使用。但是为了防止域名到期易主、中途转让等等原因，发生域名新主人拿不到 http ssl 证书的情况，所以 <strong>Let’s Encrypt 规定了每次签发的 http ssl 证书有效期只有三个月，证书生成一个月之后可以免费重签/续期，不用等到临近有效期再续签</strong>。</p>
+<p>Let’s Encrypt 验证域名的归属有两个办法，用过 Google Analytics，和用 G Suite 绑定过域名的朋友应该比较熟悉了。</p>
+<ol>
+<li>网站验证。给你一个随机内容的文件，你把这个文件放在一个特定的位置，用待绑定的域名 + 特定 path 可以访问到这个文件，可以认为域名是你的；</li>
+<li>DNS 验证。给你一个随机字符串，你把这个字符串添加为待绑定域名某个 name 的 txt 值，只要能通过公网上的 DNS 服务器解析到这个字串，认为域名是你的。</li>
+</ol>
+<p>很简单吧。</p>
+<p>在阿里云 ECS 未备案的情况下，第一种办法是不可行的，chanlledge 必须是用过 http 协议进行的（你是来申请 https 证书的，假设你还没有 https 服务，这完全正常，只能用 http 来 chanlledge），而你的 http 服务被阿里云劫持了，所以你才要申请 http ssl 证书。…… 这就是个死循环。</p>
+<p>第二种办法可行，它的具体步骤如下。</p>
+<h2><span id="具体操作">具体操作</span></h2><blockquote>
+<p>我先把要注意的事项写下来，免得走弯路。<br>嗯，其实就一条：使用 <code>pip install certbot</code> 命令安装 certbot，不要用 yum/dnf/apt/pkg/apk 等包管理工具安装。</p>
+</blockquote>
+<h3><span id="第一步安装-certbot">第一步，安装 certbot</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade certbot</span><br></pre></td></tr></table></figure>
+<p>如果已经通过包管理工具安装过 certbot，那么先卸载。假设在 CentOS 上，包管理工具是 dnf。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf remove -y certbot</span><br></pre></td></tr></table></figure>
+<p>包管理工具安装的 certbot，其某些依赖包对应的版本比较低，存在兼容性问题，安装之后根本用不了。最好是用 pip 安装。</p>
+<h3><span id="第二步提出签发-http-ssl-申请">第二步，提出签发 http ssl 申请</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certbot --text --agree-tos --email &lt;your@email.com&gt; -d &lt;your.domain.com&gt; --manual --preferred-challenges dns --expand --renew-by-default  --manual-public-ip-logging-ok certonly</span><br></pre></td></tr></table></figure>
+<p>注意，这时候会出现类似下面的内容。</p>
+<blockquote>
+<p>Please deploy a DNS TXT record under the name<br>_acme-challenge.bristol3.pki.enigmabridge.com with the following value:</p>
+<p>667drNmQL3vX6bu8YZlgy0wKNBlCny8yrjF1lSaUndc</p>
+<p>Once this is deployed,<br>Press ENTER to continue</p>
+</blockquote>
+<p>上面的内容意思是：</p>
+<ol>
+<li>背景：假设你申请 http ssl 的域名是 <code>bristol3.pki.enigmabridge.com</code>，你对这个域名有管理权；</li>
+<li>在上述域名下，设置名为 <code>_acme-challenge</code> 的 <strong>txt</strong> 类型的记录，值为 <code>667drNmQL3vX6bu8YZlgy0wKNBlCny8yrjF1lSaUndc</code>；</li>
+<li>如果上述记录是新建的，那么等待大约半分钟，回到命令行，点击<strong>回车</strong>继续。</li>
+</ol>
+<h3><span id="第三步获取-http-ssl-证书">第三步，获取 http ssl 证书</span></h3><p>完成之后，在 <code>/etc/letsencrypt/live/&lt;your.domain.com&gt;</code> 目录下，有这么几个文件。</p>
+<ul>
+<li><code>privkey.pem</code> 证书的私钥；</li>
+<li><code>fullchain.pem</code> 带完整认证链的证书。注意，说是 fullchain，其实 CA 是 letsencrypt 自家的 CA，在某些老的操作浏览器上仍然有 bug；</li>
+<li><code>chain.pem</code> README 上面说法是给 nginx stapling 用的，其实里面就是 letencrypt CA 的证书；</li>
+<li><code>cert.pem</code> 域名的 http ssl 证书公钥。</li>
+</ul>
+<h3><span id="第四步安装">第四步，安装</span></h3><p>以 nginx 为例。（别问我为什么是 nginx，我最熟悉它，懒，你懂）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 只贴出关于 ssl 的部分，其余部分就不贴了。</span><br><span class="line">ssl on;</span><br><span class="line">ssl_certificate /etc/letsencrypt/live/your.domain.com/fullchain.pem;</span><br><span class="line">ssl_certificate_key /etc/letsencrypt/live/your.domain.com/privkey.pem;</span><br><span class="line">#  ssl_trusted_certificate /etc/letsencrypt/live/your.domain.com/fullchain.pem;</span><br><span class="line">ssl_trusted_certificate ssl/letsencrypt_full_chained.pem;</span><br><span class="line">ssl_stapling on;</span><br><span class="line">ssl_stapling_verify on;</span><br><span class="line">ssl_session_timeout 5m;</span><br><span class="line">ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">ssl_ciphers HIGH:!aNULL:!MD5:!EXPORT56:!EXP;</span><br><span class="line">ssl_session_cache shared:SSL:50m;</span><br><span class="line">ssl_dhparam ssl/dhparams.pem;</span><br><span class="line">ssl_prefer_server_ciphers on;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>ssl/letsencrypt_full_chained.pem</code> 是让 ISRG ROOT X1 给 letsencrypt X3 做一个交叉认证的认证链，这是 CA 之间经常使用的一种提高自身兼容性的办法。这个交叉认证证书用如下办法生成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -Lo <span class="string">"<span class="variable">$&#123;HOME&#125;</span>/lets-encrypt-x3-cross-signed.pem"</span> \</span><br><span class="line">    <span class="string">"https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem"</span></span><br><span class="line">curl -Lo <span class="string">"<span class="variable">$&#123;HOME&#125;</span>/isrgrootx1.pem"</span> \</span><br><span class="line">    <span class="string">"https://letsencrypt.org/certs/isrgrootx1.pem"</span></span><br><span class="line"></span><br><span class="line">sed -i <span class="string">'s@\s*$@@g'</span> <span class="string">"<span class="variable">$&#123;HOME&#125;</span>/isrgrootx1.pem"</span>   <span class="comment"># trip the carrige at the end of every line.</span></span><br><span class="line">cat <span class="variable">$&#123;HOME&#125;</span>/lets-encrypt-x3-cross-signed.pem <span class="variable">$&#123;HOME&#125;</span>/isrgrootx1.pem &gt; \</span><br><span class="line">    letsencrypt_full_chained.pem</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PS: 上面的命令简单粗暴，原因是假设 certbot 生成的 fullchain.pem 里面有以下的规则。</p>
+<ol>
+<li>域名 http ssl 都是由 letsencrypt CA 直接认证的，没有中间的 issuer；</li>
+<li>签发证书的 letsencrypt CA 是 lets-encrypt-x3。</li>
+</ol>
+<p>所以，当上面的配置出现错误时，快糙猛的办法是屏蔽掉『ssl_trusted_certificate』这行。<br>毕竟，在功能性面前，兼容性算个逑。</p>
+</blockquote>
+<p><code>ssl/dhparams.pem</code> 由以下命令生成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl dhparam -out dhparam.pem 2048</span><br></pre></td></tr></table></figure>
+<p>配置完成之后，reload nginx 即可。</p>
+<p>自此，阿里云 ECS 终于可以通过 https 协议访问了。舒心啦。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1564,168 +1752,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/grpc-for-php/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/grpc-for-php/" itemprop="url">PHP 的 GRPC 扩展的安装修复</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-31T16:17:17+08:00">
-                2016-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/grpc-for-php/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/grpc-for-php/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>php 的 <a href="https://pecl.php.net/package/gRPC" target="_blank" rel="noopener">grpc 扩展</a>在八月十八日已经到了 <code>1.0.0 stable</code>。很高兴的，终于到了一个 stable 版本。这意味着，在 php 中将 grpc 应用到生产环境会安心许多。一些不太稳定的特性或功能，会被排除在发布版本之外，用起来顺很多。</p>
-<p>可惜的是，这个 <code>stable</code> 版本貌似在安装环节并不稳定，安装过程中分别会在 <code>configure</code> 和 <code>make</code> 环节报如下的警告与错误。</p>
-<p>在 <code>configure</code> 环节的警告：</p>
-<pre><code>...
-checking whether to enable grpc support... yes, shared
-./configure: line 4107: cd: ../../grpc: No such file or directory
-./configure: line 4138: cd: ../../grpc/src/php/ext: No such file or directory
-./configure: line 4169: cd: ../../grpc/third_party/boringssl: No such file or directory
-checking for ld used by cc... /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
-...
-</code></pre><p>在 <code>make</code> 环节就直接报错退出：</p>
-<pre><code>...
-In file included from /Volumes/RamDisk/grpc-1.0.0/src/core/lib/security/credentials/google_default/google_default_credentials.c:46:
-In file included from ./src/core/lib/security/credentials/jwt/jwt_credentials.h:38:
-./src/core/lib/security/credentials/jwt/json_token.h:38:10: fatal error: &apos;openssl/rsa.h&apos; file not found
-#include &lt;openssl/rsa.h&gt;
-         ^
-1 error generated.
-make: *** [src/core/lib/security/credentials/google_default/google_default_credentials.lo] Error 1
-</code></pre><p>修正的方法也简单。用下面的步骤安装即可：</p>
-<h4><span id="1-下载解压">1. 下载，解压</span></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://pecl.php.net/get/grpc-1.0.0.tgz</span><br><span class="line">tar zxf grpc-1.0.0.tgz</span><br><span class="line"><span class="built_in">cd</span> grpc-1.0.0</span><br></pre></td></tr></table></figure>
-<h4><span id="2-修正-m4-文件">2. 修正 m4 文件</span></h4><p>在第 8-10 行，原本是这样的，删除它们，</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">PHP_ADD_INCLUDE</span>(<span class="params">../../grpc/include</span>)</span></span><br><span class="line"><span class="function"><span class="title">PHP_ADD_INCLUDE</span>(<span class="params">../../grpc/src/php/ext/grpc</span>)</span></span><br><span class="line"><span class="function"><span class="title">PHP_ADD_INCLUDE</span>(<span class="params">../../grpc/third_party/boringssl/include</span>)</span></span><br></pre></td></tr></table></figure>
-<p>然后替换成下面这一行。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">PHP_ADD_INCLUDE</span><span class="params">(third_party/boringssl/include)</span></span></span><br></pre></td></tr></table></figure>
-<p>缩进最好严格按照文件本身的格式来，新增的一行使用两个空格缩进。</p>
-<h4><span id="3-编译-安装配置">3. 编译、安装，配置</span></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">phpize</span><br><span class="line">./configure --with-php-config=&lt;the_path_to_your_php-config_binary&gt;</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<p>然后修改 <code>php.ini</code>，新增一行</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span>=grpc.so</span><br></pre></td></tr></table></figure>
-<h4><span id="4-搞定">4. 搞定</span></h4><hr>
-<p>PS：第二步本来想用脚本来完成的，烦人的是 MacOS 下面的 <code>sed</code> 命令和 Linux 下面的用法不太一样，做兼容很麻烦，索性算了，大家手动改吧。</p>
-<hr>
-<p>再 PS：截至 2016-08-31。我已经把这个问题已经提交了 issue，开发组也已经 assign 到具体的开发者跟进，相信不久就会发布新版解决这个问题。1.0.0 版除了安装过程有些小问题，使用上是 OK 的。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1776,7 +1802,7 @@ make: *** [src/core/lib/security/credentials/google_default/google_default_crede
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
