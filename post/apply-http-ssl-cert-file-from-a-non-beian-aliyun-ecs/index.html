@@ -86,12 +86,12 @@
 <meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
 <meta property="og:description" content="用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。 访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的温馨提示（如下图）。  而一台不能提供 http 服务的阿里云 ECS">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xna3w.com1.z0.glb.clouddn.com//misc/TestPage.png">
-<meta property="og:updated_time" content="2018-10-09T12:37:20.162Z">
+<meta property="og:image" content="http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/TestPage.png">
+<meta property="og:updated_time" content="2019-02-27T15:05:57.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里云未备案云主机申请 letsencrypt ssl 证书">
 <meta name="twitter:description" content="用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。 访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的温馨提示（如下图）。  而一台不能提供 http 服务的阿里云 ECS">
-<meta name="twitter:image" content="http://7xna3w.com1.z0.glb.clouddn.com//misc/TestPage.png">
+<meta name="twitter:image" content="http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/TestPage.png">
 
 
 
@@ -342,7 +342,7 @@
       
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。</p>
 <p>访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的<em>温馨提示</em>（如下图）。</p>
-<p><img src="http://7xna3w.com1.z0.glb.clouddn.com//misc/TestPage.png" alt="TestPage Screenshot"></p>
+<p><img src="./TestPage.png" alt="TestPage Screenshot"></p>
 <p>而一台不能提供 http 服务的阿里云 ECS 不是真正的服务器。解决这个问题的办法，将 http 换到 https 就可以了。</p>
 <h2><span id="https-选哪家">https 选哪家</span></h2><p>总所周知，自从 WoSign 被我大天朝数字公司收购之后，颇多周折，<a href="https://www.sslchina.com/chrome-final-removal-of-trust-in-wosign/" target="_blank" rel="noopener">跟同袍兄弟 StarSSL 一起被业界良心 chrome 拉黑</a>。现在使用 WoSign 签发的 ssl 证书会被 chrome 直接判定为证书无效。</p>
 <p>最近连商务范儿最重的 <a href="http://www.cnbeta.com/articles/soft/636841.htm" target="_blank" rel="noopener">Symantec 都被 chrome 一再警告之后拉黑</a>。除了认为 chrome 真任性之外，也提醒我们选择 ssl 服务商时一定要慎重。</p>
@@ -525,7 +525,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -635,7 +635,7 @@
         <div class="copyright">
   
   &copy;  2005 &mdash; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
