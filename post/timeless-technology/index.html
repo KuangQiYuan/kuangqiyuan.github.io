@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
 <meta property="og:description" content="最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内容千篇一律是推荐极客时间打新的课程，《Java 并发编程实战》。 高并发哥又不是没做过，随手找了一下，发现陈皓在 2009 年的一篇文章就提到了正确的解法，以及背后的原因。《深入浅出单实例 SINGLETON 设计模式》。 文中给出几种功">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-26T16:30:27.320Z">
+<meta property="og:updated_time" content="2019-02-27T15:57:56.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不过时的技术">
 <meta name="twitter:description" content="最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内容千篇一律是推荐极客时间打新的课程，《Java 并发编程实战》。 高并发哥又不是没做过，随手找了一下，发现陈皓在 2009 年的一篇文章就提到了正确的解法，以及背后的原因。《深入浅出单实例 SINGLETON 设计模式》。 文中给出几种功">
@@ -357,29 +357,40 @@
 <blockquote>
 <p>无论是 QoS2 还是 transaction，原理都是一样的：<strong>通过一次代价非常小、成功概率足够高的操作，作为最后确认的依据</strong>。这样做并不是说绝对不出错，而是出错的概率足够低，实践中可以忽略。</p>
 </blockquote>
-<pre class="mermaid">
-sequenceDiagram
-    participant Publisher
-    participant Broker
-    participant Subscriber
-    Publisher->>Publisher: Store(Msg)
-    Publisher->>Broker: PUBLISH(QoS2, Msg)
-    Broker->>Broker: Store(Msg)
-    Broker->>Publisher: PUBREC
-    Publisher->>Broker: PUBREL
-    Broker->>Subscriber: PUBLISH(QoS2, Msg)
-    Broker->>Publisher: PUBCOMP
-    Publisher->>Publisher: Delete(Msg)
-    Subscriber->>Subscriber: Store(Msg)
-    Subscriber->>Broker: PUBREC
-    Broker->>Subscriber: PUBREL
-    Subscriber->>Subscriber: Notify(Msg)
-    Subscriber->>Broker: PUBCOMP
-    Broker->>Broker: Delete(Msg)
-    Subscriber->>Subscriber: Delete(Msg)</pre>
+<pre class="mermaid">sequenceDiagram
+  participant Publisher
+  participant Broker
+  participant Subscriber
+  Publisher->>Publisher: Store(Msg)
+  Publisher->>Broker: PUBLISH(QoS2, Msg)
+  Broker->>Broker: Store(Msg)
+  Broker->>Publisher: PUBREC
+  Publisher->>Broker: PUBREL
+  Broker->>Subscriber: PUBLISH(QoS2, Msg)
+  Broker->>Publisher: PUBCOMP
+  Publisher->>Publisher: Delete(Msg)
+  Subscriber->>Subscriber: Store(Msg)
+  Subscriber->>Broker: PUBREC
+  Broker->>Subscriber: PUBREL
+  Subscriber->>Subscriber: Notify(Msg)
+  Subscriber->>Broker: PUBCOMP
+  Broker->>Broker: Delete(Msg)
+  Subscriber->>Subscriber: Delete(Msg)</pre>
 
 <p>简单一点的模型，如果不需要中间的 broker，则流程如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Publisher-&gt;Publisher: Store(Msg)</span><br><span class="line">Publisher-&gt;Subscriber: (1) PUBLISH(QoS2, Msg)</span><br><span class="line">Subscriber-&gt;Subscriber: Store(Msg)</span><br><span class="line">Subscriber-&gt;Publisher: (2) PUBREC</span><br><span class="line">Publisher-&gt;Subscriber: (3) PUBREL</span><br><span class="line">Subscriber-&gt;Subscriber: Notify(Msg)</span><br><span class="line">Subscriber-&gt;Publisher: (4) PUBCOMP</span><br><span class="line">Subscriber-&gt;Subscriber: Delete(Msg)</span><br><span class="line">Publisher-&gt;Publisher: Delete(Msg)</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">sequenceDiagram
+  participant Publisher
+  participant Subscriber
+  Publisher->>Publisher: Store(Msg)
+  Publisher->>Subscriber: (1) PUBLISH(QoS2, Msg)
+  Subscriber->>Subscriber: Store(Msg)
+  Subscriber->>Publisher: (2) PUBREC
+  Publisher->>Subscriber: (3) PUBREL
+  Subscriber->>Subscriber: Notify(Msg)
+  Subscriber->>Publisher: (4) PUBCOMP
+  Subscriber->>Subscriber: Delete(Msg)
+  Publisher->>Publisher: Delete(Msg)</pre>
+
 <p>从简化以后的模型可以看到，publisher 和 subscriber 有两次交互。第一次，publisher 把 msg 推送给 subscriber，对应 <code>PUBLISH</code>/<code>PUBREC</code> 指令。第二次，publisher 等于是询问 subscriber，“你是不是收到一次”，对应 <code>PUBREL</code>/<code>PUBCOMP</code> 指令。</p>
 <p>如果没有第 (3)/(4)步，<code>PUBREL</code>/<code>PUBCOMP</code> 指令，实际就是 QoS1，<em>至少收到一次</em>。</p>
 <p>再少一点，如果没有 (2)/(3)/(4) 步，只剩第 (1) 步，实际就是 QoS0，<em>至多只发送一次</em>。</p>
@@ -599,6 +610,15 @@ sequenceDiagram
 
   
 </div>
+
+
+<script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({"startOnload":true});
+  }
+</script>
+
 
 
   <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
