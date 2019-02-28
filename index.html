@@ -212,7 +212,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/ || home" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
@@ -222,7 +222,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/ || user" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
@@ -232,7 +232,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/ || tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
@@ -242,7 +242,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/ || archive" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
@@ -269,6 +269,161 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/hexo-also-a-toy-for-geeker/" itemprop="url">hexo 又成了技术流的玩具</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-28T21:21:53+08:00">
+                2019-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/hexo-also-a-toy-for-geeker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/hexo-also-a-toy-for-geeker/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>其实写这篇文章，心情不太痛快。hexo 是我找了好久才确定下来，能用 markdown 写 blog 的系统。之前试过的如 jekyll 太复杂，而且定制化程度太低，不灵活。刚开始用 hexo 的时候发现它简直是尤物，轻便简洁，扩展性还不错，官方收录了<a href="https://hexo.io/plugins/index.html" target="_blank" rel="noopener">很多 plugins</a>，足够码农用了。</p>
+<p>结果没过几年，hexo 也快成了技术流的玩具。</p>
+<h2><span id="问题一-npm-依赖存在缺陷">问题一。npm 依赖存在缺陷</span></h2><p>首先是 <code>&quot;hexo@3.8.0&quot;</code> 某个依赖 <code>&quot;hexo-fs@0.2.2&quot;</code>，后者依赖 <code>&quot;chokidar@1.2.7&quot;</code>，而 chokidar 又依赖 <code>&quot;fsevents@1.1.3&quot;</code>。好了，最后这个 <code>&quot;fsevents@1.1.3&quot;</code> 是被 <em>deprecated</em> 的版本，包含原生库，已经不存在 binary 下载，从源码编译也会报错。错误的大意是跟 node 的版本不兼容。</p>
+<p>下面我把这个关系链重新理一下。</p>
+<pre class="mermaid">graph LR;
+    A["hexo@3.8.0"]-->B["hexo-fs@0.2.2"];
+    B-->C["chokidar@1.2.7"];
+    C-->D["fsevents@1.1.3"];
+    D-->E["(HELL)"];</pre>
+
+<p>除了上面的问题以外，大量已经停更的 plugins 依赖的 <code>&quot;hexo-cli@1.0.3&quot;</code> 等旧库，也多对 <code>&quot;fsevents@1.1.3&quot;</code> 存在间接依赖。</p>
+<p>用一句话来说后果，<strong>在 MacOS 下，用 <code>hexo-cli new</code> + <code>npm i</code> 的方式，根本安装不上 hexo。</strong></p>
+<h2><span id="问题二-插件的停更-老化">问题二。插件的停更、老化</span></h2><p>像上面提到的，停更的插件，其间接依赖的第三方库若是被废弃，插件本身也就不可用了。这是一种情况。</p>
+<p>第二种情况，hexo 本身在发展，某些停更的第三方插件没有跟着做适配，结果是 hexo 的使用体验受到了影响。</p>
+<p>第三种情况，最常见的。哪怕是官网列表中的插件，质量也是有高有低，对那些技术不灵光的用户实在麻烦。</p>
+<h2><span id="解决方法">解决方法</span></h2><p>针对安装不上的问题。我也不知道怎么解决 :( 我用撞大运的办法，<code>hexo-cli new</code> 一个项目以后，手动修改 <code>package.json</code>，将 <code>&quot;hexo@3.8.0&quot;</code> 这个依赖指向自己 fork 的 <code>hexo</code> repo，这个 forked repo 里面已经修改了 <code>hexo-fs</code> 是指向一个 forked <code>hexo-cli</code> repo。最后在这个 forked hero-cli repo 里面，把对 <code>chokidar</code> 的引用上升到 <code>&quot;chokidar@1.7.0&quot;</code> 以后。</p>
+<p>挺复杂的，对吧。不懂点开发，还真办不了。</p>
+<p>针对插件停更、老化的问题，只有一个办法，就是自己 fork 做二次开发。项目的依赖中直接写上自己的 git repo。</p>
+<p>别问我有没有现成的。我也很无奈。</p>
+<p>PS：这就是 npm 生态带来的问题。left_pad 事件发生后，有人说 nodejs 程序员懒到『 连最简单的代码都不想写』，只想引用。我不太赞同这个评论的态度，不过 npm 社区的程序员的确是把代码复用做到比较极致的地步。</p>
+<hr>
+<p><em>UPDATE(2019-02-28)</em></p>
+<p>发现在新 new 的项目里面，<code>&quot;hexo@3.8.0&quot;</code> 的发布版好像是依赖的 <code>&quot;hexo-fs@0.2.3&quot;</code>，已经升级到间接依赖 <code>&quot;fsevents@1.2.7&quot;</code>。</p>
+<p>挺无语的。真的。还有点懵圈，没太搞懂。</p>
+<p>昨天我可是 <code>rm -rf ./node_modules/* &amp;&amp; npm i</code> 操作的，按说缓存应该没影响才对。如果是 npm 自己的 cache（我设置到了 ~/.npm/cache 目录），新 new 出来的项目应该也会受影响才对啊。</p>
+<p>好吧，不折腾了。下次再遇到，所有缓存，全部清理得了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1694,168 +1849,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/nodejs-abuse-of-software-design-philosophy/" itemprop="url">吐槽被NodeJS用滥的软件设计哲学</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T00:54:40+08:00">
-                2017-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/nodejs-abuse-of-software-design-philosophy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/nodejs-abuse-of-software-design-philosophy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><a href="https://nodejs.org/" target="_blank" rel="noopener">NodeJS</a> 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。</p>
-<p>NodeJS 的包管理工具 <a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>（Nodejs Package Management）在这其中功不可没。</p>
-<p>直到 2016 年初，有一个很硬的程序猿 <a href="https://twitter.com/afrikaradyo" target="_blank" rel="noopener">Azer</a>，非常不满自己的权益没有被 npm 这个平台正确对待——具体说，就是 npm 收到另外一个用户的律师信之后，擅自删除了前面这个 Azer 的 package，把 package 的名字直接转让给发律师信的用户管理——一气之下将自己创建并管理的所有 npm 上的项目全部 unpublish 了。这种行为在游戏里面叫自杀。关键人家还说挺对的：<a href="https://medium.com/@azerbike/i-ve-just-liberated-my-modules-9045c06be67c" target="_blank" rel="noopener">我解放了我所有的模块，因为我不会在一个某些人滥用特权的地方分享我的开源工作</a>。结果就比较搞笑了，因为其中一个被删除的模块 <a href="https://www.npmjs.com/package/left-pad" target="_blank" rel="noopener">left-pad</a> 被大家广泛引用，导致 Babel、Ember、ReactNative 等等构建工具、框架，都不能正常使用。除了一些将 package 打包发布的应用，例如 <a href="https://atom.io" target="_blank" rel="noopener">Atom</a>。这事儿在当时简直就是灾难，N 多前端程序猿被迫加班解决问题。</p>
-<p>从这件事情之后，有些人也开始反思，于是知乎上有人问『<a href="https://www.zhihu.com/question/41694868" target="_blank" rel="noopener">如何看待 Azer Koçulu 删除了自己的所有 npm 库？</a>』这一类的问题。直到后来终于有人问：<strong>难道一个只有十一行代码的功能你们都不能自己写了么？</strong>（PS：left-pad 只有十一行有效代码）问题才逐渐回归本源上。</p>
-<p>要我说，从我了解 npm 开始，就一直觉得它是 DRY（Donot Repeat Yourself）和 KISS（Keep It Simple, Stupid）的极端实践者。极端到什么地步呢，就像上面提到的，连一个十一行代码的功能都要找 npm 上面的 package 来实现，而不是自己写一份。层层叠叠，相互之间的引用关系堪比用 DNA 图谱勾勒人类进化史和迁移史。</p>
-<p>现在看来，哲学是好的，但做得有点儿过。</p>
-<hr>
-<p>这两天被 npm 搞得够呛。</p>
-<p>一直用 <a href="https://hexo.io" target="_blank" rel="noopener">hexo</a> 写博客，好好的。手贱升级了 node 到 7.4.x，完了，发现不正常了，报类似下面的错误。</p>
-<blockquote>
-<p>Fatal error in ../deps/v8/src/api.cc, line 1051<br>Check failed: !value_obj-&gt;IsJSReceiver() || value_obj-&gt;IsTemplateInfo().</p>
-</blockquote>
-<p>在 <a href="https://github.com/nodejs/node/issues/10659" target="_blank" rel="noopener">github 上找到答案</a>，升级 node 到 8.4.0 之后解决了问题。可是，今天升级 hexo 到 3.3.8 之后，又出现上面的问题。</p>
-<p>从 github issue 和错误 stack 中已经知道是 fsevents 引发的问题，而且 fsevents 之前是经过大改的，版本有讲究。对这些历史了解很重要。</p>
-<p>删除 node_modules 和 npm cache 之后重新安装 npm 模块，不行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .npm/ node_modules/ package-lock.json db.json</span><br><span class="line">rm -rf ~/.npm/.cache</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>用 <a href="https://www.npmjs.com/package/yarn" target="_blank" rel="noopener">yarn</a> 来安装。还是不行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .npm/ node_modules/ package-lock.json db.json yarn.lock</span><br><span class="line">rm -rf ~/.npm/.cache</span><br><span class="line">yarn install</span><br></pre></td></tr></table></figure>
-<p>连错误都一模一样。</p>
-<p>直到用 <code>npm ls | grep fsevents</code> 命令，发现 fsevents 有两个版本，其中一个是 0.3.8——明显大改之前的。这时候，一个粗暴的办法出现在脑海里面。</p>
-<p>在 iTerm3 里面快速定位到使用 <a href="mailto:`fsevents@0.3.8" target="_blank" rel="noopener">`fsevents@0.3.8</a><code>的组件，原来是</code><a href="mailto:hexo-github@1.0.1" target="_blank" rel="noopener">hexo-github@1.0.1</a><code>依赖的</code>nunjucks` 这个库。</p>
-<p>hexo-github 的作用是将 github 时间线展现在 blog 里面，非常适合程序猿出身的博主，但是我这会儿还没用上。所以先卸载吧。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall --save hexo-github</span><br></pre></td></tr></table></figure>
-<p><em>好吧，其实我是删除 node_modules 之后修改 package.json，再重装来的。:-P</em></p>
-<p>总之，就好了。</p>
-<p>hexo-github 的依赖关系指明依赖 <code>nunjucks@^1.3.4</code>，这好像是 <code>npm install --save nunjucks</code> 时会自动添加进 package.json 文件中的格式。默认格式。现在 nunjucks 的版本是 3.0.1，已经不在 1.x.x 这条主版本线上。所以，除非 hexo-github 的作者手动更新依赖中 nunjucks 的主版本号，否则就被栓死在 1.x.x 主线上。</p>
-<p>万一真遇到 hexo-github 这样几乎已经不维护的 package，我真有自己 fork 一个库自己改的冲动。但这样又不 DRY 了，对吧？</p>
-<p>心好累啊。[捂脸]</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1899,9 +1897,9 @@
           
             <div class="site-state-item site-state-posts">
             
-              <a href="/archives/ || archive">
+              <a href="/archives/">
             
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -212,7 +212,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/ || home" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
@@ -222,7 +222,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/ || user" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
@@ -232,7 +232,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/ || tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
@@ -242,7 +242,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/ || archive" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
@@ -269,6 +269,163 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/nodejs-abuse-of-software-design-philosophy/" itemprop="url">吐槽被NodeJS用滥的软件设计哲学</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T00:54:40+08:00">
+                2017-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/nodejs-abuse-of-software-design-philosophy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/nodejs-abuse-of-software-design-philosophy/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><a href="https://nodejs.org/" target="_blank" rel="noopener">NodeJS</a> 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。</p>
+<p>NodeJS 的包管理工具 <a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>（Nodejs Package Management）在这其中功不可没。</p>
+<p>直到 2016 年初，有一个很硬的程序猿 <a href="https://twitter.com/afrikaradyo" target="_blank" rel="noopener">Azer</a>，非常不满自己的权益没有被 npm 这个平台正确对待——具体说，就是 npm 收到另外一个用户的律师信之后，擅自删除了前面这个 Azer 的 package，把 package 的名字直接转让给发律师信的用户管理——一气之下将自己创建并管理的所有 npm 上的项目全部 unpublish 了。这种行为在游戏里面叫自杀。关键人家还说挺对的：<a href="https://medium.com/@azerbike/i-ve-just-liberated-my-modules-9045c06be67c" target="_blank" rel="noopener">我解放了我所有的模块，因为我不会在一个某些人滥用特权的地方分享我的开源工作</a>。结果就比较搞笑了，因为其中一个被删除的模块 <a href="https://www.npmjs.com/package/left-pad" target="_blank" rel="noopener">left-pad</a> 被大家广泛引用，导致 Babel、Ember、ReactNative 等等构建工具、框架，都不能正常使用。除了一些将 package 打包发布的应用，例如 <a href="https://atom.io" target="_blank" rel="noopener">Atom</a>。这事儿在当时简直就是灾难，N 多前端程序猿被迫加班解决问题。</p>
+<p>从这件事情之后，有些人也开始反思，于是知乎上有人问『<a href="https://www.zhihu.com/question/41694868" target="_blank" rel="noopener">如何看待 Azer Koçulu 删除了自己的所有 npm 库？</a>』这一类的问题。直到后来终于有人问：<strong>难道一个只有十一行代码的功能你们都不能自己写了么？</strong>（PS：left-pad 只有十一行有效代码）问题才逐渐回归本源上。</p>
+<p>要我说，从我了解 npm 开始，就一直觉得它是 DRY（Donot Repeat Yourself）和 KISS（Keep It Simple, Stupid）的极端实践者。极端到什么地步呢，就像上面提到的，连一个十一行代码的功能都要找 npm 上面的 package 来实现，而不是自己写一份。层层叠叠，相互之间的引用关系堪比用 DNA 图谱勾勒人类进化史和迁移史。</p>
+<p>现在看来，哲学是好的，但做得有点儿过。</p>
+<hr>
+<p>这两天被 npm 搞得够呛。</p>
+<p>一直用 <a href="https://hexo.io" target="_blank" rel="noopener">hexo</a> 写博客，好好的。手贱升级了 node 到 7.4.x，完了，发现不正常了，报类似下面的错误。</p>
+<blockquote>
+<p>Fatal error in ../deps/v8/src/api.cc, line 1051<br>Check failed: !value_obj-&gt;IsJSReceiver() || value_obj-&gt;IsTemplateInfo().</p>
+</blockquote>
+<p>在 <a href="https://github.com/nodejs/node/issues/10659" target="_blank" rel="noopener">github 上找到答案</a>，升级 node 到 8.4.0 之后解决了问题。可是，今天升级 hexo 到 3.3.8 之后，又出现上面的问题。</p>
+<p>从 github issue 和错误 stack 中已经知道是 fsevents 引发的问题，而且 fsevents 之前是经过大改的，版本有讲究。对这些历史了解很重要。</p>
+<p>删除 node_modules 和 npm cache 之后重新安装 npm 模块，不行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .npm/ node_modules/ package-lock.json db.json</span><br><span class="line">rm -rf ~/.npm/.cache</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>用 <a href="https://www.npmjs.com/package/yarn" target="_blank" rel="noopener">yarn</a> 来安装。还是不行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .npm/ node_modules/ package-lock.json db.json yarn.lock</span><br><span class="line">rm -rf ~/.npm/.cache</span><br><span class="line">yarn install</span><br></pre></td></tr></table></figure>
+<p>连错误都一模一样。</p>
+<p>直到用 <code>npm ls | grep fsevents</code> 命令，发现 fsevents 有两个版本，其中一个是 0.3.8——明显大改之前的。这时候，一个粗暴的办法出现在脑海里面。</p>
+<p>在 iTerm3 里面快速定位到使用 <a href="mailto:`fsevents@0.3.8" target="_blank" rel="noopener">`fsevents@0.3.8</a><code>的组件，原来是</code><a href="mailto:hexo-github@1.0.1" target="_blank" rel="noopener">hexo-github@1.0.1</a><code>依赖的</code>nunjucks` 这个库。</p>
+<p>hexo-github 的作用是将 github 时间线展现在 blog 里面，非常适合程序猿出身的博主，但是我这会儿还没用上。所以先卸载吧。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall --save hexo-github</span><br></pre></td></tr></table></figure>
+<p><em>好吧，其实我是删除 node_modules 之后修改 package.json，再重装来的。:-P</em></p>
+<p>总之，就好了。</p>
+<p>hexo-github 的依赖关系指明依赖 <code>nunjucks@^1.3.4</code>，这好像是 <code>npm install --save nunjucks</code> 时会自动添加进 package.json 文件中的格式。默认格式。现在 nunjucks 的版本是 3.0.1，已经不在 1.x.x 这条主版本线上。所以，除非 hexo-github 的作者手动更新依赖中 nunjucks 的主版本号，否则就被栓死在 1.x.x 主线上。</p>
+<p>万一真遇到 hexo-github 这样几乎已经不维护的 package，我真有自己 fork 一个库自己改的冲动。但这样又不 DRY 了，对吧？</p>
+<p>心好累啊。[捂脸]</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1631,155 +1788,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/routines-from-the-title-of-technology-manager/" itemprop="url">从技术管理 title 看公司的技术解题思路</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-19T21:43:57+08:00">
-                2016-09-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/routines-from-the-title-of-technology-manager/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/routines-from-the-title-of-technology-manager/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>互联网技术线的职业发展轨迹到今天已经很清晰，大体来说两个选择，要么继续深入走技术专家路线，当个架构师、研发专家，向计算机科学家方向迈进，要么转管理路线，从小组长做起，向 CTO 迈进。</p>
-<p>这是正向的。反向，从一家公司技术负责人的 title，也能看出这家公司在技术方面的解题思路及现状。</p>
-<h4><span id="1-招聘组长-leader-主管的注意留意这家公司最近招聘攻城狮的岗位-jd">1、招聘组长 / leader / 主管的，注意留意这家公司最近招聘攻城狮的岗位 JD。</span></h4><p>通常直接在 JD 里面说招聘 leader 一类 title 的非大厂企业，通常的意思是：我们需要一名高级攻城狮。至于你能不能胜任 leader，需要在工作中观察。不过不管怎么说，能把 leader 提出来单独招聘，是有意识在补充团队的中坚力量，应该给个赞。</p>
-<p>这一类企业，留意他们最近招聘攻城狮的 JD，一个是 JD 中的任职要求，是否有侧重点，是否描述清晰，大致可以看出这个团队遇到了什么问题。第二是看看攻城狮 JD 中的薪资范围，可以从侧面了解这家公司攻城狮的待遇水平，也可以看出公司对这个角儿的期望，是个管培生，骨干，还是个救火队长。</p>
-<h4><span id="2-招技术总监的企业是希望用管理手段来修补技术问题">2、招技术总监的，企业是希望用管理手段来修补技术问题。</span></h4><p>技术总监的职责偏管理而非技术，这是大家都有共识的。公司少一个技术总监，言下之意就是公司觉得技术管理上出了点问题，需要个人来补救。再换个角度翻译就是：希望通过技术管理来提（ya）高（zha）技术团队工作效率。</p>
-<p>走技术总监这条线，等于就是走技术管理路线了。而且，一定是管理工作大于技术工作。</p>
-<h4><span id="3-招架构师-首席架构师-研发专家的通常是需要一个救火队长少数是准备做大~~~项目">3、招架构师 / 首席架构师 / 研发专家的，通常是需要一个救火队长，少数是准备做大~~~项目。</span></h4><p>架构师 / 首席架构师 / 研发专家这几个 title 是在技术线的，现实中很多企业里面已经是到技术线顶端了。</p>
-<p>需要这类角色的企业，不少是需要一个能带队、独当一面的技术骨干，有不少企业在招聘的当下还面临一堆代码腐烂的系统，和一个问题重重的团队。能应聘这个职位的，跟应聘技术总监类似，入职后都要面临非常大的挑战，不同的是管理层的期望。能放出这个 title 的空缺，企业管理层是期望用技术的手段来解决现阶段面临的问题。</p>
-<h4><span id="4-招-cto-的要么是一穷二白的创业小作坊要么是高管层对产品的把控已经一筹莫展">4、招 CTO 的，要么是一穷二白的创业小作坊，要么是高管层对产品的把控已经一筹莫展。</span></h4><p>首先明确，CTO 在一家职能完备的企业里面，是高管角色，背的业务指标的，关心的是产品技术团队为公司业务增长提供多大的助力，对一个产品能不能实现、实现得好不好，他不负直接责任只负管理责任。同时，也意味着 CTO 对公司的主要业务必须非常熟悉。</p>
-<p>创业小作坊招 CTO，基本上都是期望用 title 吸引住人才；而稍大一点的企业招 CTO，释放出来的信号是，高管层希望有人能通过对产品工作全权负责，来保增长促发展。</p>
-<p>不管怎么说，就像 Fenng 自身遭遇的事情一样，CTO 这个角儿不好做。</p>
-<p>另外还有一种常见的技术高管 title，叫『技术 VP』。这个基本上是活儿照干，但是不享受最后胜利果实的意思。企业招这个角儿的意思通常是：需要这么一个背业务指标的技术高管，你很合适，但又觉得你对企业带来的收益不高，比如没有一个好履历不方便放出去拉融资，所以把 CTO 的位置空缺，等遇到更合适的人，随时把你一脚踢开。</p>
-<p>如果不是公司大到一定份儿上，招这个角儿的公司都是在耍流氓。</p>
-<hr>
-<p>作为一名技术出身、想要升阶的求职者，首先搞清楚自己的期望，然后选择合适的职位去求职。不管最终选择什么样的岗位，都需要做好一件事：管理好别人的期望。而一个连自己的期望都管理不好的人，肯定没有办法管理好别人的期望。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1823,9 +1836,9 @@
           
             <div class="site-state-item site-state-posts">
             
-              <a href="/archives/ || archive">
+              <a href="/archives/">
             
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
