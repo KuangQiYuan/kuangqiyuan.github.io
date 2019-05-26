@@ -283,6 +283,272 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/virtualbox-system-extension-incompatible-error/" itemprop="url">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T01:01:17+08:00">
+                2019-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/virtualbox-system-extension-incompatible-error/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/virtualbox-system-extension-incompatible-error/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Mac 上升级 VirtualBox 6.0.8，遇到一个报错，一直搞不定。大意是 <code>system extension incompatible</code>。提示框不是 warning 或者 error 图标，就是普通的 performance 图标，而且只出现一次，再安装，不会出现。</p>
+<p>网络上没有结论，大多是说在 Performance 里面做安全授权。然后我遇到的并不是这个问题，Performance 里面没有授权提示。于是自己试着用降级的办法，安装 5.2.30，还是不行，同样的错误。再降级，到 5.2.28，终于行了，安装成功。</p>
+<p>打开 5.2.28，发现有个提示，说有磁盘镜像失效，打开管理工具，发现是之前装的 Nox，在 VirtualBox 的配置中写入了 Nox 自己的镜像。卸载 Nox 的时候，Nox 没有从 VirtualBox 的配置中删除 Nox 的磁盘镜像。于是手动确认删除 Nox 相关的两个镜像。再进入 VirtualBox 就好了。</p>
+<p>今天忽然想起来，也许就是因为失效镜像，导致升级失败呢。于是再安装 VirtualBox 试试。果然，就行了。</p>
+<h3><span id="结论">结论</span></h3><p>对 VirtualBox 的失效镜像，一定要自行观察，手动清除，不能听之任之，容易造成潜在的问题。有一些模拟器啥的，安装的时候容易，卸载的时候麻烦，只能靠自己多留个心眼。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Kuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/vultr-vps-affiliate-code/" itemprop="url">外贸/跨境电商/代购/全球购/海淘适用的优惠</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T15:48:33+08:00">
+                2019-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/vultr-vps-affiliate-code/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/vultr-vps-affiliate-code/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Vultr 是一款国外比较好的 VPS（虚拟服务器）的服务商。服务还算稳定，线路相对比较稳定，重点是，价格便宜。Vultr 在国外主要的节点城市都有自己的机房。日本、新加坡、阿姆斯特丹、巴黎、法兰克福、伦敦、美国东西海岸、多伦多、悉尼。</p>
+<p><a href="https://www.vultr.com/?ref=8087732-4F" target="_blank" rel="noopener">Vultr 最近有一个活动，第一次注册、付费超过 $25 的新用户，能获得 $50 的试用金</a>，等于一台 1 Core/2G RAM 的服务器免费用 5 个月。牛逼。</p>
+<p>对于做外贸、跨境电商的朋友，可以用 Vultr 配合 Cloudflare 免费版做图床，做 EDM 定时任务等等。或者其它做国外业务，希望自己需要一台可操控主机的，vultr 都适合你们。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1538,317 +1804,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/evil-coding-pages/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/evil-coding-pages/" itemprop="url">为了打个广告，coding pages 变得好邪恶</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T11:17:17+08:00">
-                2017-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/evil-coding-pages/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/evil-coding-pages/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><a href="https://coding.net/help/doc/pages/getting-started.html" target="_blank" rel="noopener">Coding Pages</a> 是我的博客承载平台。我的博客是用 <a href="https://hexi.io/" target="_blank" rel="noopener">Hexo</a> 做的，<a href="http://wowubuntu.com/markdown/" target="_blank" rel="noopener">Markdown</a> 语法书写，编译成静态 html 后上传到 <a href="https://pages.coding.net/" target="_blank" rel="noopener">Coding Pages</a> 和 <a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a> 上面去，供大家访问。之所以用两个不同的 Pages 服务，是因为<a href="http://chloerei.com/2014/02/24/we-saved-github-twice/" target="_blank" rel="noopener">之前 Github 被 GFW 墙了</a>，包括 Pages 在内的服务都访问不顺畅，彼时正好 gitcafe pages（<a href="https://coding.net/gitcafe.html" target="_blank" rel="noopener">后来被 Coding 收购</a>）也提供 Pages 服务，所以在国内做了个镜像。这样墙里面的网友不仅不用看 GFW 的心情，还因为服务器在国内，国内网友访问时更快一些。谷歌上一搜『hexo github coding』就能有很多结果，例如这篇『<a href="http://tengj.github.io/2016/03/06/hexo4/" target="_blank" rel="noopener">将hexo博客同时托管到github和coding</a>』。</p>
-<p>但是好像从上个月（八月）开始，coding pages 开始劫持我的博客访问，穿插进他们自己的企业版 coding 的广告，播放五秒之后，再跳转进入我的博客。这很优酷、很爱奇艺，很 APP。广告页面上甚至连一个倒计时的控件都看不到，就右上角（好像是）一行很小的字，跟你讲：<em>你没访问错，这个页面只是广告</em>。</p>
-<p>看了 coding 的解释，你要不花钱买它的会员（金牌会员），就要在你的博客页脚上加『hosted by coding pages』的字样。如下图。</p>
-<p><img src="./evil-coding-2.jpeg" alt="邪恶的 coding pages。这只是邪恶的开始"></p>
-<p>大家注意截屏上方的绿色警示框：这是我的 pages 通过审核之后的状态。下面标红的复选框需要你在添加脚标之后自行选中，之后就会有专人给你审核开通免广告插入。</p>
-<p>我猜测这是 coding 为了给自己网站做 SEO 的小伎俩。考虑到用了 coding 免费服务有一年多两年，人家要求也不过分，虽然网上很多人吵着要离开 coding 转 github，我还是决定给人加一个脚标。做人要懂感恩嘛。</p>
-<p><img src="./footer-screenshot.jpeg" alt="我选择的是文字版脚标。为了公平，我把 github pages 的大名也加上了。"></p>
-<p>这之后，痛快了几天。</p>
-<p>真的只有几天。</p>
-<p>然后，coding pages 抽风了。表现症状是，我输入域名访问我的博客，它不显示我的博客，甚至不显示广告，义无反顾跳转到他们家企业版的首页。我的博客看不了了。如下图。</p>
-<p><img src="./bad-coding.jpeg" alt="输入我的博客域名，本来应该是打开 pages，也就是你看这个网站的，结果直接跳转到他们自己家企业版首页了。"></p>
-<p>不知道 coding 家到底有多想要做 SEO、做 PR。人家 <a href="https://gitee.com" target="_blank" rel="noopener">OSChina</a> 比你们家的 PR 还低，人家也没想 SEO 想到这个份儿上。</p>
-<p>自此，我毅然决然，跟 coding 划清界限。</p>
-<p><del>暂时的解决方案是，用 <a href="https://www.oschina.net/news/73980/gitosc-pages" target="_blank" rel="noopener">OSChina Pages</a> 顶上，国内用户走<a href="https://gitee.com" target="_blank" rel="noopener">码云</a>，国外用户还是走 Github Pages。希望码云靠谱点，别让大家失望。码云之后也有备选方案，例如：<a href="https://github.com/gyk001/hexo-qiniu-sync" target="_blank" rel="noopener">七牛</a>、<a href="http://www.jianshu.com/p/9cb7884032d8" target="_blank" rel="noopener">BAE</a>，没验证过，也不希望到那一步。</del></p>
-<hr>
-<p>UPDATED (2017-09-05):</p>
-<p><a href="http://git.mydoc.io/?t=154714" target="_blank" rel="noopener">码云的 Pages</a> 原来不支持自定义域名。我设置了 cname 试，结果是 403。用码云的话，我只能用 oschina.io 的二级域名：<a href="http://simonkuang.oschina.io/" target="_blank" rel="noopener">http://simonkuang.oschina.io/</a>。这很不好。</p>
-<p>So，先放弃吧，全解析到 Github Pages 上面去。懒得再折腾啦。</p>
-<hr>
-<p>UPDATED 2 (2017-09-05):</p>
-<p>coding 万分邪恶的地方：把我的博客强制跳转到企业版首页时，<a href="https://stackoverflow.com/questions/9130422/how-long-do-browsers-cache-http-301s" target="_blank" rel="noopener">使用了 301 跳转，还特么不带 cache 相关的控制参数</a>。从效果上来讲，按照 crhome 现行策略，<a href="https://www.v2ex.com/t/327678#r_3858447" target="_blank" rel="noopener">客户端的缓存，从服务器端，是无论如何也清除不掉了</a>。stackoverflow 最佳答案最后给的办法行不通（Chrome 60），已经试过。唯一可行的办法是客户端自己清除所有缓存。这不科学。</p>
-<p><strong>说简单点，coding 这是劫持了我的域名给自己网站导流，做得还挺绝，都不给自己留道歉的机会（因为服务器端根本没法儿补救）</strong>。心里有句 MMP，不知当讲不当讲。</p>
-<p>真心不会再跟 coding 打交道。都别劝我，擦！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/chanlledge-from-programmer-to-architect/" itemprop="url">从程序猿到架构狮的转变</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T22:04:38+08:00">
-                2017-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/chanlledge-from-programmer-to-architect/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/chanlledge-from-programmer-to-architect/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>从程序员到架构师的成长，变化就像从小学生到高中生一样巨大。</p>
-<p>不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，<em>培养培养</em>，就可以成为架构师了。架构师都是摔打出来的。</p>
-<p>看到过对<em>做架构</em>有一个不错的定义：<a href="https://36kr.com/p/5042735.html" target="_blank" rel="noopener">系统架构的目标是解决利益相关者的关注点</a>。</p>
-<p>所以你看，做架构的架构师，其实是解决人的利益问题，目标是让各方利益尽可能达成一致，做 trade off 的工作，权衡。技术只是实现这个目标的一种手段，一种重要的手段，手段之一，不是全部，甚至于不是最重要的。执行层面成长起来的、技术能力过关的工程师，想要成长为架构师，首先考验的是你<strong>听 + 说</strong>的能力，也就是沟通表达的能力。<strong>沟通能力才是一个合格的架构师最重要的能力</strong>。</p>
-<h2><span id="一-听的能力">一、听的能力</span></h2><p>这个很有学问。</p>
-<p><strong>我们常常假设与我们沟通的都是理性人，他们清楚自己说的是什么意思，他们也确实想要表达这个意思</strong>。实际上，几乎不存在这样的理性人。为了避免尴尬、隐藏真实想法，大家说的往往是加以润色的话。即便死党之间畅无不言，潜意识也会偷偷在话里打掩护，顾左右而言他。若是拿别人告诉你的话当个准，九成九会遇到『当初我怎么知道』的情况。</p>
-<p>工作中也是如此，系统架构牵扯利益，各方都希望架构师做出有利于己方的设计，所以表达己方利益关切的时候，明明可以『关注』的，他可能用『严重关切』来表达。你没法儿指责他说谎，也许他的表达习惯就是如此，也许是大家对轻重缓急的表达方式不同。但作为架构师，你自己心里就得有个判断：他的话我到底该不该信？信几分？可信的部分在我的架构中轻重缓急怎么判断？</p>
-<p>所以，听的能力非常重要。</p>
-<h3><span id="首先学会听别人的话外音">首先，学会听别人的话外音。</span></h3><p>职场上，大部分人是理性的，他们对自己手头的事情能有理性的判断。大多数时候，他们也能清楚知道自己想要什么。只是，他们往往会<em>委婉</em>地表达自己的目的。旁推侧击、敲山震虎、隔山打牛、杀鸡儆猴…… 就是不会直来直去。</p>
-<p>作为架构师，你得学会听懂别人背后表达的意思，这是最基本的功力了。</p>
-<h3><span id="其次听懂别人背后的意图">其次，听懂别人背后的意图。</span></h3><p>再聪明的人也有犯糊涂的时候。有些时候，跟你沟通的某人，会忽然卡壳，不知道接下来要怎么表达/表达什么。他隐约觉得自己想要个小功能，但就是不知道怎么表达出来。这时候如果架构师对这个人有一定了解，知道他关心的点，知道他的风格，就有可能顺着他的思路去提醒他。</p>
-<p>倒不是让架构师去做别人肚子里面的蛔虫。这样做至少有两点好处。</p>
-<ol>
-<li>架构师主动提，比一个有明确利益偏向的人来提，提出来的方案合适得多。他讲不清楚的时候，你能讲清楚，还照顾到他的关切，他接受你的方案的概率也很高；</li>
-<li>如果架构师对利益方能达到这种程度的了解，可以把利益方的偏好尽可能纳入架构设计的考量中去，就可以做好预埋，防止无谓的需求变更。</li>
-</ol>
-<h3><span id="最后听懂别人没说出口的话">最后，听懂别人没说出口的话。</span></h3><p>有些话，不一定要说出口，就像上面提到的。另外有些话，说的时候还没想到，或者，说的时候就没怎么想，反正可以以后想到再说。</p>
-<p>对架构师，后面两种情况真的够呛。你遇到的是一个<em>职场 baby</em>，一个不能为自己的行为负完全责任的人。<strong>这种情况下，最好的解决办法是，你能帮他想好，反过来引导他，通过他的嘴讲出来</strong>。避免在系统评审会之后，频繁变更带来的成本开销。<strong>评审会之后变更架构设计的开销是客观的，成本存在压缩极限；而考虑提前量的开销是可控的，通过人为努力可以使成本逼近零</strong>。因此在系统架构设计阶段，尽可能多考虑一些未来的变化，从长远来看，是相当划算的。</p>
-<p>这种场景下，考验的是架构师的业务能力、经验和宽泛的倾听技巧。这种能力通过练习可以培养，但成长不会很快。属于二八原理中要花 80% 精力去积累的 20% 那部分。锻炼的时候，要有耐心和信心。</p>
-<h2><span id="说的能力">说的能力</span></h2><p>说，或者说表达，也是沟通中重要的一部分。<strong>对于架构师而言，架构设计就是最好的表达</strong>。相对的，就工程师成长起来的架构师，我更提倡学会倾听，而不是表达。</p>
-<p>如果硬要说在表达方面有什么建议或者窍门，就下面几句话。</p>
-<ul>
-<li>先<strong>听</strong>别人说完，自己再说；</li>
-<li>说之前，想清楚，尽量言简意赅。话说得太多，在别人耳朵里，就没什么效果了。不如一字千钧有威力；</li>
-<li>想表达不同意见的时候，先停顿三秒，再说出口；</li>
-<li><strong>有理不在声高</strong>；</li>
-<li><strong>对事不对人</strong>，对过人的自己请客吃饭；</li>
-</ul>
-<h2><span id="培养能力">培养能力</span></h2><p>沟通的能力也是可以靠锻炼来的，不是谁生下来就是《九品芝麻官》里面的包大人。关于沟通的锻炼方法，极限一点的，请自行谷歌销售技巧培训方法。哈哈</p>
-<p>最后补充一句，沟通 + 技术能力，是成为一个架构师的必要条件，还不是充分条件。这两条具备了，才可以说你达到了做架构师的最最基本的要求，有可能做出大家满意的架构设计。后面的，有机会再补充。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1899,7 +1854,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1912,7 +1867,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
