@@ -6,10 +6,38 @@
     <description>Recent content on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
-    <lastBuildDate>Mon, 10 Jun 2019 09:53:55 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Jun 2019 17:14:05 +0800</lastBuildDate>
     
 	<atom:link href="http://i.am.simonkuang.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>『每个架构师都应该研究下康威定律』</title>
+      <link>http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</link>
+      <pubDate>Mon, 10 Jun 2019 17:14:05 +0800</pubDate>
+      
+      <guid>http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</guid>
+      <description>InfoQ 中国在 2016 年，发表过一篇文章，杨波的《每个架构师都应该研究下康威定律》。这篇文章对当时的我，触动是非常深刻的。一些说不清道不明的经验，被别人用浅显易懂的道理，讲得一清二楚。
+康威定律是很早就听说过的，后来陆续又有一些接触，每次时隔一段时间再做了解，就会有非常深的触动。我理解，原因无他，因为它聚焦在组织架构和系统设计的关系上，而这两者，一个是架构师目标，一个是架构师的手段/工具。文中用很简短的一句话，讲清楚了这中间的关系。
+ 系统架构的目标是解决利益相关者的关注点。
+ 这句话简直太重要，太精妙了。
+1. 架构师的目标，是各个利益相关者的关注点 很多人对架构师的误解，都以为是架构师是技术执行，是 top-level coder，对 coding 的结果负责。这就犯了以表象取人的问题。为什么？我后面再提。
+架构师首先应该关注的，是项目中，各个角色，各个利益相关者，他们的利益诉求，他们在项目中的焦点。根据这些焦点，得到一个权衡的方案，并取得最大限度的支持。
+2. 架构是权衡的艺术 权衡的英文表述比较准确一些。trade-off 。利益交易和平衡。
+权衡的方法是博弈，无论是纳什均衡还是帕累托最优，权衡目标是达成一个相对稳定的博弈结果。这个结果，就是架构的目标需求。
+所以你看，脱离实际场景谈『架构』，本来就是虚空的。
+3. 架构首先是业务架构，其次才是技术架构 道理很简单，业务架构往往涉及最直接的利益分配，从市场到产品到后勤保障，通常都对业务指标虎视眈眈。产品技术指标他们并不关心。
+从工作流程上来讲，业务架构决定产品设计，产品设计决定技术设计。说业务架构是技术架构的前置步骤，一点不为过。
+唯一的例外，可能就是大厂里面做平台产品研发的案例了。从无到有形成一个平台，比如阿里 IaaS 云。商业模式不清晰，业务架构反而受制于技术架构。不过这种机会今后出现的可能性，越来越小。
+4. 技术架构是工具/手段 确定了各个 stakeholder 的 key points，剩下就是怎么做的事情了。技术手段、技术架构，不过是实现平衡的工具而已。通过技术架构，将权衡的方案，表达出来，这是一个称职的架构师，秀于外的工作。
+我个人对架构师的定义是，以权衡项目中各个利益相关方的利益关注点为目标，以技术设计为工具和手段，以持续的产品技术服务为交付物的产品研发决策者。
+所以回过头去看，架构师的工作中，技术架构的部分，优先级排不到前列，称得上是最基础、最『本分』的技能。技术好，技术设计灵活，不是一名架构师值得炫耀的资本。架构师值得炫耀的，是他能够在复杂纷扰的环境中，仍然可以理出线头，正确判断形势，做出合理的架构设计。
+比方说，一名做 ToB 业务的 SaaS 平台架构师，既往工作中，以项目经理/甲方的利益诉求为主，以己方销售的利益诉求为辅，养成了习惯。一个需求做不做，怎么做，第一问己方销售/甲方，其次问项目经理，总可以得到答案。有一天，他去到一家做 toC 产品的公司任架构师，他面临的 stakeholders 发生了翻天覆地的变化，『甲方』成了成千上万的个体，怎么去问每个个体，他们的 key points 是什么？所以这位架构师的转变是，以直接上级的利益诉求为主，以产品经理的利益诉求为辅。那么，这个架构师，很明显就犯了最低级的失职。即便他的技术实力再强，首先目标就错了，谈何取得胜利？
+雷军讲的，以战术上的勤奋，掩盖战略上的懒惰，大概也是说这个意思。
+啰嗦一句。无论是 toC 产品还是 toB 产品，架构师首先应该予以重视的 stakeholder，都应该是财务上销项对应的一方。也就是为公司提供入账的一方。有人可能会觉得奇怪，toC 产品不应该是用户为首要的 stakeholder 吗？真不一定。如果是付费用户，那么他们是公司账上销项对应的一方，他们算首要的 stackholder。如果用户是免费使用公司服务，那么应该把他们看做产品/服务的一部分，把他们看做产品/服务的资源，而不是 stackholder。既然是资源，能为己所用就可以；既然是产品的一部分，只要产品不散就可以。不需要过多考虑免费用户的诉求和偏好。
+有些免费产品讲情怀，前提是他们活着不成问题。没干爹可抱的企业，先把自己的财务账算清楚，努力维持公司现金流为正，先有资本活下去，才是正道。别人在山顶为踏足云顶做赋，那是情怀，你在山底谈云，那是浮云。
+5. 架构不止『偏技术』，不是每一名架构师都需要『偏管理』的搭档 架构师的责任，是交付能够让至少大多数 stakeholder 满意的架构方案，并且落地执行，交付一个 predictable 的结果。</description>
+    </item>
     
     <item>
       <title>从 hexo 搬迁到 hugo</title>
@@ -614,10 +642,10 @@ $app = app(&#39;wechat&#39;); // EasyWeChat\Foundation\Application {#628} $users
     
     <item>
       <title>redis &#43; supervisor 时苦大仇深的问题</title>
-      <link>http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities-m-m/</link>
+      <link>http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/</link>
       <pubDate>Fri, 04 Mar 2016 17:44:22 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities-m-m/</guid>
+      <guid>http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/</guid>
       <description>在我记忆中，CentOS 从很早开始，就没有和各种的问题挂钩过。得益于它保守的升级策略，它自己几乎从来不是问题专业户，我对它的印象更多是因为太过保守导致的库升级不及时问题。
 可是最近，CentOS7 某个版本发行之后，偶尔的，会出现 supervisor 拉 redis 失败的问题。从日志的内容来看，全是 Permission denied 相关的问题，bind socket 的时候权限不够，write log 的时候权限不够，dump snapshot 的时候权限不够，只要跟写磁盘相关的，都有这个问题。
 单独执行 /usr/bin/redis-server /etc/redis.conf，又一点儿问题没有，命令本身没有问题，一切正常。

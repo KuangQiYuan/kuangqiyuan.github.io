@@ -70,6 +70,34 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/" title="发现 Gitlab 的一个权限问题" >发现 Gitlab 的一个权限问题</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2015年12月5日
+                            </date>
+                            
+                            <div class="post-content">
+                                用了好几年的 gitlab，前前后后搭建了好几次系统，解决了不少问题，还是非常熟悉了。昨天又遇到 gitlab 搭建中的一个新的问题。
+现象 gitlab 搭建好之后，建账号，加 ssh key，建项目，本地 push，然后就遇到 gitlab 问我要密码。
+ git@some.domain.name password:
+ 项目是我创建的，ssh key 也有添加，还找我要密码，明显不科学。
+尝试解决 首先，检查了服务器的 sshd 设定，确认启用了 ssh 登录。
+cat /etc/ssh/sshd_config | grep PubkeyAuthentication   PubkeyAuthentication yes
+ 以为是缓存，分别重启了 redis 和 gitlab。（PS：我的 redis 用 supervisor 管理起来的）
+supervisorctl restart redis service gitlab restart  然后等了五分钟再试（其实没有必要），还是不行。
+上网查，stackoverflow 上有一个非推荐答案说，重启服务器之后就好了。于是，又重启了服务器。
+shutdown -r now  还是不行……
+用 ssh -T 命令测试一下，看看结果。
+ssh -vvvT git@some.domain.name  …… 一串无关的日志我就省略了，只说重点。
+ …… debug3: send_pubkey_test debug2: we sent a publickey packet, wait for reply debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password debug2: we did not send a packet, disable method debug3: authmethod_lookup password debug3: remaining preferred: ,password debug3: authmethod_is_enabled password debug1: Next authentication method: password git@some.……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="http://i.am.simonkuang.com/post/netease-enterprises-email-end-up-itself/" title="网易邮箱已死,有事请烧纸" >网易邮箱已死,有事请烧纸</a>
                                 </h1>
                             </header>
@@ -253,6 +281,10 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
 <ul class="widget-list">
     
     <li>
+        <a href="http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/" title="『每个架构师都应该研究下康威定律』">『每个架构师都应该研究下康威定律』</a>
+    </li>
+    
+    <li>
         <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
     </li>
     
@@ -288,10 +320,6 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
         <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
     </li>
     
-    <li>
-        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -302,7 +330,7 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
 <ul class="widget-list">
     
     <li>
-        <a href="http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(1)</a>
+        <a href="http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(2)</a>
     </li>
     
     <li>

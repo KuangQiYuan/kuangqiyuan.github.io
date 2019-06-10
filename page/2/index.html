@@ -70,6 +70,27 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题" >MacOS 下 flutter run 遇到墙的问题</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年9月11日
+                            </date>
+                            
+                            <div class="post-content">
+                                最近调研 flutter，甚是大爱。
+虽然 flutter 非常友好提供了针对中国用户的镜像(Using Flutter in China · flutter/flutter Wiki · GitHub)，解决了一些不可说的难题，但偶尔还是会遇到类似的问题。比如我今天就遇到了，在 VS Code 调试编译的时候，遇到 “Download Failed” 的问题。Could not resolve all files for configuration ':image_picker:lintClassPath'. 具体原因是 Connect to d29vzk4ow07wi7.cloudfront.net:443 [d29vzk4ow07wi7.cloudfront.net/13.33.69.104, d29vzk4ow07wi7.cloudfront.net/13.33.69.3, d29vzk4ow07wi7.cloudfront.net/13.33.69.38, d29vzk4ow07wi7.cloudfront.net/13.33.69.111] failed: Read timed out 。
+原来是碰上了墙外面的老朋友，CDN 服务商 cloudflare 的域名。
+中间还是比较曲折，最后解决的办法是用 proxychain4 解决问题。
+brew install proxychains-ng sed -i '.bak' 's@^\(socks4.*\)@#\1@g' /usr/local/etc/proxychains.conf echo -e &quot;socks5\t127.0.0.1 1080&quot; &gt;&gt; /usr/local/etc/proxychains.conf proxychains4 curl ip.gs  等等，好像不对，IP 是本市的。
+$ proxychains4 curl ip.gs [proxychains] config file found: /usr/local/etc/proxychains.……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署" >CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
                                 </h1>
                             </header>
@@ -297,46 +318,6 @@ openresty 是春哥做的一款神器，在 nginx 上挂了个 lua 引擎，可�
                             <p class="readmore"><a href="http://i.am.simonkuang.com/post/user-only-equals-number/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/" title="『东航两飞机险相撞』事件中的飞行知识" >『东航两飞机险相撞』事件中的飞行知识</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年10月22日
-                            </date>
-                            
-                            <div class="post-content">
-                                今天无意中打开 Maxthon，看到了推荐的一则旧闻——『东航两飞机险相撞』。我记得事件当天就有看到这则报道，当时的第一反应是：类似荷兰皇家航空发生的空难（特内里费空难）在虹桥机场被避免了。今天看到的更多是后续报道，新闻报道的焦点几乎都在 V5 的机长和疏忽的管制员身上。
-俗话说，对航空航天没点儿兴趣的码农不是好的 CTO。凭借我多年积累的航空知识，和对航空事业发展的关注——其实就是对各城市机场航班老是延误的那点儿感性认知——跑道入侵征候（被规避了，不算空难）在今天不能算是罕见。不过这次这个事件号称是相差三秒相撞，事后也被定型为 A 类跑道入侵事件，说明事件本身还是非常严重的。
-下面摘自澎湃新闻的后续报道。
- 通报称，这是一起塔台管制员遗忘飞机动态，违反工作标准而造成的人为原因严重事故征候。性质极为严重，属于A类跑道入侵，险些发生飞机相撞。当时两架飞机垂直距离仅19米，翼尖距13米，两机仅差约三秒就会发生碰撞。320机组果断处理，操纵正确，避免了一起事故。330机组接受了穿越跑道的错误指令后，虽然看到了飞机起飞，但并未提出质疑。
-通报认为，管制员违反相关规定，盲目指挥，双岗制责任落实不到位；专业人员资质是重中之重，自制能力要跟上；管理手段和工作流程存在问题，要系统思考原因，加以改进。
-通报还提到，330机组存在SOP的问题，观察不周，不按规定，关闭了应答机。带飞左副驾驶不知道东航穿越跑道程序。没有交叉检查，没有互相证实。但是机组没有机械听从塔台原地等待命令，加速穿越，避免了两机相撞，暴露了训练上的问题。320机组处理非常到位，临危决断，立了大功。副驾驶操纵迟疑，点了一下刹车，机长迅速接过操纵，以7.03度/秒的速率，带杆到机械止动位。
- 首先明确了这是一起人为因素造成的事故，而且是塔台管制员疏忽占主因、A330 机组占次因的事故。事后调查表明，A330 机组存在 SOP 问题，以及观察不周、关闭应答机等问题。
-其次，报道中提到了 A320 机组在事件中临机处置立了大功。7.03度/秒的速率，带杆到机械止动位，才避免了两机相撞的事故。当然，这其中还有一个明显的对比：『副驾驶操作迟疑，点了一下刹车』，后来『机长迅速接过操纵』，才避免了机毁人亡的悲剧。
-这其中有多个航空相关的知识，自己也是边看新闻边搜索，记下来，也给其他有兴趣的朋友科普一下。
-基础概念 跑道入侵 具体的知识见维基百科跑道入侵条目。
-按照定义，很显然，本次事件中，A330 错误地出现在飞机起飞和降落的保护区域表面，是一起跑道入侵事件无疑。
- 据悉，通报指出，此次事件性质极为严重，属于A类跑道入侵。
-据业内人士介绍，“A类跑道入侵”非常罕见。目前，民航界把跑道入侵分为以下五个级：
-A类，间隔减小以至于双方必须采取极度措施，勉强避免碰撞发生的跑道入侵；
-B类，间隔缩小至存在显著的碰撞可能，只有在关键时刻采取纠正或避让措施才能避免碰撞发生的跑道入侵；
-C类，有充足的时间和（或）距离采取措施避免碰撞发生的跑道入侵；
-D类，符合跑道入侵的定义但不会立即产生安全后果的跑道入侵；
-E类，信息不足无法做出结论，或证据矛盾无法进行评估的情况。
-按照《民用航空器事故征候》标准，A类属于航空器严重事故征候，B类属于一般事故征候。据悉，根据新下发的文件，“A类跑道入侵”是指必须立即采取极端措施才能避免相撞的跑道入侵。
-——摘自传送门 新民晚报
- 客机离地起飞的介绍 这里有一篇通俗易懂的科普文《客机驾驶探秘Airline Pilot 3.3 起飞离地》。
-为简化阅读和防链接失效，同时把重点摘录整理如下。
-PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机的飞行状况，以及计算机给出的一部分飞行建议。
-上图是波音 737 的 PFD。其中，紫色的倒 V 字型标识是 FD 指令条（Flight Director Command Bar），下面白色的倒 V 字型标识代表自己的飞机。按照例子中的状态解读：飞机需要执行拉起 +8 度抬头的操作。
-上图是空中客车的 PFD。Flight Path Director (FPD) 线是计算机所给出的指令，Flight Path Vector (FPV) 表明飞机处于的方位，飞行员要控制飞机使 FPV 处于 FPD 的中心。此例中飞机左转时机头向下，应保持左转并拉起 +4 度抬头。……
-                            </div>
-                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -397,6 +378,10 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
 <ul class="widget-list">
     
     <li>
+        <a href="http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/" title="『每个架构师都应该研究下康威定律』">『每个架构师都应该研究下康威定律』</a>
+    </li>
+    
+    <li>
         <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
     </li>
     
@@ -432,10 +417,6 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
         <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
     </li>
     
-    <li>
-        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -446,7 +427,7 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
 <ul class="widget-list">
     
     <li>
-        <a href="http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(1)</a>
+        <a href="http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(2)</a>
     </li>
     
     <li>

@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署 | 旷氏淇元</title>
-    <meta property="og:title" content="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署 - 旷氏淇元">
+    <title>redis &#43; supervisor 时苦大仇深的问题 | 旷氏淇元</title>
+    <meta property="og:title" content="redis &#43; supervisor 时苦大仇深的问题 - 旷氏淇元">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2018-05-04T13:21:35&#43;08:00">
+    <meta property="article:published_time" content="2016-03-04T17:44:22&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2018-05-04T13:21:35&#43;08:00">
+    <meta property="article:modified_time" content="2016-03-04T17:44:22&#43;08:00">
         
     <meta name="Keywords" content="">
-    <meta name="description" content="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">
+    <meta name="description" content="redis &#43; supervisor 时苦大仇深的问题">
+        <meta name="author" content="旷淇元">
         
-    <meta name="author" content="Simon">
-    <meta property="og:url" content="http://i.am.simonkuang.com/post/install-coredns-on-macos/">
+    <meta property="og:url" content="http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -74,241 +74,163 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</h1>
+                            <h1 class="post-title">redis &#43; supervisor 时苦大仇深的问题</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2018年5月4日
+                            2016年3月4日
                         </date>
                         
                         
                         
                         <div class="post-content">
-                            
+                            <p>在我记忆中，CentOS 从很早开始，就没有和各种的问题挂钩过。得益于它保守的升级策略，它自己几乎从来不是问题专业户，我对它的印象更多是因为太过保守导致的库升级不及时问题。</p>
 
-<p>DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。</p>
+<p>可是最近，CentOS7 某个版本发行之后，偶尔的，会出现 supervisor 拉 redis 失败的问题。从日志的内容来看，全是 <code>Permission denied</code> 相关的问题，bind socket 的时候权限不够，write log 的时候权限不够，dump snapshot 的时候权限不够，只要跟写磁盘相关的，都有这个问题。</p>
 
-<p>我遇到的场景是这样的。</p>
+<p>单独执行 <code>/usr/bin/redis-server /etc/redis.conf</code>，又一点儿问题没有，命令本身没有问题，一切正常。</p>
 
-<ol>
-<li>公司有内网机房，研发用，研发环境和测试环境都在内网机房；</li>
-<li>公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析；</li>
-<li>研发/测试环境的服务器也用顶级域名指向，例如：test1.mod-a.company.com。这类解析都是通过 bind 实现的。公司外网解析不到这个地址；</li>
-<li>我自己需要一个安全的 DNS 环境，对 DNS 服务器溯源这个细节，优选 TCP 协议；</li>
-<li>对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind；</li>
-<li>之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。</li>
-</ol>
+<p>关键，supervisor 是以 root 去拉 redis 的啊！表示很无辜 (o´・ェ・｀o)</p>
 
-<p>找了一圈，发现 <a href="https://coredns.io/">CoreDNS</a> 挺好的。推荐之。</p>
+<p>supervisor 的配置如下：</p>
 
-<h3 id="一-安装">一、安装</h3>
-
-<p>CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。</p>
-
-<p>下面统统以 MacOS 为例作讲解。</p>
-
-<pre><code class="language-bash">cd ~/Downloads
-curl -LO &quot;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&quot; &amp;&amp; \
-tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \
-mv ./coredns /usr/local/bin/
-</code></pre>
-
-<p>这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。</p>
-
-<h3 id="二-配置">二、配置</h3>
-
-<p>要深入了解 CoreDNS，请查看其<a href="https://coredns.io/manual/toc">文档</a>，及 <a href="https://coredns.io/plugins/">plugins 的介绍</a>。</p>
-
-<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /usr/local/etc/Corefile
-. {
-  hosts {
-    fallthrough
-  }
-
-  forward . 1.1.1.1 8.8.8.8 119.29.29.29 223.5.5.5 {
-    force_tcp
-    max_fails 3
-    expire 10s
-    health_check 5s
-    policy sequential
-    except company.com
-  }
-
-  cache 120
-  reload 6s
-  log
-  errors
-}
-
-company.com {
-  hosts {
-    fallthrough
-  }
-
-  forward . 192.168.88.101 119.29.29.29 114.114.114.114 {
-    max_fails 3
-    expire 5s
-    health_check 3s
-    policy sequential
-  }
-}
-EOF
-</code></pre>
-
-<p>其中 <code>192.168.88.101</code> 是公司内网 DNS 服务器（bind）的 IP 地址。</p>
-
-<p>对配置中的一些选项稍作解释。</p>
-
-<ul>
-<li><code>hosts</code>：<code>hosts</code> 是 CoreDNS 的一个 plugin，这一节的意思是加载 <code>/etc/hosts</code> 文件里面的解析信息。<code>hosts</code> 在最前面，则如果一个域名在 hosts 文件中存在，则优先使用这个信息返回；</li>
-<li><code>fallthrough</code>：如果 <code>hosts</code> 中找不到，则进入下一个 plugin 继续。缺少这一个指令，后面的 plugins 配置就无意义了；</li>
-<li><code>forward</code>：这是另外一个 plugin。<code>.</code> 代表所有域名，后面的 IP 代表上游 DNS 服务器的列表。按照什么顺序溯源，由下面的 <code>policy</code> 指令决定；</li>
-<li><code>force_tcp</code>：强制使用 TCP 协议溯源。这要求上游 DNS 必须支持 TCP 协议；</li>
-<li><code>expect</code>：指定哪些域名不按照本 plugin 配置溯源；</li>
-<li><code>cache</code>：溯源得到的结果，缓存指定时间。类似 TTL 的概念；</li>
-<li><code>reload</code>：多久扫描配置文件一次。如有变更，自动加载；</li>
-<li><code>log</code>：打印/存储访问日志；</li>
-<li><code>errors</code>：打印/存储错误日志；</li>
-<li><code>company.com { }</code>：另外一个『服务』，只服务针对『company.com』的域名解析；</li>
-</ul>
-
-<p>我讲一下我自己的理解。</p>
-
-<ol>
-<li>配置文件类似于 nginx 配置文件的格式；</li>
-<li>最外面一级的大括号，对应『服务』的概念。多个服务可以共用一个端口；</li>
-<li>往里面一级的大括号，对应 plugins 的概念，每一个大括号都是一个 plugin。这里可以看出，plugins 是 CoreDNS 的一等公民；</li>
-<li>服务之间顺序有无关联没有感觉，但 plugins 之间是严重顺序相关的。某些 plugin 必须用 <code>fallthrough</code> 关键字流向下一个 plugin；</li>
-<li>plugin 内部的配置选项是顺序无关的；</li>
-<li>从 <a href="https://coredns.io/plugins/">plugins</a> 页面的介绍看，CoreDNS 的功能还是很强的，既能轻松从 bind 迁移，还能兼容 old-style dns server 的运维习惯；</li>
-<li>从 CoreDNS 的性能指标看，适合做大型服务。</li>
-</ol>
-
-<h3 id="三-运行">三、运行</h3>
-
-<pre><code class="language-bash"># 前台运行方式
-/usr/local/bin/coredns -conf /usr/local/etc/Corefile
-</code></pre>
-
-<blockquote>
-<p><del>NOTE(simon): 新增 <code>-log</code> 参数，将日志打到 stdout，日志集中处理。</del></p>
-
-<p>UPDATE(simon): 更新 coredns 到最新的 1.2.2 版本，已经没有 -log 这个参数了。日志默认也是直接打到 stdout 上面。</p>
-</blockquote>
-
-<p>如果没有问题，这时候应该看到 CoreDNS 持续运行。</p>
-
-<h3 id="四-部署">四、部署</h3>
-
-<p>在用 chinadns 的时候，遇到过 chinadns 崩掉的情况。作为基础服务，DNS 还是要能稳定持续提供服务的。此外，开机自动启动也是个必要的功能。</p>
-
-<p><del>综合考虑，熟悉的 <code>supervisor</code> 是个好的选择。</del></p>
-
-<p><strike></p>
-
-<pre><code class="language-bash">~~# 安装 supervisor
-brew install supervisor
-
-# 设置服务配置目录
-mkdir -p /usr/local/etc/supervisord.ini.d
-
-# 修改 supervisor 配置
-sed -i .bak 's@files = .*@files = /usr/local/etc/supervisord.ini.d/*.ini@g' /usr/local/etc/supervisord.ini
-
-# 为 supervisorctl 做映射
-alias supervisorctl='/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'
-cat &lt;&lt;EOF &gt;&gt; ~/.bash_profile
-alias supervisorctl='/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'
-EOF
-
-# 为 CoreDNS 写配置文件
-cat &lt;&lt;EOF &gt; /usr/local/etc/supervisord.ini.d/coredns.ini
-[program:coredns]
-command=/usr/bin/sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile
+<pre><code class="language-conf">[program:redis]
+command = /usr/bin/redis-server /etc/redis.conf
 ;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
 numprocs=1                    ; number of processes copies to start (def 1)
-directory=/usr/local           ; directory to cwd to before exec (def no cwd)
+directory=/data                ; directory to cwd to before exec (def no cwd)
 ;umask=022                     ; umask for process (default None)
 ;priority=999                  ; the relative start priority (default 999)
 autostart=true                ; start at supervisord start (default: true)
-autorestart=unexpected        ; whether/when to restart (default: unexpected)
+autorestart=true        ; whether/when to restart (default: unexpected)
 startsecs=1                   ; number of secs prog must stay running (def. 1)
-startretries=9999              ; max # of serial start failures (default 3)
-;exitcodes=0,2                 ; 'expected' exit codes for process (default 0,2)
+startretries=30                ; max # of serial start failures (default 3)
+exitcodes=0,2                 ; 'expected' exit codes for process (default 0,2)
 stopsignal=QUIT               ; signal used to kill process (default TERM)
 ;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
 ;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
 ;killasgroup=false             ; SIGKILL the UNIX process group (def false)
-;user=chrim                    ; setuid to this UNIX account to run the program
+user=root                   ; setuid to this UNIX account to run the program
 ;redirect_stderr=true          ; redirect proc stderr to stdout (default false)
-stdout_logfile=/usr/local/var/log/supervisor/coredns.stdout.log        ; stdout log path, NONE for none; default AUTO
+stdout_logfile=/data/log/supervisor/redis.stdout.log        ; stdout log path, NONE for none; default AUTO
 stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
 stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)
 stdout_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
 stdout_events_enabled=false   ; emit events on stdout writes (default false)
-stderr_logfile=/usr/local/var/log/supervisor/coredns.stderr.log       ; stderr log path, NONE for none; default AUTO
+stderr_logfile=/data/log/supervisor/redis.stderr.log        ; stderr log path, NONE for none; default AUTO
 stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
 stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)
 stderr_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
 stderr_events_enabled=false   ; emit events on stderr writes (default false)
-;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions (def no adds)
+;environment=A=1,B=2           ; process environment additions (def no adds)
 ;serverurl=AUTO                ; override serverurl computation (childutils)
-
-EOF
-
-# 设置 supervisord 开机自启动
-brew service start supervisor
-
-# 查看 CoreDNS 是否正常运行
-supervisorctl status
 </code></pre>
 
-<p></strike></p>
+<p>redis 的配置中，相关的配置选项如下：</p>
+
+<pre><code class="language-conf">daemonize no
+# 实际上，在出现问题的服务器上，pid 貌似一直没有落地成功，但所幸 redis 没有报错
+pidfile /data/log/redis/redis.pid
+port 6379
+tcp-backlog 128
+bind 127.0.0.1
+# 只要开启 socket 监听就一定报错。临时解决办法：不使用 socket 方式监听
+unixsocket /dev/shm/redis.sock
+unixsocketperm 777
+timeout 0
+tcp-keepalive 0
+loglevel notice
+# 只要开启 log 就一定报错。临时解决办法：日志路径改成黑洞 /dev/null
+logfile /data/log/redis/redis.log
+databases 16
+save 900 1
+save 300 10
+save 60 10000
+stop-writes-on-bgsave-error yes
+rdbcompression yes
+rdbchecksum yes
+# 出现问题时，dump 文件也没有落地成功，不过不影响 redis 继续执行
+dbfilename dump.rdb
+dir /data/log/redis/
+</code></pre>
+
+<p>因为 redis 的报错是通过 <code>redis.stdout.log</code> 来暴露，我们只用关注这个日志文件就可以了。下面我截几段。</p>
+
+<pre><code class="language-log">10640:M 01 Mar 18:04:10.932 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+10640:M 01 Mar 18:04:10.932 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+10640:M 01 Mar 18:04:10.932 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+10640:M 01 Mar 18:04:10.932 # Opening Unix socket: bind: Permission denied
+10641:M 01 Mar 18:04:41.022 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+10641:M 01 Mar 18:04:41.023 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+10641:M 01 Mar 18:04:41.023 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+10641:M 01 Mar 18:04:41.023 # Opening Unix socket: bind: Permission denied
+</code></pre>
+
+<pre><code class="language-log">                _._
+           _.-``__ ''-._
+      _.-``    `.  `_.  ''-._           Redis 3.0.7 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 12967
+  `-._    `-._  `-./  _.-'    _.-'
+ |`-._`-._    `-.__.-'    _.-'_.-'|
+ |    `-._`-._        _.-'_.-'    |           http://redis.io
+  `-._    `-._`-.__.-'_.-'    _.-'
+ |`-._`-._    `-.__.-'    _.-'_.-'|
+ |    `-._`-._        _.-'_.-'    |
+  `-._    `-._`-.__.-'_.-'    _.-'
+      `-._    `-.__.-'    _.-'
+          `-._        _.-'
+              `-.__.-'
+
+11560:M 01 Mar 23:55:35.650 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+11560:M 01 Mar 23:55:35.650 # Server started, Redis version 3.0.7
+11560:M 01 Mar 23:55:35.650 # Fatal error loading the DB: Permission denied. Exiting.
+11580:M 01 Mar 23:55:44.691 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+11580:M 01 Mar 23:55:44.691 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+11580:M 01 Mar 23:55:44.692 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+11580:M 01 Mar 23:55:44.692 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied
+</code></pre>
+
+<pre><code class="language-log">3321:M 04 Mar 10:49:40.192 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+3321:M 04 Mar 10:49:40.192 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+3321:M 04 Mar 10:49:40.192 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+3321:M 04 Mar 10:49:40.193 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied. | uid: 0 | gid: 0 | sock family: 1 | sock path: /dev/shm/redis.sock | eno: 101
+3322:M 04 Mar 10:50:10.264 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+3322:M 04 Mar 10:50:10.264 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+3322:M 04 Mar 10:50:10.264 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+3322:M 04 Mar 10:50:10.264 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied. | uid: 0 | gid: 0 | sock family: 1 | sock path: /dev/shm/redis.sock | eno: 101
+</code></pre>
+
+<p>第二段日志中，socket 具体的路径和 uid/gid 是我修改源码之后打印出来的，用来证实 supervisor 确实是在指定的位置拉起 redis
+socket，并且确实使用的是指定的用户（root）身份。</p>
+
+<p>实际上，无论是用 <a href="http://man7.org/linux/man-pages/man2/getuid.2.html"><code>getuid</code></a> 还是 <a href="http://man7.org/linux/man-pages/man2/geteuid.2.html"><code>geteuid</code></a> 都是一样的结果，确定 redis 的用户 ID 是 root（uid == 0）。</p>
+
+<p>因为不是每台电脑都能重现这个问题，而且有时候重做系统，两台服务器同时重做，一台 OK ，另外一台能重现此问题。只要重现一次，就能反复重现，100% 概率。</p>
+
+<p>此外还有一点需要注意的是，第二段和第三段都提示说需要用 <code>ulimit -n</code> 重新设置 file descriptors limit，可实际情况是，<code>/etc/profile</code> 里面已经设置了该值到 <code>102400</code>，而且肯定是已经生效的。</p>
+
+<pre><code class="language-bash">ulimit -n  # 1024000
+</code></pre>
+
+<ul>
+<li>supervisord 是 root 身份启动的，而且的确是以 root 身份拉 redis；</li>
+<li>redis 本身没有问题，shell 里面启动是 OK 的；</li>
+<li>supervisord + redis 就会在磁盘落地时报权限问题；</li>
+<li>redis 报错时，似乎还取到不合实际情况的系统变量；</li>
+<li>并不是每个 CentOS7 环境都报错，但报错的都是 CentOS7。服务器的差异点还没找到，有时候两台同时重做的服务器，一台不行一台行；</li>
+</ul>
+
+<p>直到现在还没找到问题根源以及解决办法。</p>
+
+<p>大写的囧……</p>
 
 <blockquote>
-<p>NOTE(simon, 2018-05-30):
-  放弃使用 supervisor 的原因是，MacOS 作为生产力工具，supervisor 最友好方式的安装还是通过 brew。而 brew 安装的 supervisor 启动时，是当前用户权限，不是 root 身份。试了下，也没办法通过配置，提权到 root。再则，supervisor 的配置中，大量文件写到 <code>/usr/local</code> 目录下，如果以 root 身份启动 supervisord 进程，这些文件势必也是 root 权限的。而按照 brew 的指导意见，<code>/usr/local</code> 下还是要保留当前用户权限的，否则 brew 可能会挂。
-  所以兜兜转换，又用回到老的土办法。毕竟，稳定就好。</p>
+<p>(UPDATED) 2017-08-17: 还没找到原因。不过相信大概率和 supervisor 的配置有关。
+supervisor 拉起来的进程，系统环境不再是 euid 对应的环境，这点已经确认。
+至于这样的变化是怎样导致 redis 的 socket 无法读写的，确实就不知道了。</p>
 </blockquote>
-
-<p><strike></p>
-
-<pre><code class="language-bash">cat &lt;&lt;EOF &gt; ~/.bash_profile
-# CoreDNS
-COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)
-[ ${COREDNS_PROCESS_COUNT} -lt 1 ] &amp;&amp; \
-    nohup sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile &amp;
-EOF
-</code></pre>
-
-<p></strike></p>
-
-<blockquote>
-<p>NOTE(simon, 2018-11-20):
-  更新一下脚本，实现下面几个功能：
-  1. coredns 进程的 stderr 输出转到 stdout；
-  2. coredns 进程不绑定到当前 tty 上，运行 <code>jobs</code> 命令不显示 coredns 进程；
-  3. 显式指定 nohup 将 coredns 进程的 stdout 输出打到 ~/nohup.out 文件；</p>
-</blockquote>
-
-<pre><code class="language-bash">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)
-[ ${COREDNS_PROCESS_COUNT} -lt 1 ] &amp;&amp; \
-  (2&gt;&amp;1 nohup sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile &gt;&gt; ~/nohup.out &amp;)
-</code></pre>
-
-<h3 id="五-验证">五、验证</h3>
-
-<pre><code class="language-bash">nslookup www.qq.com 127.0.0.1
-nslookup www.facebook.com 127.0.0.1
-nslookup test1.mod-a.company.com 127.0.0.1
-</code></pre>
-
-<p>公司内网 IP 几乎秒出。非死不可也能出。</p>
-
-<p>搞定。</p>
-
-<h3 id="六-系统设置">六、系统设置</h3>
-
-<p>在『系统偏好设置』-&gt;『网络』中，把 DNS 里面添加一行，127.0.0.1，并把新增这项移动到最前面，即可。</p>
 
                         </div>
 
@@ -321,15 +243,15 @@ nslookup test1.mod-a.company.com 127.0.0.1
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/post/react-native-depency-modified-boost-lib-from-0-50-1/">react-native@0.50.1 开始依赖于一个特定版本的 boost 库</a></li>
+        <li><a href="/post/a-permission-problem-with-gitlab-and-linux-user/">发现 Gitlab 的一个权限问题</a></li>
         
-        <li><a href="/post/evil-coding-pages/">为了打个广告，coding pages 变得好邪恶</a></li>
+        <li><a href="/post/sticky-bit-of-files-under-linux/">再学习 Linux 下的文件权限</a></li>
         
-        <li><a href="/post/chanlledge-from-programmer-to-architect/">从程序猿到架构狮的转变</a></li>
+        <li><a href="/post/a-way-to-accelerate-creating-a-new-laravel-project/">加速 Laravel 新建项目的办法</a></li>
         
-        <li><a href="/post/nodejs-abuse-of-software-design-philosophy/">吐槽被NodeJS用滥的软件设计哲学</a></li>
+        <li><a href="/post/algorithms-for-cardinality-estimation/">推荐文章《解读Cardinality Estimation算法》</a></li>
         
-        <li><a href="/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/">数字公司旗下的 SSL 服务商好像被 block 完了</a></li>
+        <li><a href="/post/netease-enterprises-email-end-up-itself/">网易邮箱已死,有事请烧纸</a></li>
         
     </ul>
 </div>
@@ -339,7 +261,7 @@ nslookup test1.mod-a.company.com 127.0.0.1
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF">技术</a></li>
+                                <li><a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4">运维</a></li>
                                 
                             </ul>
                             

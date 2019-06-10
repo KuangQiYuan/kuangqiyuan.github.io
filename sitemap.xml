@@ -4,19 +4,54 @@
   
   <url>
     <loc>http://i.am.simonkuang.com/categories/</loc>
-    <lastmod>2019-06-10T09:53:55+08:00</lastmod>
+    <lastmod>2019-06-10T17:14:05+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://i.am.simonkuang.com/post/</loc>
-    <lastmod>2019-06-10T09:53:55+08:00</lastmod>
+    <lastmod>2019-06-10T17:14:05+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://i.am.simonkuang.com/tags/</loc>
-    <lastmod>2019-06-10T09:53:55+08:00</lastmod>
+    <lastmod>2019-06-10T17:14:05+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</loc>
+    <lastmod>2019-06-10T17:14:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2019-06-10T17:14:05+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2019-06-10T17:14:05+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://i.am.simonkuang.com/</loc>
+    <lastmod>2019-06-10T17:14:05+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/</loc>
+    <lastmod>2019-06-10T17:14:05+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2019-06-10T17:14:05+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -44,12 +79,6 @@
   </url>
   
   <url>
-    <loc>http://i.am.simonkuang.com/</loc>
-    <lastmod>2019-06-10T09:53:55+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
     <lastmod>2019-06-10T09:53:55+08:00</lastmod>
     <priority>0</priority>
@@ -61,12 +90,6 @@
   </url>
   
   <url>
-    <loc>http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2019-06-10T09:50:24+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
     <lastmod>2019-06-10T09:50:24+08:00</lastmod>
     <priority>0</priority>
@@ -75,12 +98,6 @@
   <url>
     <loc>http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/</loc>
     <lastmod>2019-05-27T01:01:17+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2019-05-27T01:01:17+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -172,12 +189,6 @@
   </url>
   
   <url>
-    <loc>http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2017-07-25T12:37:04+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/</loc>
     <lastmod>2017-07-25T12:37:04+00:00</lastmod>
   </url>
@@ -216,12 +227,6 @@
   <url>
     <loc>http://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/</loc>
     <lastmod>2016-09-29T15:43:34+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2016-09-28T23:19:25+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -315,7 +320,7 @@
   </url>
   
   <url>
-    <loc>http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities-m-m/</loc>
+    <loc>http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/</loc>
     <lastmod>2016-03-04T17:44:22+00:00</lastmod>
   </url>
   

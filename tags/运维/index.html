@@ -188,7 +188,7 @@ $app = app('wechat'); // EasyWeChat\Foundation\Application {#628} $users = $app-
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities-m-m/">redis &#43; supervisor 时苦大仇深的问题</a>
+                                    <a href="http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/">redis &#43; supervisor 时苦大仇深的问题</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -202,7 +202,7 @@ $app = app('wechat'); // EasyWeChat\Foundation\Application {#628} $users = $app-
 关键，supervisor 是以 root 去拉 redis 的啊！表示很无辜 (o´・ェ・｀o)
 supervisor 的配置如下：
 [program:redis] command = /usr/bin/redis-server /etc/redis.conf ;process_name=%(program_name)s ; process_name expr (default %(program_name)s) numprocs=1 ; number of processes copies to start (def 1) directory=/data ; directory to cwd to before exec (def no cwd) ;umask=022 ; umask for process (default None) ;priority=999 ; the relative start priority (default 999) autostart=true ; start at supervisord start (default: true) autorestart=true ; whether/when to restart (default: unexpected) startsecs=1 ; number of secs prog must stay running (def.……
-                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities-m-m/">阅读全文</a></p>
+                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/">阅读全文</a></p>
                             </div>
                         </article>
                     
@@ -279,6 +279,10 @@ ssh -vvvT git@some.domain.name  …… 一串无关的日志我就省略了，�
 <ul class="widget-list">
     
     <li>
+        <a href="http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/" title="『每个架构师都应该研究下康威定律』">『每个架构师都应该研究下康威定律』</a>
+    </li>
+    
+    <li>
         <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
     </li>
     
@@ -314,10 +318,6 @@ ssh -vvvT git@some.domain.name  …… 一串无关的日志我就省略了，�
         <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
     </li>
     
-    <li>
-        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -328,7 +328,7 @@ ssh -vvvT git@some.domain.name  …… 一串无关的日志我就省略了，�
 <ul class="widget-list">
     
     <li>
-        <a href="http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(1)</a>
+        <a href="http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(2)</a>
     </li>
     
     <li>
