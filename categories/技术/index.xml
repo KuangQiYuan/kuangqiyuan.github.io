@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术 on 旷氏淇元</title>
+    <link>http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/</link>
+    <description>Recent content in 技术 on 旷氏淇元</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cmn-Hans</language>
+    <lastBuildDate>Mon, 10 Jun 2019 09:50:24 +0800</lastBuildDate>
+    
+	<atom:link href="http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hexo 又报 package 的依赖问题了</title>
+      <link>http://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/</link>
+      <pubDate>Mon, 10 Jun 2019 09:50:24 +0800</pubDate>
+      
+      <guid>http://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/</guid>
+      <description>因为 hexo 的 package 的依赖问题，特别是对彼此版本的依赖问题，折腾过两三次，一直没有特别好的解决办法。
+node 本质上仍然是脚本语言，不像编译型语言，实在不行，还可以把 package 一个一个打成 binary，逐个消除 package 的依赖问题。node 做不到。当两个以上的 package 声明的依赖相互冲突时，这个项目基本上也就废了。没法儿正常使用了。
+有人会问，怎么可能出现这样的情况？开发者发现不了吗？
+开发者可能还真发现不了。首先，开发者的环境是既有的，是缓慢生长起来的，不是什么问题都能发现的。其次，CI 也不一定能发现问题。有些基础的 package 为了自身兼容性，对不同 node 环境做了兼容处理，在不同版本的 node 下，逻辑代码不同。再次，npm 的 peerDependencies 对 package 之间的依赖关系进行了解耦，有些依赖关系非强制，实际上是允许了冲突的存在。最后，node 的环境隔离方案，类似 pyenv 这样的，也有，非主流，而且治标不治本，仍然解决不了 package 之间的冲突。
+之前我遇到的问题是 peerDependencies 导致的。今天遇到的问题，则是对 node 版本的声明导致的。
+ error nunjucks@3.1.3: The engine &amp;ldquo;node&amp;rdquo; is incompatible with this module. Expected version &amp;ldquo;&amp;gt;= 6.9.0 &amp;lt;= 11.0.0-0&amp;rdquo;. Got &amp;ldquo;12.4.0&amp;rdquo; error Found incompatible module
+ 我的 node 是通过 HomeBrew 安装的，latest，当前版本 *v12.4.0*。
+对 node 一直有一点担心，然后这种担心在 2016 年左右，逐渐成了现实。那就是 npm 对 package 的依赖管理策略。越松散，越自由，就越极客，越小众；越独裁，越限制，就越方便，越大众。npm 很明显走前者的路线，而且偏向极端。我知道稍微有点能力的公司，用 RN/Vue/Angular…… 都是自己搭 package server，自己造 package。包括一些基础的 package。没别的，就为一条，质量可控。</description>
+    </item>
+    
+  </channel>
+</rss>

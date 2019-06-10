@@ -24,6 +24,7 @@
       for (var i = 0; i < codelist.length; i++) {
         var div = document.createElement('div');
         div.className = 'mermaid';
+        div.setAttribute('align', 'center');
         div.innerHTML = codelist[i].innerHTML.replace(/&amp;/g, '&');
         codelist[i].replaceWith(div);
       }

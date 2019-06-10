@@ -70,6 +70,28 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署" >CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年5月4日
+                            </date>
+                            
+                            <div class="post-content">
+                                DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。
+我遇到的场景是这样的。
+ 公司有内网机房，研发用，研发环境和测试环境都在内网机房； 公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析； 研发/测试环境的服务器也用顶级域名指向，例如：test1.mod-a.company.com。这类解析都是通过 bind 实现的。公司外网解析不到这个地址； 我自己需要一个安全的 DNS 环境，对 DNS 服务器溯源这个细节，优选 TCP 协议； 对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind； 之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。  找了一圈，发现 CoreDNS 挺好的。推荐之。
+一、安装 CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。
+下面统统以 MacOS 为例作讲解。
+cd ~/Downloads curl -LO &quot;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&quot; &amp;&amp; \ tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \ mv ./coredns /usr/local/bin/  这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。
+二、配置 要深入了解 CoreDNS，请查看其文档，及 plugins 的介绍。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="http://i.am.simonkuang.com/post/react-native-depency-modified-boost-lib-from-0-50-1/" title="react-native@0.50.1 开始依赖于一个特定版本的 boost 库" >react-native@0.50.1 开始依赖于一个特定版本的 boost 库</a>
                                 </h1>
                             </header>
@@ -315,26 +337,6 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
                             <p class="readmore"><a href="http://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/" title="另一个包管理工具——DNF" >另一个包管理工具——DNF</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年10月17日
-                            </date>
-                            
-                            <div class="post-content">
-                                更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。
- DNF 起源于 YUM 的一个分支，最早用在 Fedora 18，在 Fedora 22 中默认安装，成为系统工具。现在更是被广泛看作 YUM 的接班人。虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 yum 和 dnf 混合着来——当然，新旧掺杂绝对不是好习惯，我就这么一说，证明 YUM 和 DNF 的关联之亲近。用惯了 YUM 的朋友们一定不会抗拒换到 DNF，它们的用法非常相似，而且 DNF 的更有现代语言风格。
-我常用的系统是 CentOS，虽然已经被 RedHat 收购，但是 CentOS 的品质和定位都没有变，这很难得。最新（截至 2016-10-16）的 CentOS 是 7.2.1511。下面的步骤在 CentOS 上尝试，对 Fedora/RHEL 理论上同样适用。Fedora 上应该还更加简单，下面的问题好多都不会遇到。
-闲话不说，安装步骤如下。
-一、手动安装全新的 yum repo 新增一个 repo，从这个 repo 中用 yum 安装 DNF。这是因为 CentOS Base repo 中的 DNF 版本太低，只有 0.……
-                            </div>
-                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -399,6 +401,10 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
     </li>
     
     <li>
+        <a href="http://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/" title="hexo 又报 package 的依赖问题了">hexo 又报 package 的依赖问题了</a>
+    </li>
+    
+    <li>
         <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
     </li>
     
@@ -430,10 +436,6 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
         <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
     </li>
     
-    <li>
-        <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -442,6 +444,10 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
     <section class="widget">
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(1)</a>
+    </li>
     
     <li>
         <a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
