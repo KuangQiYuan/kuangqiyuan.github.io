@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>redis &#43; supervisor 时苦大仇深的问题 | 旷氏淇元</title>
+    <meta property="og:title" content="redis &#43; supervisor 时苦大仇深的问题 - 旷氏淇元">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2016-03-04T17:44:22&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2016-03-04T17:44:22&#43;08:00">
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="redis &#43; supervisor 时苦大仇深的问题">
+        <meta name="author" content="旷淇元">
+        
+    <meta property="og:url" content="http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities-m-m/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://i.am.simonkuang.com/">
+                        旷氏淇元
+                    </a>
+                
+                <p class="description">旷淇元的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://i.am.simonkuang.com/">首页</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/books/" title="新书">新书</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">redis &#43; supervisor 时苦大仇深的问题</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2016年3月4日
+                        </date>
+                        
+                        
+                        
+                        <div class="post-content">
+                            <p>在我记忆中，CentOS 从很早开始，就没有和各种的问题挂钩过。得益于它保守的升级策略，它自己几乎从来不是问题专业户，我对它的印象更多是因为太过保守导致的库升级不及时问题。</p>
+
+<p>可是最近，CentOS7 某个版本发行之后，偶尔的，会出现 supervisor 拉 redis 失败的问题。从日志的内容来看，全是 <code>Permission denied</code> 相关的问题，bind socket 的时候权限不够，write log 的时候权限不够，dump snapshot 的时候权限不够，只要跟写磁盘相关的，都有这个问题。</p>
+
+<p>单独执行 <code>/usr/bin/redis-server /etc/redis.conf</code>，又一点儿问题没有，命令本身没有问题，一切正常。</p>
+
+<p>关键，supervisor 是以 root 去拉 redis 的啊！表示很无辜 (o´・ェ・｀o)</p>
+
+<p>supervisor 的配置如下：</p>
+
+<pre><code class="language-conf">[program:redis]
+command = /usr/bin/redis-server /etc/redis.conf
+;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
+numprocs=1                    ; number of processes copies to start (def 1)
+directory=/data                ; directory to cwd to before exec (def no cwd)
+;umask=022                     ; umask for process (default None)
+;priority=999                  ; the relative start priority (default 999)
+autostart=true                ; start at supervisord start (default: true)
+autorestart=true        ; whether/when to restart (default: unexpected)
+startsecs=1                   ; number of secs prog must stay running (def. 1)
+startretries=30                ; max # of serial start failures (default 3)
+exitcodes=0,2                 ; 'expected' exit codes for process (default 0,2)
+stopsignal=QUIT               ; signal used to kill process (default TERM)
+;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
+;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
+;killasgroup=false             ; SIGKILL the UNIX process group (def false)
+user=root                   ; setuid to this UNIX account to run the program
+;redirect_stderr=true          ; redirect proc stderr to stdout (default false)
+stdout_logfile=/data/log/supervisor/redis.stdout.log        ; stdout log path, NONE for none; default AUTO
+stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)
+stdout_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+stdout_events_enabled=false   ; emit events on stdout writes (default false)
+stderr_logfile=/data/log/supervisor/redis.stderr.log        ; stderr log path, NONE for none; default AUTO
+stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)
+stderr_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+stderr_events_enabled=false   ; emit events on stderr writes (default false)
+;environment=A=1,B=2           ; process environment additions (def no adds)
+;serverurl=AUTO                ; override serverurl computation (childutils)
+</code></pre>
+
+<p>redis 的配置中，相关的配置选项如下：</p>
+
+<pre><code class="language-conf">daemonize no
+# 实际上，在出现问题的服务器上，pid 貌似一直没有落地成功，但所幸 redis 没有报错
+pidfile /data/log/redis/redis.pid
+port 6379
+tcp-backlog 128
+bind 127.0.0.1
+# 只要开启 socket 监听就一定报错。临时解决办法：不使用 socket 方式监听
+unixsocket /dev/shm/redis.sock
+unixsocketperm 777
+timeout 0
+tcp-keepalive 0
+loglevel notice
+# 只要开启 log 就一定报错。临时解决办法：日志路径改成黑洞 /dev/null
+logfile /data/log/redis/redis.log
+databases 16
+save 900 1
+save 300 10
+save 60 10000
+stop-writes-on-bgsave-error yes
+rdbcompression yes
+rdbchecksum yes
+# 出现问题时，dump 文件也没有落地成功，不过不影响 redis 继续执行
+dbfilename dump.rdb
+dir /data/log/redis/
+</code></pre>
+
+<p>因为 redis 的报错是通过 <code>redis.stdout.log</code> 来暴露，我们只用关注这个日志文件就可以了。下面我截几段。</p>
+
+<pre><code class="language-log">10640:M 01 Mar 18:04:10.932 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+10640:M 01 Mar 18:04:10.932 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+10640:M 01 Mar 18:04:10.932 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+10640:M 01 Mar 18:04:10.932 # Opening Unix socket: bind: Permission denied
+10641:M 01 Mar 18:04:41.022 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+10641:M 01 Mar 18:04:41.023 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+10641:M 01 Mar 18:04:41.023 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+10641:M 01 Mar 18:04:41.023 # Opening Unix socket: bind: Permission denied
+</code></pre>
+
+<pre><code class="language-log">                _._
+           _.-``__ ''-._
+      _.-``    `.  `_.  ''-._           Redis 3.0.7 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 12967
+  `-._    `-._  `-./  _.-'    _.-'
+ |`-._`-._    `-.__.-'    _.-'_.-'|
+ |    `-._`-._        _.-'_.-'    |           http://redis.io
+  `-._    `-._`-.__.-'_.-'    _.-'
+ |`-._`-._    `-.__.-'    _.-'_.-'|
+ |    `-._`-._        _.-'_.-'    |
+  `-._    `-._`-.__.-'_.-'    _.-'
+      `-._    `-.__.-'    _.-'
+          `-._        _.-'
+              `-.__.-'
+
+11560:M 01 Mar 23:55:35.650 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+11560:M 01 Mar 23:55:35.650 # Server started, Redis version 3.0.7
+11560:M 01 Mar 23:55:35.650 # Fatal error loading the DB: Permission denied. Exiting.
+11580:M 01 Mar 23:55:44.691 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+11580:M 01 Mar 23:55:44.691 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+11580:M 01 Mar 23:55:44.692 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+11580:M 01 Mar 23:55:44.692 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied
+</code></pre>
+
+<pre><code class="language-log">3321:M 04 Mar 10:49:40.192 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+3321:M 04 Mar 10:49:40.192 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+3321:M 04 Mar 10:49:40.192 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+3321:M 04 Mar 10:49:40.193 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied. | uid: 0 | gid: 0 | sock family: 1 | sock path: /dev/shm/redis.sock | eno: 101
+3322:M 04 Mar 10:50:10.264 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+3322:M 04 Mar 10:50:10.264 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
+3322:M 04 Mar 10:50:10.264 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+3322:M 04 Mar 10:50:10.264 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied. | uid: 0 | gid: 0 | sock family: 1 | sock path: /dev/shm/redis.sock | eno: 101
+</code></pre>
+
+<p>第二段日志中，socket 具体的路径和 uid/gid 是我修改源码之后打印出来的，用来证实 supervisor 确实是在指定的位置拉起 redis
+socket，并且确实使用的是指定的用户（root）身份。</p>
+
+<p>实际上，无论是用 <a href="http://man7.org/linux/man-pages/man2/getuid.2.html"><code>getuid</code></a> 还是 <a href="http://man7.org/linux/man-pages/man2/geteuid.2.html"><code>geteuid</code></a> 都是一样的结果，确定 redis 的用户 ID 是 root（uid == 0）。</p>
+
+<p>因为不是每台电脑都能重现这个问题，而且有时候重做系统，两台服务器同时重做，一台 OK ，另外一台能重现此问题。只要重现一次，就能反复重现，100% 概率。</p>
+
+<p>此外还有一点需要注意的是，第二段和第三段都提示说需要用 <code>ulimit -n</code> 重新设置 file descriptors limit，可实际情况是，<code>/etc/profile</code> 里面已经设置了该值到 <code>102400</code>，而且肯定是已经生效的。</p>
+
+<pre><code class="language-bash">ulimit -n  # 1024000
+</code></pre>
+
+<ul>
+<li>supervisord 是 root 身份启动的，而且的确是以 root 身份拉 redis；</li>
+<li>redis 本身没有问题，shell 里面启动是 OK 的；</li>
+<li>supervisord + redis 就会在磁盘落地时报权限问题；</li>
+<li>redis 报错时，似乎还取到不合实际情况的系统变量；</li>
+<li>并不是每个 CentOS7 环境都报错，但报错的都是 CentOS7。服务器的差异点还没找到，有时候两台同时重做的服务器，一台不行一台行；</li>
+</ul>
+
+<p>直到现在还没找到问题根源以及解决办法。</p>
+
+<p>大写的囧……</p>
+
+<blockquote>
+<p>(UPDATED) 2017-08-17: 还没找到原因。不过相信大概率和 supervisor 的配置有关。
+supervisor 拉起来的进程，系统环境不再是 euid 对应的环境，这点已经确认。
+至于这样的变化是怎样导致 redis 的 socket 无法读写的，确实就不知道了。</p>
+</blockquote>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/a-permission-problem-with-gitlab-and-linux-user/">发现 Gitlab 的一个权限问题</a></li>
+        
+        <li><a href="/post/sticky-bit-of-files-under-linux/">再学习 Linux 下的文件权限</a></li>
+        
+        <li><a href="/post/a-way-to-accelerate-creating-a-new-laravel-project/">加速 Laravel 新建项目的办法</a></li>
+        
+        <li><a href="/post/algorithms-for-cardinality-estimation/">推荐文章《解读Cardinality Estimation算法》</a></li>
+        
+        <li><a href="/post/netease-enterprises-email-end-up-itself/">网易邮箱已死,有事请烧纸</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4">运维</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://i.am.simonkuang.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/devops/">devops</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hexo/">hexo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hugo/">hugo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/laravel/">laravel</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/php/">php</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

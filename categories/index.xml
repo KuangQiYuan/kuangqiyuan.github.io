@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on 旷氏淇元</title>
+    <link>http://i.am.simonkuang.com/categories/</link>
+    <description>Recent content in Categories on 旷氏淇元</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cmn-Hans</language>
+    <lastBuildDate>Mon, 10 Jun 2019 09:53:55 +0800</lastBuildDate>
+    
+	<atom:link href="http://i.am.simonkuang.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>碎碎念</title>
+      <link>http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
+      <pubDate>Mon, 10 Jun 2019 09:53:55 +0800</pubDate>
+      
+      <guid>http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

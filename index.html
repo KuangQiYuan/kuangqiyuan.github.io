@@ -1,2141 +1,482 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>旷氏淇元 | 旷淇元的个人博客</title>
+    <meta property="og:title" content="旷氏淇元 | 旷淇元的个人博客">
+    <meta property="og:type" content="website">
+    <meta name="Keywords" content="">
+    <meta name="description" content="">
+    <meta property="og:url" content="http://i.am.simonkuang.com/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="http://i.am.simonkuang.com/index.xml" title="旷氏淇元" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
 
 
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="simonkuang, blog, engineer, architecture, microservice, platform">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:url" content="http://i.am.simonkuang.com/index.html">
-<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.2',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://i.am.simonkuang.com/">
-
-
-
-
-
-  <title>旷{<i>氏</i> }淇元</title>
-  
-
-
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-45245769-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">旷{<i>氏</i> }淇元</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <h1>
+                        <a id="logo" href="http://i.am.simonkuang.com/">
+                            旷氏淇元
+                        </a>
+                    </h1>
+                
+                <p class="description">旷淇元的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://i.am.simonkuang.com/">首页</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/books/" title="新书">新书</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo" >从 hexo 搬迁到 hugo</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年6月10日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5">碎碎念</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                ……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/my-first-post/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复" >Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年5月27日
+                            </date>
+                            
+                            <div class="post-content">
+                                Mac 上升级 VirtualBox 6.0.8，遇到一个报错，一直搞不定。大意是 system extension incompatible。提示框不是 warning 或者 error 图标，就是普通的 performance 图标，而且只出现一次，再安装，不会出现。
+网络上没有结论，大多是说在 Performance 里面做安全授权。然后我遇到的并不是这个问题，Performance 里面没有授权提示。于是自己试着用降级的办法，安装 5.2.30，还是不行，同样的错误。再降级，到 5.2.28，终于行了，安装成功。
+打开 5.2.28，发现有个提示，说有磁盘镜像失效，打开管理工具，发现是之前装的 Nox，在 VirtualBox 的配置中写入了 Nox 自己的镜像。卸载 Nox 的时候，Nox 没有从 VirtualBox 的配置中删除 Nox 的磁盘镜像。于是手动确认删除 Nox 相关的两个镜像。再进入 VirtualBox 就好了。
+今天忽然想起来，也许就是因为失效镜像，导致升级失败呢。于是再安装 VirtualBox 试试。果然，就行了。
+结论 对 VirtualBox 的失效镜像，一定要自行观察，手动清除，不能听之任之，容易造成潜在的问题。有一些模拟器啥的，安装的时候容易，卸载的时候麻烦，只能靠自己多留个心眼。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠" >外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年5月23日
+                            </date>
+                            
+                            <div class="post-content">
+                                Vultr 是一款国外比较好的 VPS（虚拟服务器）的服务商。服务还算稳定，线路相对比较稳定，重点是，价格便宜。Vultr 在国外主要的节点城市都有自己的机房。日本、新加坡、阿姆斯特丹、巴黎、法兰克福、伦敦、美国东西海岸、多伦多、悉尼。
+Vultr 最近有一个活动，第一次注册、付费超过 $25 的新用户，能获得 $50 的试用金，等于一台 1 Core/2G RAM 的服务器免费用 5 个月。牛逼。
+对于做外贸、跨境电商的朋友，可以用 Vultr 配合 Cloudflare 免费版做图床，做 EDM 定时任务等等。或者其它做国外业务，希望自己需要一台可操控主机的，vultr 都适合你们。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具" >hexo 又成了技术流的玩具</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年2月28日
+                            </date>
+                            
+                            <div class="post-content">
+                                其实写这篇文章，心情不太痛快。hexo 是我找了好久才确定下来，能用 markdown 写 blog 的系统。之前试过的如 jekyll 太复杂，而且定制化程度太低，不灵活。刚开始用 hexo 的时候发现它简直是尤物，轻便简洁，扩展性还不错，官方收录了很多 plugins，足够码农用了。
+结果没过几年，hexo 也快成了技术流的玩具。
+问题一。npm 依赖存在缺陷 首先是 &quot;hexo@3.8.0&quot; 某个依赖 &quot;hexo-fs@0.2.2&quot;，后者依赖 &quot;chokidar@1.2.7&quot;，而 chokidar 又依赖 &quot;fsevents@1.1.3&quot;。好了，最后这个 &quot;fsevents@1.1.3&quot; 是被 deprecated 的版本，包含原生库，已经不存在 binary 下载，从源码编译也会报错。错误的大意是跟 node 的版本不兼容。
+下面我把这个关系链重新理一下。
+graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[&quot;chokidar@1.2.7&quot;]; C--&gt;D[&quot;fsevents@1.1.3&quot;]; D--&gt;E[&quot;(HELL)&quot;];  除了上面的问题以外，大量已经停更的 plugins 依赖的 &quot;hexo-cli@1.0.3&quot; 等旧库，也多对 &quot;fsevents@1.1.3&quot; 存在间接依赖。
+用一句话来说后果，在 MacOS 下，用 hexo-cli new + npm i 的方式，根本安装不上 hexo。
+问题二。插件的停更、老化 像上面提到的，停更的插件，其间接依赖的第三方库若是被废弃，插件本身也就不可用了。这是一种情况。
+第二种情况，hexo 本身在发展，某些停更的第三方插件没有跟着做适配，结果是 hexo 的使用体验受到了影响。
+第三种情况，最常见的。哪怕是官网列表中的插件，质量也是有高有低，对那些技术不灵光的用户实在麻烦。
+解决方法 针对安装不上的问题。我也不知道怎么解决 :( 我用撞大运的办法，hexo-cli new 一个项目以后，手动修改 package.……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术" >不过时的技术</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年2月26日
+                            </date>
+                            
+                            <div class="post-content">
+                                最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内容千篇一律是推荐极客时间打新的课程，《Java 并发编程实战》。
+高并发哥又不是没做过，随手找了一下，发现陈皓在 2009 年的一篇文章就提到了正确的解法，以及背后的原因。《深入浅出单实例 SINGLETON 设计模式》。
+文中给出几种功能上正确的 singleton 写法。
+// version 1.4 public class Singleton { private volatile static Singleton singleton = null; private Singleton() {} public static Singleton getInstance() { if (singleton == null) { synchronized (Singleton.class) { if (singleton== null) { singleton= new Singleton(); } } } return singleton; } }  请留意私有变量的描述词 volatile，目的是不让编译器对指令进行重排序优化。
+// version 1.5 public class Singleton { private volatile static Singleton singleton = new Singleton(); private Singleton() {} public static Singleton getInstance() { return singleton; } }  这是自动加载版本。每次加载类的时候，实例就生成了。所以加载类的过程可能会很慢（特别是有很多继承、引用的情况）。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/timeless-technology/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质" >固态硬盘和优盘不是稳健的数据存储介质</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年12月26日
+                            </date>
+                            
+                            <div class="post-content">
+                                说到固态硬盘（SSD）和优盘，恐怕很多人心里面有个潜在的印象，就是数据放在这里面，很安全，比在机械硬盘里面安全。最近两个朋友找我，帮找恢复数据的解决方案。两位都是数据放优盘或移动硬盘里面，遇到存储芯片故障。
+其实长期不用的数据，放在固态硬盘里面，真的不一定是安全的。固态硬盘的存储原理是往浮栅晶体管上加/放电子，使晶体管的通电性能发生变化，形成通路/闭路，对应数字 1/0，从而达到记录数据的目的。这里就有个问题，浮栅中的电子会存在泄漏的情况，也就是说，记录的数据会丢失。通常，这种数据的丢失受电压（包括静电）、环境温度、以及存储时间的影响。希捷曾经有工程师在报告中讲，温度每上升 5 摄氏度，数据存储的时间就短一半。不通电不读写的情况下，保存在 Nand Flash（SSD、SD Card、TF Card、U Disk……）介质中的数据最多也就两年的存储寿命。最糟糕的情况是像移动硬盘、优盘这样的设备，插入电脑 USB 口的一瞬间，假如遇到静电，Nand Flash 芯片被瞬间高电压击穿，那不管当时环境温度多少、你有没有经常使用，你的数据都完蛋了。
+记住，要保存数据，一定用机械硬盘。这是目前最稳妥的方法了。机械硬盘丢数据的风险，都是可以人为规避的。保存得当，存里面的数据，保存十年二十年没问题。不要再傻傻被 SSD、优盘骗了。等到数据都恢复不回来，再后悔。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题" >MacOS 下安装 flutter 遇到的一个依赖问题</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年10月19日
+                            </date>
+                            
+                            <div class="post-content">
+                                最近在 MacOSX 上安装 flutter 也遇到一些问题。不是 MacOS Mojave 的问题，而是 flutter 依赖的一个开源库，它的依赖树出现版本不兼容问题。
+运行 flutter doctor 出现如下提示。
+ [!] iOS toolchain - develop for iOS devices (Xcode 10.0) ✗ libimobiledevice and ideviceinstaller are not installed. To install, run: brew install &ndash;HEAD libimobiledevice brew install ideviceinstaller ✗ ios-deploy not installed. To install: brew install ios-deploy ✗ CocoaPods not installed. CocoaPods is used to retrieve the iOS platform side&rsquo;s plugin code that responds to your plugin usage on the Dart side.……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法" >CentOS7 下安装 DNF 的方法</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年10月9日
+                            </date>
+                            
+                            <div class="post-content">
+                                NOTE(simon): 讲啰嗦一点，方便搜索引擎收录关键字。需要解决方案的同学，可以直接拖到后半部分。
+ 旧办法不灵 不知道什么原因，CentOS 7 下面安装 dnf 总是要出错，各种各样的问题与不兼容。CentOS 直到现在，还没有正式支持 dnf。相反，Fedora 22 开始就已经正式支持 dnf 作为默认的包管理工具了。差距啊。
+之前试过用一个半官方的 dnf repo(rpmsoftwaremanagement/dnf-nightly Copr) 在 CentOS 7 下面安装 dnf，一直都是可以的。也可以正常升级。以前通过这个办法安装过 dnf 的系统，已经升级到 2.8.5。用起来很顺。
+但是不知道为什么，最近用这个库，在全新的 CentOS 7 下面安装 dnf，遇到一个麻烦，就是包版本有冲突。类似的错误信息如下。
+# yum install -y dnf-2.8.5-0.101g0f20917d.el7.centos Loaded plugins: fastestmirror Loading mirror speeds from cached hostfile * base: mirrors.shu.edu.cn * epel: mirrors.yun-idc.com * extras: mirrors.163.com * updates: mirrors.163.com Resolving Dependencies --&gt; Running transaction check ---&gt; Package dnf.noarch 0:2.8.5-0.101g0f20917d.el7.centos will be installed --&gt; Processing Dependency: python2-dnf = 2.……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题" >MacOS 下 flutter run 遇到墙的问题</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年9月11日
+                            </date>
+                            
+                            <div class="post-content">
+                                最近调研 flutter，甚是大爱。
+虽然 flutter 非常友好提供了针对中国用户的镜像(Using Flutter in China · flutter/flutter Wiki · GitHub)，解决了一些不可说的难题，但偶尔还是会遇到类似的问题。比如我今天就遇到了，在 VS Code 调试编译的时候，遇到 “Download Failed” 的问题。Could not resolve all files for configuration ':image_picker:lintClassPath'. 具体原因是 Connect to d29vzk4ow07wi7.cloudfront.net:443 [d29vzk4ow07wi7.cloudfront.net/13.33.69.104, d29vzk4ow07wi7.cloudfront.net/13.33.69.3, d29vzk4ow07wi7.cloudfront.net/13.33.69.38, d29vzk4ow07wi7.cloudfront.net/13.33.69.111] failed: Read timed out 。
+原来是碰上了墙外面的老朋友，CDN 服务商 cloudflare 的域名。
+中间还是比较曲折，最后解决的办法是用 proxychain4 解决问题。
+brew install proxychains-ng sed -i '.bak' 's@^\(socks4.*\)@#\1@g' /usr/local/etc/proxychains.conf echo -e &quot;socks5\t127.0.0.1 1080&quot; &gt;&gt; /usr/local/etc/proxychains.conf proxychains4 curl ip.gs  等等，好像不对，IP 是本市的。
+$ proxychains4 curl ip.gs [proxychains] config file found: /usr/local/etc/proxychains.……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署" >CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年5月4日
+                            </date>
+                            
+                            <div class="post-content">
+                                DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。
+我遇到的场景是这样的。
+ 公司有内网机房，研发用，研发环境和测试环境都在内网机房； 公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析； 研发/测试环境的服务器也用顶级域名指向，例如：test1.mod-a.company.com。这类解析都是通过 bind 实现的。公司外网解析不到这个地址； 我自己需要一个安全的 DNS 环境，对 DNS 服务器溯源这个细节，优选 TCP 协议； 对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind； 之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。  找了一圈，发现 CoreDNS 挺好的。推荐之。
+一、安装 CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。
+下面统统以 MacOS 为例作讲解。
+cd ~/Downloads curl -LO &quot;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&quot; &amp;&amp; \ tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \ mv ./coredns /usr/local/bin/  这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。
+二、配置 要深入了解 CoreDNS，请查看其文档，及 plugins 的介绍。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/">阅读全文</a></p>
+                        </article>
+                    
+                    
+
+
+
+<ol class="page-navigator">
+    
+
+    
+    <li  class="current">
+        <a href="http://i.am.simonkuang.com/">1</a>
+    </li>
+    
+    <li >
+        <a href="http://i.am.simonkuang.com/page/2/">2</a>
+    </li>
+    
+    <li >
+        <a href="http://i.am.simonkuang.com/page/3/">3</a>
+    </li>
+    
+    <li >
+        <a href="http://i.am.simonkuang.com/page/4/">4</a>
+    </li>
+    
+    <li >
+        <a href="http://i.am.simonkuang.com/page/5/">5</a>
+    </li>
+    
+
+    
+    <li class="next">
+        <a href="http://i.am.simonkuang.com/page/2/">下一页</a>
+    </li>
+    
+</ol>
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://i.am.simonkuang.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/devops/">devops</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hexo/">hexo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hugo/">hugo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/laravel/">laravel</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/php/">php</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
+    
 </div>
+    </section>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
+        <li>
+            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
         </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
+        <li>
+            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
         </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
+        <li>
+            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
         </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-
-      
     </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/virtualbox-system-extension-incompatible-error/" itemprop="url">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T01:01:17+08:00">
-                2019-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/virtualbox-system-extension-incompatible-error/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/virtualbox-system-extension-incompatible-error/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Mac 上升级 VirtualBox 6.0.8，遇到一个报错，一直搞不定。大意是 <code>system extension incompatible</code>。提示框不是 warning 或者 error 图标，就是普通的 performance 图标，而且只出现一次，再安装，不会出现。</p>
-<p>网络上没有结论，大多是说在 Performance 里面做安全授权。然后我遇到的并不是这个问题，Performance 里面没有授权提示。于是自己试着用降级的办法，安装 5.2.30，还是不行，同样的错误。再降级，到 5.2.28，终于行了，安装成功。</p>
-<p>打开 5.2.28，发现有个提示，说有磁盘镜像失效，打开管理工具，发现是之前装的 Nox，在 VirtualBox 的配置中写入了 Nox 自己的镜像。卸载 Nox 的时候，Nox 没有从 VirtualBox 的配置中删除 Nox 的磁盘镜像。于是手动确认删除 Nox 相关的两个镜像。再进入 VirtualBox 就好了。</p>
-<p>今天忽然想起来，也许就是因为失效镜像，导致升级失败呢。于是再安装 VirtualBox 试试。果然，就行了。</p>
-<h3><span id="结论">结论</span></h3><p>对 VirtualBox 的失效镜像，一定要自行观察，手动清除，不能听之任之，容易造成潜在的问题。有一些模拟器啥的，安装的时候容易，卸载的时候麻烦，只能靠自己多留个心眼。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/vultr-vps-affiliate-code/" itemprop="url">外贸/跨境电商/代购/全球购/海淘适用的优惠</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T15:48:33+08:00">
-                2019-05-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/vultr-vps-affiliate-code/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/vultr-vps-affiliate-code/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Vultr 是一款国外比较好的 VPS（虚拟服务器）的服务商。服务还算稳定，线路相对比较稳定，重点是，价格便宜。Vultr 在国外主要的节点城市都有自己的机房。日本、新加坡、阿姆斯特丹、巴黎、法兰克福、伦敦、美国东西海岸、多伦多、悉尼。</p>
-<p><a href="https://www.vultr.com/?ref=8087732-4F" target="_blank" rel="noopener">Vultr 最近有一个活动，第一次注册、付费超过 $25 的新用户，能获得 $50 的试用金</a>，等于一台 1 Core/2G RAM 的服务器免费用 5 个月。牛逼。</p>
-<p>对于做外贸、跨境电商的朋友，可以用 Vultr 配合 Cloudflare 免费版做图床，做 EDM 定时任务等等。或者其它做国外业务，希望自己需要一台可操控主机的，vultr 都适合你们。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/hexo-also-a-toy-for-geeker/" itemprop="url">hexo 又成了技术流的玩具</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-28T21:21:53+08:00">
-                2019-02-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/hexo-also-a-toy-for-geeker/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/hexo-also-a-toy-for-geeker/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>其实写这篇文章，心情不太痛快。hexo 是我找了好久才确定下来，能用 markdown 写 blog 的系统。之前试过的如 jekyll 太复杂，而且定制化程度太低，不灵活。刚开始用 hexo 的时候发现它简直是尤物，轻便简洁，扩展性还不错，官方收录了<a href="https://hexo.io/plugins/index.html" target="_blank" rel="noopener">很多 plugins</a>，足够码农用了。</p>
-<p>结果没过几年，hexo 也快成了技术流的玩具。</p>
-<h2><span id="问题一-npm-依赖存在缺陷">问题一。npm 依赖存在缺陷</span></h2><p>首先是 <code>&quot;hexo@3.8.0&quot;</code> 某个依赖 <code>&quot;hexo-fs@0.2.2&quot;</code>，后者依赖 <code>&quot;chokidar@1.2.7&quot;</code>，而 chokidar 又依赖 <code>&quot;fsevents@1.1.3&quot;</code>。好了，最后这个 <code>&quot;fsevents@1.1.3&quot;</code> 是被 <em>deprecated</em> 的版本，包含原生库，已经不存在 binary 下载，从源码编译也会报错。错误的大意是跟 node 的版本不兼容。</p>
-<p>下面我把这个关系链重新理一下。</p>
-<pre class="mermaid">graph LR;
-    A["hexo@3.8.0"]-->B["hexo-fs@0.2.2"];
-    B-->C["chokidar@1.2.7"];
-    C-->D["fsevents@1.1.3"];
-    D-->E["(HELL)"];</pre>
-
-<p>除了上面的问题以外，大量已经停更的 plugins 依赖的 <code>&quot;hexo-cli@1.0.3&quot;</code> 等旧库，也多对 <code>&quot;fsevents@1.1.3&quot;</code> 存在间接依赖。</p>
-<p>用一句话来说后果，<strong>在 MacOS 下，用 <code>hexo-cli new</code> + <code>npm i</code> 的方式，根本安装不上 hexo。</strong></p>
-<h2><span id="问题二-插件的停更-老化">问题二。插件的停更、老化</span></h2><p>像上面提到的，停更的插件，其间接依赖的第三方库若是被废弃，插件本身也就不可用了。这是一种情况。</p>
-<p>第二种情况，hexo 本身在发展，某些停更的第三方插件没有跟着做适配，结果是 hexo 的使用体验受到了影响。</p>
-<p>第三种情况，最常见的。哪怕是官网列表中的插件，质量也是有高有低，对那些技术不灵光的用户实在麻烦。</p>
-<h2><span id="解决方法">解决方法</span></h2><p>针对安装不上的问题。我也不知道怎么解决 :( 我用撞大运的办法，<code>hexo-cli new</code> 一个项目以后，手动修改 <code>package.json</code>，将 <code>&quot;hexo@3.8.0&quot;</code> 这个依赖指向自己 fork 的 <code>hexo</code> repo，这个 forked repo 里面已经修改了 <code>hexo-fs</code> 是指向一个 forked <code>hexo-cli</code> repo。最后在这个 forked hero-cli repo 里面，把对 <code>chokidar</code> 的引用上升到 <code>&quot;chokidar@1.7.0&quot;</code> 以后。</p>
-<p>挺复杂的，对吧。不懂点开发，还真办不了。</p>
-<p>针对插件停更、老化的问题，只有一个办法，就是自己 fork 做二次开发。项目的依赖中直接写上自己的 git repo。</p>
-<p>别问我有没有现成的。我也很无奈。</p>
-<p>PS：这就是 npm 生态带来的问题。left_pad 事件发生后，有人说 nodejs 程序员懒到『 连最简单的代码都不想写』，只想引用。我不太赞同这个评论的态度，不过 npm 社区的程序员的确是把代码复用做到比较极致的地步。</p>
-<hr>
-<p><em>UPDATE(2019-02-28)</em></p>
-<p>发现在新 new 的项目里面，<code>&quot;hexo@3.8.0&quot;</code> 的发布版好像是依赖的 <code>&quot;hexo-fs@0.2.3&quot;</code>，已经升级到间接依赖 <code>&quot;fsevents@1.2.7&quot;</code>。</p>
-<p>挺无语的。真的。还有点懵圈，没太搞懂。</p>
-<p>昨天我可是 <code>rm -rf ./node_modules/* &amp;&amp; npm i</code> 操作的，按说缓存应该没影响才对。如果是 npm 自己的 cache（我设置到了 ~/.npm/cache 目录），新 new 出来的项目应该也会受影响才对啊。</p>
-<p>好吧，不折腾了。下次再遇到，所有缓存，全部清理得了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/timeless-technology/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/timeless-technology/" itemprop="url">不过时的技术</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-26T21:23:58+08:00">
-                2019-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/timeless-technology/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/timeless-technology/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内容千篇一律是推荐极客时间打新的课程，《Java 并发编程实战》。</p>
-<p>高并发哥又不是没做过，随手找了一下，发现陈皓在 2009 年的一篇文章就提到了正确的解法，以及背后的原因。《<a href="https://coolshell.cn/articles/265.html" target="_blank" rel="noopener">深入浅出单实例 SINGLETON 设计模式</a>》。</p>
-<p>文中给出几种功能上正确的 singleton 写法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// version 1.4</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton singleton = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (singleton== <span class="keyword">null</span>) &#123;</span><br><span class="line">                    singleton= <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>请留意私有变量的描述词 <code>volatile</code>，目的是不让编译器对指令进行重排序优化。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// version 1.5</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton singleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span>  </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这是自动加载版本。每次加载类的时候，实例就生成了。所以加载类的过程可能会很慢（特别是有很多继承、引用的情况）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// version 1.6</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingletonHolder.INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这是对上面 1.5 版本的修正。<code>SingletonHolder</code> 是个私有类，并且在 <code>Singleton</code> 加载的时候才会被调用，<code>INSTANCE</code> 才会被真正创建。</p>
-<p>这段代码是即确保了线程安全，又实现了懒加载的较优办法。</p>
-<p>还有一个所谓最优（优雅？代码最少？）的办法，不过不建议大家使用，可读性实在不太高。有点奇技淫巧的意思，大大牺牲了代码的可读性。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton&#123;</span><br><span class="line">   INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>利用了 <code>enum</code> 的创建是线程安全这一特性。</p>
-<p>PS：PHP 中没有 singleton 的困扰，因为 php 语言特点决定的。php-fpm 本身就是 accepter-worker 并发模式，程序员写的 PHP 程序其实只是 worker，worker 与 worker 之间由 fpm 完成资源隔离和协调，PHP 程序员并不需要从内存数据的层面考虑并发的情况。所以有句话讲得不错，<strong>singleton 在 PHP 语言中不是一个好实践（practice）</strong>。PHP 的 singleton 用简单的工厂模式就够了。</p>
-<hr>
-<p>今天抽空找了下 MQTT 的 QoS2 实现方式，记录如下。原科普文链接《<a href="https://www.jianshu.com/p/8b0291e8ee02" target="_blank" rel="noopener">MQTT QoS 深度解读</a>》。</p>
-<blockquote>
-<p>无论是 QoS2 还是 transaction，原理都是一样的：<strong>通过一次代价非常小、成功概率足够高的操作，作为最后确认的依据</strong>。这样做并不是说绝对不出错，而是出错的概率足够低，实践中可以忽略。</p>
-</blockquote>
-<pre class="mermaid">sequenceDiagram
-  participant Publisher
-  participant Broker
-  participant Subscriber
-  Publisher->>Publisher: Store(Msg)
-  Publisher->>Broker: PUBLISH(QoS2, Msg)
-  Broker->>Broker: Store(Msg)
-  Broker->>Publisher: PUBREC
-  Publisher->>Broker: PUBREL
-  Broker->>Subscriber: PUBLISH(QoS2, Msg)
-  Broker->>Publisher: PUBCOMP
-  Publisher->>Publisher: Delete(Msg)
-  Subscriber->>Subscriber: Store(Msg)
-  Subscriber->>Broker: PUBREC
-  Broker->>Subscriber: PUBREL
-  Subscriber->>Subscriber: Notify(Msg)
-  Subscriber->>Broker: PUBCOMP
-  Broker->>Broker: Delete(Msg)
-  Subscriber->>Subscriber: Delete(Msg)</pre>
-
-<p>简单一点的模型，如果不需要中间的 broker，则流程如下。</p>
-<pre class="mermaid">sequenceDiagram
-  participant Publisher
-  participant Subscriber
-  Publisher->>Publisher: Store(Msg)
-  Publisher->>Subscriber: (1) PUBLISH(QoS2, Msg)
-  Subscriber->>Subscriber: Store(Msg)
-  Subscriber->>Publisher: (2) PUBREC
-  Publisher->>Subscriber: (3) PUBREL
-  Subscriber->>Subscriber: Notify(Msg)
-  Subscriber->>Publisher: (4) PUBCOMP
-  Subscriber->>Subscriber: Delete(Msg)
-  Publisher->>Publisher: Delete(Msg)</pre>
-
-<p>从简化以后的模型可以看到，publisher 和 subscriber 有两次交互。第一次，publisher 把 msg 推送给 subscriber，对应 <code>PUBLISH</code>/<code>PUBREC</code> 指令。第二次，publisher 等于是询问 subscriber，“你是不是收到一次”，对应 <code>PUBREL</code>/<code>PUBCOMP</code> 指令。</p>
-<p>如果没有第 (3)/(4)步，<code>PUBREL</code>/<code>PUBCOMP</code> 指令，实际就是 QoS1，<em>至少收到一次</em>。</p>
-<p>再少一点，如果没有 (2)/(3)/(4) 步，只剩第 (1) 步，实际就是 QoS0，<em>至多只发送一次</em>。</p>
-<p>科普文里面提问，为什么 MQTT QoS2 是两次“握手”，而不是像 TCP 一样，三次握手。我觉得这个问题太教条了。为什么 negotiate 就一定要想到 TCP 呢？当然，如果一定要回答，最本质的区别就是，MQTT QoS2 通讯是单向的，而 TCP 连接的通讯是双向的。单向的只需要一方取信于另外一方即可，而双向通讯需要两方都取信于对方。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" itemprop="url">固态硬盘和优盘不是稳健的数据存储介质</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T23:40:40+08:00">
-                2018-12-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>说到固态硬盘（SSD）和优盘，恐怕很多人心里面有个潜在的印象，就是数据放在这里面，很安全，比在机械硬盘里面安全。最近两个朋友找我，帮找恢复数据的解决方案。两位都是数据放优盘或移动硬盘里面，遇到存储芯片故障。</p>
-<p>其实长期不用的数据，放在固态硬盘里面，真的不一定是安全的。固态硬盘的存储原理是往浮栅晶体管上加/放电子，使晶体管的通电性能发生变化，形成通路/闭路，对应数字 1/0，从而达到记录数据的目的。这里就有个问题，浮栅中的电子会存在泄漏的情况，也就是说，记录的数据会丢失。通常，这种数据的丢失受电压（包括静电）、环境温度、以及存储时间的影响。希捷曾经有工程师在报告中讲，温度每上升 5 摄氏度，数据存储的时间就短一半。不通电不读写的情况下，保存在 Nand Flash（SSD、SD Card、TF Card、U Disk……）介质中的数据最多也就两年的存储寿命。最糟糕的情况是像移动硬盘、优盘这样的设备，插入电脑 USB 口的一瞬间，假如遇到静电，Nand Flash 芯片被瞬间高电压击穿，那不管当时环境温度多少、你有没有经常使用，你的数据都完蛋了。</p>
-<p>记住，<strong>要保存数据，一定用机械硬盘。这是目前最稳妥的方法了</strong>。机械硬盘丢数据的风险，都是可以人为规避的。保存得当，存里面的数据，保存十年二十年没问题。不要再傻傻被 SSD、优盘骗了。等到数据都恢复不回来，再后悔。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/a-dependency-problem-for-flutter-on-macos/" itemprop="url">MacOS 下安装 flutter 遇到的一个依赖问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-19T13:41:54+08:00">
-                2018-10-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/a-dependency-problem-for-flutter-on-macos/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/a-dependency-problem-for-flutter-on-macos/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>最近在 MacOSX 上安装 flutter 也遇到一些问题。不是 MacOS Mojave 的问题，而是 flutter 依赖的一个开源库，它的依赖树出现版本不兼容问题。</p>
-<p>运行 <code>flutter doctor</code> 出现如下提示。</p>
-<blockquote>
-<p>[!] iOS toolchain - develop for iOS devices (Xcode 10.0)<br>   ✗ libimobiledevice and ideviceinstaller are not installed. To install, run:<br>       brew install –HEAD libimobiledevice<br>       brew install ideviceinstaller<br>   ✗ ios-deploy not installed. To install:<br>       brew install ios-deploy<br>   ✗ CocoaPods not installed.<br>       CocoaPods is used to retrieve the iOS platform side’s plugin code that responds to your plugin usage on the Dart side.<br>       Without resolving iOS dependencies with CocoaPods, plugins will not work on iOS.<br>       For more info, see <a href="https://flutter.io/platform-plugins" target="_blank" rel="noopener">https://flutter.io/platform-plugins</a><br>     To install:<br>       brew install cocoapods<br>       pod setup</p>
-</blockquote>
-<p>按照提示，运行 <code>brew install --HEAD libimobiledevice</code> 出现如下提示。</p>
-<blockquote>
-<p>checking for libusbmuxd &gt;= 1.1.0… no<br>configure: error: Package requirements (libusbmuxd &gt;= 1.1.0) were not met:</p>
-<p>Requested ‘libusbmuxd &gt;= 1.1.0’ but version of libusbmuxd is 1.0.10</p>
-<p>Consider adjusting the PKG_CONFIG_PATH environment variable if you<br>installed software in a non-standard prefix.</p>
-<p>Alternatively, you may set the environment variables libusbmuxd_CFLAGS<br>and libusbmuxd_LIBS to avoid the need to call pkg-config.<br>See the pkg-config man page for more details.</p>
-<p>READ THIS: <a href="https://docs.brew.sh/Troubleshooting" target="_blank" rel="noopener">https://docs.brew.sh/Troubleshooting</a></p>
-</blockquote>
-<p>brew 发现 usbmuxd 这个库最高版本就是 1.0.10，github 上最新 release 版本也是 1.0.10。压根儿就没有 1.1.0 这个版本存在。</p>
-<p>不过细看，发现 usbmuxd 这个库的最新版本，就是这个 1.0.10 是 2014 年发布的，算是老古董了。</p>
-<p>所以安装 usbmuxd 的 head 版本试试。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">brew unlink usbmuxd  <span class="comment"># 否则会 reinstall 失败</span></span><br><span class="line">brew reinstall --HEAD usbmuxd  <span class="comment"># 直接从 github 的 master HEAD 安装</span></span><br><span class="line"></span><br><span class="line">brew install --HEAD libimobiledevice</span><br></pre></td></tr></table></figure>
-<p>然后，就成了。囧rz…</p>
-<p>依赖树的问题，万一遇到，还是得手动一个一个解决。没办法。</p>
-<p>一个结论就是，要用 <code>brew install —HEAD</code>，就要忍受 nightly 的不稳定，这是必然付出的代价。flutter 现在还是 beta 版本，依赖 nightly 的开源库也情有可原。遇到问题，就自己撸起手解决吧。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/install-dnf-on-centos-7/" itemprop="url">CentOS7 下安装 DNF 的方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-09T13:39:35+08:00">
-                2018-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/install-dnf-on-centos-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/install-dnf-on-centos-7/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><blockquote>
-<p>NOTE(simon): 讲啰嗦一点，方便搜索引擎收录关键字。需要解决方案的同学，可以直接拖到后半部分。</p>
-</blockquote>
-<h2><span id="旧办法不灵">旧办法不灵</span></h2><p>不知道什么原因，CentOS 7 下面安装 dnf 总是要出错，各种各样的问题与不兼容。CentOS 直到现在，还没有正式支持 dnf。相反，Fedora 22 开始就已经正式支持 dnf 作为默认的包管理工具了。差距啊。</p>
-<p>之前试过用一个半官方的 dnf repo(<a href="https://copr.fedorainfracloud.org/coprs/rpmsoftwaremanagement/dnf-nightly/" target="_blank" rel="noopener">rpmsoftwaremanagement/dnf-nightly Copr</a>) 在 CentOS 7 下面安装 dnf，一直都是可以的。也可以正常升级。以前通过这个办法安装过 dnf 的系统，已经升级到 2.8.5。用起来很顺。</p>
-<p>但是不知道为什么，最近用这个库，在全新的 CentOS 7 下面安装 dnf，遇到一个麻烦，就是包版本有冲突。类似的错误信息如下。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install -y dnf-2.8.5-0.101g0f20917d.el7.centos</span></span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirrors.shu.edu.cn</span><br><span class="line"> * epel: mirrors.yun-idc.com</span><br><span class="line"> * extras: mirrors.163.com</span><br><span class="line"> * updates: mirrors.163.com</span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package dnf.noarch 0:2.8.5-0.101g0f20917d.el7.centos will be installed</span><br><span class="line">--&gt; Processing Dependency: python2-dnf = 2.8.5-0.101g0f20917d.el7.centos <span class="keyword">for</span> package: dnf-2.8.5-0.101g0f20917d.el7.centos.noarch</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package python2-dnf.noarch 0:2.8.5-0.101g0f20917d.el7.centos will be installed</span><br><span class="line">--&gt; Processing Dependency: rpm-plugin-systemd-inhibit <span class="keyword">for</span> package: python2-dnf-2.8.5-0.101g0f20917d.el7.centos.noarch</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package rpm-plugin-systemd-inhibit.x86_64 0:4.11.3-32.el7 will be installed</span><br><span class="line">--&gt; Processing Conflict: python2-librepo-1.9.2-2gc670c6b.el7.x86_64 conflicts python2-dnf &lt; 2.8.8</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line">Error: python2-librepo conflicts with python2-dnf-2.8.5-0.101g0f20917d.el7.centos.noarch</span><br><span class="line"> You could try using --skip-broken to work around the problem</span><br><span class="line"> You could try running: rpm -Va --nofiles --nodigest</span><br></pre></td></tr></table></figure>
-<p>重点在这句，<code>librepo-1.9.2-2gc670c6b.el7.x86_64 conflicts python2-dnf &lt; 2.8.8</code>。</p>
-<p>版本依赖关系树中提到的 <code>python2-dnf 2.8.8</code>，在 repo 中尚未发布。很明显的，dnf 2.8.5 依赖 python2-dnf 2.8.5 才对。事实也是，python2-dnf 最新的版本号是 2.8.5。</p>
-<p>无论如何也解决不了这个难题。毕竟人家是 nightly，夹带一点私货也正常。</p>
-<p>难道只能 build from source？不科学。dnf 是自展的，编译 dnf 需要用到 dnf。可手里是全新 CentOS 7。</p>
-<ul>
-<li>半官方的 dnf nightly repo。FAILED</li>
-<li>build from source。FAILED</li>
-</ul>
-<h2><span id="解决办法">解决办法</span></h2><p>然后，在找 dnf 2.7.5 rpm 的时候，被我发现一个隐藏的 repo。也算是半官方的吧。亲测可用。完美。用法如下。</p>
-<blockquote>
-<p>NOTE(simon): 2018-10-09 亲测有效</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repo.d/another-dnf.repo</span><br><span class="line">[another-dnf]</span><br><span class="line">name=Another DNF Repo by CentOS.</span><br><span class="line">baseurl=https://cbs.centos.org/repos/configmanagement7-dnf-common-release/\<span class="variable">$basearch</span>/os/</span><br><span class="line"><span class="built_in">type</span>=rpm-md</span><br><span class="line">skip_if_unavailable=True</span><br><span class="line">gpgcheck=0</span><br><span class="line">repo_gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line">enabled_metadata=1</span><br><span class="line">EOF</span><br><span class="line">yum clean all</span><br><span class="line">yum makecache fast</span><br><span class="line">yum install -y dnf dnf-conf dnf-automatic dnf-plugins-core</span><br></pre></td></tr></table></figure>
-<p>这是个 ConfigManagement SIG 的社区项目，但是没有用 ConfigManagement SIG 的 GPG 证书签名，也没有出现在社区 wiki (<a href="https://wiki.centos.org/SpecialInterestGroup/ConfigManagementSIG" target="_blank" rel="noopener">SpecialInterestGroup/ConfigManagementSIG - CentOS Wiki</a>) 中，我理解属于边缘项目。不过依赖有效，能直接安装。</p>
-<p>啥都不说了，只希望这次这个 dnf 的 repo 坚持久一点。</p>
-<h2><span id="思考">思考</span></h2><p>为什么 dnf 这么棒的工具在 Fedora 里面有，在 CentOS 里面就没有？我猜测，主要还是考虑稳定性。毕竟 CentOS 一直的策略都是以降级保稳定。dnf 还没过官方的考验期，所以一直没予以替换。既往所有的 repo 都是非官方的，最多也只能算是半官方的。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/macos-flutter-run-using-proxy/" itemprop="url">MacOS 下 flutter run 遇到墙的问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T20:10:03+08:00">
-                2018-09-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/macos-flutter-run-using-proxy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/macos-flutter-run-using-proxy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>最近调研 flutter，甚是大爱。</p>
-<p>虽然 flutter 非常友好提供了针对中国用户的镜像(<a href="https://github.com/flutter/flutter/wiki/Using-Flutter-in-China" target="_blank" rel="noopener">Using Flutter in China · flutter/flutter Wiki · GitHub</a>)，解决了一些不可说的难题，但偶尔还是会遇到类似的问题。比如我今天就遇到了，在 VS Code 调试编译的时候，遇到 “Download Failed” 的问题。<code>Could not resolve all files for configuration &#39;:image_picker:lintClassPath&#39;.</code> 具体原因是 <code>Connect to d29vzk4ow07wi7.cloudfront.net:443 [d29vzk4ow07wi7.cloudfront.net/13.33.69.104, d29vzk4ow07wi7.cloudfront.net/13.33.69.3, d29vzk4ow07wi7.cloudfront.net/13.33.69.38, d29vzk4ow07wi7.cloudfront.net/13.33.69.111] failed: Read timed out</code> 。</p>
-<p>原来是碰上了墙外面的老朋友，CDN 服务商 cloudflare 的域名。</p>
-<p>中间还是比较曲折，最后解决的办法是用 <a href="https://github.com/rofl0r/proxychains-ng" target="_blank" rel="noopener">proxychain4</a> 解决问题。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brew install proxychains-ng</span><br><span class="line">sed -i <span class="string">'.bak'</span> <span class="string">'s@^\(socks4.*\)@#\1@g'</span> /usr/<span class="built_in">local</span>/etc/proxychains.conf</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"socks5\t127.0.0.1 1080"</span> &gt;&gt; /usr/<span class="built_in">local</span>/etc/proxychains.conf</span><br><span class="line"></span><br><span class="line">proxychains4 curl ip.gs</span><br></pre></td></tr></table></figure>
-<p>等等，好像不对，IP 是本市的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ proxychains4 curl ip.gs</span><br><span class="line">[proxychains] config file found: /usr/<span class="built_in">local</span>/etc/proxychains.conf</span><br><span class="line">[proxychains] preloading /usr/<span class="built_in">local</span>/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib</span><br><span class="line">Current IP / 当前 IP: 118.XXX.XXX.XXX</span><br><span class="line">ISP / 运营商:  ChinaTelecom</span><br><span class="line">City / 城市: Chengdu Sichuan</span><br><span class="line">Country / 国家: China</span><br><span class="line">IP.GS is now IP.SB, please visit https://ip.sb/ <span class="keyword">for</span> more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！</span><br><span class="line">Please join Telegram group https://t.me/sbfans <span class="keyword">if</span> you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans</span><br><span class="line"></span><br><span class="line">  /\_/\</span><br><span class="line">=( °w° )=</span><br><span class="line">  )   (  //</span><br><span class="line"> (__ __)//</span><br></pre></td></tr></table></figure>
-<p>哪里不对？</p>
-<p>原来 MacOS X 10.11 以后的版本，还需要禁用 SIP，proxychains 才能正常工作。因为它会修改可执行文件本身，而位于 <code>/usr/bin</code> 下面的 curl 并不能被修改。见这里——<a href="https://www.v2ex.com/t/204725" target="_blank" rel="noopener">Proxychains 是不是不支持 10.11 了？ - V2EX</a>。</p>
-<p>我不想禁用 SIP。安全方面，我还是比较强迫症的。所以用了另外一种方式，就是把可执行文件，从受系统保护的目录里面移出来。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Volumes/RamDisk</span><br><span class="line">cp /usr/bin/curl ./</span><br><span class="line">proxychains4 ./curl ip.gs</span><br></pre></td></tr></table></figure>
-<p>这下终于行了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ proxychains4 ./curl ip.gs</span><br><span class="line">[proxychains] config file found: /usr/<span class="built_in">local</span>/etc/proxychains.conf</span><br><span class="line">[proxychains] preloading /usr/<span class="built_in">local</span>/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib</span><br><span class="line">Current IP / 当前 IP: XXX.XX.XXX.XX</span><br><span class="line">ISP / 运营商:  xxxxx</span><br><span class="line">City / 城市: Osaka Osaka</span><br><span class="line">Country / 国家: Japan</span><br><span class="line">IP.GS is now IP.SB, please visit https://ip.sb/ <span class="keyword">for</span> more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！</span><br><span class="line">Please join Telegram group https://t.me/sbfans <span class="keyword">if</span> you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans</span><br><span class="line"></span><br><span class="line">  /\_/\</span><br><span class="line">=( °w° )=</span><br><span class="line">  )   (  //</span><br><span class="line"> (__ __)//</span><br></pre></td></tr></table></figure>
-<p>用在 flutter 上面试试看。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ proxychains4 flutter run</span><br><span class="line">[proxychains] config file found: /usr/<span class="built_in">local</span>/etc/proxychains.conf</span><br><span class="line">[proxychains] preloading /usr/<span class="built_in">local</span>/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib</span><br><span class="line">Launching lib/main.dart on BLN AL10 <span class="keyword">in</span> debug mode...</span><br><span class="line">Initializing gradle...                                       0.8s</span><br><span class="line">Resolving dependencies...                                    0.8s</span><br><span class="line">Running <span class="string">'gradlew assembleDebug'</span>...</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">Could not resolve all files <span class="keyword">for</span> configuration <span class="string">':image_picker:lintClassPath'</span>.</span><br><span class="line"></span><br><span class="line">............</span><br><span class="line"></span><br><span class="line">BUILD FAILED <span class="keyword">in</span> 2m 3s</span><br><span class="line">123.9s</span><br><span class="line">Gradle build failed: 1</span><br></pre></td></tr></table></figure>
-<p>还是不行？</p>
-<p>考虑到上面 curl 遇到的问题，确认 flutter 可执行文件权限和路径没问题，试试用绝对路径。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ proxychains4 ~/workspace/flutter_development/flutter/bin/flutter run</span><br><span class="line">[proxychains] config file found: /usr/<span class="built_in">local</span>/etc/proxychains.conf</span><br><span class="line">[proxychains] preloading /usr/<span class="built_in">local</span>/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib</span><br><span class="line">Launching lib/main.dart on BLN AL10 <span class="keyword">in</span> debug mode...</span><br><span class="line">Initializing gradle...                                       0.8s</span><br><span class="line">Resolving dependencies...                                    0.8s</span><br><span class="line">Running <span class="string">'gradlew assembleDebug'</span>...                          11.8s</span><br><span class="line">Built build/app/outputs/apk/debug/app-debug.apk.</span><br><span class="line">Installing build/app/outputs/apk/app.apk...                  3.8s</span><br><span class="line">^C</span><br></pre></td></tr></table></figure>
-<p>欧耶！终于成了。</p>
-<p><em>PS：^C 是我终止了 flutter build 的过程。</em></p>
-<p>看得出来，proxychains 通过独特的方式来让 command 程序走代理。虽然不是很方便，但总归解决了问题。还是值得点赞。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/install-coredns-on-macos/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/install-coredns-on-macos/" itemprop="url">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T13:21:35+08:00">
-                2018-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/install-coredns-on-macos/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/install-coredns-on-macos/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。</p>
-<p>我遇到的场景是这样的。</p>
-<ol>
-<li>公司有内网机房，研发用，研发环境和测试环境都在内网机房；</li>
-<li>公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析；</li>
-<li>研发/测试环境的服务器也用顶级域名指向，例如：test1.mod-a.company.com。这类解析都是通过 bind 实现的。公司外网解析不到这个地址；</li>
-<li>我自己需要一个安全的 DNS 环境，对 DNS 服务器溯源这个细节，优选 TCP 协议；</li>
-<li>对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind；</li>
-<li>之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。</li>
-</ol>
-<p>找了一圈，发现 <a href="https://coredns.io/" target="_blank" rel="noopener">CoreDNS</a> 挺好的。推荐之。</p>
-<h3><span id="一-安装">一、安装</span></h3><p>CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。</p>
-<p>下面统统以 MacOS 为例作讲解。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/Downloads</span><br><span class="line">curl -LO <span class="string">"https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz"</span> &amp;&amp; \</span><br><span class="line">tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \</span><br><span class="line">mv ./coredns /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
-<p>这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。</p>
-<h3><span id="二-配置">二、配置</span></h3><p>要深入了解 CoreDNS，请查看其<a href="https://coredns.io/manual/toc" target="_blank" rel="noopener">文档</a>，及 <a href="https://coredns.io/plugins/" target="_blank" rel="noopener">plugins 的介绍</a>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /usr/<span class="built_in">local</span>/etc/Corefile</span><br><span class="line">. &#123;</span><br><span class="line">  hosts &#123;</span><br><span class="line">    fallthrough</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  forward . 1.1.1.1 8.8.8.8 119.29.29.29 223.5.5.5 &#123;</span><br><span class="line">    force_tcp</span><br><span class="line">    max_fails 3</span><br><span class="line">    expire 10s</span><br><span class="line">    health_check 5s</span><br><span class="line">    policy sequential</span><br><span class="line">    except company.com</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  cache 120</span><br><span class="line">  reload 6s</span><br><span class="line">  <span class="built_in">log</span></span><br><span class="line">  errors</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">company.com &#123;</span><br><span class="line">  hosts &#123;</span><br><span class="line">    fallthrough</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  forward . 192.168.88.101 119.29.29.29 114.114.114.114 &#123;</span><br><span class="line">    max_fails 3</span><br><span class="line">    expire 5s</span><br><span class="line">    health_check 3s</span><br><span class="line">    policy sequential</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-<p>其中 <code>192.168.88.101</code> 是公司内网 DNS 服务器（bind）的 IP 地址。</p>
-<p>对配置中的一些选项稍作解释。</p>
-<ul>
-<li><code>hosts</code>：<code>hosts</code> 是 CoreDNS 的一个 plugin，这一节的意思是加载 <code>/etc/hosts</code> 文件里面的解析信息。<code>hosts</code> 在最前面，则如果一个域名在 hosts 文件中存在，则优先使用这个信息返回；</li>
-<li><code>fallthrough</code>：如果 <code>hosts</code> 中找不到，则进入下一个 plugin 继续。缺少这一个指令，后面的 plugins 配置就无意义了；</li>
-<li><code>forward</code>：这是另外一个 plugin。<code>.</code> 代表所有域名，后面的 IP 代表上游 DNS 服务器的列表。按照什么顺序溯源，由下面的 <code>policy</code> 指令决定；</li>
-<li><code>force_tcp</code>：强制使用 TCP 协议溯源。这要求上游 DNS 必须支持 TCP 协议；</li>
-<li><code>expect</code>：指定哪些域名不按照本 plugin 配置溯源；</li>
-<li><code>cache</code>：溯源得到的结果，缓存指定时间。类似 TTL 的概念；</li>
-<li><code>reload</code>：多久扫描配置文件一次。如有变更，自动加载；</li>
-<li><code>log</code>：打印/存储访问日志；</li>
-<li><code>errors</code>：打印/存储错误日志；</li>
-<li><code>company.com { }</code>：另外一个『服务』，只服务针对『company.com』的域名解析；</li>
-</ul>
-<p>我讲一下我自己的理解。</p>
-<ol>
-<li>配置文件类似于 nginx 配置文件的格式；</li>
-<li>最外面一级的大括号，对应『服务』的概念。多个服务可以共用一个端口；</li>
-<li>往里面一级的大括号，对应 plugins 的概念，每一个大括号都是一个 plugin。这里可以看出，plugins 是 CoreDNS 的一等公民；</li>
-<li>服务之间顺序有无关联没有感觉，但 plugins 之间是严重顺序相关的。某些 plugin 必须用 <code>fallthrough</code> 关键字流向下一个 plugin；</li>
-<li>plugin 内部的配置选项是顺序无关的；</li>
-<li>从 <a href="https://coredns.io/plugins/" target="_blank" rel="noopener">plugins</a> 页面的介绍看，CoreDNS 的功能还是很强的，既能轻松从 bind 迁移，还能兼容 old-style dns server 的运维习惯；</li>
-<li>从 CoreDNS 的性能指标看，适合做大型服务。</li>
-</ol>
-<h3><span id="三-运行">三、运行</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前台运行方式</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><del>NOTE(simon): 新增 <code>-log</code> 参数，将日志打到 stdout，日志集中处理。</del></p>
-</blockquote>
-<blockquote>
-<p>UPDATE(simon): 更新 coredns 到最新的 1.2.2 版本，已经没有 -log 这个参数了。日志默认也是直接打到 stdout 上面。</p>
-</blockquote>
-<p>如果没有问题，这时候应该看到 CoreDNS 持续运行。</p>
-<h3><span id="四-部署">四、部署</span></h3><p>在用 chinadns 的时候，遇到过 chinadns 崩掉的情况。作为基础服务，DNS 还是要能稳定持续提供服务的。此外，开机自动启动也是个必要的功能。</p>
-<p><del>综合考虑，熟悉的 <code>supervisor</code> 是个好的选择。</del></p>
-<strike><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">~~<span class="comment"># 安装 supervisor</span></span><br><span class="line">brew install supervisor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置服务配置目录</span></span><br><span class="line">mkdir -p /usr/<span class="built_in">local</span>/etc/supervisord.ini.d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 supervisor 配置</span></span><br><span class="line">sed -i .bak <span class="string">'s@files = .*@files = /usr/local/etc/supervisord.ini.d/*.ini@g'</span> /usr/<span class="built_in">local</span>/etc/supervisord.ini</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 supervisorctl 做映射</span></span><br><span class="line"><span class="built_in">alias</span> supervisorctl=<span class="string">'/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'</span></span><br><span class="line">cat &lt;&lt;EOF &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="built_in">alias</span> supervisorctl=<span class="string">'/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'</span></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 CoreDNS 写配置文件</span></span><br><span class="line">cat &lt;&lt;EOF &gt; /usr/<span class="built_in">local</span>/etc/supervisord.ini.d/coredns.ini</span><br><span class="line">[program:coredns]</span><br><span class="line"><span class="built_in">command</span>=/usr/bin/sudo /usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile</span><br><span class="line">;process_name=%(program_name)s ; process_name expr (default %(program_name)s)</span><br><span class="line">numprocs=1                    ; number of processes copies to start (def 1)</span><br><span class="line">directory=/usr/<span class="built_in">local</span>           ; directory to cwd to before <span class="built_in">exec</span> (def no cwd)</span><br><span class="line">;<span class="built_in">umask</span>=022                     ; <span class="built_in">umask</span> <span class="keyword">for</span> process (default None)</span><br><span class="line">;priority=999                  ; the relative start priority (default 999)</span><br><span class="line">autostart=<span class="literal">true</span>                ; start at supervisord start (default: <span class="literal">true</span>)</span><br><span class="line">autorestart=unexpected        ; whether/when to restart (default: unexpected)</span><br><span class="line">startsecs=1                   ; number of secs prog must stay running (def. 1)</span><br><span class="line">startretries=9999              ; max <span class="comment"># of serial start failures (default 3)</span></span><br><span class="line">;exitcodes=0,2                 ; <span class="string">'expected'</span> <span class="built_in">exit</span> codes <span class="keyword">for</span> process (default 0,2)</span><br><span class="line">stopsignal=QUIT               ; signal used to <span class="built_in">kill</span> process (default TERM)</span><br><span class="line">;stopwaitsecs=10               ; max num secs to <span class="built_in">wait</span> b4 SIGKILL (default 10)</span><br><span class="line">;stopasgroup=<span class="literal">false</span>             ; send stop signal to the UNIX process group (default <span class="literal">false</span>)</span><br><span class="line">;killasgroup=<span class="literal">false</span>             ; SIGKILL the UNIX process group (def <span class="literal">false</span>)</span><br><span class="line">;user=chrim                    ; setuid to this UNIX account to run the program</span><br><span class="line">;redirect_stderr=<span class="literal">true</span>          ; redirect proc stderr to stdout (default <span class="literal">false</span>)</span><br><span class="line">stdout_logfile=/usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/supervisor/coredns.stdout.log        ; stdout <span class="built_in">log</span> path, NONE <span class="keyword">for</span> none; default AUTO</span><br><span class="line">stdout_logfile_maxbytes=1MB   ; max <span class="comment"># logfile bytes b4 rotation (default 50MB)</span></span><br><span class="line">stdout_logfile_backups=10     ; <span class="comment"># of stdout logfile backups (default 10)</span></span><br><span class="line">stdout_capture_maxbytes=1MB   ; number of bytes <span class="keyword">in</span> <span class="string">'capturemode'</span> (default 0)</span><br><span class="line">stdout_events_enabled=<span class="literal">false</span>   ; emit events on stdout writes (default <span class="literal">false</span>)</span><br><span class="line">stderr_logfile=/usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/supervisor/coredns.stderr.log       ; stderr <span class="built_in">log</span> path, NONE <span class="keyword">for</span> none; default AUTO</span><br><span class="line">stderr_logfile_maxbytes=1MB   ; max <span class="comment"># logfile bytes b4 rotation (default 50MB)</span></span><br><span class="line">stderr_logfile_backups=10     ; <span class="comment"># of stderr logfile backups (default 10)</span></span><br><span class="line">stderr_capture_maxbytes=1MB   ; number of bytes <span class="keyword">in</span> <span class="string">'capturemode'</span> (default 0)</span><br><span class="line">stderr_events_enabled=<span class="literal">false</span>   ; emit events on stderr writes (default <span class="literal">false</span>)</span><br><span class="line">;environment=A=<span class="string">"1"</span>,B=<span class="string">"2"</span>       ; process environment additions (def no adds)</span><br><span class="line">;serverurl=AUTO                ; override serverurl computation (childutils)</span><br><span class="line"></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 supervisord 开机自启动</span></span><br><span class="line">brew service start supervisor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 CoreDNS 是否正常运行</span></span><br><span class="line">supervisorctl status</span><br></pre></td></tr></table></figure><br><br></strike>
-
-<blockquote>
-<p>NOTE(simon, 2018-05-30):<br>  放弃使用 supervisor 的原因是，MacOS 作为生产力工具，supervisor 最友好方式的安装还是通过 brew。而 brew 安装的 supervisor 启动时，是当前用户权限，不是 root 身份。试了下，也没办法通过配置，提权到 root。再则，supervisor 的配置中，大量文件写到 <code>/usr/local</code> 目录下，如果以 root 身份启动 supervisord 进程，这些文件势必也是 root 权限的。而按照 brew 的指导意见，<code>/usr/local</code> 下还是要保留当前用户权限的，否则 brew 可能会挂。<br>  所以兜兜转换，又用回到老的土办法。毕竟，稳定就好。</p>
-</blockquote>
-<strike><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; ~/.bash_profile</span><br><span class="line"><span class="comment"># CoreDNS</span></span><br><span class="line">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)</span><br><span class="line">[ <span class="variable">$&#123;COREDNS_PROCESS_COUNT&#125;</span> -lt 1 ] &amp;&amp; \</span><br><span class="line">    nohup sudo /usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile &amp;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure><br><br></strike>
-
-<blockquote>
-<p>NOTE(simon, 2018-11-20):<br>  更新一下脚本，实现下面几个功能：</p>
-<ol>
-<li>coredns 进程的 stderr 输出转到 stdout；</li>
-<li>coredns 进程不绑定到当前 tty 上，运行 <code>jobs</code> 命令不显示 coredns 进程；</li>
-<li>显式指定 nohup 将 coredns 进程的 stdout 输出打到 ~/nohup.out 文件；</li>
-</ol>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)</span><br><span class="line">[ <span class="variable">$&#123;COREDNS_PROCESS_COUNT&#125;</span> -lt 1 ] &amp;&amp; \</span><br><span class="line">  (2&gt;&amp;1 nohup sudo /usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile &gt;&gt; ~/nohup.out &amp;)</span><br></pre></td></tr></table></figure>
-<h3><span id="五-验证">五、验证</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup www.qq.com 127.0.0.1</span><br><span class="line">nslookup www.facebook.com 127.0.0.1</span><br><span class="line">nslookup test1.mod-a.company.com 127.0.0.1</span><br></pre></td></tr></table></figure>
-<p>公司内网 IP 几乎秒出。非死不可也能出。</p>
-<p>搞定。</p>
-<h3><span id="六-系统设置">六、系统设置</span></h3><p>在『系统偏好设置』-&gt;『网络』中，把 DNS 里面添加一行，127.0.0.1，并把新增这项移动到最前面，即可。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/react-native-depency-modified-boost-lib-from-0-50-1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/react-native-depency-modified-boost-lib-from-0-50-1/" itemprop="url">react-native@0.50.1 开始依赖于一个特定版本的 boost 库</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T18:35:13+08:00">
-                2017-11-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/react-native-depency-modified-boost-lib-from-0-50-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/react-native-depency-modified-boost-lib-from-0-50-1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><a href="mailto:`react-native@0.50.1" target="_blank" rel="noopener">`react-native@0.50.1</a>` 依赖的是 facebook 精简之后的 boost_1_63_0 版本，而不是官方在 sourceforge 上发布的那个版本。</p>
-<p>官方发布的版本是这样的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -Lo boost_1_63_0.tar.gz \</span><br><span class="line">    https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz</span><br><span class="line"></span><br><span class="line">shasum -a1 boost_1_63_0.tar.gz   <span class="comment"># macOS, = 2cecf1848a813de55e5770f324f084c568abca0a</span></span><br><span class="line">sha1sum boost_1_63_00.tar.gz     <span class="comment"># Linux, = 2cecf1848a813de55e5770f324f084c568abca0a</span></span><br></pre></td></tr></table></figure>
-<p>而 Facebook 自己改过的版本是这样的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -Lo boost_1_63_0.tar.gz \</span><br><span class="line">    https://github.com/react-native-community/boost-for-react-native/releases/download/v1.63.0-0/boost_1_63_0.tar.gz</span><br><span class="line"></span><br><span class="line">shasum -a1 boost_1_63_0.tar.gz   <span class="comment"># macOS, = c3f57e1d22a995e608983effbb752b54b6eab741</span></span><br><span class="line">sha1sum boost_1_63_00.tar.gz     <span class="comment"># Linux, = c3f57e1d22a995e608983effbb752b54b6eab741</span></span><br></pre></td></tr></table></figure>
-<p>这是个比较大的坑。</p>
-<p>依赖第三方开源 lib，文件名与第三方官方 release 的文件名一致，内容却是自己修改过的。稍不注意就会上当。</p>
-<p>因为之前有习惯先通过别的途径下载这个大文件，手动放置到 <code>~/.rncache</code> 缓存目录下，所以发现了这个问题。</p>
-<hr>
-<p>补充说明，为什么说这是一个坑。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native run-ios</span><br></pre></td></tr></table></figure>
-<p>在模拟器上运行 ios 版本的时候，脚本会首先编译 ios 版本的 app 出来。从安装脚本 <code>node_modules/react-native/scripts/ios-install-third-party.sh</code> 文件最后部分可以看到，会下载编译 ios 版本所需要的几个第三方库并编译。其中就包括了 boost_1_63_0.tar.gz 这个第三方库。</p>
-<p>在一个多月前，大约 <a href="mailto:`react-native@0.48.x" target="_blank" rel="noopener">`react-native@0.48.x</a>` 版本的时候，facebook 还是依赖的官版 boost_1_63_0，可能是发现某些国家的码农反映比较强烈，因此转成依赖自己精简过后的 boost_1_63_0。官版的 boost_1_63_0.tar.gz 文件有 93MB 之大，某些国家的码农无论访问 sourceforge（boost 官版的发版平台）还是 github 都很慢，几乎所有要在新环境运行项目（包括想要尝鲜）的码农们都遇到过下载这个大文件失败的情况。一个第三方依赖库下载失败，错误信息常常隐藏在大段大段的日志中，尝鲜的人容易漏掉，并且造成一种『ReactNative 不成熟，「Hello World」都不容易跑起来』的第一印象。有经验的码农们能发现这个问题，也不容易解决。即便有能力找到快速的源预先下载好依赖，自动化构建的过程被破坏了，也是一种非常糟糕的体验，对一个开源的框架来说，不能容忍。</p>
-<p>所以，从前段时间开始，大约是 <a href="mailto:react-native@0.50.x" target="_blank" rel="noopener">react-native@0.50.x</a>，Facebook 开始使用一个精简版的 boost 库。就像 google 自己的 <a href="https://boringssl.googlesource.com/boringssl/" target="_blank" rel="noopener">boringssl</a> 库 一样，facebook 以社区的名义为了这事儿维护了一个自己的版本。好在，目前来看，仅仅是一个精简官版的工作，还不涉及到修改。</p>
-<p>出发点是一个好事儿，但是这么一来，增加了项目管理和维护风险。起步的小伙伴们，要小心一点。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
-          <p class="site-author-name" itemprop="name">Simon Kuang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives/">
-            
-                <span class="site-state-item-count">42</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/simonkuang || github" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友情链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2005 &mdash; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
-
-  
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
 </div>
-
-
-<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({"startOnload":true});
-  }
-</script>
-
-
-
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-  <span class="post-meta-divider">|</span>
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
-
-
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         
+    </div>
+</footer>
 
 
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
 
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=56218002";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
 
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
-    
-
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

@@ -1,826 +1,433 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>运维 | 旷氏淇元</title>
+    <meta property="og:title" content="运维 - 旷氏淇元">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="运维">
+        
+    <meta name="author" content="Simon">
+    <meta property="og:url" content="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/index.xml" title="旷氏淇元" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
 
 
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="simonkuang, blog, engineer, architecture, microservice, platform">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:url" content="http://i.am.simonkuang.com/tags/运维/index.html">
-<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.2',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://i.am.simonkuang.com/tags/运维/">
-
-
-
-
-
-  <title>标签: 运维 | 旷{<i>氏</i> }淇元</title>
-  
-
-
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-45245769-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">旷{<i>氏</i> }淇元</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://i.am.simonkuang.com/">
+                        旷氏淇元
+                    </a>
+                
+                <p class="description">旷淇元的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://i.am.simonkuang.com/">首页</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/books/" title="新书">新书</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        包含标签
+                        <span class="keyword">运维</span>
+                        的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/">阿里云未备案云主机申请 letsencrypt ssl 证书</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年7月31日
+                            </date>
+                            
+                            <div class="post-content">
+                                用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。
+访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的*温馨提示*（如下图）。
+而一台不能提供 http 服务的阿里云 ECS 不是真正的服务器。解决这个问题的办法，将 http 换到 https 就可以了。
+https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购之后，颇多周折，跟同袍兄弟 StarSSL 一起被业界良心 chrome 拉黑。现在使用 WoSign 签发的 ssl 证书会被 chrome 直接判定为证书无效。
+最近连商务范儿最重的 Symantec 都被 chrome 一再警告之后拉黑。除了认为 chrome 真任性之外，也提醒我们选择 ssl 服务商时一定要慎重。
+目前来看，从个人到中小企业，最佳选择是 google 投资的 Let&rsquo;s Encrypt。运用 ACME 协议自动签发、自动续期，技术宅最爱，不是技术宅也有现成工具简单操作即可。
+怎么生成 http ssl 证书 首先注明，申请 Let&rsquo;s Encrypt 家的 http ssl 证书，不需要提前准备啥资料，不需要书面申请，这跟国内的『管理』方法不一样。你只需要证明这个域名归你所有，http ssl 的证书就可以签发给你使用。但是为了防止域名到期易主、中途转让等等原因，发生域名新主人拿不到 http ssl 证书的情况，所以 Let&rsquo;s Encrypt 规定了每次签发的 http ssl 证书有效期只有三个月，证书生成一个月之后可以免费重签/续期，不用等到临近有效期再续签。……
+                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/">用 openresty 来做 app api 接口的验真</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年7月25日
+                            </date>
+                            
+                            <div class="post-content">
+                                app 服务器端的开发中，有一个百年不变的小东西：api 访问的验真问题。因为 http 协议是无状态的，每次 app 发起请求，我都需要验证这次请求的确是由真实的、授权的 app 发起，以此来阻止不诚实用户发起的攻击、数据爬取，确保产品的安全，和用户在产品上的信息安全。
+JWT（JSON Web Token）是一个 http 之上的不错的 api 验真协议，结合 https，几乎可以安全地传输各种数据。最关键是，它原理简单，没用到啥黑科技，新瓶装老酒，但实用。
+openresty 是春哥做的一款神器，在 nginx 上挂了个 lua 引擎，可以用 lua 脚本指挥 nginx 做很多事情。了解 lua 的童靴都知道，lua 的执行性能堪比 C++/Java 这些编译型语言，大家在一个量级。能做到这步，已经相当感人。用 openresty 来实现 jwt 协议，做 api 访问的验真，可以降低后台系统的复杂程度，同时还能提高系统鲁棒性，防止被恶意攻击时系统雪崩。
+现在已经有 openresty 的 jwt 模块，叫 lua-resty-jwt 的，还有基于它做了二次封装的 openresty-nginx-jwt。
+有了这个 jwt 的 openresty 模块，可以在 http server 这一层对 api 访问做验真，业务系统接收到的请求理论上都是真实的，避免调用庞大的业务系统做验真。这在收到 api 攻击的时候效果最明显，那时每次调用庞大的业务系统，加载若干组件，仅仅做了一次验真，然后就释放资源，销毁请求。简直是罪过。
+话分两头说，直接上这个 jwt 模块存在一些风险。要在生产环境使用 jwt，还有一些工作必须做。
+ secret 的策略。jwt 协议中，并没有规定 secret 怎么来的，实际操作中，不同的 secret 策略会有不同的效果。  整个系统使用一个固定的 secret。不诚实用户可以注册账户，暴力穷举或内存搜索，得到 secret 明文。存在系统性风险。风险高。 一台服务器使用一个 secret，secret 写到 openresty 的配置中。仍然有上述问题，还增加了做负载均衡的难度。风险高。 一个用户一个 secret，openresty 根据用户信息取 secret 编解码。风险低，复杂度高。  api 访问日志需要保存。特别对验真失败的访问，要能有手段及时处理日志，分析风险，对恶意用户可以屏蔽 IP 等手段规避。 经过验真的 api 访问日志结合静态资源访问日志，可以模拟真实用户的访问场景。结合 lazy load 等前端技术，甚至可以判断出用户究竟看了几页，资源加载速度快还是慢。这么好的资源，不能浪费。  接上面。第一点好解决，一个 subrequest，或者单独给 lua-resty-jwt 一个 redis 存用户的 secret，就行了。第二点和第三点说的其实是一件事情，记日志，而且是把验真失败和验真成功的日志分开记。验真失败的日志需要参与在线准实时的计算，验真成功的日志打包保存，用来做离线的大数据分析，统计用户访问指标，优化产品。……
+                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/">另一个包管理工具——DNF</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年10月17日
+                            </date>
+                            
+                            <div class="post-content">
+                                更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。
+ DNF 起源于 YUM 的一个分支，最早用在 Fedora 18，在 Fedora 22 中默认安装，成为系统工具。现在更是被广泛看作 YUM 的接班人。虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 yum 和 dnf 混合着来——当然，新旧掺杂绝对不是好习惯，我就这么一说，证明 YUM 和 DNF 的关联之亲近。用惯了 YUM 的朋友们一定不会抗拒换到 DNF，它们的用法非常相似，而且 DNF 的更有现代语言风格。
+我常用的系统是 CentOS，虽然已经被 RedHat 收购，但是 CentOS 的品质和定位都没有变，这很难得。最新（截至 2016-10-16）的 CentOS 是 7.2.1511。下面的步骤在 CentOS 上尝试，对 Fedora/RHEL 理论上同样适用。Fedora 上应该还更加简单，下面的问题好多都不会遇到。
+闲话不说，安装步骤如下。
+一、手动安装全新的 yum repo 新增一个 repo，从这个 repo 中用 yum 安装 DNF。这是因为 CentOS Base repo 中的 DNF 版本太低，只有 0.……
+                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/evil-headmaster-fang-binxing-and-his-gfw/">再次问候方校长：我们受够了功夫网</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年8月25日
+                            </date>
+                            
+                            <div class="post-content">
+                                (UPDATED) 2017-08-17: ssserver 提供服务器端的支持；sslocal 转本地 socks5 服务；再用 privoxy 提供 http/https proxy。 经过试验，这样的解决方案是最全面的了。
+至于梯子哪家强，你问我，我不会不告诉你。O(∩_∩)O哈哈~
+ 对于功夫网不问青红皂白直接予以封杀的行为，程序猿的一贯态度是问候方校长。有些的确敏感的都不说了，facebook 旗下的工具网站 Nuclide 也被封，之前还有 Python 因为一个特定版本号被封的往事…… 各种搞笑和不能理解的规则，生活在兲朝的程序猿这种生物天生比国外的低矮一截——纯粹因为生存环境的关系，导致看世界不完整。
+前两天做 grpc 的调研，为了简洁，安装 php-grpc 时准备就直接用 homebrew 搞定。brew install homebrew/php/php56-grpc，一句命令安装，升级维护也省心。
+可是安装 php-grpc 的依赖却出了问题。protobuf 在 homebrew 中是从源码开始安装，用的是 protobuf 自带的 autogen.sh 脚本，脚本中正好从 googlemock.googlecode.com 域下载 googlemock 一个特定版本的发布包，因为 shell 默认不会走系统代理（我用 shadowsocks 科学上网，这是我的梯子，这是下面所列方法的前提。如果你连梯子都没有，可以不用往下看，没戏），会导致下载失败。
+英雄汉不能被一泡尿憋死。折腾一会儿，终于找到办法。
+后来想想，自动化脚本里面其实挺多这种应用场景的，没谁写个脚本还要兼顾其它国家特色网络，那技术宅成天别干别的事儿，光跟堂吉诃德战斗好了。因此，记一下吧，以后用得着。
+下面提供两种办法供选用。两种都简洁，改动都不大，主要看应用场景和个人的习惯吧。
+方法一：修改下载程序配置 protobuf 安装脚本中的下载程序使用的是 curl，因此先得配置它。新增或修改 ~/.curlrc 这个文件，加入 socks5 这个选项（因为 shadowsocks 是用的 socks5）。
+# 我用的是影梭，所以设置 socks5 选项 socks5 = 127.……
+                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/evil-headmaster-fang-binxing-and-his-gfw/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/resolved-a-https-handshake-problem-against-curl/">解决了一个 curl 库导致的 https 访问错误</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年3月26日
+                            </date>
+                            
+                            <div class="post-content">
+                                使用 EasyWeChat 库调用微信服务的时候，在 laravel tinker 里面调试，发现每次进入 tinker 之后，第一次调用接口没有问题，第二次之后，就会报一个很诡异的错误。
+$app = app('wechat'); // EasyWeChat\Foundation\Application {#628} $users = $app-&gt;user-&gt;lists(); // EasyWeChat\Support\Collection {#756} $user = $app-&gt;user-&gt;get('o7qrUviv1tkcDFMJ5wdXrpng9NNQ'); // GuzzleHttp\Exception\ConnectException with message 'cURL error 35: A PKCS #11 module returned CKR_DEVICE_ERROR, indicating that a problem has occurred with the token or slot. (see http://curl.haxx.se/libcurl/c/libcurl-errors.html)'  PKCS #11 返回的错误，好高端啊。
+中间的曲折就不说了。答案在一篇歪果仁的博客上找到，在 github 的评论上得到印证及解决问题的思路。
+ NSS error -8023 using AWS SDK for PHP Consecutive API calls return curl error code 35 on CentOS 6.……
+                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/resolved-a-https-handshake-problem-against-curl/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities-m-m/">redis &#43; supervisor 时苦大仇深的问题</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年3月4日
+                            </date>
+                            
+                            <div class="post-content">
+                                在我记忆中，CentOS 从很早开始，就没有和各种的问题挂钩过。得益于它保守的升级策略，它自己几乎从来不是问题专业户，我对它的印象更多是因为太过保守导致的库升级不及时问题。
+可是最近，CentOS7 某个版本发行之后，偶尔的，会出现 supervisor 拉 redis 失败的问题。从日志的内容来看，全是 Permission denied 相关的问题，bind socket 的时候权限不够，write log 的时候权限不够，dump snapshot 的时候权限不够，只要跟写磁盘相关的，都有这个问题。
+单独执行 /usr/bin/redis-server /etc/redis.conf，又一点儿问题没有，命令本身没有问题，一切正常。
+关键，supervisor 是以 root 去拉 redis 的啊！表示很无辜 (o´・ェ・｀o)
+supervisor 的配置如下：
+[program:redis] command = /usr/bin/redis-server /etc/redis.conf ;process_name=%(program_name)s ; process_name expr (default %(program_name)s) numprocs=1 ; number of processes copies to start (def 1) directory=/data ; directory to cwd to before exec (def no cwd) ;umask=022 ; umask for process (default None) ;priority=999 ; the relative start priority (default 999) autostart=true ; start at supervisord start (default: true) autorestart=true ; whether/when to restart (default: unexpected) startsecs=1 ; number of secs prog must stay running (def.……
+                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities-m-m/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/">发现 Gitlab 的一个权限问题</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2015年12月5日
+                            </date>
+                            
+                            <div class="post-content">
+                                用了好几年的 gitlab，前前后后搭建了好几次系统，解决了不少问题，还是非常熟悉了。昨天又遇到 gitlab 搭建中的一个新的问题。
+现象 gitlab 搭建好之后，建账号，加 ssh key，建项目，本地 push，然后就遇到 gitlab 问我要密码。
+ git@some.domain.name password:
+ 项目是我创建的，ssh key 也有添加，还找我要密码，明显不科学。
+尝试解决 首先，检查了服务器的 sshd 设定，确认启用了 ssh 登录。
+cat /etc/ssh/sshd_config | grep PubkeyAuthentication   PubkeyAuthentication yes
+ 以为是缓存，分别重启了 redis 和 gitlab。（PS：我的 redis 用 supervisor 管理起来的）
+supervisorctl restart redis service gitlab restart  然后等了五分钟再试（其实没有必要），还是不行。
+上网查，stackoverflow 上有一个非推荐答案说，重启服务器之后就好了。于是，又重启了服务器。
+shutdown -r now  还是不行……
+用 ssh -T 命令测试一下，看看结果。
+ssh -vvvT git@some.domain.name  …… 一串无关的日志我就省略了，只说重点。
+ …… debug3: send_pubkey_test debug2: we sent a publickey packet, wait for reply debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password debug2: we did not send a packet, disable method debug3: authmethod_lookup password debug3: remaining preferred: ,password debug3: authmethod_is_enabled password debug1: Next authentication method: password git@some.……
+                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/sticky-bit-of-files-under-linux/">再学习 Linux 下的文件权限</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2015年10月22日
+                            </date>
+                            
+                            <div class="post-content">
+                                最近遇到一个比较搞的问题，有关 linux 下的文件权限。因为发现解决问题之后的答案是我们很多工作多年的攻城狮以前都没有重视过的，所以特别写下来，帮助加深记忆。
+【背景】 同事学习 lnmp，搭好 CentOS 6.5 的环境之后，新建了一个用户组 test，在该组别下新建了一个用户 test，然后准备用这个用户模拟 nginx 和 php-fpm 进程的启动用户，跟着手册上做实践。
+【关键信息】  用户：test:test 目录：/www/test 目录权限：drwxrwxrwx. 2 root root 40 Oct 21 16:43 test 文件：/www/test/index.html 文件权限：-rw-r--r--. 1 root root 0 Oct 22 10:04 index.html  【现象】  先用 root 的身份 touch 了一个空文件 index.html； su test，然后以 test 用户的身份去删除这个空文件； WTF！！！ 竟然删除文件成功了？？？！！！  普通用户删除了 root 用户的文件，我保证，刚看到这个现象的时候，我内心绝对是崩溃的。
+【解决的途径】 首先，检查了 test 用户的用户组，确认的确是 test 组。
+其次，检查文件和目录的权限，除了 test 目录没有按照惯例，被设置成 0777 之外，没有什么特别的。不可能一个 0777 还能捣蛋吧？！……
+                                <p class="readmore"><a href="http://i.am.simonkuang.com/post/sticky-bit-of-files-under-linux/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://i.am.simonkuang.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/devops/">devops</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hexo/">hexo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hugo/">hugo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/laravel/">laravel</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/php/">php</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
+    
 </div>
+    </section>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
+        <li>
+            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
         </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
+        <li>
+            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
         </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
+        <li>
+            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
         </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-
-      
     </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  
-  
-  
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>运维<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/" itemprop="url">
-              
-                <span itemprop="name">阿里云未备案云主机申请 letsencrypt ssl 证书</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-07-31T00:34:22+08:00" content="2017-07-31">
-          07-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/post/check-in-app-accessing-with-openresty/" itemprop="url">
-              
-                <span itemprop="name">用 openresty 来做 app api 接口的验真</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-07-25T12:37:04+08:00" content="2017-07-25">
-          07-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/post/another-package-management-tool-under-centos-named-dnf/" itemprop="url">
-              
-                <span itemprop="name">另一个包管理工具——DNF</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-10-17T09:45:55+08:00" content="2016-10-17">
-          10-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/post/evil-headmaster-fang-binxing-and-his-gfw/" itemprop="url">
-              
-                <span itemprop="name">再次问候方校长：我们受够了功夫网</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-08-25T12:36:41+08:00" content="2016-08-25">
-          08-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/post/resolved-a-https-handshake-problem-against-curl/" itemprop="url">
-              
-                <span itemprop="name">解决了一个 curl 库导致的 https 访问错误</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-03-26T15:21:04+08:00" content="2016-03-26">
-          03-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/" itemprop="url">
-              
-                <span itemprop="name">redis + supervisor 时苦大仇深的问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-03-04T17:44:22+08:00" content="2016-03-04">
-          03-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/post/a-permission-problem-with-gitlab-and-linux-user/" itemprop="url">
-              
-                <span itemprop="name">发现 Gitlab 的一个权限问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-12-05T17:28:07+08:00" content="2015-12-05">
-          12-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/post/sticky-bit-of-files-under-linux/" itemprop="url">
-              
-                <span itemprop="name">再学习 Linux 下的文件权限</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-10-22T10:37:23+08:00" content="2015-10-22">
-          10-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-    </div>
-
-  </div>
-  
-  
-  
-
-  
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
-          <p class="site-author-name" itemprop="name">Simon Kuang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives/">
-            
-                <span class="site-state-item-count">42</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/simonkuang || github" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友情链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2005 &mdash; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
-
-  
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
 </div>
-
-
-<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({"startOnload":true});
-  }
-</script>
-
-
-
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-  <span class="post-meta-divider">|</span>
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
-
-
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         
+    </div>
+</footer>
 
 
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
 
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=56218002";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
 
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
-    
-
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

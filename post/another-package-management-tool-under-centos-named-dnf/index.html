@@ -1,835 +1,416 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>另一个包管理工具——DNF | 旷氏淇元</title>
+    <meta property="og:title" content="另一个包管理工具——DNF - 旷氏淇元">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2016-10-17T09:45:55&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2016-10-17T09:45:55&#43;08:00">
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="另一个包管理工具——DNF">
+        <meta name="author" content="旷淇元">
+        
+    <meta property="og:url" content="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
 
 
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="运维,">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
-
-
-
-
-
-
-<meta name="description" content="更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。   DNF 起源于 YUM 的一个分支，最早用在 Fedora 18，在 Fedora 22 中默认安装，成为系统工具。现在更是被广泛看作 YUM 的接班人。虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 y">
-<meta name="keywords" content="运维">
-<meta property="og:type" content="article">
-<meta property="og:title" content="另一个包管理工具——DNF">
-<meta property="og:url" content="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/index.html">
-<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:description" content="更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。   DNF 起源于 YUM 的一个分支，最早用在 Fedora 18，在 Fedora 22 中默认安装，成为系统工具。现在更是被广泛看作 YUM 的接班人。虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 y">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-09T12:37:20.159Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="另一个包管理工具——DNF">
-<meta name="twitter:description" content="更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。   DNF 起源于 YUM 的一个分支，最早用在 Fedora 18，在 Fedora 22 中默认安装，成为系统工具。现在更是被广泛看作 YUM 的接班人。虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 y">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.2',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/">
-
-
-
-
-
-  <title>另一个包管理工具——DNF | 旷{<i>氏</i> }淇元</title>
-  
-
-
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-45245769-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">旷{<i>氏</i> }淇元</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">另一个包管理工具——DNF</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-17T09:45:55+08:00">
-                2016-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/another-package-management-tool-under-centos-named-dnf/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/another-package-management-tool-under-centos-named-dnf/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://i.am.simonkuang.com/">
+                        旷氏淇元
+                    </a>
+                
+                <p class="description">旷淇元的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://i.am.simonkuang.com/">首页</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/books/" title="新书">新书</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
         </div>
-      </header>
-    
+    </div>
+</header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
-      
-      
+<div id="body">
+    <div class="container">
+        <div class="col-group">
 
-      
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><blockquote>
-<p>更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。</p>
-</blockquote>
-<hr>
-<p><a href="http://rpm-software-management.github.io/dnf/" target="_blank" rel="noopener">DNF</a> 起源于 YUM 的一个分支，最早用在 <a href="https://fedoraproject.org/" target="_blank" rel="noopener">Fedora</a> 18，在 Fedora 22 中默认安装，成为系统工具。<a href="http://www.tecmint.com/dnf-next-generation-package-management-utility-for-linux/" target="_blank" rel="noopener">现在更是被广泛看作 YUM 的接班人。</a>虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 <code>yum</code> 和 <code>dnf</code> 混合着来——当然，新旧掺杂绝对不是好习惯，我就这么一说，证明 YUM 和 DNF 的关联之亲近。用惯了 YUM 的朋友们一定不会抗拒换到 DNF，它们的<a href="https://linuxstory.org/dnf-commands-for-fedora-rpm-package-management/" target="_blank" rel="noopener">用法非常相似</a>，而且 DNF 的更有现代语言风格。</p>
-<p>我常用的系统是 <a href="https://www.centos.org/" target="_blank" rel="noopener">CentOS</a>，虽然已经被 RedHat 收购，但是 CentOS 的品质和定位都没有变，这很难得。最新（截至 2016-10-16）的 CentOS 是 7.2.1511。下面的步骤在 CentOS 上尝试，对 Fedora/RHEL 理论上同样适用。Fedora 上应该还更加简单，下面的问题好多都不会遇到。</p>
-<p>闲话不说，安装步骤如下。</p>
-<h3><span id="一-手动安装全新的-yum-repo">一、手动安装全新的 yum repo</span></h3><p>新增一个 repo，从这个 repo 中用 <code>yum</code> 安装 DNF。这是因为 CentOS Base repo 中的 DNF 版本太低，只有 0.6.x，而最新的稳定版已经到 1.1.9。0.6.x 中的 libsolv 太低，<a href="https://gist.github.com/makeittotop/d83f53c5354f0e12fdc3cc394af9d1c5" target="_blank" rel="noopener">导致不能处理 <code>.bz2</code> 压缩包</a>，所以只能采用<a href="http://dnf.baseurl.org/2016/07/01/fresh-dnf-for-rhel-7-and-centos-7/" target="_blank" rel="noopener">引入新 repo</a> 来安装 DNF 的办法。</p>
-<strike><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo</span><br><span class="line">[dnf-stack-el7]</span><br><span class="line">name=Copr repo <span class="keyword">for</span> dnf-stack-el7 owned by @rpm-software-management</span><br><span class="line">baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/epel-7-\<span class="variable">$basearch</span>/</span><br><span class="line">skip_if_unavailable=True</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/pubkey.gpg</span><br><span class="line">enabled=1</span><br><span class="line">enabled_metadata=1</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure><br><br></strike>
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">另一个包管理工具——DNF</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2016年10月17日
+                        </date>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
 
 <blockquote>
-<p>Update (2017-06-03):<br>因为 rpm-software-management 提供的 repo 变更了 url，因此上述脚本也做了相应更新。如下。</p>
+<p>更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo</span><br><span class="line">[dnf-stack-el7]</span><br><span class="line">name=Copr repo <span class="keyword">for</span> dnf-stack-el7 owned by @rpm-software-management</span><br><span class="line">baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/epel-7-\<span class="variable">$basearch</span>/</span><br><span class="line">skip_if_unavailable=True</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/pubkey.gpg</span><br><span class="line">enabled=1</span><br><span class="line">enabled_metadata=1</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<hr />
+
+<p><a href="http://rpm-software-management.github.io/dnf/">DNF</a> 起源于 YUM 的一个分支，最早用在 <a href="https://fedoraproject.org/">Fedora</a> 18，在 Fedora 22 中默认安装，成为系统工具。<a href="http://www.tecmint.com/dnf-next-generation-package-management-utility-for-linux/">现在更是被广泛看作 YUM 的接班人。</a>虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 <code>yum</code> 和 <code>dnf</code> 混合着来——当然，新旧掺杂绝对不是好习惯，我就这么一说，证明 YUM 和 DNF 的关联之亲近。用惯了 YUM 的朋友们一定不会抗拒换到 DNF，它们的<a href="https://linuxstory.org/dnf-commands-for-fedora-rpm-package-management/">用法非常相似</a>，而且 DNF 的更有现代语言风格。</p>
+
+<p>我常用的系统是 <a href="https://www.centos.org/">CentOS</a>，虽然已经被 RedHat 收购，但是 CentOS 的品质和定位都没有变，这很难得。最新（截至 2016-10-16）的 CentOS 是 7.2.1511。下面的步骤在 CentOS 上尝试，对 Fedora/RHEL 理论上同样适用。Fedora 上应该还更加简单，下面的问题好多都不会遇到。</p>
+
+<p>闲话不说，安装步骤如下。</p>
+
+<h3 id="一-手动安装全新的-yum-repo">一、手动安装全新的 yum repo</h3>
+
+<p>新增一个 repo，从这个 repo 中用 <code>yum</code> 安装 DNF。这是因为 CentOS Base repo 中的 DNF 版本太低，只有 0.6.x，而最新的稳定版已经到 1.1.9。0.6.x 中的 libsolv 太低，<a href="https://gist.github.com/makeittotop/d83f53c5354f0e12fdc3cc394af9d1c5">导致不能处理 <code>.bz2</code> 压缩包</a>，所以只能采用<a href="http://dnf.baseurl.org/2016/07/01/fresh-dnf-for-rhel-7-and-centos-7/">引入新 repo</a> 来安装 DNF 的办法。</p>
+
+<p><strike></p>
+
+<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo
+[dnf-stack-el7]
+name=Copr repo for dnf-stack-el7 owned by @rpm-software-management
+baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/epel-7-\$basearch/
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/pubkey.gpg
+enabled=1
+enabled_metadata=1
+EOF
+</code></pre>
+
+<p></strike></p>
+
+<blockquote>
+<p>Update (2017-06-03):
+因为 rpm-software-management 提供的 repo 变更了 url，因此上述脚本也做了相应更新。如下。</p>
+</blockquote>
+
+<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo
+[dnf-stack-el7]
+name=Copr repo for dnf-stack-el7 owned by @rpm-software-management
+baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/epel-7-\$basearch/
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/pubkey.gpg
+enabled=1
+enabled_metadata=1
+EOF
+</code></pre>
+
 <p>对于已经用旧的脚本安装过 dnf repo 的系统，可以使用下面的命令 fix。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[ -f /etc/yum.repos.d/dnf-stack-el7.repo ]] &amp;&amp; \</span><br><span class="line">  sed -i <span class="string">'s@/dnf-stack-el7/@/dnf-centos/@g'</span> /etc/yum.repos.d/dnf-stack-el7.repo</span><br></pre></td></tr></table></figure>
-<h3><span id="二-安装-dnf">二、安装 DNF</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install dnf dnf-conf dnf-automatic</span><br></pre></td></tr></table></figure>
-<h3><span id="三-验证及状态检查">三、验证及状态检查</span></h3><p>安装完成后检查 DNF 的版本（如果报错，请看下一节）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf --version</span><br></pre></td></tr></table></figure>
+
+<pre><code class="language-bash">[[ -f /etc/yum.repos.d/dnf-stack-el7.repo ]] &amp;&amp; \
+  sed -i 's@/dnf-stack-el7/@/dnf-centos/@g' /etc/yum.repos.d/dnf-stack-el7.repo
+</code></pre>
+
+<h3 id="二-安装-dnf">二、安装 DNF</h3>
+
+<pre><code class="language-bash">yum install dnf dnf-conf dnf-automatic
+</code></pre>
+
+<h3 id="三-验证及状态检查">三、验证及状态检查</h3>
+
+<p>安装完成后检查 DNF 的版本（如果报错，请看下一节）。</p>
+
+<pre><code class="language-bash">dnf --version
+</code></pre>
+
 <p>截至现在（2016-10-16），通过 <code>yum</code> 安装的 DNF 最新的版本号是 <code>1.1.9</code>，也就是说，你安装的 DNF 不应该低于这个版本号，才是对了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf repolist all</span><br></pre></td></tr></table></figure>
+
+<pre><code class="language-bash">dnf repolist all
+</code></pre>
+
 <p>这可以查看当前 DNF 用到那些软件库的资源。按照使用 YUM 的习惯，最重要的无非 Base、EPEL、Updates 这三个。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf list installed</span><br></pre></td></tr></table></figure>
-<p>查看已经安装的应用。<br>PS：从第三列很容易看出，以前通过 YUM 安装的应用，都被划为 <code>@System</code>，即系统模块类别。这应该是为了能从 YUM 平滑过渡的一个折衷办法。</p>
-<h3><span id="四-部分问题的解决更新中">四、部分问题的解决（更新中）</span></h3><h4><span id="1-failed-to-open-updateinfoxmlbz2错误">1. 『Failed to open: …..updateinfo.xml.bz2』错误</span></h4><p>这是由于<a href="http://unix.stackexchange.com/questions/250249/error-after-installing-dnf-on-centos-7#answer-273487" target="_blank" rel="noopener">低版本的 libsolv 库无法处理 bzip 压缩包形式的依赖关系造成的</a>，解决的办法不是升级 libsolv 库，貌似库文件一起被封装成 python package，做到 rpm 里面了。所以正确的方法是，按照上面的步骤一、二重新安装 dnf。重新安装之前，必要的话应该删除旧的 DNF 及其依赖。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum erase dnf dnf-conf dnf-automatic python-dnf &amp;&amp; \</span><br><span class="line">yum install dnf dnf-conf dnf-automatic</span><br><span class="line"><span class="comment"># python-dnf 会作为 dnf 的依赖自动被安装</span></span><br></pre></td></tr></table></figure>
-<h4><span id="2-dnf-无法使用-epel-库">2. DNF 无法使用 epel 库</span></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum erase -y epel-release &amp;&amp; dnf install -y epel-release</span><br></pre></td></tr></table></figure>
+
+<pre><code class="language-bash">dnf list installed
+</code></pre>
+
+<p>查看已经安装的应用。
+PS：从第三列很容易看出，以前通过 YUM 安装的应用，都被划为 <code>@System</code>，即系统模块类别。这应该是为了能从 YUM 平滑过渡的一个折衷办法。</p>
+
+<h3 id="四-部分问题的解决-更新中">四、部分问题的解决（更新中）</h3>
+
+<h4 id="1-failed-to-open-updateinfo-xml-bz2-错误">1. 『Failed to open: &hellip;..updateinfo.xml.bz2』错误</h4>
+
+<p>这是由于<a href="http://unix.stackexchange.com/questions/250249/error-after-installing-dnf-on-centos-7#answer-273487">低版本的 libsolv 库无法处理 bzip 压缩包形式的依赖关系造成的</a>，解决的办法不是升级 libsolv 库，貌似库文件一起被封装成 python package，做到 rpm 里面了。所以正确的方法是，按照上面的步骤一、二重新安装 dnf。重新安装之前，必要的话应该删除旧的 DNF 及其依赖。</p>
+
+<pre><code class="language-bash">yum erase dnf dnf-conf dnf-automatic python-dnf &amp;&amp; \
+yum install dnf dnf-conf dnf-automatic
+# python-dnf 会作为 dnf 的依赖自动被安装
+</code></pre>
+
+<h4 id="2-dnf-无法使用-epel-库">2. DNF 无法使用 epel 库</h4>
+
+<pre><code class="language-bash">yum erase -y epel-release &amp;&amp; dnf install -y epel-release
+</code></pre>
+
 <p>通俗来讲就是让 DNF 来维护索引。</p>
-<h4><span id="3-no-such-command-xxx-please-use-usrbindnf-help">3. 『No such command: xxx. Please use /usr/bin/dnf –help』</span></h4><p>通常遇到这种情况，是没有安装 DNF 扩展导致的。用下面的命令安装上 DNF 扩展之后，问题就能顺利解决。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf install -y dnf-plugins-core</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    
-    
-    
+<h4 id="3-no-such-command-xxx-please-use-usr-bin-dnf-help">3. 『No such command: xxx. Please use /usr/bin/dnf &ndash;help』</h4>
 
-    
+<p>通常遇到这种情况，是没有安装 DNF 扩展导致的。用下面的命令安装上 DNF 扩展之后，问题就能顺利解决。</p>
 
-    
+<pre><code class="language-bash">dnf install -y dnf-plugins-core
+</code></pre>
 
-    
+                        </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/运维/" rel="tag"># 运维</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/post/chrome-failed-on-opening-https-pages-after-upgraded-os-to-macos-sierra/" rel="next" title="MacOS Sierra 升级之后的坑">
-                <i class="fa fa-chevron-left"></i> MacOS Sierra 升级之后的坑
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/cold-knowledge-about-plane-taking-off/" rel="prev" title="『东航两飞机险相撞』事件中的飞行知识">
-                『东航两飞机险相撞』事件中的飞行知识 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
+                        
 
 
+                        
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
-        </div>
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
-          <p class="site-author-name" itemprop="name">Simon Kuang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives/">
-            
-                <span class="site-state-item-count">42</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+        <li><a href="/post/evil-headmaster-fang-binxing-and-his-gfw/">再次问候方校长：我们受够了功夫网</a></li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/simonkuang || github" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
+        <li><a href="/post/resolved-a-https-handshake-problem-against-curl/">解决了一个 curl 库导致的 https 访问错误</a></li>
         
+        <li><a href="/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities-m-m/">redis &#43; supervisor 时苦大仇深的问题</a></li>
         
-
+        <li><a href="/post/a-permission-problem-with-gitlab-and-linux-user/">发现 Gitlab 的一个权限问题</a></li>
         
+        <li><a href="/post/sticky-bit-of-files-under-linux/">再学习 Linux 下的文件权限</a></li>
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友情链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">一、手动安装全新的 yum repo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">二、安装 DNF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">三、验证及状态检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">四、部分问题的解决（更新中）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.1.</span> <span class="nav-text">1. 『Failed to open: …..updateinfo.xml.bz2』错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.2.</span> <span class="nav-text">2. DNF 无法使用 epel 库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.3.</span> <span class="nav-text">3. 『No such command: xxx. Please use /usr/bin/dnf –help』</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2005 &mdash; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
-
-  
+    </ul>
 </div>
 
 
-<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({"startOnload":true});
-  }
-</script>
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4">运维</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
 
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://i.am.simonkuang.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+    </li>
+    
+</ul>
+    </section>
 
+    
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
+    </li>
+    
+</ul>
+    </section>
 
-  <span class="post-meta-divider">|</span>
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/devops/">devops</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hexo/">hexo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hugo/">hugo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/laravel/">laravel</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/php/">php</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
+    
+</div>
+    </section>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
-
-
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=56218002";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
+        <li>
+            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
+        </li>
         
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+        <li>
+            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
+        </li>
         
-      </div>
+        <li>
+            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
     
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
 
-  </div>
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
-  
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
 
 
 
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/';
-          this.page.identifier = 'post/another-package-management-tool-under-centos-named-dnf/';
-          this.page.title = '另一个包管理工具——DNF';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://kuangqiyuan.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

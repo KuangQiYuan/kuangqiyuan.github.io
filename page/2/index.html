@@ -1,2147 +1,549 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>旷氏淇元 | 旷淇元的个人博客</title>
+    <meta property="og:title" content="旷氏淇元 | 旷淇元的个人博客">
+    <meta property="og:type" content="website">
+    <meta name="Keywords" content="">
+    <meta name="description" content="">
+    <meta property="og:url" content="http://i.am.simonkuang.com/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="http://i.am.simonkuang.com/index.xml" title="旷氏淇元" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
 
 
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="simonkuang, blog, engineer, architecture, microservice, platform">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:url" content="http://i.am.simonkuang.com/page/2/index.html">
-<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.2',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://i.am.simonkuang.com/page/2/">
-
-
-
-
-
-  <title>旷{<i>氏</i> }淇元</title>
-  
-
-
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-45245769-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">旷{<i>氏</i> }淇元</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <h1>
+                        <a id="logo" href="http://i.am.simonkuang.com/">
+                            旷氏淇元
+                        </a>
+                    </h1>
+                
+                <p class="description">旷淇元的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://i.am.simonkuang.com/">首页</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/books/" title="新书">新书</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/react-native-depency-modified-boost-lib-from-0-50-1/" title="react-native@0.50.1 开始依赖于一个特定版本的 boost 库" >react-native@0.50.1 开始依赖于一个特定版本的 boost 库</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年11月4日
+                            </date>
+                            
+                            <div class="post-content">
+                                react-native@0.50.1 依赖的是 facebook 精简之后的 boost_1_63_0 版本，而不是官方在 sourceforge 上发布的那个版本。
+官方发布的版本是这样的。
+curl -Lo boost_1_63_0.tar.gz \ https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz shasum -a1 boost_1_63_0.tar.gz # macOS, = 2cecf1848a813de55e5770f324f084c568abca0a sha1sum boost_1_63_00.tar.gz # Linux, = 2cecf1848a813de55e5770f324f084c568abca0a  而 Facebook 自己改过的版本是这样的。
+curl -Lo boost_1_63_0.tar.gz \ https://github.com/react-native-community/boost-for-react-native/releases/download/v1.63.0-0/boost_1_63_0.tar.gz shasum -a1 boost_1_63_0.tar.gz # macOS, = c3f57e1d22a995e608983effbb752b54b6eab741 sha1sum boost_1_63_00.tar.gz # Linux, = c3f57e1d22a995e608983effbb752b54b6eab741  这是个比较大的坑。
+依赖第三方开源 lib，文件名与第三方官方 release 的文件名一致，内容却是自己修改过的。稍不注意就会上当。
+因为之前有习惯先通过别的途径下载这个大文件，手动放置到 ~/.rncache 缓存目录下，所以发现了这个问题。
+补充说明，为什么说这是一个坑。
+react-native run-ios  在模拟器上运行 ios 版本的时候，脚本会首先编译 ios 版本的 app 出来。从安装脚本 node_modules/react-native/scripts/ios-install-third-party.sh 文件最后部分可以看到，会下载编译 ios 版本所需要的几个第三方库并编译。其中就包括了 boost_1_63_0.……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/react-native-depency-modified-boost-lib-from-0-50-1/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/evil-coding-pages/" title="为了打个广告，coding pages 变得好邪恶" >为了打个广告，coding pages 变得好邪恶</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年9月5日
+                            </date>
+                            
+                            <div class="post-content">
+                                Coding Pages 是我的博客承载平台。我的博客是用 Hexo 做的，Markdown 语法书写，编译成静态 html 后上传到 Coding Pages 和 Github Pages 上面去，供大家访问。之所以用两个不同的 Pages 服务，是因为之前 Github 被 GFW 墙了，包括 Pages 在内的服务都访问不顺畅，彼时正好 gitcafe pages（后来被 Coding 收购）也提供 Pages 服务，所以在国内做了个镜像。这样墙里面的网友不仅不用看 GFW 的心情，还因为服务器在国内，国内网友访问时更快一些。谷歌上一搜『hexo github coding』就能有很多结果，例如这篇『将hexo博客同时托管到github和coding』。
+但是好像从上个月（八月）开始，coding pages 开始劫持我的博客访问，穿插进他们自己的企业版 coding 的广告，播放五秒之后，再跳转进入我的博客。这很优酷、很爱奇艺，很 APP。广告页面上甚至连一个倒计时的控件都看不到，就右上角（好像是）一行很小的字，跟你讲：*你没访问错，这个页面只是广告*。
+看了 coding 的解释，你要不花钱买它的会员（金牌会员），就要在你的博客页脚上加『hosted by coding pages』的字样。如下图。
+大家注意截屏上方的绿色警示框：这是我的 pages 通过审核之后的状态。下面标红的复选框需要你在添加脚标之后自行选中，之后就会有专人给你审核开通免广告插入。
+我猜测这是 coding 为了给自己网站做 SEO 的小伎俩。考虑到用了 coding 免费服务有一年多两年，人家要求也不过分，虽然网上很多人吵着要离开 coding 转 github，我还是决定给人加一个脚标。做人要懂感恩嘛。
+这之后，痛快了几天。
+真的只有几天。
+然后，coding pages 抽风了。表现症状是，我输入域名访问我的博客，它不显示我的博客，甚至不显示广告，义无反顾跳转到他们家企业版的首页。我的博客看不了了。如下图。
+不知道 coding 家到底有多想要做 SEO、做 PR。人家 OSChina 比你们家的 PR 还低，人家也没想 SEO 想到这个份儿上。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/evil-coding-pages/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/" title="从程序猿到架构狮的转变" >从程序猿到架构狮的转变</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年8月31日
+                            </date>
+                            
+                            <div class="post-content">
+                                从程序员到架构师的成长，变化就像从小学生到高中生一样巨大。
+不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，*培养培养*，就可以成为架构师了。架构师都是摔打出来的。
+看到过对*做架构*有一个不错的定义：系统架构的目标是解决利益相关者的关注点。
+所以你看，做架构的架构师，其实是解决人的利益问题，目标是让各方利益尽可能达成一致，做 trade off 的工作，权衡。技术只是实现这个目标的一种手段，一种重要的手段，手段之一，不是全部，甚至于不是最重要的。执行层面成长起来的、技术能力过关的工程师，想要成长为架构师，首先考验的是你听 + 说的能力，也就是沟通表达的能力。沟通能力才是一个合格的架构师最重要的能力。
+一、听的能力 这个很有学问。
+我们常常假设与我们沟通的都是理性人，他们清楚自己说的是什么意思，他们也确实想要表达这个意思。实际上，几乎不存在这样的理性人。为了避免尴尬、隐藏真实想法，大家说的往往是加以润色的话。即便死党之间畅无不言，潜意识也会偷偷在话里打掩护，顾左右而言他。若是拿别人告诉你的话当个准，九成九会遇到『当初我怎么知道』的情况。
+工作中也是如此，系统架构牵扯利益，各方都希望架构师做出有利于己方的设计，所以表达己方利益关切的时候，明明可以『关注』的，他可能用『严重关切』来表达。你没法儿指责他说谎，也许他的表达习惯就是如此，也许是大家对轻重缓急的表达方式不同。但作为架构师，你自己心里就得有个判断：他的话我到底该不该信？信几分？可信的部分在我的架构中轻重缓急怎么判断？
+所以，听的能力非常重要。
+首先，学会听别人的话外音。 职场上，大部分人是理性的，他们对自己手头的事情能有理性的判断。大多数时候，他们也能清楚知道自己想要什么。只是，他们往往会*委婉*地表达自己的目的。旁推侧击、敲山震虎、隔山打牛、杀鸡儆猴…… 就是不会直来直去。
+作为架构师，你得学会听懂别人背后表达的意思，这是最基本的功力了。
+其次，听懂别人背后的意图。 再聪明的人也有犯糊涂的时候。有些时候，跟你沟通的某人，会忽然卡壳，不知道接下来要怎么表达/表达什么。他隐约觉得自己想要个小功能，但就是不知道怎么表达出来。这时候如果架构师对这个人有一定了解，知道他关心的点，知道他的风格，就有可能顺着他的思路去提醒他。
+倒不是让架构师去做别人肚子里面的蛔虫。这样做至少有两点好处。
+ 架构师主动提，比一个有明确利益偏向的人来提，提出来的方案合适得多。他讲不清楚的时候，你能讲清楚，还照顾到他的关切，他接受你的方案的概率也很高； 如果架构师对利益方能达到这种程度的了解，可以把利益方的偏好尽可能纳入架构设计的考量中去，就可以做好预埋，防止无谓的需求变更。  最后，听懂别人没说出口的话。 有些话，不一定要说出口，就像上面提到的。另外有些话，说的时候还没想到，或者，说的时候就没怎么想，反正可以以后想到再说。
+对架构师，后面两种情况真的够呛。你遇到的是一个*职场 baby*，一个不能为自己的行为负完全责任的人。这种情况下，最好的解决办法是，你能帮他想好，反过来引导他，通过他的嘴讲出来。避免在系统评审会之后，频繁变更带来的成本开销。评审会之后变更架构设计的开销是客观的，成本存在压缩极限；而考虑提前量的开销是可控的，通过人为努力可以使成本逼近零。因此在系统架构设计阶段，尽可能多考虑一些未来的变化，从长远来看，是相当划算的。
+这种场景下，考验的是架构师的业务能力、经验和宽泛的倾听技巧。这种能力通过练习可以培养，但成长不会很快。属于二八原理中要花 80% 精力去积累的 20% 那部分。锻炼的时候，要有耐心和信心。
+说的能力 说，或者说表达，也是沟通中重要的一部分。对于架构师而言，架构设计就是最好的表达。相对的，就工程师成长起来的架构师，我更提倡学会倾听，而不是表达。
+如果硬要说在表达方面有什么建议或者窍门，就下面几句话。
+ 先听别人说完，自己再说； 说之前，想清楚，尽量言简意赅。话说得太多，在别人耳朵里，就没什么效果了。不如一字千钧有威力； 想表达不同意见的时候，先停顿三秒，再说出口； 有理不在声高； 对事不对人，对过人的自己请客吃饭；  培养能力 沟通的能力也是可以靠锻炼来的，不是谁生下来就是《九品芝麻官》里面的包大人。关于沟通的锻炼方法，极限一点的，请自行谷歌销售技巧培训方法。哈哈
+最后补充一句，沟通 + 技术能力，是成为一个架构师的必要条件，还不是充分条件。这两条具备了，才可以说你达到了做架构师的最最基本的要求，有可能做出大家满意的架构设计。后面的，有机会再补充。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/" title="吐槽被NodeJS用滥的软件设计哲学" >吐槽被NodeJS用滥的软件设计哲学</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年8月27日
+                            </date>
+                            
+                            <div class="post-content">
+                                NodeJS 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。
+NodeJS 的包管理工具 npm（Nodejs Package Management）在这其中功不可没。
+直到 2016 年初，有一个很硬的程序猿 Azer，非常不满自己的权益没有被 npm 这个平台正确对待——具体说，就是 npm 收到另外一个用户的律师信之后，擅自删除了前面这个 Azer 的 package，把 package 的名字直接转让给发律师信的用户管理——一气之下将自己创建并管理的所有 npm 上的项目全部 unpublish 了。这种行为在游戏里面叫自杀。关键人家还说挺对的：我解放了我所有的模块，因为我不会在一个某些人滥用特权的地方分享我的开源工作。结果就比较搞笑了，因为其中一个被删除的模块 left-pad 被大家广泛引用，导致 Babel、Ember、ReactNative 等等构建工具、框架，都不能正常使用。除了一些将 package 打包发布的应用，例如 Atom。这事儿在当时简直就是灾难，N 多前端程序猿被迫加班解决问题。
+从这件事情之后，有些人也开始反思，于是知乎上有人问『如何看待 Azer Koçulu 删除了自己的所有 npm 库？』这一类的问题。直到后来终于有人问：难道一个只有十一行代码的功能你们都不能自己写了么？（PS：left-pad 只有十一行有效代码）问题才逐渐回归本源上。
+要我说，从我了解 npm 开始，就一直觉得它是 DRY（Donot Repeat Yourself）和 KISS（Keep It Simple, Stupid）的极端实践者。极端到什么地步呢，就像上面提到的，连一个十一行代码的功能都要找 npm 上面的 package 来实现，而不是自己写一份。层层叠叠，相互之间的引用关系堪比用 DNA 图谱勾勒人类进化史和迁移史。
+现在看来，哲学是好的，但做得有点儿过。
+这两天被 npm 搞得够呛。
+一直用 hexo 写博客，好好的。手贱升级了 node 到 7.4.x，完了，发现不正常了，报类似下面的错误。
+ Fatal error in .……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/" title="数字公司旗下的 SSL 服务商好像被 block 完了" >数字公司旗下的 SSL 服务商好像被 block 完了</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年8月16日
+                            </date>
+                            
+                            <div class="post-content">
+                                刚知道，Apple 早在去年就开始 block Wosign 和 StartCom 作为根签发的 SSL 证书。
+继 Symantec 被 google 亲儿子 chrome 拉黑之后，感觉信息安全圈儿的很多事情忽然变了，有『忽如一夜春风来』的感觉。以前是知道有这么些事儿，藏着掖着谁都不说明白，资深的自己玩儿，小弟捡漏，群众连瓜在哪儿都不一定知道。现在是感觉被子掀开，太阳晒进来，虫子晒死一堆——还有大虫子，而侥幸活着的挪个地儿，继续往阴暗处爬。照这趋势，被子迟早彻底掀开，那会儿会怎么样，真不知道。就我知道，glibc 的 hostname resolve 漏洞和 openssl 心脏滴血都是开胃菜。想对隐藏的『大 boss』有直观感觉，请看斯诺登泄密的那些文件。
+开源可持续的其中一个前提是：大多数贡献者积极向善。就像最近很火的区块链，确保账本正确、资金安全的前提是，不诚实节点掌握不了超过全网 50% 的运算力。否则，保存在全网区块链中的账本，被人篡改的几率就大大增加，账本不可信，资金不安全，你账户里面躺着的钱有一天会突然变成 TA 的。随着这些年技术门槛降低，互联网开始普及，互联网经济不再神秘，趋金的商人也越来越多走进来，捞钱。他们在互联网经济中所占的比例会越来越大，最后他们的影响力一定会超过作为『互联网原住民』的工程师。趋金不是个贬义词，由它引发的故事却往往是贬义的。这些故事，最终可能会毁了开源，或者说『进化』开源。
+阳光下的 M$ 这么多金，届时 M$ 会不会趁虚而入要了这只企鹅的命，还真不好说。
+看开点，随个缘咯。
+selinux 也是可怜的孩子，生不逢时。网上的小白教程讨论的都是『怎么关闭 selinux』，知乎上也只有『为什么要关闭 selinux』这一类的问题。
+在技术发展水平不变的前提下，安全和方便是一体的两面，要想安全，一定会比较麻烦；想不麻烦，就会不安全。可以选择权衡，本质不会变。没有环境倒逼，恐怕很多企业都不会对安全太上心，这就是现状。安全是非功能需求，往往也是次要需求，安全对应的麻烦则被视为成本，追求『绝对安全』的动力不足，只要相对安全就好。而且，这种『相对』的标准，往往还是领导/客户心理上的相对，跟事实差好远。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/" title="阿里云未备案云主机申请 letsencrypt ssl 证书" >阿里云未备案云主机申请 letsencrypt ssl 证书</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年7月31日
+                            </date>
+                            
+                            <div class="post-content">
+                                用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。
+访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的*温馨提示*（如下图）。
+而一台不能提供 http 服务的阿里云 ECS 不是真正的服务器。解决这个问题的办法，将 http 换到 https 就可以了。
+https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购之后，颇多周折，跟同袍兄弟 StarSSL 一起被业界良心 chrome 拉黑。现在使用 WoSign 签发的 ssl 证书会被 chrome 直接判定为证书无效。
+最近连商务范儿最重的 Symantec 都被 chrome 一再警告之后拉黑。除了认为 chrome 真任性之外，也提醒我们选择 ssl 服务商时一定要慎重。
+目前来看，从个人到中小企业，最佳选择是 google 投资的 Let&rsquo;s Encrypt。运用 ACME 协议自动签发、自动续期，技术宅最爱，不是技术宅也有现成工具简单操作即可。
+怎么生成 http ssl 证书 首先注明，申请 Let&rsquo;s Encrypt 家的 http ssl 证书，不需要提前准备啥资料，不需要书面申请，这跟国内的『管理』方法不一样。你只需要证明这个域名归你所有，http ssl 的证书就可以签发给你使用。但是为了防止域名到期易主、中途转让等等原因，发生域名新主人拿不到 http ssl 证书的情况，所以 Let&rsquo;s Encrypt 规定了每次签发的 http ssl 证书有效期只有三个月，证书生成一个月之后可以免费重签/续期，不用等到临近有效期再续签。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/" title="用 openresty 来做 app api 接口的验真" >用 openresty 来做 app api 接口的验真</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年7月25日
+                            </date>
+                            
+                            <div class="post-content">
+                                app 服务器端的开发中，有一个百年不变的小东西：api 访问的验真问题。因为 http 协议是无状态的，每次 app 发起请求，我都需要验证这次请求的确是由真实的、授权的 app 发起，以此来阻止不诚实用户发起的攻击、数据爬取，确保产品的安全，和用户在产品上的信息安全。
+JWT（JSON Web Token）是一个 http 之上的不错的 api 验真协议，结合 https，几乎可以安全地传输各种数据。最关键是，它原理简单，没用到啥黑科技，新瓶装老酒，但实用。
+openresty 是春哥做的一款神器，在 nginx 上挂了个 lua 引擎，可以用 lua 脚本指挥 nginx 做很多事情。了解 lua 的童靴都知道，lua 的执行性能堪比 C++/Java 这些编译型语言，大家在一个量级。能做到这步，已经相当感人。用 openresty 来实现 jwt 协议，做 api 访问的验真，可以降低后台系统的复杂程度，同时还能提高系统鲁棒性，防止被恶意攻击时系统雪崩。
+现在已经有 openresty 的 jwt 模块，叫 lua-resty-jwt 的，还有基于它做了二次封装的 openresty-nginx-jwt。
+有了这个 jwt 的 openresty 模块，可以在 http server 这一层对 api 访问做验真，业务系统接收到的请求理论上都是真实的，避免调用庞大的业务系统做验真。这在收到 api 攻击的时候效果最明显，那时每次调用庞大的业务系统，加载若干组件，仅仅做了一次验真，然后就释放资源，销毁请求。简直是罪过。
+话分两头说，直接上这个 jwt 模块存在一些风险。要在生产环境使用 jwt，还有一些工作必须做。
+ secret 的策略。jwt 协议中，并没有规定 secret 怎么来的，实际操作中，不同的 secret 策略会有不同的效果。  整个系统使用一个固定的 secret。不诚实用户可以注册账户，暴力穷举或内存搜索，得到 secret 明文。存在系统性风险。风险高。 一台服务器使用一个 secret，secret 写到 openresty 的配置中。仍然有上述问题，还增加了做负载均衡的难度。风险高。 一个用户一个 secret，openresty 根据用户信息取 secret 编解码。风险低，复杂度高。  api 访问日志需要保存。特别对验真失败的访问，要能有手段及时处理日志，分析风险，对恶意用户可以屏蔽 IP 等手段规避。 经过验真的 api 访问日志结合静态资源访问日志，可以模拟真实用户的访问场景。结合 lazy load 等前端技术，甚至可以判断出用户究竟看了几页，资源加载速度快还是慢。这么好的资源，不能浪费。  接上面。第一点好解决，一个 subrequest，或者单独给 lua-resty-jwt 一个 redis 存用户的 secret，就行了。第二点和第三点说的其实是一件事情，记日志，而且是把验真失败和验真成功的日志分开记。验真失败的日志需要参与在线准实时的计算，验真成功的日志打包保存，用来做离线的大数据分析，统计用户访问指标，优化产品。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/user-only-equals-number/" title="用户就是个数字（外两则）" >用户就是个数字（外两则）</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年10月30日
+                            </date>
+                            
+                            <div class="post-content">
+                                这两天有种忙得不亦乐乎的感觉，倦怠了写博客。
+用户就是个数字 要说的是关于鹅厂邮箱的事儿。标题是很多大公司做产品的哲学，当然也包括鹅厂自己家的。
+我是鹅厂毕业，也算是鹅厂粉丝，但凡能鹅厂产品能满足要求的地方，就不会用别家的产品。企业邮箱就是一个例子。
+我的个人常用邮箱以自己的域名作为后缀，最初放在腾讯邮箱的『企业邮箱免费版』上，用了有两年左右的时间，一直很正常。一直到这周朋友给我发送邮件，被退回来，提示邮箱不存在一类的错误。我才注意到，原来我的免费版的企业邮箱被腾讯单方面终止了服务，正在使用中的邮箱无法收发邮件，甚至无法登陆，从管理后台登陆上去才了解到是域名无故被解绑。而在这之前，无论是我绑定了该企业邮箱的微信，还是企业邮箱本身，被抑或企业邮箱的管理账号，都没有收到任何相关的提示信息。
+我首先排除管理账号被盗、黑客为之的可能性。很简单，腾讯企业邮箱的那个管理账号我很长很长时间没有使用过，账号名是一个我从来没有在别的地方使用过的字符串，不存在被社工被钓鱼的可能性。而且管理后台中，我的企业邮箱绑定过三个域名，除开今年有一个因为域名到期没续费自动失效当即被清理，一个我一直在使用中的域名无故清除，只剩下一个绑定后几乎没有使用过的域名。如果是黑客捣鬼，为什么单独给我留一个没使用过的域名？这讲不通。
+后来有朋友在朋友圈中留言，了解到原来有朋友也遇到过，也是腾讯企业邮箱免费版，绑定的域名下有一个用来做客服的邮箱，经常在登录使用，也是毫无预警的情况下被清理，并且也是从后台直接解除了整个域名的绑定。
+不同的是，朋友用的邮箱在两个月前失效，我的邮箱是在一个月前失效。分批分次在清理免费邮箱——而且是不给你任何预警、提示、通告、宽限期、选择项…… 直接让你的邮箱和邮件消失掉的清理。
+到现在，这事儿几乎很明显是腾讯邮箱人为在清理的动作。因为太没底线了。按照腾讯一贯的价值观，这绝对不是一个『正直』的事情，这样的服务态度也不完全不符合『水和电』的特征，更加不『值得尊敬』。
+在大厂做过 2C 产品的同学都知道，用户不过是一个庞大的数字，和员工自身利益休息相关的 KPI 也是通过评价这些数字，来调节对员工的奖惩。对于每一个单一的用户，大厂的产品真的是多你一个不多少你一个不少。
+今天正好看到广研大 boss 张小龙在微信事业群管理大会上的一个演讲，明确要求内部不要盲从流程和 KPI，要坚持用户价值导向。真的说得很好。他还特别举了 QQ 邮箱的例子，这是个大家都比较熟悉的例子。当年 QQ 邮箱从上不了邮箱服务 Top10 排名到后来逆袭压倒 Hotmail 和网易邮箱，方法是小团对敏捷开发，背后的思想仍然是坚持用户价值导向。如果企业邮箱的团队能够坚持用户价值导向，是一定不会做这么出格的事情。
+希望老东家能越来越好。千万守住自己的底线。
+139 邮箱之乱象 又是邮箱的故事。
+我的 139 邮箱在 2014 年设置过一个别名，这样可以用英文名而不是手机号作为邮箱前缀，识别度更高。我拿 139 邮箱主要是在国企那段时间用来收发工作上的邮件。
+然而自开通邮箱别名开始，就经常收到一些莫名其妙的邮件，邮件经常开头有名有姓，称谓是我没听过的名字。刚开始以为是骚扰邮件，没有管，后面类似的邮件来得越来越多，我也听之任之，反正这个邮箱后来几乎就没有怎么用过了。
+这周忽然收到一封邮件，是微博发送的，提醒我登录别名邮箱对应的微博账号。很奇怪，我不可能用 139 邮箱注册微博账号。担心邮箱帐密被盗用作什么不好的事情，于是通过微博的找回密码服务找回了账号对应的密码（后来知道，微博账号如果没有绑定手机，那么别人拿到你的邮箱，随便使用一个手机也能找回密码），发现是一个运营了三四年的企业微博，企业地址在上海。到此我才恍然大悟。
+在我设置 139 邮箱别名的时候，我设置的这个别名其实是有人在使用的。不知为何，139 邮箱仍然把这个别名分配给我。所以我经常收到本该属于另一个用户的邮件，而且猜想那个用户同时也能收到本该属于我的邮件吧。一个别名邮箱，我们俩都有在使用，不论谁发送邮件，我们俩都能收到。
+最后我给我们俩『共用』的别名邮箱发了消息，告诉他这个情况，并承诺把微博密码还给他。希望他能看到。
+邮箱作为互联网基础服务，服务的稳定性应该要有最基本的保障，安全和隐私也应该要能做到最基础的保障。这跟邮局里面申请一个邮箱一样的。可是一周内竟然遇到两次大乌龙，我也是醉了。
+所幸我还有一个 gmail 注册的企业邮箱。从今天起，免不了后续会逐步把常用邮箱换成那个。
+在天朝，用个邮箱都能吓死宝宝。
+关于运维的笑话 有个运维跟中学同学聚餐，接了个电话，大家都吓尿了。。。。
+『喂，是我。』 『怎么回事？……卡在哪儿了？』 『不行就杀了吧，做事别磨磨唧唧的。先保证业务正常。』 『啥？找不到？杀不了？你不知道 killall 啊！把这个名字的全干了。』 『嗯。』 『诶？怎么还报警了！』 『你让胡总赶紧把警报先关了。你就在现场，报警有个屁用。』 『你跟他好好说一下，就说是我说的。这破事儿二十分钟内就能搞定，不要动不动就报警。』 『嗯。』 『对，挂了也要拉起来，就没什么不行的！他敢挂掉你就再拉一个。』 『擦！早不挂晚不挂，这会儿挂，真特么不是时候！』 『行了，我马上过来。都特么不给老子清净！擦！』 ………… (o_o) 『我不吃了，要去加个班。喂，你们都看着我干嘛…… 』……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/user-only-equals-number/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/" title="『东航两飞机险相撞』事件中的飞行知识" >『东航两飞机险相撞』事件中的飞行知识</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年10月22日
+                            </date>
+                            
+                            <div class="post-content">
+                                今天无意中打开 Maxthon，看到了推荐的一则旧闻——『东航两飞机险相撞』。我记得事件当天就有看到这则报道，当时的第一反应是：类似荷兰皇家航空发生的空难（特内里费空难）在虹桥机场被避免了。今天看到的更多是后续报道，新闻报道的焦点几乎都在 V5 的机长和疏忽的管制员身上。
+俗话说，对航空航天没点儿兴趣的码农不是好的 CTO。凭借我多年积累的航空知识，和对航空事业发展的关注——其实就是对各城市机场航班老是延误的那点儿感性认知——跑道入侵征候（被规避了，不算空难）在今天不能算是罕见。不过这次这个事件号称是相差三秒相撞，事后也被定型为 A 类跑道入侵事件，说明事件本身还是非常严重的。
+下面摘自澎湃新闻的后续报道。
+ 通报称，这是一起塔台管制员遗忘飞机动态，违反工作标准而造成的人为原因严重事故征候。性质极为严重，属于A类跑道入侵，险些发生飞机相撞。当时两架飞机垂直距离仅19米，翼尖距13米，两机仅差约三秒就会发生碰撞。320机组果断处理，操纵正确，避免了一起事故。330机组接受了穿越跑道的错误指令后，虽然看到了飞机起飞，但并未提出质疑。
+通报认为，管制员违反相关规定，盲目指挥，双岗制责任落实不到位；专业人员资质是重中之重，自制能力要跟上；管理手段和工作流程存在问题，要系统思考原因，加以改进。
+通报还提到，330机组存在SOP的问题，观察不周，不按规定，关闭了应答机。带飞左副驾驶不知道东航穿越跑道程序。没有交叉检查，没有互相证实。但是机组没有机械听从塔台原地等待命令，加速穿越，避免了两机相撞，暴露了训练上的问题。320机组处理非常到位，临危决断，立了大功。副驾驶操纵迟疑，点了一下刹车，机长迅速接过操纵，以7.03度/秒的速率，带杆到机械止动位。
+ 首先明确了这是一起人为因素造成的事故，而且是塔台管制员疏忽占主因、A330 机组占次因的事故。事后调查表明，A330 机组存在 SOP 问题，以及观察不周、关闭应答机等问题。
+其次，报道中提到了 A320 机组在事件中临机处置立了大功。7.03度/秒的速率，带杆到机械止动位，才避免了两机相撞的事故。当然，这其中还有一个明显的对比：『副驾驶操作迟疑，点了一下刹车』，后来『机长迅速接过操纵』，才避免了机毁人亡的悲剧。
+这其中有多个航空相关的知识，自己也是边看新闻边搜索，记下来，也给其他有兴趣的朋友科普一下。
+基础概念 跑道入侵 具体的知识见维基百科跑道入侵条目。
+按照定义，很显然，本次事件中，A330 错误地出现在飞机起飞和降落的保护区域表面，是一起跑道入侵事件无疑。
+ 据悉，通报指出，此次事件性质极为严重，属于A类跑道入侵。
+据业内人士介绍，“A类跑道入侵”非常罕见。目前，民航界把跑道入侵分为以下五个级：
+A类，间隔减小以至于双方必须采取极度措施，勉强避免碰撞发生的跑道入侵；
+B类，间隔缩小至存在显著的碰撞可能，只有在关键时刻采取纠正或避让措施才能避免碰撞发生的跑道入侵；
+C类，有充足的时间和（或）距离采取措施避免碰撞发生的跑道入侵；
+D类，符合跑道入侵的定义但不会立即产生安全后果的跑道入侵；
+E类，信息不足无法做出结论，或证据矛盾无法进行评估的情况。
+按照《民用航空器事故征候》标准，A类属于航空器严重事故征候，B类属于一般事故征候。据悉，根据新下发的文件，“A类跑道入侵”是指必须立即采取极端措施才能避免相撞的跑道入侵。
+——摘自传送门 新民晚报
+ 客机离地起飞的介绍 这里有一篇通俗易懂的科普文《客机驾驶探秘Airline Pilot 3.3 起飞离地》。
+为简化阅读和防链接失效，同时把重点摘录整理如下。
+PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机的飞行状况，以及计算机给出的一部分飞行建议。
+上图是波音 737 的 PFD。其中，紫色的倒 V 字型标识是 FD 指令条（Flight Director Command Bar），下面白色的倒 V 字型标识代表自己的飞机。按照例子中的状态解读：飞机需要执行拉起 +8 度抬头的操作。
+上图是空中客车的 PFD。Flight Path Director (FPD) 线是计算机所给出的指令，Flight Path Vector (FPV) 表明飞机处于的方位，飞行员要控制飞机使 FPV 处于 FPD 的中心。此例中飞机左转时机头向下，应保持左转并拉起 +4 度抬头。……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/" title="另一个包管理工具——DNF" >另一个包管理工具——DNF</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年10月17日
+                            </date>
+                            
+                            <div class="post-content">
+                                更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。
+ DNF 起源于 YUM 的一个分支，最早用在 Fedora 18，在 Fedora 22 中默认安装，成为系统工具。现在更是被广泛看作 YUM 的接班人。虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 yum 和 dnf 混合着来——当然，新旧掺杂绝对不是好习惯，我就这么一说，证明 YUM 和 DNF 的关联之亲近。用惯了 YUM 的朋友们一定不会抗拒换到 DNF，它们的用法非常相似，而且 DNF 的更有现代语言风格。
+我常用的系统是 CentOS，虽然已经被 RedHat 收购，但是 CentOS 的品质和定位都没有变，这很难得。最新（截至 2016-10-16）的 CentOS 是 7.2.1511。下面的步骤在 CentOS 上尝试，对 Fedora/RHEL 理论上同样适用。Fedora 上应该还更加简单，下面的问题好多都不会遇到。
+闲话不说，安装步骤如下。
+一、手动安装全新的 yum repo 新增一个 repo，从这个 repo 中用 yum 安装 DNF。这是因为 CentOS Base repo 中的 DNF 版本太低，只有 0.……
+                            </div>
+                            <p class="readmore"><a href="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/">阅读全文</a></p>
+                        </article>
+                    
+                    
+
+
+
+<ol class="page-navigator">
+    
+    <li class="prev">
+        <a href="http://i.am.simonkuang.com/">上一页</a>
+    </li>
+    
+
+    
+    <li >
+        <a href="http://i.am.simonkuang.com/">1</a>
+    </li>
+    
+    <li  class="current">
+        <a href="http://i.am.simonkuang.com/page/2/">2</a>
+    </li>
+    
+    <li >
+        <a href="http://i.am.simonkuang.com/page/3/">3</a>
+    </li>
+    
+    <li >
+        <a href="http://i.am.simonkuang.com/page/4/">4</a>
+    </li>
+    
+    <li >
+        <a href="http://i.am.simonkuang.com/page/5/">5</a>
+    </li>
+    
+
+    
+    <li class="next">
+        <a href="http://i.am.simonkuang.com/page/3/">下一页</a>
+    </li>
+    
+</ol>
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://i.am.simonkuang.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/devops/">devops</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hexo/">hexo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hugo/">hugo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/laravel/">laravel</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/php/">php</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
+    
 </div>
+    </section>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
+        <li>
+            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
         </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
+        <li>
+            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
         </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
+        <li>
+            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
         </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-
-      
     </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/evil-coding-pages/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/evil-coding-pages/" itemprop="url">为了打个广告，coding pages 变得好邪恶</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T11:17:17+08:00">
-                2017-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/evil-coding-pages/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/evil-coding-pages/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><a href="https://coding.net/help/doc/pages/getting-started.html" target="_blank" rel="noopener">Coding Pages</a> 是我的博客承载平台。我的博客是用 <a href="https://hexi.io/" target="_blank" rel="noopener">Hexo</a> 做的，<a href="http://wowubuntu.com/markdown/" target="_blank" rel="noopener">Markdown</a> 语法书写，编译成静态 html 后上传到 <a href="https://pages.coding.net/" target="_blank" rel="noopener">Coding Pages</a> 和 <a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a> 上面去，供大家访问。之所以用两个不同的 Pages 服务，是因为<a href="http://chloerei.com/2014/02/24/we-saved-github-twice/" target="_blank" rel="noopener">之前 Github 被 GFW 墙了</a>，包括 Pages 在内的服务都访问不顺畅，彼时正好 gitcafe pages（<a href="https://coding.net/gitcafe.html" target="_blank" rel="noopener">后来被 Coding 收购</a>）也提供 Pages 服务，所以在国内做了个镜像。这样墙里面的网友不仅不用看 GFW 的心情，还因为服务器在国内，国内网友访问时更快一些。谷歌上一搜『hexo github coding』就能有很多结果，例如这篇『<a href="http://tengj.github.io/2016/03/06/hexo4/" target="_blank" rel="noopener">将hexo博客同时托管到github和coding</a>』。</p>
-<p>但是好像从上个月（八月）开始，coding pages 开始劫持我的博客访问，穿插进他们自己的企业版 coding 的广告，播放五秒之后，再跳转进入我的博客。这很优酷、很爱奇艺，很 APP。广告页面上甚至连一个倒计时的控件都看不到，就右上角（好像是）一行很小的字，跟你讲：<em>你没访问错，这个页面只是广告</em>。</p>
-<p>看了 coding 的解释，你要不花钱买它的会员（金牌会员），就要在你的博客页脚上加『hosted by coding pages』的字样。如下图。</p>
-<p><img src="./evil-coding-2.jpeg" alt="邪恶的 coding pages。这只是邪恶的开始"></p>
-<p>大家注意截屏上方的绿色警示框：这是我的 pages 通过审核之后的状态。下面标红的复选框需要你在添加脚标之后自行选中，之后就会有专人给你审核开通免广告插入。</p>
-<p>我猜测这是 coding 为了给自己网站做 SEO 的小伎俩。考虑到用了 coding 免费服务有一年多两年，人家要求也不过分，虽然网上很多人吵着要离开 coding 转 github，我还是决定给人加一个脚标。做人要懂感恩嘛。</p>
-<p><img src="./footer-screenshot.jpeg" alt="我选择的是文字版脚标。为了公平，我把 github pages 的大名也加上了。"></p>
-<p>这之后，痛快了几天。</p>
-<p>真的只有几天。</p>
-<p>然后，coding pages 抽风了。表现症状是，我输入域名访问我的博客，它不显示我的博客，甚至不显示广告，义无反顾跳转到他们家企业版的首页。我的博客看不了了。如下图。</p>
-<p><img src="./bad-coding.jpeg" alt="输入我的博客域名，本来应该是打开 pages，也就是你看这个网站的，结果直接跳转到他们自己家企业版首页了。"></p>
-<p>不知道 coding 家到底有多想要做 SEO、做 PR。人家 <a href="https://gitee.com" target="_blank" rel="noopener">OSChina</a> 比你们家的 PR 还低，人家也没想 SEO 想到这个份儿上。</p>
-<p>自此，我毅然决然，跟 coding 划清界限。</p>
-<p><del>暂时的解决方案是，用 <a href="https://www.oschina.net/news/73980/gitosc-pages" target="_blank" rel="noopener">OSChina Pages</a> 顶上，国内用户走<a href="https://gitee.com" target="_blank" rel="noopener">码云</a>，国外用户还是走 Github Pages。希望码云靠谱点，别让大家失望。码云之后也有备选方案，例如：<a href="https://github.com/gyk001/hexo-qiniu-sync" target="_blank" rel="noopener">七牛</a>、<a href="http://www.jianshu.com/p/9cb7884032d8" target="_blank" rel="noopener">BAE</a>，没验证过，也不希望到那一步。</del></p>
-<hr>
-<p>UPDATED (2017-09-05):</p>
-<p><a href="http://git.mydoc.io/?t=154714" target="_blank" rel="noopener">码云的 Pages</a> 原来不支持自定义域名。我设置了 cname 试，结果是 403。用码云的话，我只能用 oschina.io 的二级域名：<a href="http://simonkuang.oschina.io/" target="_blank" rel="noopener">http://simonkuang.oschina.io/</a>。这很不好。</p>
-<p>So，先放弃吧，全解析到 Github Pages 上面去。懒得再折腾啦。</p>
-<hr>
-<p>UPDATED 2 (2017-09-05):</p>
-<p>coding 万分邪恶的地方：把我的博客强制跳转到企业版首页时，<a href="https://stackoverflow.com/questions/9130422/how-long-do-browsers-cache-http-301s" target="_blank" rel="noopener">使用了 301 跳转，还特么不带 cache 相关的控制参数</a>。从效果上来讲，按照 crhome 现行策略，<a href="https://www.v2ex.com/t/327678#r_3858447" target="_blank" rel="noopener">客户端的缓存，从服务器端，是无论如何也清除不掉了</a>。stackoverflow 最佳答案最后给的办法行不通（Chrome 60），已经试过。唯一可行的办法是客户端自己清除所有缓存。这不科学。</p>
-<p><strong>说简单点，coding 这是劫持了我的域名给自己网站导流，做得还挺绝，都不给自己留道歉的机会（因为服务器端根本没法儿补救）</strong>。心里有句 MMP，不知当讲不当讲。</p>
-<p>真心不会再跟 coding 打交道。都别劝我，擦！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/chanlledge-from-programmer-to-architect/" itemprop="url">从程序猿到架构狮的转变</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T22:04:38+08:00">
-                2017-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/chanlledge-from-programmer-to-architect/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/chanlledge-from-programmer-to-architect/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>从程序员到架构师的成长，变化就像从小学生到高中生一样巨大。</p>
-<p>不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，<em>培养培养</em>，就可以成为架构师了。架构师都是摔打出来的。</p>
-<p>看到过对<em>做架构</em>有一个不错的定义：<a href="https://36kr.com/p/5042735.html" target="_blank" rel="noopener">系统架构的目标是解决利益相关者的关注点</a>。</p>
-<p>所以你看，做架构的架构师，其实是解决人的利益问题，目标是让各方利益尽可能达成一致，做 trade off 的工作，权衡。技术只是实现这个目标的一种手段，一种重要的手段，手段之一，不是全部，甚至于不是最重要的。执行层面成长起来的、技术能力过关的工程师，想要成长为架构师，首先考验的是你<strong>听 + 说</strong>的能力，也就是沟通表达的能力。<strong>沟通能力才是一个合格的架构师最重要的能力</strong>。</p>
-<h2><span id="一-听的能力">一、听的能力</span></h2><p>这个很有学问。</p>
-<p><strong>我们常常假设与我们沟通的都是理性人，他们清楚自己说的是什么意思，他们也确实想要表达这个意思</strong>。实际上，几乎不存在这样的理性人。为了避免尴尬、隐藏真实想法，大家说的往往是加以润色的话。即便死党之间畅无不言，潜意识也会偷偷在话里打掩护，顾左右而言他。若是拿别人告诉你的话当个准，九成九会遇到『当初我怎么知道』的情况。</p>
-<p>工作中也是如此，系统架构牵扯利益，各方都希望架构师做出有利于己方的设计，所以表达己方利益关切的时候，明明可以『关注』的，他可能用『严重关切』来表达。你没法儿指责他说谎，也许他的表达习惯就是如此，也许是大家对轻重缓急的表达方式不同。但作为架构师，你自己心里就得有个判断：他的话我到底该不该信？信几分？可信的部分在我的架构中轻重缓急怎么判断？</p>
-<p>所以，听的能力非常重要。</p>
-<h3><span id="首先学会听别人的话外音">首先，学会听别人的话外音。</span></h3><p>职场上，大部分人是理性的，他们对自己手头的事情能有理性的判断。大多数时候，他们也能清楚知道自己想要什么。只是，他们往往会<em>委婉</em>地表达自己的目的。旁推侧击、敲山震虎、隔山打牛、杀鸡儆猴…… 就是不会直来直去。</p>
-<p>作为架构师，你得学会听懂别人背后表达的意思，这是最基本的功力了。</p>
-<h3><span id="其次听懂别人背后的意图">其次，听懂别人背后的意图。</span></h3><p>再聪明的人也有犯糊涂的时候。有些时候，跟你沟通的某人，会忽然卡壳，不知道接下来要怎么表达/表达什么。他隐约觉得自己想要个小功能，但就是不知道怎么表达出来。这时候如果架构师对这个人有一定了解，知道他关心的点，知道他的风格，就有可能顺着他的思路去提醒他。</p>
-<p>倒不是让架构师去做别人肚子里面的蛔虫。这样做至少有两点好处。</p>
-<ol>
-<li>架构师主动提，比一个有明确利益偏向的人来提，提出来的方案合适得多。他讲不清楚的时候，你能讲清楚，还照顾到他的关切，他接受你的方案的概率也很高；</li>
-<li>如果架构师对利益方能达到这种程度的了解，可以把利益方的偏好尽可能纳入架构设计的考量中去，就可以做好预埋，防止无谓的需求变更。</li>
-</ol>
-<h3><span id="最后听懂别人没说出口的话">最后，听懂别人没说出口的话。</span></h3><p>有些话，不一定要说出口，就像上面提到的。另外有些话，说的时候还没想到，或者，说的时候就没怎么想，反正可以以后想到再说。</p>
-<p>对架构师，后面两种情况真的够呛。你遇到的是一个<em>职场 baby</em>，一个不能为自己的行为负完全责任的人。<strong>这种情况下，最好的解决办法是，你能帮他想好，反过来引导他，通过他的嘴讲出来</strong>。避免在系统评审会之后，频繁变更带来的成本开销。<strong>评审会之后变更架构设计的开销是客观的，成本存在压缩极限；而考虑提前量的开销是可控的，通过人为努力可以使成本逼近零</strong>。因此在系统架构设计阶段，尽可能多考虑一些未来的变化，从长远来看，是相当划算的。</p>
-<p>这种场景下，考验的是架构师的业务能力、经验和宽泛的倾听技巧。这种能力通过练习可以培养，但成长不会很快。属于二八原理中要花 80% 精力去积累的 20% 那部分。锻炼的时候，要有耐心和信心。</p>
-<h2><span id="说的能力">说的能力</span></h2><p>说，或者说表达，也是沟通中重要的一部分。<strong>对于架构师而言，架构设计就是最好的表达</strong>。相对的，就工程师成长起来的架构师，我更提倡学会倾听，而不是表达。</p>
-<p>如果硬要说在表达方面有什么建议或者窍门，就下面几句话。</p>
-<ul>
-<li>先<strong>听</strong>别人说完，自己再说；</li>
-<li>说之前，想清楚，尽量言简意赅。话说得太多，在别人耳朵里，就没什么效果了。不如一字千钧有威力；</li>
-<li>想表达不同意见的时候，先停顿三秒，再说出口；</li>
-<li><strong>有理不在声高</strong>；</li>
-<li><strong>对事不对人</strong>，对过人的自己请客吃饭；</li>
-</ul>
-<h2><span id="培养能力">培养能力</span></h2><p>沟通的能力也是可以靠锻炼来的，不是谁生下来就是《九品芝麻官》里面的包大人。关于沟通的锻炼方法，极限一点的，请自行谷歌销售技巧培训方法。哈哈</p>
-<p>最后补充一句，沟通 + 技术能力，是成为一个架构师的必要条件，还不是充分条件。这两条具备了，才可以说你达到了做架构师的最最基本的要求，有可能做出大家满意的架构设计。后面的，有机会再补充。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/nodejs-abuse-of-software-design-philosophy/" itemprop="url">吐槽被NodeJS用滥的软件设计哲学</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T00:54:40+08:00">
-                2017-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/nodejs-abuse-of-software-design-philosophy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/nodejs-abuse-of-software-design-philosophy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><a href="https://nodejs.org/" target="_blank" rel="noopener">NodeJS</a> 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。</p>
-<p>NodeJS 的包管理工具 <a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>（Nodejs Package Management）在这其中功不可没。</p>
-<p>直到 2016 年初，有一个很硬的程序猿 <a href="https://twitter.com/afrikaradyo" target="_blank" rel="noopener">Azer</a>，非常不满自己的权益没有被 npm 这个平台正确对待——具体说，就是 npm 收到另外一个用户的律师信之后，擅自删除了前面这个 Azer 的 package，把 package 的名字直接转让给发律师信的用户管理——一气之下将自己创建并管理的所有 npm 上的项目全部 unpublish 了。这种行为在游戏里面叫自杀。关键人家还说挺对的：<a href="https://medium.com/@azerbike/i-ve-just-liberated-my-modules-9045c06be67c" target="_blank" rel="noopener">我解放了我所有的模块，因为我不会在一个某些人滥用特权的地方分享我的开源工作</a>。结果就比较搞笑了，因为其中一个被删除的模块 <a href="https://www.npmjs.com/package/left-pad" target="_blank" rel="noopener">left-pad</a> 被大家广泛引用，导致 Babel、Ember、ReactNative 等等构建工具、框架，都不能正常使用。除了一些将 package 打包发布的应用，例如 <a href="https://atom.io" target="_blank" rel="noopener">Atom</a>。这事儿在当时简直就是灾难，N 多前端程序猿被迫加班解决问题。</p>
-<p>从这件事情之后，有些人也开始反思，于是知乎上有人问『<a href="https://www.zhihu.com/question/41694868" target="_blank" rel="noopener">如何看待 Azer Koçulu 删除了自己的所有 npm 库？</a>』这一类的问题。直到后来终于有人问：<strong>难道一个只有十一行代码的功能你们都不能自己写了么？</strong>（PS：left-pad 只有十一行有效代码）问题才逐渐回归本源上。</p>
-<p>要我说，从我了解 npm 开始，就一直觉得它是 DRY（Donot Repeat Yourself）和 KISS（Keep It Simple, Stupid）的极端实践者。极端到什么地步呢，就像上面提到的，连一个十一行代码的功能都要找 npm 上面的 package 来实现，而不是自己写一份。层层叠叠，相互之间的引用关系堪比用 DNA 图谱勾勒人类进化史和迁移史。</p>
-<p>现在看来，哲学是好的，但做得有点儿过。</p>
-<hr>
-<p>这两天被 npm 搞得够呛。</p>
-<p>一直用 <a href="https://hexo.io" target="_blank" rel="noopener">hexo</a> 写博客，好好的。手贱升级了 node 到 7.4.x，完了，发现不正常了，报类似下面的错误。</p>
-<blockquote>
-<p>Fatal error in ../deps/v8/src/api.cc, line 1051<br>Check failed: !value_obj-&gt;IsJSReceiver() || value_obj-&gt;IsTemplateInfo().</p>
-</blockquote>
-<p>在 <a href="https://github.com/nodejs/node/issues/10659" target="_blank" rel="noopener">github 上找到答案</a>，升级 node 到 8.4.0 之后解决了问题。可是，今天升级 hexo 到 3.3.8 之后，又出现上面的问题。</p>
-<p>从 github issue 和错误 stack 中已经知道是 fsevents 引发的问题，而且 fsevents 之前是经过大改的，版本有讲究。对这些历史了解很重要。</p>
-<p>删除 node_modules 和 npm cache 之后重新安装 npm 模块，不行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .npm/ node_modules/ package-lock.json db.json</span><br><span class="line">rm -rf ~/.npm/.cache</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>用 <a href="https://www.npmjs.com/package/yarn" target="_blank" rel="noopener">yarn</a> 来安装。还是不行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .npm/ node_modules/ package-lock.json db.json yarn.lock</span><br><span class="line">rm -rf ~/.npm/.cache</span><br><span class="line">yarn install</span><br></pre></td></tr></table></figure>
-<p>连错误都一模一样。</p>
-<p>直到用 <code>npm ls | grep fsevents</code> 命令，发现 fsevents 有两个版本，其中一个是 0.3.8——明显大改之前的。这时候，一个粗暴的办法出现在脑海里面。</p>
-<p>在 iTerm3 里面快速定位到使用 <a href="mailto:`fsevents@0.3.8" target="_blank" rel="noopener">`fsevents@0.3.8</a><code>的组件，原来是</code><a href="mailto:hexo-github@1.0.1" target="_blank" rel="noopener">hexo-github@1.0.1</a><code>依赖的</code>nunjucks` 这个库。</p>
-<p>hexo-github 的作用是将 github 时间线展现在 blog 里面，非常适合程序猿出身的博主，但是我这会儿还没用上。所以先卸载吧。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall --save hexo-github</span><br></pre></td></tr></table></figure>
-<p><em>好吧，其实我是删除 node_modules 之后修改 package.json，再重装来的。:-P</em></p>
-<p>总之，就好了。</p>
-<p>hexo-github 的依赖关系指明依赖 <code>nunjucks@^1.3.4</code>，这好像是 <code>npm install --save nunjucks</code> 时会自动添加进 package.json 文件中的格式。默认格式。现在 nunjucks 的版本是 3.0.1，已经不在 1.x.x 这条主版本线上。所以，除非 hexo-github 的作者手动更新依赖中 nunjucks 的主版本号，否则就被栓死在 1.x.x 主线上。</p>
-<p>万一真遇到 hexo-github 这样几乎已经不维护的 package，我真有自己 fork 一个库自己改的冲动。但这样又不 DRY 了，对吧？</p>
-<p>心好累啊。[捂脸]</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/" itemprop="url">数字公司旗下的 SSL 服务商好像被 block 完了</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T23:59:08+08:00">
-                2017-08-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>刚知道，<a href="https://support.apple.com/en-au/HT204132" target="_blank" rel="noopener">Apple 早在去年就开始 block Wosign 和 StartCom 作为根签发的 SSL 证书</a>。</p>
-<p>继 <a href="https://www.bleepingcomputer.com/news/security/google-outlines-ssl-apocalypse-for-symantec-certificates/" target="_blank" rel="noopener">Symantec 被 google 亲儿子 chrome 拉黑</a>之后，感觉信息安全圈儿的很多事情忽然变了，有『忽如一夜春风来』的感觉。以前是知道有这么些事儿，藏着掖着谁都不说明白，资深的自己玩儿，小弟捡漏，群众连瓜在哪儿都不一定知道。现在是感觉被子掀开，太阳晒进来，虫子晒死一堆——还有大虫子，而侥幸活着的挪个地儿，继续往阴暗处爬。照这趋势，被子迟早彻底掀开，那会儿会怎么样，真不知道。就我知道，<a href="https://kb.iweb.com/hc/en-us/articles/230268268-GHOST-glibc-gethostbyname-buffer-overflow-CVE-2015-0235-" target="_blank" rel="noopener">glibc 的 hostname resolve 漏洞</a>和 <a href="http://heartbleed.com/" target="_blank" rel="noopener">openssl 心脏滴血</a>都是开胃菜。想对隐藏的『大 boss』有直观感觉，请看斯诺登泄密的那些文件。</p>
-<p><strong>开源可持续的其中一个前提是：大多数贡献者积极向善</strong>。就像最近很火的<a href="https://www.zhihu.com/question/31112808/answer/122099628" target="_blank" rel="noopener">区块链</a>，确保账本正确、资金安全的前提是，不诚实节点掌握不了超过全网 50% 的运算力。否则，保存在全网区块链中的账本，被人篡改的几率就大大增加，账本不可信，资金不安全，你账户里面躺着的钱有一天会突然变成 TA 的。随着这些年技术门槛降低，互联网开始普及，互联网经济不再神秘，趋金的商人也越来越多走进来，捞钱。他们在互联网经济中所占的比例会越来越大，最后他们的影响力一定会超过作为『互联网原住民』的工程师。<strong>趋金</strong>不是个贬义词，由它引发的故事却往往是贬义的。这些故事，最终可能会<strong>毁了</strong>开源，或者说『<strong>进化</strong>』开源。</p>
-<p>阳光下的 M$ 这么多金，届时 M$ 会不会趁虚而入要了这只企鹅的命，还真不好说。</p>
-<p>看开点，随个缘咯。</p>
-<hr>
-<p>selinux 也是可怜的孩子，生不逢时。网上的小白教程讨论的都是『怎么关闭 selinux』，知乎上也只有『<a href="https://www.zhihu.com/question/20559538" target="_blank" rel="noopener">为什么要关闭 selinux</a>』这一类的问题。</p>
-<p>在技术发展水平不变的前提下，安全和方便是一体的两面，要想安全，一定会比较麻烦；想不麻烦，就会不安全。可以选择权衡，本质不会变。没有环境倒逼，恐怕很多企业都不会对安全太上心，这就是现状。安全是非功能需求，往往也是次要需求，安全对应的麻烦则被视为成本，追求『绝对安全』的动力不足，只要相对安全就好。而且，这种『相对』的标准，往往还是领导/客户心理上的相对，跟事实差好远。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/" itemprop="url">阿里云未备案云主机申请 letsencrypt ssl 证书</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T00:34:22+08:00">
-                2017-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。</p>
-<p>访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的<em>温馨提示</em>（如下图）。</p>
-<p><img src="./TestPage.png" alt="TestPage Screenshot"></p>
-<p>而一台不能提供 http 服务的阿里云 ECS 不是真正的服务器。解决这个问题的办法，将 http 换到 https 就可以了。</p>
-<h2><span id="https-选哪家">https 选哪家</span></h2><p>总所周知，自从 WoSign 被我大天朝数字公司收购之后，颇多周折，<a href="https://www.sslchina.com/chrome-final-removal-of-trust-in-wosign/" target="_blank" rel="noopener">跟同袍兄弟 StarSSL 一起被业界良心 chrome 拉黑</a>。现在使用 WoSign 签发的 ssl 证书会被 chrome 直接判定为证书无效。</p>
-<p>最近连商务范儿最重的 <a href="http://www.cnbeta.com/articles/soft/636841.htm" target="_blank" rel="noopener">Symantec 都被 chrome 一再警告之后拉黑</a>。除了认为 chrome 真任性之外，也提醒我们选择 ssl 服务商时一定要慎重。</p>
-<p>目前来看，从个人到中小企业，<strong>最佳选择是 google 投资的 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a></strong>。运用 ACME 协议自动签发、自动续期，技术宅最爱，不是技术宅也有现成工具简单操作即可。</p>
-<h2><span id="怎么生成-http-ssl-证书">怎么生成 http ssl 证书</span></h2><p>首先注明，申请 Let’s Encrypt 家的 http ssl 证书，不需要提前准备啥资料，不需要书面申请，这跟国内的『管理』方法不一样。你只需要证明这个域名归你所有，http ssl 的证书就可以签发给你使用。但是为了防止域名到期易主、中途转让等等原因，发生域名新主人拿不到 http ssl 证书的情况，所以 <strong>Let’s Encrypt 规定了每次签发的 http ssl 证书有效期只有三个月，证书生成一个月之后可以免费重签/续期，不用等到临近有效期再续签</strong>。</p>
-<p>Let’s Encrypt 验证域名的归属有两个办法，用过 Google Analytics，和用 G Suite 绑定过域名的朋友应该比较熟悉了。</p>
-<ol>
-<li>网站验证。给你一个随机内容的文件，你把这个文件放在一个特定的位置，用待绑定的域名 + 特定 path 可以访问到这个文件，可以认为域名是你的；</li>
-<li>DNS 验证。给你一个随机字符串，你把这个字符串添加为待绑定域名某个 name 的 txt 值，只要能通过公网上的 DNS 服务器解析到这个字串，认为域名是你的。</li>
-</ol>
-<p>很简单吧。</p>
-<p>在阿里云 ECS 未备案的情况下，第一种办法是不可行的，chanlledge 必须是用过 http 协议进行的（你是来申请 https 证书的，假设你还没有 https 服务，这完全正常，只能用 http 来 chanlledge），而你的 http 服务被阿里云劫持了，所以你才要申请 http ssl 证书。…… 这就是个死循环。</p>
-<p>第二种办法可行，它的具体步骤如下。</p>
-<h2><span id="具体操作">具体操作</span></h2><blockquote>
-<p>我先把要注意的事项写下来，免得走弯路。<br>嗯，其实就一条：使用 <code>pip install certbot</code> 命令安装 certbot，不要用 yum/dnf/apt/pkg/apk 等包管理工具安装。</p>
-</blockquote>
-<h3><span id="第一步安装-certbot">第一步，安装 certbot</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade certbot</span><br></pre></td></tr></table></figure>
-<p>如果已经通过包管理工具安装过 certbot，那么先卸载。假设在 CentOS 上，包管理工具是 dnf。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf remove -y certbot</span><br></pre></td></tr></table></figure>
-<p>包管理工具安装的 certbot，其某些依赖包对应的版本比较低，存在兼容性问题，安装之后根本用不了。最好是用 pip 安装。</p>
-<h3><span id="第二步提出签发-http-ssl-申请">第二步，提出签发 http ssl 申请</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certbot --text --agree-tos --email &lt;your@email.com&gt; -d &lt;your.domain.com&gt; --manual --preferred-challenges dns --expand --renew-by-default  --manual-public-ip-logging-ok certonly</span><br></pre></td></tr></table></figure>
-<p>注意，这时候会出现类似下面的内容。</p>
-<blockquote>
-<p>Please deploy a DNS TXT record under the name<br>_acme-challenge.bristol3.pki.enigmabridge.com with the following value:</p>
-<p>667drNmQL3vX6bu8YZlgy0wKNBlCny8yrjF1lSaUndc</p>
-<p>Once this is deployed,<br>Press ENTER to continue</p>
-</blockquote>
-<p>上面的内容意思是：</p>
-<ol>
-<li>背景：假设你申请 http ssl 的域名是 <code>bristol3.pki.enigmabridge.com</code>，你对这个域名有管理权；</li>
-<li>在上述域名下，设置名为 <code>_acme-challenge</code> 的 <strong>txt</strong> 类型的记录，值为 <code>667drNmQL3vX6bu8YZlgy0wKNBlCny8yrjF1lSaUndc</code>；</li>
-<li>如果上述记录是新建的，那么等待大约半分钟，回到命令行，点击<strong>回车</strong>继续。</li>
-</ol>
-<h3><span id="第三步获取-http-ssl-证书">第三步，获取 http ssl 证书</span></h3><p>完成之后，在 <code>/etc/letsencrypt/live/&lt;your.domain.com&gt;</code> 目录下，有这么几个文件。</p>
-<ul>
-<li><code>privkey.pem</code> 证书的私钥；</li>
-<li><code>fullchain.pem</code> 带完整认证链的证书。注意，说是 fullchain，其实 CA 是 letsencrypt 自家的 CA，在某些老的操作浏览器上仍然有 bug；</li>
-<li><code>chain.pem</code> README 上面说法是给 nginx stapling 用的，其实里面就是 letencrypt CA 的证书；</li>
-<li><code>cert.pem</code> 域名的 http ssl 证书公钥。</li>
-</ul>
-<h3><span id="第四步安装">第四步，安装</span></h3><p>以 nginx 为例。（别问我为什么是 nginx，我最熟悉它，懒，你懂）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 只贴出关于 ssl 的部分，其余部分就不贴了。</span><br><span class="line">ssl on;</span><br><span class="line">ssl_certificate /etc/letsencrypt/live/your.domain.com/fullchain.pem;</span><br><span class="line">ssl_certificate_key /etc/letsencrypt/live/your.domain.com/privkey.pem;</span><br><span class="line">#  ssl_trusted_certificate /etc/letsencrypt/live/your.domain.com/fullchain.pem;</span><br><span class="line">ssl_trusted_certificate ssl/letsencrypt_full_chained.pem;</span><br><span class="line">ssl_stapling on;</span><br><span class="line">ssl_stapling_verify on;</span><br><span class="line">ssl_session_timeout 5m;</span><br><span class="line">ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">ssl_ciphers HIGH:!aNULL:!MD5:!EXPORT56:!EXP;</span><br><span class="line">ssl_session_cache shared:SSL:50m;</span><br><span class="line">ssl_dhparam ssl/dhparams.pem;</span><br><span class="line">ssl_prefer_server_ciphers on;</span><br></pre></td></tr></table></figure>
-<p>其中，<code>ssl/letsencrypt_full_chained.pem</code> 是让 ISRG ROOT X1 给 letsencrypt X3 做一个交叉认证的认证链，这是 CA 之间经常使用的一种提高自身兼容性的办法。这个交叉认证证书用如下办法生成。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -Lo <span class="string">"<span class="variable">$&#123;HOME&#125;</span>/lets-encrypt-x3-cross-signed.pem"</span> \</span><br><span class="line">    <span class="string">"https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem"</span></span><br><span class="line">curl -Lo <span class="string">"<span class="variable">$&#123;HOME&#125;</span>/isrgrootx1.pem"</span> \</span><br><span class="line">    <span class="string">"https://letsencrypt.org/certs/isrgrootx1.pem"</span></span><br><span class="line"></span><br><span class="line">sed -i <span class="string">'s@\s*$@@g'</span> <span class="string">"<span class="variable">$&#123;HOME&#125;</span>/isrgrootx1.pem"</span>   <span class="comment"># trip the carrige at the end of every line.</span></span><br><span class="line">cat <span class="variable">$&#123;HOME&#125;</span>/lets-encrypt-x3-cross-signed.pem <span class="variable">$&#123;HOME&#125;</span>/isrgrootx1.pem &gt; \</span><br><span class="line">    letsencrypt_full_chained.pem</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>PS: 上面的命令简单粗暴，原因是假设 certbot 生成的 fullchain.pem 里面有以下的规则。</p>
-<ol>
-<li>域名 http ssl 都是由 letsencrypt CA 直接认证的，没有中间的 issuer；</li>
-<li>签发证书的 letsencrypt CA 是 lets-encrypt-x3。</li>
-</ol>
-<p>所以，当上面的配置出现错误时，快糙猛的办法是屏蔽掉『ssl_trusted_certificate』这行。<br>毕竟，在功能性面前，兼容性算个逑。</p>
-</blockquote>
-<p><code>ssl/dhparams.pem</code> 由以下命令生成。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl dhparam -out dhparam.pem 2048</span><br></pre></td></tr></table></figure>
-<p>配置完成之后，reload nginx 即可。</p>
-<p>自此，阿里云 ECS 终于可以通过 https 协议访问了。舒心啦。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/check-in-app-accessing-with-openresty/" itemprop="url">用 openresty 来做 app api 接口的验真</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-25T12:37:04+08:00">
-                2017-07-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/check-in-app-accessing-with-openresty/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/check-in-app-accessing-with-openresty/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>app 服务器端的开发中，有一个百年不变的小东西：api 访问的验真问题。因为 http 协议是无状态的，每次 app 发起请求，我都需要验证这次请求的确是由真实的、授权的 app 发起，以此来阻止不诚实用户发起的攻击、数据爬取，确保产品的安全，和用户在产品上的信息安全。</p>
-<p><a href="https://jwt.io/" target="_blank" rel="noopener">JWT</a>（JSON Web Token）是一个 http 之上的不错的 api 验真协议，结合 https，几乎可以安全地传输各种数据。最关键是，它原理简单，没用到啥黑科技，新瓶装老酒，但实用。</p>
-<p><a href="https://openresty.org/cn/" target="_blank" rel="noopener">openresty</a> 是春哥做的一款神器，在 nginx 上挂了个 lua 引擎，可以用 lua 脚本指挥 nginx 做很多事情。了解 lua 的童靴都知道，lua 的执行性能堪比 C++/Java 这些编译型语言，大家在一个量级。能做到这步，已经相当感人。用 openresty 来实现 jwt 协议，做 api 访问的验真，可以降低后台系统的复杂程度，同时还能提高系统鲁棒性，防止被恶意攻击时系统雪崩。</p>
-<p>现在已经有 openresty 的 jwt 模块，叫 <a href="https://github.com/SkyLothar/lua-resty-jwt" target="_blank" rel="noopener">lua-resty-jwt</a> 的，还有基于它做了二次封装的 <a href="https://github.com/ubergarm/openresty-nginx-jwt" target="_blank" rel="noopener">openresty-nginx-jwt</a>。</p>
-<p>有了这个 jwt 的 openresty 模块，可以在 http server 这一层对 api 访问做验真，业务系统接收到的请求理论上都是真实的，避免调用庞大的业务系统做验真。这在收到 api 攻击的时候效果最明显，那时每次调用庞大的业务系统，加载若干组件，仅仅做了一次验真，然后就释放资源，销毁请求。简直是罪过。</p>
-<p>话分两头说，直接上这个 jwt 模块存在一些风险。要在生产环境使用 jwt，还有一些工作必须做。</p>
-<ol>
-<li>secret 的策略。jwt 协议中，并没有规定 secret 怎么来的，实际操作中，不同的 secret 策略会有不同的效果。<ul>
-<li>整个系统使用一个固定的 secret。不诚实用户可以注册账户，暴力穷举或内存搜索，得到 secret 明文。存在系统性风险。风险高。</li>
-<li>一台服务器使用一个 secret，secret 写到 openresty 的配置中。仍然有上述问题，还增加了做负载均衡的难度。风险高。</li>
-<li>一个用户一个 secret，openresty 根据用户信息取 secret 编解码。风险低，复杂度高。</li>
-</ul>
-</li>
-<li>api 访问日志需要保存。特别对验真失败的访问，要能有手段及时处理日志，分析风险，对恶意用户可以屏蔽 IP 等手段规避。</li>
-<li>经过验真的 api 访问日志结合静态资源访问日志，可以模拟真实用户的访问场景。结合 lazy load 等前端技术，甚至可以判断出用户究竟看了几页，资源加载速度快还是慢。这么好的资源，不能浪费。</li>
-</ol>
-<p>接上面。第一点好解决，一个 subrequest，或者单独给 lua-resty-jwt 一个 redis 存用户的 secret，就行了。第二点和第三点说的其实是一件事情，记日志，而且是把验真失败和验真成功的日志分开记。验真失败的日志需要参与在线准实时的计算，验真成功的日志打包保存，用来做离线的大数据分析，统计用户访问指标，优化产品。</p>
-<p>一个小组件，挺好玩儿的一件事。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/user-only-equals-number/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/user-only-equals-number/" itemprop="url">用户就是个数字（外两则）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-30T14:16:45+08:00">
-                2016-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/user-only-equals-number/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/user-only-equals-number/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>这两天有种忙得不亦乐乎的感觉，倦怠了写博客。</p>
-<h2><span id="用户就是个数字">用户就是个数字</span></h2><p>要说的是关于鹅厂邮箱的事儿。标题是很多大公司做产品的哲学，当然也包括鹅厂自己家的。</p>
-<p>我是鹅厂毕业，也算是鹅厂粉丝，但凡能鹅厂产品能满足要求的地方，就不会用别家的产品。企业邮箱就是一个例子。</p>
-<p>我的个人常用邮箱以自己的域名作为后缀，最初放在腾讯邮箱的『企业邮箱免费版』上，用了有两年左右的时间，一直很正常。一直到这周朋友给我发送邮件，被退回来，提示邮箱不存在一类的错误。我才注意到，<strong>原来我的免费版的企业邮箱被腾讯单方面终止了服务，正在使用中的邮箱无法收发邮件，甚至无法登陆，从管理后台登陆上去才了解到是域名无故被解绑。而在这之前，无论是我绑定了该企业邮箱的微信，还是企业邮箱本身，被抑或企业邮箱的管理账号，都没有收到任何相关的提示信息。</strong></p>
-<p>我首先排除管理账号被盗、黑客为之的可能性。很简单，腾讯企业邮箱的那个管理账号我很长很长时间没有使用过，账号名是一个我从来没有在别的地方使用过的字符串，不存在被社工被钓鱼的可能性。而且管理后台中，我的企业邮箱绑定过三个域名，除开今年有一个因为域名到期没续费自动失效当即被清理，一个我一直在使用中的域名无故清除，只剩下一个绑定后几乎没有使用过的域名。如果是黑客捣鬼，为什么单独给我留一个没使用过的域名？这讲不通。</p>
-<p>后来有朋友在朋友圈中留言，了解到原来有朋友也遇到过，也是腾讯企业邮箱免费版，绑定的域名下有一个用来做客服的邮箱，经常在登录使用，也是毫无预警的情况下被清理，并且也是从后台直接解除了整个域名的绑定。</p>
-<p>不同的是，朋友用的邮箱在两个月前失效，我的邮箱是在一个月前失效。分批分次在清理免费邮箱——而且是<strong>不给你任何预警、提示、通告、宽限期、选择项……</strong> 直接让你的邮箱和邮件消失掉的清理。</p>
-<p>到现在，这事儿几乎很明显是腾讯邮箱人为在清理的动作。因为太没底线了。按照腾讯一贯的价值观，这绝对不是一个『正直』的事情，这样的服务态度也不完全不符合『水和电』的特征，更加不『值得尊敬』。</p>
-<p>在大厂做过 2C 产品的同学都知道，用户不过是一个庞大的数字，和员工自身利益休息相关的 KPI 也是通过评价这些数字，来调节对员工的奖惩。对于每一个单一的用户，大厂的产品真的是多你一个不多少你一个不少。</p>
-<p>今天正好看到广研大 boss 张小龙在微信事业群管理大会上的一个演讲，<a href="http://mp.weixin.qq.com/s?__biz=MTE3MzE4MTAyMQ==&amp;mid=2651138374&amp;idx=2&amp;sn=15f7fefcb7bae4e160883ae0b37558b1&amp;chksm=76232c744154a562889646a2a21f22588961132b943056a3578275d47f14058492785945ad9e&amp;mpshare=1&amp;scene=1&amp;srcid=1030ou2wbXq0myYXdiIm8gkI#rd" target="_blank" rel="noopener">明确要求内部不要盲从流程和 KPI，要坚持用户价值导向</a>。真的说得很好。他还特别举了 QQ 邮箱的例子，这是个大家都比较熟悉的例子。当年 QQ 邮箱从上不了邮箱服务 Top10 排名到后来逆袭压倒 Hotmail 和网易邮箱，方法是小团对敏捷开发，背后的思想仍然是坚持用户价值导向。如果企业邮箱的团队能够坚持用户价值导向，是一定不会做这么出格的事情。</p>
-<p>希望老东家能越来越好。千万守住自己的底线。</p>
-<hr>
-<h2><span id="139-邮箱之乱象">139 邮箱之乱象</span></h2><p>又是邮箱的故事。</p>
-<p>我的 139 邮箱在 2014 年设置过一个别名，这样可以用英文名而不是手机号作为邮箱前缀，识别度更高。我拿 139 邮箱主要是在国企那段时间用来收发工作上的邮件。</p>
-<p>然而自开通邮箱别名开始，就经常收到一些莫名其妙的邮件，邮件经常开头有名有姓，称谓是我没听过的名字。刚开始以为是骚扰邮件，没有管，后面类似的邮件来得越来越多，我也听之任之，反正这个邮箱后来几乎就没有怎么用过了。</p>
-<p>这周忽然收到一封邮件，是<a href="https://weibo.com/" target="_blank" rel="noopener">微博</a>发送的，提醒我登录别名邮箱对应的微博账号。很奇怪，我不可能用 139 邮箱注册微博账号。担心邮箱帐密被盗用作什么不好的事情，于是通过微博的找回密码服务找回了账号对应的密码（后来知道，微博账号如果没有绑定手机，那么别人拿到你的邮箱，随便使用一个手机也能找回密码），发现是一个运营了三四年的企业微博，企业地址在上海。到此我才恍然大悟。</p>
-<p><strong>在我设置 139 邮箱别名的时候，我设置的这个别名其实是有人在使用的。不知为何，139 邮箱仍然把这个别名分配给我。所以我经常收到本该属于另一个用户的邮件，而且猜想那个用户同时也能收到本该属于我的邮件吧。一个别名邮箱，我们俩都有在使用，不论谁发送邮件，我们俩都能收到。</strong></p>
-<p>最后我给我们俩『共用』的别名邮箱发了消息，告诉他这个情况，并承诺把微博密码还给他。希望他能看到。</p>
-<p>邮箱作为互联网基础服务，服务的稳定性应该要有最基本的保障，安全和隐私也应该要能做到最基础的保障。这跟邮局里面申请一个邮箱一样的。可是一周内竟然遇到两次大乌龙，我也是醉了。</p>
-<p>所幸我还有一个 gmail 注册的企业邮箱。从今天起，免不了后续会逐步把常用邮箱换成那个。</p>
-<p>在天朝，用个邮箱都能吓死宝宝。</p>
-<hr>
-<h2><span id="关于运维的笑话">关于运维的笑话</span></h2><p>有个运维跟中学同学聚餐，接了个电话，大家都吓尿了。。。。</p>
-<p>『喂，是我。』<br>『怎么回事？……卡在哪儿了？』<br>『不行就杀了吧，做事别磨磨唧唧的。先保证业务正常。』<br>『啥？找不到？杀不了？你不知道 killall 啊！把这个名字的全干了。』<br>『嗯。』<br>『诶？怎么还报警了！』<br>『你让胡总赶紧把警报先关了。你就在现场，报警有个屁用。』<br>『你跟他好好说一下，就说是我说的。这破事儿二十分钟内就能搞定，不要动不动就报警。』<br>『嗯。』<br>『对，挂了也要拉起来，就没什么不行的！他敢挂掉你就再拉一个。』<br>『擦！早不挂晚不挂，这会儿挂，真特么不是时候！』<br>『行了，我马上过来。都特么不给老子清净！擦！』<br>………… (o_o)<br>『我不吃了，要去加个班。喂，你们都看着我干嘛…… 』</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/cold-knowledge-about-plane-taking-off/" itemprop="url">『东航两飞机险相撞』事件中的飞行知识</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-22T23:58:23+08:00">
-                2016-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/cold-knowledge-about-plane-taking-off/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/cold-knowledge-about-plane-taking-off/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天无意中打开 <a href="http://www.maxthon.cn/" target="_blank" rel="noopener">Maxthon</a>，看到了推荐的一则旧闻——<a href="http://www.yicai.com/news/5134973.html" target="_blank" rel="noopener">『东航两飞机险相撞』</a>。我记得事件当天就有看到这则报道，当时的第一反应是：类似<a href="https://zh.wikipedia.org/wiki/%E7%89%B9%E5%85%A7%E9%87%8C%E8%B2%BB%E7%A9%BA%E9%9B%A3" target="_blank" rel="noopener">荷兰皇家航空发生的空难（特内里费空难）</a>在虹桥机场被避免了。今天看到的更多是后续报道，新闻报道的焦点几乎都在 V5 的机长和疏忽的管制员身上。</p>
-<p>俗话说，对航空航天没点儿兴趣的码农不是好的 CTO。凭借我多年积累的航空知识，和对航空事业发展的关注——其实就是对各城市机场航班老是延误的那点儿感性认知——跑道入侵征候（被规避了，不算空难）在今天不能算是罕见。不过这次这个事件号称是<strong>相差三秒相撞</strong>，事后也被定型为 <a href="https://zh.wikipedia.org/wiki/2016%E5%B9%B4%E8%99%B9%E6%A1%A5%E6%9C%BA%E5%9C%BA%E8%B7%91%E9%81%93%E5%85%A5%E4%BE%B5%E4%BA%8B%E4%BB%B6" target="_blank" rel="noopener">A 类跑道入侵事件</a>，说明事件本身还是非常严重的。</p>
-<p>下面摘自<a href="http://www.thepaper.cn/newsDetail_forward_1544123" target="_blank" rel="noopener">澎湃新闻的后续报道</a>。</p>
-<blockquote>
-<p>通报称，这是一起塔台管制员遗忘飞机动态，违反工作标准而造成的人为原因严重事故征候。性质极为严重，属于A类跑道入侵，险些发生飞机相撞。当时两架飞机垂直距离仅19米，翼尖距13米，两机仅差约三秒就会发生碰撞。320机组果断处理，操纵正确，避免了一起事故。330机组接受了穿越跑道的错误指令后，虽然看到了飞机起飞，但并未提出质疑。</p>
-<p>通报认为，管制员违反相关规定，盲目指挥，双岗制责任落实不到位；专业人员资质是重中之重，自制能力要跟上；管理手段和工作流程存在问题，要系统思考原因，加以改进。</p>
-<p>通报还提到，330机组存在SOP的问题，观察不周，不按规定，关闭了应答机。带飞左副驾驶不知道东航穿越跑道程序。没有交叉检查，没有互相证实。但是机组没有机械听从塔台原地等待命令，加速穿越，避免了两机相撞，暴露了训练上的问题。320机组处理非常到位，临危决断，立了大功。副驾驶操纵迟疑，点了一下刹车，机长迅速接过操纵，以7.03度/秒的速率，带杆到机械止动位。</p>
-</blockquote>
-<p>首先明确了这是一起<strong>人为因素造成</strong>的事故，而且是<strong>塔台管制员疏忽占主因、A330 机组占次因</strong>的事故。事后调查表明，A330 机组存在 SOP 问题，以及观察不周、关闭应答机等问题。</p>
-<p>其次，报道中提到了 A320 机组在事件中临机处置立了大功。<strong>7.03度/秒</strong>的速率，带杆到<strong>机械止动位</strong>，才避免了两机相撞的事故。当然，这其中还有一个明显的对比：『副驾驶操作迟疑，点了一下刹车』，后来『机长迅速接过操纵』，才避免了机毁人亡的悲剧。</p>
-<p>这其中有多个航空相关的知识，自己也是边看新闻边搜索，记下来，也给其他有兴趣的朋友科普一下。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/cold-knowledge-about-plane-taking-off/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/another-package-management-tool-under-centos-named-dnf/" itemprop="url">另一个包管理工具——DNF</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-17T09:45:55+08:00">
-                2016-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/another-package-management-tool-under-centos-named-dnf/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/another-package-management-tool-under-centos-named-dnf/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><blockquote>
-<p>更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。</p>
-</blockquote>
-<hr>
-<p><a href="http://rpm-software-management.github.io/dnf/" target="_blank" rel="noopener">DNF</a> 起源于 YUM 的一个分支，最早用在 <a href="https://fedoraproject.org/" target="_blank" rel="noopener">Fedora</a> 18，在 Fedora 22 中默认安装，成为系统工具。<a href="http://www.tecmint.com/dnf-next-generation-package-management-utility-for-linux/" target="_blank" rel="noopener">现在更是被广泛看作 YUM 的接班人。</a>虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 <code>yum</code> 和 <code>dnf</code> 混合着来——当然，新旧掺杂绝对不是好习惯，我就这么一说，证明 YUM 和 DNF 的关联之亲近。用惯了 YUM 的朋友们一定不会抗拒换到 DNF，它们的<a href="https://linuxstory.org/dnf-commands-for-fedora-rpm-package-management/" target="_blank" rel="noopener">用法非常相似</a>，而且 DNF 的更有现代语言风格。</p>
-<p>我常用的系统是 <a href="https://www.centos.org/" target="_blank" rel="noopener">CentOS</a>，虽然已经被 RedHat 收购，但是 CentOS 的品质和定位都没有变，这很难得。最新（截至 2016-10-16）的 CentOS 是 7.2.1511。下面的步骤在 CentOS 上尝试，对 Fedora/RHEL 理论上同样适用。Fedora 上应该还更加简单，下面的问题好多都不会遇到。</p>
-<p>闲话不说，安装步骤如下。</p>
-<h3><span id="一-手动安装全新的-yum-repo">一、手动安装全新的 yum repo</span></h3><p>新增一个 repo，从这个 repo 中用 <code>yum</code> 安装 DNF。这是因为 CentOS Base repo 中的 DNF 版本太低，只有 0.6.x，而最新的稳定版已经到 1.1.9。0.6.x 中的 libsolv 太低，<a href="https://gist.github.com/makeittotop/d83f53c5354f0e12fdc3cc394af9d1c5" target="_blank" rel="noopener">导致不能处理 <code>.bz2</code> 压缩包</a>，所以只能采用<a href="http://dnf.baseurl.org/2016/07/01/fresh-dnf-for-rhel-7-and-centos-7/" target="_blank" rel="noopener">引入新 repo</a> 来安装 DNF 的办法。</p>
-<strike><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo</span><br><span class="line">[dnf-stack-el7]</span><br><span class="line">name=Copr repo <span class="keyword">for</span> dnf-stack-el7 owned by @rpm-software-management</span><br><span class="line">baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/epel-7-\<span class="variable">$basearch</span>/</span><br><span class="line">skip_if_unavailable=True</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/pubkey.gpg</span><br><span class="line">enabled=1</span><br><span class="line">enabled_metadata=1</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure><br><br></strike>
-
-<blockquote>
-<p>Update (2017-06-03):<br>因为 rpm-software-management 提供的 repo 变更了 url，因此上述脚本也做了相应更新。如下。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo</span><br><span class="line">[dnf-stack-el7]</span><br><span class="line">name=Copr repo <span class="keyword">for</span> dnf-stack-el7 owned by @rpm-software-management</span><br><span class="line">baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/epel-7-\<span class="variable">$basearch</span>/</span><br><span class="line">skip_if_unavailable=True</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/pubkey.gpg</span><br><span class="line">enabled=1</span><br><span class="line">enabled_metadata=1</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-<p>对于已经用旧的脚本安装过 dnf repo 的系统，可以使用下面的命令 fix。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[ -f /etc/yum.repos.d/dnf-stack-el7.repo ]] &amp;&amp; \</span><br><span class="line">  sed -i <span class="string">'s@/dnf-stack-el7/@/dnf-centos/@g'</span> /etc/yum.repos.d/dnf-stack-el7.repo</span><br></pre></td></tr></table></figure>
-<h3><span id="二-安装-dnf">二、安装 DNF</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install dnf dnf-conf dnf-automatic</span><br></pre></td></tr></table></figure>
-<h3><span id="三-验证及状态检查">三、验证及状态检查</span></h3><p>安装完成后检查 DNF 的版本（如果报错，请看下一节）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf --version</span><br></pre></td></tr></table></figure>
-<p>截至现在（2016-10-16），通过 <code>yum</code> 安装的 DNF 最新的版本号是 <code>1.1.9</code>，也就是说，你安装的 DNF 不应该低于这个版本号，才是对了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf repolist all</span><br></pre></td></tr></table></figure>
-<p>这可以查看当前 DNF 用到那些软件库的资源。按照使用 YUM 的习惯，最重要的无非 Base、EPEL、Updates 这三个。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf list installed</span><br></pre></td></tr></table></figure>
-<p>查看已经安装的应用。<br>PS：从第三列很容易看出，以前通过 YUM 安装的应用，都被划为 <code>@System</code>，即系统模块类别。这应该是为了能从 YUM 平滑过渡的一个折衷办法。</p>
-<h3><span id="四-部分问题的解决更新中">四、部分问题的解决（更新中）</span></h3><h4><span id="1-failed-to-open-updateinfoxmlbz2错误">1. 『Failed to open: …..updateinfo.xml.bz2』错误</span></h4><p>这是由于<a href="http://unix.stackexchange.com/questions/250249/error-after-installing-dnf-on-centos-7#answer-273487" target="_blank" rel="noopener">低版本的 libsolv 库无法处理 bzip 压缩包形式的依赖关系造成的</a>，解决的办法不是升级 libsolv 库，貌似库文件一起被封装成 python package，做到 rpm 里面了。所以正确的方法是，按照上面的步骤一、二重新安装 dnf。重新安装之前，必要的话应该删除旧的 DNF 及其依赖。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum erase dnf dnf-conf dnf-automatic python-dnf &amp;&amp; \</span><br><span class="line">yum install dnf dnf-conf dnf-automatic</span><br><span class="line"><span class="comment"># python-dnf 会作为 dnf 的依赖自动被安装</span></span><br></pre></td></tr></table></figure>
-<h4><span id="2-dnf-无法使用-epel-库">2. DNF 无法使用 epel 库</span></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum erase -y epel-release &amp;&amp; dnf install -y epel-release</span><br></pre></td></tr></table></figure>
-<p>通俗来讲就是让 DNF 来维护索引。</p>
-<h4><span id="3-no-such-command-xxx-please-use-usrbindnf-help">3. 『No such command: xxx. Please use /usr/bin/dnf –help』</span></h4><p>通常遇到这种情况，是没有安装 DNF 扩展导致的。用下面的命令安装上 DNF 扩展之后，问题就能顺利解决。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf install -y dnf-plugins-core</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/chrome-failed-on-opening-https-pages-after-upgraded-os-to-macos-sierra/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/chrome-failed-on-opening-https-pages-after-upgraded-os-to-macos-sierra/" itemprop="url">MacOS Sierra 升级之后的坑</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-06T00:18:55+08:00">
-                2016-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/chrome-failed-on-opening-https-pages-after-upgraded-os-to-macos-sierra/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/chrome-failed-on-opening-https-pages-after-upgraded-os-to-macos-sierra/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>今年六月，Apple 宣布要<a href="http://cn.engadget.com/2016/06/13/os-x-is-now-macos/" target="_blank" rel="noopener">把 MacBook 的 OS 名称从 OSX 改名为 MacOS</a>。为了体验第一代的 <a href="http://www.apple.com/macos/sierra/" target="_blank" rel="noopener">MacOS Sierra</a>，我也是第一时间选择了系统升级。2012 mid 的 MBP，升级到 MacOS，感觉我也有点拼了。</p>
-<p>升级完之后总体感觉还好，几乎都在预期内。却是在升级完成后大约第三天遇到 Chrome 报错，而且是反复的、随机的报错：『ERR_NETWORK_CHANGED』和『ERR_CERT_DATABASE_CHANGED』，就这两个。第一个出现的时候，页面 load 失败；第二个错误出现一般都是 js 或者 css 等页面资源 load 不下来（但是在新窗口打开这些资源又都没有问题）。</p>
-<p>找了一圈，国外的网友们普遍表示情绪很稳定，没有遇到过。难道只是我大兲朝人民会遇到？</p>
-<p>一开始考虑过是最近倡导的 HTTP =&gt; HTTPS 运动，有部分网站匆忙升级，可能在主站和资源站（相当一部分网站会把静态资源放到 CDN 上）之间的 key chains 路径有冲突所致。<code>CERT_DATABASE_CHANGED</code> 应该也是差不多的意思——原谅我懒癌发作，没去挖 chromium 代码。</p>
-<p>不过网站的配置有错，我也没辙。问题却总是要解决的，哪怕用什么讨巧的办法。于是，今天找到了 <a href="https://www.v2ex.com/" target="_blank" rel="noopener">V2EX</a> 上面的这个 issue<a href="https://www.v2ex.com/t/307911" target="_blank" rel="noopener">《MacOS Sierra 升级 CHROME 用 HTTPS 访问间歇性失败》</a>。原来已经有朋友<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=649253" target="_blank" rel="noopener">发现了罪魁祸首</a>，就是 Alipay 的安全控件。从评论区盆友们的反馈看，问题是已经解决了。</p>
-<p>评论区给出手动解决的办法。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一种办法：停用支付宝的安全控件</span></span><br><span class="line">sudo launchctl remove com.alipay.DispatcherService</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二种办法：彻底删除（手动卸载）支付宝安全控件</span></span><br><span class="line">sudo rm -rf /Library/Application\ Support/Alipay &amp;&amp; \</span><br><span class="line">sudo rm -rf /Library/LaunchDaemons/com.alipay.DispatcherService.plist &amp;&amp; \</span><br><span class="line">sudo rm -rf ~/Library/LaunchAgents/com.alipay.adaptor.plist &amp;&amp; \</span><br><span class="line">sudo rm -rf ~/Library/LaunchAgents/com.alipay.refresher.plist &amp;&amp; \</span><br><span class="line">sudo rm -rf ~/Library/Internet\ Plug-Ins/aliedit.plugin &amp;&amp; \</span><br><span class="line">sudo rm -rf ~/Library/Internet\ Plug-Ins/npalicdo.plugin</span><br></pre></td></tr></table></figure>
-<p>停用或者删除支付宝安全控件带来的安全隐患是，支付宝不能帮你『防止账户密码被木马程序或病毒窃取』。不过就像评论区里面另外一位朋友说的：</p>
-<blockquote>
-<p>现在支付宝都在手机上用，我碰上这个问题估计是历史遗留问题，否则我也不会中 alipay 的插件，我记得 macos sierra 禁用了一些低安全协议，估计插件还在用这些协议，就体现到这个上来了。</p>
-</blockquote>
-<p>支付宝产品安全策略的变化可以很清晰看出来，手机支付的方式越来越成为主流，而且相对也更为安全可靠。PC 端支付的机会越来越少，MacOS 上装不装、用不用支付宝安全控件，影响不大。跟 Chrome 抽风比起来，我更愿意卸载它。</p>
-<p>持续观察一段时间之后，再做评论。</p>
-<hr>
-<p>PS：忽然好担心 https 还能不能用 proxy 方式的做 sniffer？开发调试怎么办？囧</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
-          <p class="site-author-name" itemprop="name">Simon Kuang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives/">
-            
-                <span class="site-state-item-count">42</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/simonkuang || github" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友情链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2005 &mdash; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
-
-  
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
 </div>
-
-
-<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({"startOnload":true});
-  }
-</script>
-
-
-
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-  <span class="post-meta-divider">|</span>
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
-
-
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         
+    </div>
+</footer>
 
 
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
 
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=56218002";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
 
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
-    
-
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

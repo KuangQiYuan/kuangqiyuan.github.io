@@ -1,820 +1,349 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>从技术管理 title 看公司的技术解题思路 | 旷氏淇元</title>
+    <meta property="og:title" content="从技术管理 title 看公司的技术解题思路 - 旷氏淇元">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2016-09-19T21:43:57&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2016-09-19T21:43:57&#43;08:00">
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="从技术管理 title 看公司的技术解题思路">
+        <meta name="author" content="旷淇元">
+        
+    <meta property="og:url" content="http://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
 
 
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="技术人生,">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
-
-
-
-
-
-
-<meta name="description" content="互联网技术线的职业发展轨迹到今天已经很清晰，大体来说两个选择，要么继续深入走技术专家路线，当个架构师、研发专家，向计算机科学家方向迈进，要么转管理路线，从小组长做起，向 CTO 迈进。 这是正向的。反向，从一家公司技术负责人的 title，也能看出这家公司在技术方面的解题思路及现状。 1、招聘组长 / leader / 主管的，注意留意这家公司最近招聘攻城狮的岗位 JD。通常直接在 JD 里面说招">
-<meta name="keywords" content="技术人生">
-<meta property="og:type" content="article">
-<meta property="og:title" content="从技术管理 title 看公司的技术解题思路">
-<meta property="og:url" content="http://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/index.html">
-<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:description" content="互联网技术线的职业发展轨迹到今天已经很清晰，大体来说两个选择，要么继续深入走技术专家路线，当个架构师、研发专家，向计算机科学家方向迈进，要么转管理路线，从小组长做起，向 CTO 迈进。 这是正向的。反向，从一家公司技术负责人的 title，也能看出这家公司在技术方面的解题思路及现状。 1、招聘组长 / leader / 主管的，注意留意这家公司最近招聘攻城狮的岗位 JD。通常直接在 JD 里面说招">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-09T12:37:20.159Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从技术管理 title 看公司的技术解题思路">
-<meta name="twitter:description" content="互联网技术线的职业发展轨迹到今天已经很清晰，大体来说两个选择，要么继续深入走技术专家路线，当个架构师、研发专家，向计算机科学家方向迈进，要么转管理路线，从小组长做起，向 CTO 迈进。 这是正向的。反向，从一家公司技术负责人的 title，也能看出这家公司在技术方面的解题思路及现状。 1、招聘组长 / leader / 主管的，注意留意这家公司最近招聘攻城狮的岗位 JD。通常直接在 JD 里面说招">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.2',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/">
-
-
-
-
-
-  <title>从技术管理 title 看公司的技术解题思路 | 旷{<i>氏</i> }淇元</title>
-  
-
-
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-45245769-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">旷{<i>氏</i> }淇元</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">从技术管理 title 看公司的技术解题思路</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-19T21:43:57+08:00">
-                2016-09-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/routines-from-the-title-of-technology-manager/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/routines-from-the-title-of-technology-manager/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://i.am.simonkuang.com/">
+                        旷氏淇元
+                    </a>
+                
+                <p class="description">旷淇元的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://i.am.simonkuang.com/">首页</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/books/" title="新书">新书</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
         </div>
-      </header>
-    
+    </div>
+</header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
-      
-      
+<div id="body">
+    <div class="container">
+        <div class="col-group">
 
-      
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>互联网技术线的职业发展轨迹到今天已经很清晰，大体来说两个选择，要么继续深入走技术专家路线，当个架构师、研发专家，向计算机科学家方向迈进，要么转管理路线，从小组长做起，向 CTO 迈进。</p>
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">从技术管理 title 看公司的技术解题思路</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2016年9月19日
+                        </date>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<p>互联网技术线的职业发展轨迹到今天已经很清晰，大体来说两个选择，要么继续深入走技术专家路线，当个架构师、研发专家，向计算机科学家方向迈进，要么转管理路线，从小组长做起，向 CTO 迈进。</p>
+
 <p>这是正向的。反向，从一家公司技术负责人的 title，也能看出这家公司在技术方面的解题思路及现状。</p>
-<h4><span id="1-招聘组长-leader-主管的注意留意这家公司最近招聘攻城狮的岗位-jd">1、招聘组长 / leader / 主管的，注意留意这家公司最近招聘攻城狮的岗位 JD。</span></h4><p>通常直接在 JD 里面说招聘 leader 一类 title 的非大厂企业，通常的意思是：我们需要一名高级攻城狮。至于你能不能胜任 leader，需要在工作中观察。不过不管怎么说，能把 leader 提出来单独招聘，是有意识在补充团队的中坚力量，应该给个赞。</p>
+
+<h4 id="1-招聘组长-leader-主管的-注意留意这家公司最近招聘攻城狮的岗位-jd">1、招聘组长 / leader / 主管的，注意留意这家公司最近招聘攻城狮的岗位 JD。</h4>
+
+<p>通常直接在 JD 里面说招聘 leader 一类 title 的非大厂企业，通常的意思是：我们需要一名高级攻城狮。至于你能不能胜任 leader，需要在工作中观察。不过不管怎么说，能把 leader 提出来单独招聘，是有意识在补充团队的中坚力量，应该给个赞。</p>
+
 <p>这一类企业，留意他们最近招聘攻城狮的 JD，一个是 JD 中的任职要求，是否有侧重点，是否描述清晰，大致可以看出这个团队遇到了什么问题。第二是看看攻城狮 JD 中的薪资范围，可以从侧面了解这家公司攻城狮的待遇水平，也可以看出公司对这个角儿的期望，是个管培生，骨干，还是个救火队长。</p>
-<h4><span id="2-招技术总监的企业是希望用管理手段来修补技术问题">2、招技术总监的，企业是希望用管理手段来修补技术问题。</span></h4><p>技术总监的职责偏管理而非技术，这是大家都有共识的。公司少一个技术总监，言下之意就是公司觉得技术管理上出了点问题，需要个人来补救。再换个角度翻译就是：希望通过技术管理来提（ya）高（zha）技术团队工作效率。</p>
+
+<h4 id="2-招技术总监的-企业是希望用管理手段来修补技术问题">2、招技术总监的，企业是希望用管理手段来修补技术问题。</h4>
+
+<p>技术总监的职责偏管理而非技术，这是大家都有共识的。公司少一个技术总监，言下之意就是公司觉得技术管理上出了点问题，需要个人来补救。再换个角度翻译就是：希望通过技术管理来提（ya）高（zha）技术团队工作效率。</p>
+
 <p>走技术总监这条线，等于就是走技术管理路线了。而且，一定是管理工作大于技术工作。</p>
-<h4><span id="3-招架构师-首席架构师-研发专家的通常是需要一个救火队长少数是准备做大~~~项目">3、招架构师 / 首席架构师 / 研发专家的，通常是需要一个救火队长，少数是准备做大~~~项目。</span></h4><p>架构师 / 首席架构师 / 研发专家这几个 title 是在技术线的，现实中很多企业里面已经是到技术线顶端了。</p>
+
+<h4 id="3-招架构师-首席架构师-研发专家的-通常是需要一个救火队长-少数是准备做大-项目">3、招架构师 / 首席架构师 / 研发专家的，通常是需要一个救火队长，少数是准备做大~~~项目。</h4>
+
+<p>架构师 / 首席架构师 / 研发专家这几个 title 是在技术线的，现实中很多企业里面已经是到技术线顶端了。</p>
+
 <p>需要这类角色的企业，不少是需要一个能带队、独当一面的技术骨干，有不少企业在招聘的当下还面临一堆代码腐烂的系统，和一个问题重重的团队。能应聘这个职位的，跟应聘技术总监类似，入职后都要面临非常大的挑战，不同的是管理层的期望。能放出这个 title 的空缺，企业管理层是期望用技术的手段来解决现阶段面临的问题。</p>
-<h4><span id="4-招-cto-的要么是一穷二白的创业小作坊要么是高管层对产品的把控已经一筹莫展">4、招 CTO 的，要么是一穷二白的创业小作坊，要么是高管层对产品的把控已经一筹莫展。</span></h4><p>首先明确，CTO 在一家职能完备的企业里面，是高管角色，背的业务指标的，关心的是产品技术团队为公司业务增长提供多大的助力，对一个产品能不能实现、实现得好不好，他不负直接责任只负管理责任。同时，也意味着 CTO 对公司的主要业务必须非常熟悉。</p>
+
+<h4 id="4-招-cto-的-要么是一穷二白的创业小作坊-要么是高管层对产品的把控已经一筹莫展">4、招 CTO 的，要么是一穷二白的创业小作坊，要么是高管层对产品的把控已经一筹莫展。</h4>
+
+<p>首先明确，CTO 在一家职能完备的企业里面，是高管角色，背的业务指标的，关心的是产品技术团队为公司业务增长提供多大的助力，对一个产品能不能实现、实现得好不好，他不负直接责任只负管理责任。同时，也意味着 CTO 对公司的主要业务必须非常熟悉。</p>
+
 <p>创业小作坊招 CTO，基本上都是期望用 title 吸引住人才；而稍大一点的企业招 CTO，释放出来的信号是，高管层希望有人能通过对产品工作全权负责，来保增长促发展。</p>
+
 <p>不管怎么说，就像 Fenng 自身遭遇的事情一样，CTO 这个角儿不好做。</p>
+
 <p>另外还有一种常见的技术高管 title，叫『技术 VP』。这个基本上是活儿照干，但是不享受最后胜利果实的意思。企业招这个角儿的意思通常是：需要这么一个背业务指标的技术高管，你很合适，但又觉得你对企业带来的收益不高，比如没有一个好履历不方便放出去拉融资，所以把 CTO 的位置空缺，等遇到更合适的人，随时把你一脚踢开。</p>
+
 <p>如果不是公司大到一定份儿上，招这个角儿的公司都是在耍流氓。</p>
-<hr>
+
+<hr />
+
 <p>作为一名技术出身、想要升阶的求职者，首先搞清楚自己的期望，然后选择合适的职位去求职。不管最终选择什么样的岗位，都需要做好一件事：管理好别人的期望。而一个连自己的期望都管理不好的人，肯定没有办法管理好别人的期望。</p>
 
-      
-    </div>
-    
-    
-    
+                        </div>
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/技术人生/" rel="tag"># 技术人生</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/post/fuss-about-life-on-20160831/" rel="next" title="日常随记">
-                <i class="fa fa-chevron-left"></i> 日常随记
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/wild-dog-and-white-rabbit-are-both-necessary-for-a-company/" rel="prev" title="读评：小白兔和野狗的生路何在？">
-                读评：小白兔和野狗的生路何在？ <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
+                        
 
 
+                        
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
-        </div>
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
-          <p class="site-author-name" itemprop="name">Simon Kuang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives/">
-            
-                <span class="site-state-item-count">42</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+        <li><a href="/post/fuss-about-life-on-20160831/">日常随记</a></li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/simonkuang || github" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
+        <li><a href="/post/how-to-take-a-product-off-to-beta-effectively/">互联网创业怎么做产品技术规划（一）</a></li>
         
+        <li><a href="/post/grpc-for-php/">PHP 的 GRPC 扩展的安装修复</a></li>
         
-
+        <li><a href="/post/evil-headmaster-fang-binxing-and-his-gfw/">再次问候方校长：我们受够了功夫网</a></li>
         
+        <li><a href="/post/a-patent-for-perianal-abscess/">一种治疗疖肿的药剂专利</a></li>
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友情链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1、招聘组长 / leader / 主管的，注意留意这家公司最近招聘攻城狮的岗位 JD。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2、招技术总监的，企业是希望用管理手段来修补技术问题。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3、招架构师 / 首席架构师 / 研发专家的，通常是需要一个救火队长，少数是准备做大~~~项目。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">4、招 CTO 的，要么是一穷二白的创业小作坊，要么是高管层对产品的把控已经一筹莫展。</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2005 &mdash; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
-
-  
+    </ul>
 </div>
 
 
-<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({"startOnload":true});
-  }
-</script>
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F">技术人生</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
 
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://i.am.simonkuang.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+    </li>
+    
+</ul>
+    </section>
 
+    
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
+    </li>
+    
+</ul>
+    </section>
 
-  <span class="post-meta-divider">|</span>
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/devops/">devops</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hexo/">hexo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hugo/">hugo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/laravel/">laravel</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/php/">php</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
+    
+</div>
+    </section>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
-
-
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=56218002";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
+        <li>
+            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
+        </li>
         
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+        <li>
+            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
+        </li>
         
-      </div>
+        <li>
+            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
     
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
 
-  </div>
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
-  
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
 
 
 
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/';
-          this.page.identifier = 'post/routines-from-the-title-of-technology-manager/';
-          this.page.title = '从技术管理 title 看公司的技术解题思路';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://kuangqiyuan.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

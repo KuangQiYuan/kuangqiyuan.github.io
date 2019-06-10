@@ -1,371 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署 | 旷氏淇元</title>
+    <meta property="og:title" content="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署 - 旷氏淇元">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2018-05-04T13:21:35&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2018-05-04T13:21:35&#43;08:00">
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">
+        
+    <meta name="author" content="Simon">
+    <meta property="og:url" content="http://i.am.simonkuang.com/post/install-coredns-on-macos/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
 
 
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="技术,">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
-
-
-
-
-
-
-<meta name="description" content="DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。 我遇到的场景是这样的。  公司有内网机房，研发用，研发环境和测试环境都在内网机房； 公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析； 研发/测试环境的服务器也用顶级域名指向，例如：test">
-<meta name="keywords" content="技术">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">
-<meta property="og:url" content="http://i.am.simonkuang.com/post/install-coredns-on-macos/index.html">
-<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:description" content="DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。 我遇到的场景是这样的。  公司有内网机房，研发用，研发环境和测试环境都在内网机房； 公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析； 研发/测试环境的服务器也用顶级域名指向，例如：test">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-20T03:28:30.063Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">
-<meta name="twitter:description" content="DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。 我遇到的场景是这样的。  公司有内网机房，研发用，研发环境和测试环境都在内网机房； 公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析； 研发/测试环境的服务器也用顶级域名指向，例如：test">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.2',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://i.am.simonkuang.com/post/install-coredns-on-macos/">
-
-
-
-
-
-  <title>CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署 | 旷{<i>氏</i> }淇元</title>
-  
-
-
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-45245769-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">旷{<i>氏</i> }淇元</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/install-coredns-on-macos/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T13:21:35+08:00">
-                2018-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/install-coredns-on-macos/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/install-coredns-on-macos/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://i.am.simonkuang.com/">
+                        旷氏淇元
+                    </a>
+                
+                <p class="description">旷淇元的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://i.am.simonkuang.com/">首页</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/books/" title="新书">新书</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
         </div>
-      </header>
-    
+    </div>
+</header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
-      
-      
+<div id="body">
+    <div class="container">
+        <div class="col-group">
 
-      
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。</p>
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2018年5月4日
+                        </date>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<p>DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。</p>
+
 <p>我遇到的场景是这样的。</p>
+
 <ol>
 <li>公司有内网机房，研发用，研发环境和测试环境都在内网机房；</li>
 <li>公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析；</li>
@@ -374,15 +97,67 @@
 <li>对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind；</li>
 <li>之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。</li>
 </ol>
-<p>找了一圈，发现 <a href="https://coredns.io/" target="_blank" rel="noopener">CoreDNS</a> 挺好的。推荐之。</p>
-<h3><span id="一-安装">一、安装</span></h3><p>CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。</p>
+
+<p>找了一圈，发现 <a href="https://coredns.io/">CoreDNS</a> 挺好的。推荐之。</p>
+
+<h3 id="一-安装">一、安装</h3>
+
+<p>CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。</p>
+
 <p>下面统统以 MacOS 为例作讲解。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/Downloads</span><br><span class="line">curl -LO <span class="string">"https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz"</span> &amp;&amp; \</span><br><span class="line">tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \</span><br><span class="line">mv ./coredns /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
+
+<pre><code class="language-bash">cd ~/Downloads
+curl -LO &quot;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&quot; &amp;&amp; \
+tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \
+mv ./coredns /usr/local/bin/
+</code></pre>
+
 <p>这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。</p>
-<h3><span id="二-配置">二、配置</span></h3><p>要深入了解 CoreDNS，请查看其<a href="https://coredns.io/manual/toc" target="_blank" rel="noopener">文档</a>，及 <a href="https://coredns.io/plugins/" target="_blank" rel="noopener">plugins 的介绍</a>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /usr/<span class="built_in">local</span>/etc/Corefile</span><br><span class="line">. &#123;</span><br><span class="line">  hosts &#123;</span><br><span class="line">    fallthrough</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  forward . 1.1.1.1 8.8.8.8 119.29.29.29 223.5.5.5 &#123;</span><br><span class="line">    force_tcp</span><br><span class="line">    max_fails 3</span><br><span class="line">    expire 10s</span><br><span class="line">    health_check 5s</span><br><span class="line">    policy sequential</span><br><span class="line">    except company.com</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  cache 120</span><br><span class="line">  reload 6s</span><br><span class="line">  <span class="built_in">log</span></span><br><span class="line">  errors</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">company.com &#123;</span><br><span class="line">  hosts &#123;</span><br><span class="line">    fallthrough</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  forward . 192.168.88.101 119.29.29.29 114.114.114.114 &#123;</span><br><span class="line">    max_fails 3</span><br><span class="line">    expire 5s</span><br><span class="line">    health_check 3s</span><br><span class="line">    policy sequential</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-配置">二、配置</h3>
+
+<p>要深入了解 CoreDNS，请查看其<a href="https://coredns.io/manual/toc">文档</a>，及 <a href="https://coredns.io/plugins/">plugins 的介绍</a>。</p>
+
+<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /usr/local/etc/Corefile
+. {
+  hosts {
+    fallthrough
+  }
+
+  forward . 1.1.1.1 8.8.8.8 119.29.29.29 223.5.5.5 {
+    force_tcp
+    max_fails 3
+    expire 10s
+    health_check 5s
+    policy sequential
+    except company.com
+  }
+
+  cache 120
+  reload 6s
+  log
+  errors
+}
+
+company.com {
+  hosts {
+    fallthrough
+  }
+
+  forward . 192.168.88.101 119.29.29.29 114.114.114.114 {
+    max_fails 3
+    expire 5s
+    health_check 3s
+    policy sequential
+  }
+}
+EOF
+</code></pre>
+
 <p>其中 <code>192.168.88.101</code> 是公司内网 DNS 服务器（bind）的 IP 地址。</p>
+
 <p>对配置中的一些选项稍作解释。</p>
+
 <ul>
 <li><code>hosts</code>：<code>hosts</code> 是 CoreDNS 的一个 plugin，这一节的意思是加载 <code>/etc/hosts</code> 文件里面的解析信息。<code>hosts</code> 在最前面，则如果一个域名在 hosts 文件中存在，则优先使用这个信息返回；</li>
 <li><code>fallthrough</code>：如果 <code>hosts</code> 中找不到，则进入下一个 plugin 继续。缺少这一个指令，后面的 plugins 配置就无意义了；</li>
@@ -395,482 +170,367 @@
 <li><code>errors</code>：打印/存储错误日志；</li>
 <li><code>company.com { }</code>：另外一个『服务』，只服务针对『company.com』的域名解析；</li>
 </ul>
+
 <p>我讲一下我自己的理解。</p>
+
 <ol>
 <li>配置文件类似于 nginx 配置文件的格式；</li>
 <li>最外面一级的大括号，对应『服务』的概念。多个服务可以共用一个端口；</li>
 <li>往里面一级的大括号，对应 plugins 的概念，每一个大括号都是一个 plugin。这里可以看出，plugins 是 CoreDNS 的一等公民；</li>
 <li>服务之间顺序有无关联没有感觉，但 plugins 之间是严重顺序相关的。某些 plugin 必须用 <code>fallthrough</code> 关键字流向下一个 plugin；</li>
 <li>plugin 内部的配置选项是顺序无关的；</li>
-<li>从 <a href="https://coredns.io/plugins/" target="_blank" rel="noopener">plugins</a> 页面的介绍看，CoreDNS 的功能还是很强的，既能轻松从 bind 迁移，还能兼容 old-style dns server 的运维习惯；</li>
+<li>从 <a href="https://coredns.io/plugins/">plugins</a> 页面的介绍看，CoreDNS 的功能还是很强的，既能轻松从 bind 迁移，还能兼容 old-style dns server 的运维习惯；</li>
 <li>从 CoreDNS 的性能指标看，适合做大型服务。</li>
 </ol>
-<h3><span id="三-运行">三、运行</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前台运行方式</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile</span><br></pre></td></tr></table></figure>
+
+<h3 id="三-运行">三、运行</h3>
+
+<pre><code class="language-bash"># 前台运行方式
+/usr/local/bin/coredns -conf /usr/local/etc/Corefile
+</code></pre>
+
 <blockquote>
 <p><del>NOTE(simon): 新增 <code>-log</code> 参数，将日志打到 stdout，日志集中处理。</del></p>
-</blockquote>
-<blockquote>
+
 <p>UPDATE(simon): 更新 coredns 到最新的 1.2.2 版本，已经没有 -log 这个参数了。日志默认也是直接打到 stdout 上面。</p>
 </blockquote>
+
 <p>如果没有问题，这时候应该看到 CoreDNS 持续运行。</p>
-<h3><span id="四-部署">四、部署</span></h3><p>在用 chinadns 的时候，遇到过 chinadns 崩掉的情况。作为基础服务，DNS 还是要能稳定持续提供服务的。此外，开机自动启动也是个必要的功能。</p>
+
+<h3 id="四-部署">四、部署</h3>
+
+<p>在用 chinadns 的时候，遇到过 chinadns 崩掉的情况。作为基础服务，DNS 还是要能稳定持续提供服务的。此外，开机自动启动也是个必要的功能。</p>
+
 <p><del>综合考虑，熟悉的 <code>supervisor</code> 是个好的选择。</del></p>
-<strike><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">~~<span class="comment"># 安装 supervisor</span></span><br><span class="line">brew install supervisor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置服务配置目录</span></span><br><span class="line">mkdir -p /usr/<span class="built_in">local</span>/etc/supervisord.ini.d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 supervisor 配置</span></span><br><span class="line">sed -i .bak <span class="string">'s@files = .*@files = /usr/local/etc/supervisord.ini.d/*.ini@g'</span> /usr/<span class="built_in">local</span>/etc/supervisord.ini</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 supervisorctl 做映射</span></span><br><span class="line"><span class="built_in">alias</span> supervisorctl=<span class="string">'/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'</span></span><br><span class="line">cat &lt;&lt;EOF &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="built_in">alias</span> supervisorctl=<span class="string">'/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'</span></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 CoreDNS 写配置文件</span></span><br><span class="line">cat &lt;&lt;EOF &gt; /usr/<span class="built_in">local</span>/etc/supervisord.ini.d/coredns.ini</span><br><span class="line">[program:coredns]</span><br><span class="line"><span class="built_in">command</span>=/usr/bin/sudo /usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile</span><br><span class="line">;process_name=%(program_name)s ; process_name expr (default %(program_name)s)</span><br><span class="line">numprocs=1                    ; number of processes copies to start (def 1)</span><br><span class="line">directory=/usr/<span class="built_in">local</span>           ; directory to cwd to before <span class="built_in">exec</span> (def no cwd)</span><br><span class="line">;<span class="built_in">umask</span>=022                     ; <span class="built_in">umask</span> <span class="keyword">for</span> process (default None)</span><br><span class="line">;priority=999                  ; the relative start priority (default 999)</span><br><span class="line">autostart=<span class="literal">true</span>                ; start at supervisord start (default: <span class="literal">true</span>)</span><br><span class="line">autorestart=unexpected        ; whether/when to restart (default: unexpected)</span><br><span class="line">startsecs=1                   ; number of secs prog must stay running (def. 1)</span><br><span class="line">startretries=9999              ; max <span class="comment"># of serial start failures (default 3)</span></span><br><span class="line">;exitcodes=0,2                 ; <span class="string">'expected'</span> <span class="built_in">exit</span> codes <span class="keyword">for</span> process (default 0,2)</span><br><span class="line">stopsignal=QUIT               ; signal used to <span class="built_in">kill</span> process (default TERM)</span><br><span class="line">;stopwaitsecs=10               ; max num secs to <span class="built_in">wait</span> b4 SIGKILL (default 10)</span><br><span class="line">;stopasgroup=<span class="literal">false</span>             ; send stop signal to the UNIX process group (default <span class="literal">false</span>)</span><br><span class="line">;killasgroup=<span class="literal">false</span>             ; SIGKILL the UNIX process group (def <span class="literal">false</span>)</span><br><span class="line">;user=chrim                    ; setuid to this UNIX account to run the program</span><br><span class="line">;redirect_stderr=<span class="literal">true</span>          ; redirect proc stderr to stdout (default <span class="literal">false</span>)</span><br><span class="line">stdout_logfile=/usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/supervisor/coredns.stdout.log        ; stdout <span class="built_in">log</span> path, NONE <span class="keyword">for</span> none; default AUTO</span><br><span class="line">stdout_logfile_maxbytes=1MB   ; max <span class="comment"># logfile bytes b4 rotation (default 50MB)</span></span><br><span class="line">stdout_logfile_backups=10     ; <span class="comment"># of stdout logfile backups (default 10)</span></span><br><span class="line">stdout_capture_maxbytes=1MB   ; number of bytes <span class="keyword">in</span> <span class="string">'capturemode'</span> (default 0)</span><br><span class="line">stdout_events_enabled=<span class="literal">false</span>   ; emit events on stdout writes (default <span class="literal">false</span>)</span><br><span class="line">stderr_logfile=/usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/supervisor/coredns.stderr.log       ; stderr <span class="built_in">log</span> path, NONE <span class="keyword">for</span> none; default AUTO</span><br><span class="line">stderr_logfile_maxbytes=1MB   ; max <span class="comment"># logfile bytes b4 rotation (default 50MB)</span></span><br><span class="line">stderr_logfile_backups=10     ; <span class="comment"># of stderr logfile backups (default 10)</span></span><br><span class="line">stderr_capture_maxbytes=1MB   ; number of bytes <span class="keyword">in</span> <span class="string">'capturemode'</span> (default 0)</span><br><span class="line">stderr_events_enabled=<span class="literal">false</span>   ; emit events on stderr writes (default <span class="literal">false</span>)</span><br><span class="line">;environment=A=<span class="string">"1"</span>,B=<span class="string">"2"</span>       ; process environment additions (def no adds)</span><br><span class="line">;serverurl=AUTO                ; override serverurl computation (childutils)</span><br><span class="line"></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 supervisord 开机自启动</span></span><br><span class="line">brew service start supervisor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 CoreDNS 是否正常运行</span></span><br><span class="line">supervisorctl status</span><br></pre></td></tr></table></figure><br><br></strike>
+
+<p><strike></p>
+
+<pre><code class="language-bash">~~# 安装 supervisor
+brew install supervisor
+
+# 设置服务配置目录
+mkdir -p /usr/local/etc/supervisord.ini.d
+
+# 修改 supervisor 配置
+sed -i .bak 's@files = .*@files = /usr/local/etc/supervisord.ini.d/*.ini@g' /usr/local/etc/supervisord.ini
+
+# 为 supervisorctl 做映射
+alias supervisorctl='/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'
+cat &lt;&lt;EOF &gt;&gt; ~/.bash_profile
+alias supervisorctl='/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'
+EOF
+
+# 为 CoreDNS 写配置文件
+cat &lt;&lt;EOF &gt; /usr/local/etc/supervisord.ini.d/coredns.ini
+[program:coredns]
+command=/usr/bin/sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile
+;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
+numprocs=1                    ; number of processes copies to start (def 1)
+directory=/usr/local           ; directory to cwd to before exec (def no cwd)
+;umask=022                     ; umask for process (default None)
+;priority=999                  ; the relative start priority (default 999)
+autostart=true                ; start at supervisord start (default: true)
+autorestart=unexpected        ; whether/when to restart (default: unexpected)
+startsecs=1                   ; number of secs prog must stay running (def. 1)
+startretries=9999              ; max # of serial start failures (default 3)
+;exitcodes=0,2                 ; 'expected' exit codes for process (default 0,2)
+stopsignal=QUIT               ; signal used to kill process (default TERM)
+;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
+;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
+;killasgroup=false             ; SIGKILL the UNIX process group (def false)
+;user=chrim                    ; setuid to this UNIX account to run the program
+;redirect_stderr=true          ; redirect proc stderr to stdout (default false)
+stdout_logfile=/usr/local/var/log/supervisor/coredns.stdout.log        ; stdout log path, NONE for none; default AUTO
+stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)
+stdout_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+stdout_events_enabled=false   ; emit events on stdout writes (default false)
+stderr_logfile=/usr/local/var/log/supervisor/coredns.stderr.log       ; stderr log path, NONE for none; default AUTO
+stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)
+stderr_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+stderr_events_enabled=false   ; emit events on stderr writes (default false)
+;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions (def no adds)
+;serverurl=AUTO                ; override serverurl computation (childutils)
+
+EOF
+
+# 设置 supervisord 开机自启动
+brew service start supervisor
+
+# 查看 CoreDNS 是否正常运行
+supervisorctl status
+</code></pre>
+
+<p></strike></p>
 
 <blockquote>
-<p>NOTE(simon, 2018-05-30):<br>  放弃使用 supervisor 的原因是，MacOS 作为生产力工具，supervisor 最友好方式的安装还是通过 brew。而 brew 安装的 supervisor 启动时，是当前用户权限，不是 root 身份。试了下，也没办法通过配置，提权到 root。再则，supervisor 的配置中，大量文件写到 <code>/usr/local</code> 目录下，如果以 root 身份启动 supervisord 进程，这些文件势必也是 root 权限的。而按照 brew 的指导意见，<code>/usr/local</code> 下还是要保留当前用户权限的，否则 brew 可能会挂。<br>  所以兜兜转换，又用回到老的土办法。毕竟，稳定就好。</p>
+<p>NOTE(simon, 2018-05-30):
+  放弃使用 supervisor 的原因是，MacOS 作为生产力工具，supervisor 最友好方式的安装还是通过 brew。而 brew 安装的 supervisor 启动时，是当前用户权限，不是 root 身份。试了下，也没办法通过配置，提权到 root。再则，supervisor 的配置中，大量文件写到 <code>/usr/local</code> 目录下，如果以 root 身份启动 supervisord 进程，这些文件势必也是 root 权限的。而按照 brew 的指导意见，<code>/usr/local</code> 下还是要保留当前用户权限的，否则 brew 可能会挂。
+  所以兜兜转换，又用回到老的土办法。毕竟，稳定就好。</p>
 </blockquote>
-<strike><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; ~/.bash_profile</span><br><span class="line"><span class="comment"># CoreDNS</span></span><br><span class="line">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)</span><br><span class="line">[ <span class="variable">$&#123;COREDNS_PROCESS_COUNT&#125;</span> -lt 1 ] &amp;&amp; \</span><br><span class="line">    nohup sudo /usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile &amp;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure><br><br></strike>
+
+<p><strike></p>
+
+<pre><code class="language-bash">cat &lt;&lt;EOF &gt; ~/.bash_profile
+# CoreDNS
+COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)
+[ ${COREDNS_PROCESS_COUNT} -lt 1 ] &amp;&amp; \
+    nohup sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile &amp;
+EOF
+</code></pre>
+
+<p></strike></p>
 
 <blockquote>
-<p>NOTE(simon, 2018-11-20):<br>  更新一下脚本，实现下面几个功能：</p>
-<ol>
-<li>coredns 进程的 stderr 输出转到 stdout；</li>
-<li>coredns 进程不绑定到当前 tty 上，运行 <code>jobs</code> 命令不显示 coredns 进程；</li>
-<li>显式指定 nohup 将 coredns 进程的 stdout 输出打到 ~/nohup.out 文件；</li>
-</ol>
+<p>NOTE(simon, 2018-11-20):
+  更新一下脚本，实现下面几个功能：
+  1. coredns 进程的 stderr 输出转到 stdout；
+  2. coredns 进程不绑定到当前 tty 上，运行 <code>jobs</code> 命令不显示 coredns 进程；
+  3. 显式指定 nohup 将 coredns 进程的 stdout 输出打到 ~/nohup.out 文件；</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)</span><br><span class="line">[ <span class="variable">$&#123;COREDNS_PROCESS_COUNT&#125;</span> -lt 1 ] &amp;&amp; \</span><br><span class="line">  (2&gt;&amp;1 nohup sudo /usr/<span class="built_in">local</span>/bin/coredns -conf /usr/<span class="built_in">local</span>/etc/Corefile &gt;&gt; ~/nohup.out &amp;)</span><br></pre></td></tr></table></figure>
-<h3><span id="五-验证">五、验证</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup www.qq.com 127.0.0.1</span><br><span class="line">nslookup www.facebook.com 127.0.0.1</span><br><span class="line">nslookup test1.mod-a.company.com 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<pre><code class="language-bash">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)
+[ ${COREDNS_PROCESS_COUNT} -lt 1 ] &amp;&amp; \
+  (2&gt;&amp;1 nohup sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile &gt;&gt; ~/nohup.out &amp;)
+</code></pre>
+
+<h3 id="五-验证">五、验证</h3>
+
+<pre><code class="language-bash">nslookup www.qq.com 127.0.0.1
+nslookup www.facebook.com 127.0.0.1
+nslookup test1.mod-a.company.com 127.0.0.1
+</code></pre>
+
 <p>公司内网 IP 几乎秒出。非死不可也能出。</p>
+
 <p>搞定。</p>
-<h3><span id="六-系统设置">六、系统设置</span></h3><p>在『系统偏好设置』-&gt;『网络』中，把 DNS 里面添加一行，127.0.0.1，并把新增这项移动到最前面，即可。</p>
 
-      
-    </div>
-    
-    
-    
+<h3 id="六-系统设置">六、系统设置</h3>
 
-    
+<p>在『系统偏好设置』-&gt;『网络』中，把 DNS 里面添加一行，127.0.0.1，并把新增这项移动到最前面，即可。</p>
 
-    
+                        </div>
 
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/技术/" rel="tag"># 技术</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/post/react-native-depency-modified-boost-lib-from-0-50-1/" rel="next" title="react-native@0.50.1 开始依赖于一个特定版本的 boost 库">
-                <i class="fa fa-chevron-left"></i> react-native@0.50.1 开始依赖于一个特定版本的 boost 库
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/macos-flutter-run-using-proxy/" rel="prev" title="MacOS 下 flutter run 遇到墙的问题">
-                MacOS 下 flutter run 遇到墙的问题 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
+                        
 
 
+                        
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
-        </div>
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
-          <p class="site-author-name" itemprop="name">Simon Kuang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives/">
-            
-                <span class="site-state-item-count">42</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+        <li><a href="/post/react-native-depency-modified-boost-lib-from-0-50-1/">react-native@0.50.1 开始依赖于一个特定版本的 boost 库</a></li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/simonkuang || github" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
+        <li><a href="/post/evil-coding-pages/">为了打个广告，coding pages 变得好邪恶</a></li>
         
+        <li><a href="/post/chanlledge-from-programmer-to-architect/">从程序猿到架构狮的转变</a></li>
         
-
+        <li><a href="/post/nodejs-abuse-of-software-design-philosophy/">吐槽被NodeJS用滥的软件设计哲学</a></li>
         
+        <li><a href="/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/">数字公司旗下的 SSL 服务商好像被 block 完了</a></li>
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友情链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">二、配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">三、运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">四、部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">五、验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">六、系统设置</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2005 &mdash; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
-
-  
+    </ul>
 </div>
 
 
-<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({"startOnload":true});
-  }
-</script>
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF">技术</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
 
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://i.am.simonkuang.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+    </li>
+    
+</ul>
+    </section>
 
+    
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
+    </li>
+    
+</ul>
+    </section>
 
-  <span class="post-meta-divider">|</span>
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/devops/">devops</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hexo/">hexo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hugo/">hugo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/laravel/">laravel</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/php/">php</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
+    
+</div>
+    </section>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
-
-
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=56218002";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
+        <li>
+            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
+        </li>
         
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+        <li>
+            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
+        </li>
         
-      </div>
+        <li>
+            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
     
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
 
-  </div>
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
-  
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
 
 
 
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://i.am.simonkuang.com/post/install-coredns-on-macos/';
-          this.page.identifier = 'post/install-coredns-on-macos/';
-          this.page.title = 'CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://kuangqiyuan.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

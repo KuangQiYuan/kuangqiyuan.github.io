@@ -1,808 +1,371 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>吐槽被NodeJS用滥的软件设计哲学 | 旷氏淇元</title>
+    <meta property="og:title" content="吐槽被NodeJS用滥的软件设计哲学 - 旷氏淇元">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2017-08-27T00:54:40&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2017-08-27T00:54:40&#43;08:00">
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="吐槽被NodeJS用滥的软件设计哲学">
+        <meta name="author" content="旷淇元">
+        
+    <meta property="og:url" content="http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
 
 
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-  <meta name="google-site-verification" content="SOqsL8PexCDMo8ubmGTRngo5fAy0r6255DCMfRC5Bzg">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="前端,">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
-
-
-
-
-
-
-<meta name="description" content="NodeJS 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。 NodeJS 的包管理工具 npm（Nodejs Package Management）在这其中功不可没。 直到 2016 年初，有一个很硬的程序猿 Azer，非常不满自己的权益没有被 npm 这个平台正确对待——">
-<meta name="keywords" content="前端">
-<meta property="og:type" content="article">
-<meta property="og:title" content="吐槽被NodeJS用滥的软件设计哲学">
-<meta property="og:url" content="http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/index.html">
-<meta property="og:site_name" content="旷{&lt;i&gt;氏&lt;&#x2F;i&gt; }淇元">
-<meta property="og:description" content="NodeJS 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。 NodeJS 的包管理工具 npm（Nodejs Package Management）在这其中功不可没。 直到 2016 年初，有一个很硬的程序猿 Azer，非常不满自己的权益没有被 npm 这个平台正确对待——">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-09T12:37:20.164Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="吐槽被NodeJS用滥的软件设计哲学">
-<meta name="twitter:description" content="NodeJS 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。 NodeJS 的包管理工具 npm（Nodejs Package Management）在这其中功不可没。 直到 2016 年初，有一个很硬的程序猿 Azer，非常不满自己的权益没有被 npm 这个平台正确对待——">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.2',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/">
-
-
-
-
-
-  <title>吐槽被NodeJS用滥的软件设计哲学 | 旷{<i>氏</i> }淇元</title>
-  
-
-
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-45245769-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">旷{<i>氏</i> }淇元</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Kuang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="旷{<i>氏</i> }淇元">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">吐槽被NodeJS用滥的软件设计哲学</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T00:54:40+08:00">
-                2017-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/nodejs-abuse-of-software-design-philosophy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="post/nodejs-abuse-of-software-design-philosophy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://i.am.simonkuang.com/">
+                        旷氏淇元
+                    </a>
+                
+                <p class="description">旷淇元的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://i.am.simonkuang.com/">首页</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/books/" title="新书">新书</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://i.am.simonkuang.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
         </div>
-      </header>
-    
+    </div>
+</header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
-      
-      
+<div id="body">
+    <div class="container">
+        <div class="col-group">
 
-      
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><a href="https://nodejs.org/" target="_blank" rel="noopener">NodeJS</a> 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。</p>
-<p>NodeJS 的包管理工具 <a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>（Nodejs Package Management）在这其中功不可没。</p>
-<p>直到 2016 年初，有一个很硬的程序猿 <a href="https://twitter.com/afrikaradyo" target="_blank" rel="noopener">Azer</a>，非常不满自己的权益没有被 npm 这个平台正确对待——具体说，就是 npm 收到另外一个用户的律师信之后，擅自删除了前面这个 Azer 的 package，把 package 的名字直接转让给发律师信的用户管理——一气之下将自己创建并管理的所有 npm 上的项目全部 unpublish 了。这种行为在游戏里面叫自杀。关键人家还说挺对的：<a href="https://medium.com/@azerbike/i-ve-just-liberated-my-modules-9045c06be67c" target="_blank" rel="noopener">我解放了我所有的模块，因为我不会在一个某些人滥用特权的地方分享我的开源工作</a>。结果就比较搞笑了，因为其中一个被删除的模块 <a href="https://www.npmjs.com/package/left-pad" target="_blank" rel="noopener">left-pad</a> 被大家广泛引用，导致 Babel、Ember、ReactNative 等等构建工具、框架，都不能正常使用。除了一些将 package 打包发布的应用，例如 <a href="https://atom.io" target="_blank" rel="noopener">Atom</a>。这事儿在当时简直就是灾难，N 多前端程序猿被迫加班解决问题。</p>
-<p>从这件事情之后，有些人也开始反思，于是知乎上有人问『<a href="https://www.zhihu.com/question/41694868" target="_blank" rel="noopener">如何看待 Azer Koçulu 删除了自己的所有 npm 库？</a>』这一类的问题。直到后来终于有人问：<strong>难道一个只有十一行代码的功能你们都不能自己写了么？</strong>（PS：left-pad 只有十一行有效代码）问题才逐渐回归本源上。</p>
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">吐槽被NodeJS用滥的软件设计哲学</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2017年8月27日
+                        </date>
+                        
+                        
+                        
+                        <div class="post-content">
+                            <p><a href="https://nodejs.org/">NodeJS</a> 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。</p>
+
+<p>NodeJS 的包管理工具 <a href="https://www.npmjs.com/">npm</a>（Nodejs Package Management）在这其中功不可没。</p>
+
+<p>直到 2016 年初，有一个很硬的程序猿 <a href="https://twitter.com/afrikaradyo">Azer</a>，非常不满自己的权益没有被 npm 这个平台正确对待——具体说，就是 npm 收到另外一个用户的律师信之后，擅自删除了前面这个 Azer 的 package，把 package 的名字直接转让给发律师信的用户管理——一气之下将自己创建并管理的所有 npm 上的项目全部 unpublish 了。这种行为在游戏里面叫自杀。关键人家还说挺对的：<a href="https://medium.com/@azerbike/i-ve-just-liberated-my-modules-9045c06be67c">我解放了我所有的模块，因为我不会在一个某些人滥用特权的地方分享我的开源工作</a>。结果就比较搞笑了，因为其中一个被删除的模块 <a href="https://www.npmjs.com/package/left-pad">left-pad</a> 被大家广泛引用，导致 Babel、Ember、ReactNative 等等构建工具、框架，都不能正常使用。除了一些将 package 打包发布的应用，例如 <a href="https://atom.io">Atom</a>。这事儿在当时简直就是灾难，N 多前端程序猿被迫加班解决问题。</p>
+
+<p>从这件事情之后，有些人也开始反思，于是知乎上有人问『<a href="https://www.zhihu.com/question/41694868">如何看待 Azer Koçulu 删除了自己的所有 npm 库？</a>』这一类的问题。直到后来终于有人问：<strong>难道一个只有十一行代码的功能你们都不能自己写了么？</strong>（PS：left-pad 只有十一行有效代码）问题才逐渐回归本源上。</p>
+
 <p>要我说，从我了解 npm 开始，就一直觉得它是 DRY（Donot Repeat Yourself）和 KISS（Keep It Simple, Stupid）的极端实践者。极端到什么地步呢，就像上面提到的，连一个十一行代码的功能都要找 npm 上面的 package 来实现，而不是自己写一份。层层叠叠，相互之间的引用关系堪比用 DNA 图谱勾勒人类进化史和迁移史。</p>
+
 <p>现在看来，哲学是好的，但做得有点儿过。</p>
-<hr>
+
+<hr />
+
 <p>这两天被 npm 搞得够呛。</p>
-<p>一直用 <a href="https://hexo.io" target="_blank" rel="noopener">hexo</a> 写博客，好好的。手贱升级了 node 到 7.4.x，完了，发现不正常了，报类似下面的错误。</p>
+
+<p>一直用 <a href="https://hexo.io">hexo</a> 写博客，好好的。手贱升级了 node 到 7.4.x，完了，发现不正常了，报类似下面的错误。</p>
+
 <blockquote>
-<p>Fatal error in ../deps/v8/src/api.cc, line 1051<br>Check failed: !value_obj-&gt;IsJSReceiver() || value_obj-&gt;IsTemplateInfo().</p>
+<p>Fatal error in ../deps/v8/src/api.cc, line 1051
+Check failed: !value_obj-&gt;IsJSReceiver() || value_obj-&gt;IsTemplateInfo().</p>
 </blockquote>
-<p>在 <a href="https://github.com/nodejs/node/issues/10659" target="_blank" rel="noopener">github 上找到答案</a>，升级 node 到 8.4.0 之后解决了问题。可是，今天升级 hexo 到 3.3.8 之后，又出现上面的问题。</p>
+
+<p>在 <a href="https://github.com/nodejs/node/issues/10659">github 上找到答案</a>，升级 node 到 8.4.0 之后解决了问题。可是，今天升级 hexo 到 3.3.8 之后，又出现上面的问题。</p>
+
 <p>从 github issue 和错误 stack 中已经知道是 fsevents 引发的问题，而且 fsevents 之前是经过大改的，版本有讲究。对这些历史了解很重要。</p>
+
 <p>删除 node_modules 和 npm cache 之后重新安装 npm 模块，不行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .npm/ node_modules/ package-lock.json db.json</span><br><span class="line">rm -rf ~/.npm/.cache</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>用 <a href="https://www.npmjs.com/package/yarn" target="_blank" rel="noopener">yarn</a> 来安装。还是不行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .npm/ node_modules/ package-lock.json db.json yarn.lock</span><br><span class="line">rm -rf ~/.npm/.cache</span><br><span class="line">yarn install</span><br></pre></td></tr></table></figure>
+
+<pre><code class="language-bash">rm -rf .npm/ node_modules/ package-lock.json db.json
+rm -rf ~/.npm/.cache
+npm install
+</code></pre>
+
+<p>用 <a href="https://www.npmjs.com/package/yarn">yarn</a> 来安装。还是不行。</p>
+
+<pre><code class="language-bash">rm -rf .npm/ node_modules/ package-lock.json db.json yarn.lock
+rm -rf ~/.npm/.cache
+yarn install
+</code></pre>
+
 <p>连错误都一模一样。</p>
+
 <p>直到用 <code>npm ls | grep fsevents</code> 命令，发现 fsevents 有两个版本，其中一个是 0.3.8——明显大改之前的。这时候，一个粗暴的办法出现在脑海里面。</p>
-<p>在 iTerm3 里面快速定位到使用 <a href="mailto:`fsevents@0.3.8" target="_blank" rel="noopener">`fsevents@0.3.8</a><code>的组件，原来是</code><a href="mailto:hexo-github@1.0.1" target="_blank" rel="noopener">hexo-github@1.0.1</a><code>依赖的</code>nunjucks` 这个库。</p>
+
+<p>在 iTerm3 里面快速定位到使用 <code>fsevents@0.3.8</code> 的组件，原来是 <code>hexo-github@1.0.1</code> 依赖的 <code>nunjucks</code> 这个库。</p>
+
 <p>hexo-github 的作用是将 github 时间线展现在 blog 里面，非常适合程序猿出身的博主，但是我这会儿还没用上。所以先卸载吧。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall --save hexo-github</span><br></pre></td></tr></table></figure>
+
+<pre><code class="language-bash">npm uninstall --save hexo-github
+</code></pre>
+
 <p><em>好吧，其实我是删除 node_modules 之后修改 package.json，再重装来的。:-P</em></p>
+
 <p>总之，就好了。</p>
+
 <p>hexo-github 的依赖关系指明依赖 <code>nunjucks@^1.3.4</code>，这好像是 <code>npm install --save nunjucks</code> 时会自动添加进 package.json 文件中的格式。默认格式。现在 nunjucks 的版本是 3.0.1，已经不在 1.x.x 这条主版本线上。所以，除非 hexo-github 的作者手动更新依赖中 nunjucks 的主版本号，否则就被栓死在 1.x.x 主线上。</p>
+
 <p>万一真遇到 hexo-github 这样几乎已经不维护的 package，我真有自己 fork 一个库自己改的冲动。但这样又不 DRY 了，对吧？</p>
+
 <p>心好累啊。[捂脸]</p>
 
-      
-    </div>
-    
-    
-    
+                        </div>
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/前端/" rel="tag"># 前端</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/" rel="next" title="数字公司旗下的 SSL 服务商好像被 block 完了">
-                <i class="fa fa-chevron-left"></i> 数字公司旗下的 SSL 服务商好像被 block 完了
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/chanlledge-from-programmer-to-architect/" rel="prev" title="从程序猿到架构狮的转变">
-                从程序猿到架构狮的转变 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
+                        
 
 
+                        
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
-        </div>
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="http://upload.jianshu.io/users/upload_avatars/69775/1a6d1438fd5d.jpg?imageMogr/thumbnail/90x90/quality/100" alt="Simon Kuang">
-          <p class="site-author-name" itemprop="name">Simon Kuang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives/">
-            
-                <span class="site-state-item-count">42</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+        <li><a href="/post/angular-js-docs-for-the-users-in-the-wall/">angularjs 的设计文档及部分官方资料</a></li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/simonkuang || github" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
+        <li><a href="/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/">数字公司旗下的 SSL 服务商好像被 block 完了</a></li>
         
+        <li><a href="/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/">阿里云未备案云主机申请 letsencrypt ssl 证书</a></li>
         
-
+        <li><a href="/post/check-in-app-accessing-with-openresty/">用 openresty 来做 app api 接口的验真</a></li>
         
+        <li><a href="/post/user-only-equals-number/">用户就是个数字（外两则）</a></li>
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友情链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.laruence.com/" title="Laruence" target="_blank">Laruence</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh的Nginx教程" target="_blank">agentzh的Nginx教程</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet" target="_blank">gitflow-cheatsheet</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://my.oschina.net/yilian/blog/664632" title="TensorFlow入门教程" target="_blank">TensorFlow入门教程</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2005 &mdash; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Simon Kuang</span>
-
-  
+    </ul>
 </div>
 
 
-<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({"startOnload":true});
-  }
-</script>
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF">前端</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
 
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://i.am.simonkuang.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-dnf-on-centos-7/" title="CentOS7 下安装 DNF 的方法">CentOS7 下安装 DNF 的方法</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/" title="MacOS 下 flutter run 遇到墙的问题">MacOS 下 flutter run 遇到墙的问题</a>
+    </li>
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/post/install-coredns-on-macos/" title="CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
+    </li>
+    
+</ul>
+    </section>
 
+    
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
+    </li>
+    
+</ul>
+    </section>
 
-  <span class="post-meta-divider">|</span>
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/devops/">devops</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hexo/">hexo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/hugo/">hugo</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/laravel/">laravel</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/php/">php</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
+    
+</div>
+    </section>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
-
-
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=56218002";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
+        <li>
+            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
+        </li>
         
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+        <li>
+            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
+        </li>
         
-      </div>
+        <li>
+            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
     
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
 
-  </div>
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
-  
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
 
 
 
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://kuangqiyuan.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/';
-          this.page.identifier = 'post/nodejs-abuse-of-software-design-philosophy/';
-          this.page.title = '吐槽被NodeJS用滥的软件设计哲学';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://kuangqiyuan.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
