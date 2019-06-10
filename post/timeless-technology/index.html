@@ -155,78 +155,42 @@ public class Singleton {
 <p>无论是 QoS2 还是 transaction，原理都是一样的：<strong>通过一次代价非常小、成功概率足够高的操作，作为最后确认的依据</strong>。这样做并不是说绝对不出错，而是出错的概率足够低，实践中可以忽略。</p>
 </blockquote>
 
-<div class="mermaid">
-  
-sequenceDiagram
+<pre><code class="language-mermaid">sequenceDiagram
   participant Publisher
   participant Broker
   participant Subscriber
-  Publisher->>Publisher: Store(Msg)
-  Publisher->>Broker: PUBLISH(QoS2, Msg)
-  Broker->>Broker: Store(Msg)
-  Broker->>Publisher: PUBREC
-  Publisher->>Broker: PUBREL
-  Broker->>Subscriber: PUBLISH(QoS2, Msg)
-  Broker->>Publisher: PUBCOMP
-  Publisher->>Publisher: Delete(Msg)
-  Subscriber->>Subscriber: Store(Msg)
-  Subscriber->>Broker: PUBREC
-  Broker->>Subscriber: PUBREL
-  Subscriber->>Subscriber: Notify(Msg)
-  Subscriber->>Broker: PUBCOMP
-  Broker->>Broker: Delete(Msg)
-  Subscriber->>Subscriber: Delete(Msg)
-
-</div>
-<script src="//unpkg.com/mermaid@8.0.0/dist/mermaid.min.js" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  mermaid.initialize({
-    theme: 'forest',
-    
-    logLevel: 3,
-    flowchart: { curve: 'linear' },
-    gantt: { axisFormat: '%m/%d/%Y' },
-    sequence: { actorMargin: 50 },
-    
-  });
-});
-</script>
-
+  Publisher-&gt;&gt;Publisher: Store(Msg)
+  Publisher-&gt;&gt;Broker: PUBLISH(QoS2, Msg)
+  Broker-&gt;&gt;Broker: Store(Msg)
+  Broker-&gt;&gt;Publisher: PUBREC
+  Publisher-&gt;&gt;Broker: PUBREL
+  Broker-&gt;&gt;Subscriber: PUBLISH(QoS2, Msg)
+  Broker-&gt;&gt;Publisher: PUBCOMP
+  Publisher-&gt;&gt;Publisher: Delete(Msg)
+  Subscriber-&gt;&gt;Subscriber: Store(Msg)
+  Subscriber-&gt;&gt;Broker: PUBREC
+  Broker-&gt;&gt;Subscriber: PUBREL
+  Subscriber-&gt;&gt;Subscriber: Notify(Msg)
+  Subscriber-&gt;&gt;Broker: PUBCOMP
+  Broker-&gt;&gt;Broker: Delete(Msg)
+  Subscriber-&gt;&gt;Subscriber: Delete(Msg)
+</code></pre>
 
 <p>简单一点的模型，如果不需要中间的 broker，则流程如下。</p>
 
-<div class="mermaid">
-  
-sequenceDiagram
+<pre><code class="language-mermaid">sequenceDiagram
   participant Publisher
   participant Subscriber
-  Publisher->>Publisher: Store(Msg)
-  Publisher->>Subscriber: (1) PUBLISH(QoS2, Msg)
-  Subscriber->>Subscriber: Store(Msg)
-  Subscriber->>Publisher: (2) PUBREC
-  Publisher->>Subscriber: (3) PUBREL
-  Subscriber->>Subscriber: Notify(Msg)
-  Subscriber->>Publisher: (4) PUBCOMP
-  Subscriber->>Subscriber: Delete(Msg)
-  Publisher->>Publisher: Delete(Msg)
-
-</div>
-<script src="//unpkg.com/mermaid@8.0.0/dist/mermaid.min.js" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  mermaid.initialize({
-    theme: 'forest',
-    
-    logLevel: 3,
-    flowchart: { curve: 'linear' },
-    gantt: { axisFormat: '%m/%d/%Y' },
-    sequence: { actorMargin: 50 },
-    
-  });
-});
-</script>
-
+  Publisher-&gt;&gt;Publisher: Store(Msg)
+  Publisher-&gt;&gt;Subscriber: (1) PUBLISH(QoS2, Msg)
+  Subscriber-&gt;&gt;Subscriber: Store(Msg)
+  Subscriber-&gt;&gt;Publisher: (2) PUBREC
+  Publisher-&gt;&gt;Subscriber: (3) PUBREL
+  Subscriber-&gt;&gt;Subscriber: Notify(Msg)
+  Subscriber-&gt;&gt;Publisher: (4) PUBCOMP
+  Subscriber-&gt;&gt;Subscriber: Delete(Msg)
+  Publisher-&gt;&gt;Publisher: Delete(Msg)
+</code></pre>
 
 <p>从简化以后的模型可以看到，publisher 和 subscriber 有两次交互。第一次，publisher 把 msg 推送给 subscriber，对应 <code>PUBLISH</code>/<code>PUBREC</code> 指令。第二次，publisher 等于是询问 subscriber，“你是不是收到一次”，对应 <code>PUBREL</code>/<code>PUBCOMP</code> 指令。</p>
 
@@ -470,6 +434,8 @@ if (!doNotTrack) {
 
 
   <script src="/js/baidu.js"></script>
+
+  <script src="/js/mermaid.js"></script>
 
 </body>
 </html>
