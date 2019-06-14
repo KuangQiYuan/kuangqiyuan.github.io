@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>架构 on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/</link>
+    <link>https://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/</link>
     <description>Recent content in 架构 on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Mon, 10 Jun 2019 17:14:05 +0800</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>『每个架构师都应该研究下康威定律』</title>
-      <link>http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</link>
+      <link>https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</link>
       <pubDate>Mon, 10 Jun 2019 17:14:05 +0800</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</guid>
+      <guid>https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</guid>
       <description>InfoQ 中国在 2016 年，发表过一篇文章，杨波的《每个架构师都应该研究下康威定律》。这篇文章对当时的我，触动是非常深刻的。一些说不清道不明的经验，被别人用浅显易懂的道理，讲得一清二楚。
 康威定律是很早就听说过的，后来陆续又有一些接触，每次时隔一段时间再做了解，就会有非常深的触动。我理解，原因无他，因为它聚焦在组织架构和系统设计的关系上，而这两者，一个是架构师目标，一个是架构师的手段/工具。文中用很简短的一句话，讲清楚了这中间的关系。
  系统架构的目标是解决利益相关者的关注点。
@@ -41,10 +41,10 @@
     
     <item>
       <title>用 openresty 来做 app api 接口的验真</title>
-      <link>http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/</link>
+      <link>https://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/</link>
       <pubDate>Tue, 25 Jul 2017 12:37:04 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/</guid>
+      <guid>https://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/</guid>
       <description>app 服务器端的开发中，有一个百年不变的小东西：api 访问的验真问题。因为 http 协议是无状态的，每次 app 发起请求，我都需要验证这次请求的确是由真实的、授权的 app 发起，以此来阻止不诚实用户发起的攻击、数据爬取，确保产品的安全，和用户在产品上的信息安全。
 JWT（JSON Web Token）是一个 http 之上的不错的 api 验真协议，结合 https，几乎可以安全地传输各种数据。最关键是，它原理简单，没用到啥黑科技，新瓶装老酒，但实用。
 openresty 是春哥做的一款神器，在 nginx 上挂了个 lua 引擎，可以用 lua 脚本指挥 nginx 做很多事情。了解 lua 的童靴都知道，lua 的执行性能堪比 C++/Java 这些编译型语言，大家在一个量级。能做到这步，已经相当感人。用 openresty 来实现 jwt 协议，做 api 访问的验真，可以降低后台系统的复杂程度，同时还能提高系统鲁棒性，防止被恶意攻击时系统雪崩。

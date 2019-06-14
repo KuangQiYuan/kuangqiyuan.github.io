@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术人生 on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/</link>
+    <link>https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/</link>
     <description>Recent content in 技术人生 on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Tue, 05 Sep 2017 11:17:17 +0000</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>为了打个广告，coding pages 变得好邪恶</title>
-      <link>http://i.am.simonkuang.com/post/evil-coding-pages/</link>
+      <link>https://i.am.simonkuang.com/post/evil-coding-pages/</link>
       <pubDate>Tue, 05 Sep 2017 11:17:17 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/evil-coding-pages/</guid>
+      <guid>https://i.am.simonkuang.com/post/evil-coding-pages/</guid>
       <description>Coding Pages 是我的博客承载平台。我的博客是用 Hexo 做的，Markdown 语法书写，编译成静态 html 后上传到 Coding Pages 和 Github Pages 上面去，供大家访问。之所以用两个不同的 Pages 服务，是因为之前 Github 被 GFW 墙了，包括 Pages 在内的服务都访问不顺畅，彼时正好 gitcafe pages（后来被 Coding 收购）也提供 Pages 服务，所以在国内做了个镜像。这样墙里面的网友不仅不用看 GFW 的心情，还因为服务器在国内，国内网友访问时更快一些。谷歌上一搜『hexo github coding』就能有很多结果，例如这篇『将hexo博客同时托管到github和coding』。
 但是好像从上个月（八月）开始，coding pages 开始劫持我的博客访问，穿插进他们自己的企业版 coding 的广告，播放五秒之后，再跳转进入我的博客。这很优酷、很爱奇艺，很 APP。广告页面上甚至连一个倒计时的控件都看不到，就右上角（好像是）一行很小的字，跟你讲：*你没访问错，这个页面只是广告*。
 看了 coding 的解释，你要不花钱买它的会员（金牌会员），就要在你的博客页脚上加『hosted by coding pages』的字样。如下图。
@@ -30,10 +30,10 @@
     
     <item>
       <title>从程序猿到架构狮的转变</title>
-      <link>http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/</link>
+      <link>https://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/</link>
       <pubDate>Thu, 31 Aug 2017 22:04:38 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/</guid>
+      <guid>https://i.am.simonkuang.com/post/chanlledge-from-programmer-to-architect/</guid>
       <description>从程序员到架构师的成长，变化就像从小学生到高中生一样巨大。
 不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，*培养培养*，就可以成为架构师了。架构师都是摔打出来的。
 看到过对*做架构*有一个不错的定义：系统架构的目标是解决利益相关者的关注点。
@@ -57,10 +57,10 @@
     
     <item>
       <title>数字公司旗下的 SSL 服务商好像被 block 完了</title>
-      <link>http://i.am.simonkuang.com/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/</link>
+      <link>https://i.am.simonkuang.com/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/</link>
       <pubDate>Wed, 16 Aug 2017 23:59:08 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/</guid>
+      <guid>https://i.am.simonkuang.com/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/</guid>
       <description>刚知道，Apple 早在去年就开始 block Wosign 和 StartCom 作为根签发的 SSL 证书。
 继 Symantec 被 google 亲儿子 chrome 拉黑之后，感觉信息安全圈儿的很多事情忽然变了，有『忽如一夜春风来』的感觉。以前是知道有这么些事儿，藏着掖着谁都不说明白，资深的自己玩儿，小弟捡漏，群众连瓜在哪儿都不一定知道。现在是感觉被子掀开，太阳晒进来，虫子晒死一堆——还有大虫子，而侥幸活着的挪个地儿，继续往阴暗处爬。照这趋势，被子迟早彻底掀开，那会儿会怎么样，真不知道。就我知道，glibc 的 hostname resolve 漏洞和 openssl 心脏滴血都是开胃菜。想对隐藏的『大 boss』有直观感觉，请看斯诺登泄密的那些文件。
 开源可持续的其中一个前提是：大多数贡献者积极向善。就像最近很火的区块链，确保账本正确、资金安全的前提是，不诚实节点掌握不了超过全网 50% 的运算力。否则，保存在全网区块链中的账本，被人篡改的几率就大大增加，账本不可信，资金不安全，你账户里面躺着的钱有一天会突然变成 TA 的。随着这些年技术门槛降低，互联网开始普及，互联网经济不再神秘，趋金的商人也越来越多走进来，捞钱。他们在互联网经济中所占的比例会越来越大，最后他们的影响力一定会超过作为『互联网原住民』的工程师。趋金不是个贬义词，由它引发的故事却往往是贬义的。这些故事，最终可能会毁了开源，或者说『进化』开源。
@@ -72,10 +72,10 @@ selinux 也是可怜的孩子，生不逢时。网上的小白教程讨论的都
     
     <item>
       <title>用户就是个数字（外两则）</title>
-      <link>http://i.am.simonkuang.com/post/user-only-equals-number/</link>
+      <link>https://i.am.simonkuang.com/post/user-only-equals-number/</link>
       <pubDate>Sun, 30 Oct 2016 14:16:45 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/user-only-equals-number/</guid>
+      <guid>https://i.am.simonkuang.com/post/user-only-equals-number/</guid>
       <description>这两天有种忙得不亦乐乎的感觉，倦怠了写博客。
 用户就是个数字 要说的是关于鹅厂邮箱的事儿。标题是很多大公司做产品的哲学，当然也包括鹅厂自己家的。
 我是鹅厂毕业，也算是鹅厂粉丝，但凡能鹅厂产品能满足要求的地方，就不会用别家的产品。企业邮箱就是一个例子。
@@ -102,10 +102,10 @@ selinux 也是可怜的孩子，生不逢时。网上的小白教程讨论的都
     
     <item>
       <title>『东航两飞机险相撞』事件中的飞行知识</title>
-      <link>http://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/</link>
+      <link>https://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/</link>
       <pubDate>Sat, 22 Oct 2016 23:58:23 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/</guid>
+      <guid>https://i.am.simonkuang.com/post/cold-knowledge-about-plane-taking-off/</guid>
       <description>今天无意中打开 Maxthon，看到了推荐的一则旧闻——『东航两飞机险相撞』。我记得事件当天就有看到这则报道，当时的第一反应是：类似荷兰皇家航空发生的空难（特内里费空难）在虹桥机场被避免了。今天看到的更多是后续报道，新闻报道的焦点几乎都在 V5 的机长和疏忽的管制员身上。
 俗话说，对航空航天没点儿兴趣的码农不是好的 CTO。凭借我多年积累的航空知识，和对航空事业发展的关注——其实就是对各城市机场航班老是延误的那点儿感性认知——跑道入侵征候（被规避了，不算空难）在今天不能算是罕见。不过这次这个事件号称是相差三秒相撞，事后也被定型为 A 类跑道入侵事件，说明事件本身还是非常严重的。
 下面摘自澎湃新闻的后续报道。
@@ -135,10 +135,10 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
     
     <item>
       <title>从技术管理 title 看公司的技术解题思路</title>
-      <link>http://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/</link>
+      <link>https://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/</link>
       <pubDate>Mon, 19 Sep 2016 21:43:57 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/</guid>
+      <guid>https://i.am.simonkuang.com/post/routines-from-the-title-of-technology-manager/</guid>
       <description>互联网技术线的职业发展轨迹到今天已经很清晰，大体来说两个选择，要么继续深入走技术专家路线，当个架构师、研发专家，向计算机科学家方向迈进，要么转管理路线，从小组长做起，向 CTO 迈进。
 这是正向的。反向，从一家公司技术负责人的 title，也能看出这家公司在技术方面的解题思路及现状。
 1、招聘组长 / leader / 主管的，注意留意这家公司最近招聘攻城狮的岗位 JD。 通常直接在 JD 里面说招聘 leader 一类 title 的非大厂企业，通常的意思是：我们需要一名高级攻城狮。至于你能不能胜任 leader，需要在工作中观察。不过不管怎么说，能把 leader 提出来单独招聘，是有意识在补充团队的中坚力量，应该给个赞。
@@ -157,10 +157,10 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
     
     <item>
       <title>日常随记</title>
-      <link>http://i.am.simonkuang.com/post/fuss-about-life-on-20160831/</link>
+      <link>https://i.am.simonkuang.com/post/fuss-about-life-on-20160831/</link>
       <pubDate>Wed, 31 Aug 2016 20:53:48 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/fuss-about-life-on-20160831/</guid>
+      <guid>https://i.am.simonkuang.com/post/fuss-about-life-on-20160831/</guid>
       <description>今年 今年还真是一个特别的年份。夏季刚来不久，天还没到最热的时候，老丈人就过世了。等入了伏，我们听了一整个夏天的救护车呜呜声。吃饭的时候，『呜呜呜呜呜』；在街上散步的时候，『呜呜呜呜呜』；坐公交车上，『呜呜呜呜呜』…… 有一次在家吃饭，救护车从楼下过了四次。重庆婆婆家楼上有老俩口和小儿子同住，结果做保安的小儿子下班回家，发现老俩口热死在家里——他们家竟然没有装空调。还有最近心脏猝死的山东大学生们。没有熬过今年的人，好像特别多。
 另外，今年的蝉也特别多，多到建行放 ATM 的小门面里，小小不足十个平方，一到晚上，容纳了不下十只蝉，到处飞肆意闹。早晨出门，街边随处可见死掉的蝉，有些还趴在汽车前挡玻璃上，裸露在晨光里。鬼知道今年哪儿来这么多蝉。
 自己动手 Homebrew 是 MacOS 下不错的工具，一个包管理器，码农最爱。不过人家一直没出稳定版，最新的好像才 0.9.9。最近就遇到一个不爽的事情：php56-grpc 这个包安装不上，编译阶段报错。仔细一看，原来用的扩展版本是 0.5.1 beta，人家扩展已经到了 1.0.0 stable，难怪。
@@ -174,10 +174,10 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
     
     <item>
       <title>互联网创业怎么做产品技术规划（一）</title>
-      <link>http://i.am.simonkuang.com/post/how-to-take-a-product-off-to-beta-effectively/</link>
+      <link>https://i.am.simonkuang.com/post/how-to-take-a-product-off-to-beta-effectively/</link>
       <pubDate>Wed, 10 Aug 2016 15:00:13 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/how-to-take-a-product-off-to-beta-effectively/</guid>
+      <guid>https://i.am.simonkuang.com/post/how-to-take-a-product-off-to-beta-effectively/</guid>
       <description>  从鹅厂出来之后的这几年，在创业公司做了很多产品技术方面的实践工作，得到一些关于产品技术管理方面的心得，这部分比实际完成一些什么样的系统设计和开发更加宝贵，这是有钱都买不来的。后面一段时间，我尽量将这些心得以博客文章的形式写出来。 之前尝试过大而全和分章节的描述手法，在废弃了十版左右的草稿之后，决定还是用随笔的手法吧，划定一个小范围，想到哪儿写到哪儿，不拘一格。大而全格局太大，自己荒废了很长时间没写文章，把控不住；章节形式专业性太强，没做好写论文的准备，就不拿一些带主观心得的东西贻笑大方了。
  相较于我刚开始学互联网编程的那段时间，也就是二十一世纪初的那几年，现在的互联网盈利模式更加清晰，业务和产品趋于红海竞争，值得去尝试的蓝海领域越来越少。带来的一个好处是：产品技术方面能够复用的东西越来越多。
 举个现实中的例子。因为花椒、映客等等关系，最近遇到一些朋友想要做直播平台，要我给他们建议。我大致估了一下，质量上以产品原型计，大约有百分之八十以上的组件，包括比较难的 P2P、DHT、CDN、视频实时压缩等都有成熟的第三方解决方案，只有涉及到所谓『痛点』的大约百分之十几的那部分逻辑需要自己去做。这些成熟的第三方解决方案不管是开源软件也好，还是云服务的方式也罢，都能避免创业者重复造轮子，大幅降低开发维护成本，还能提高用户体验。

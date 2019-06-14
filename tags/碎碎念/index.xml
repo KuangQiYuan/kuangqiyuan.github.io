@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>碎碎念 on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
+    <link>https://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
     <description>Recent content in 碎碎念 on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Mon, 10 Jun 2019 09:50:24 +0800</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>hexo 又报 package 的依赖问题了</title>
-      <link>http://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/</link>
+      <link>https://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/</link>
       <pubDate>Mon, 10 Jun 2019 09:50:24 +0800</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/</guid>
+      <guid>https://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/</guid>
       <description>因为 hexo 的 package 的依赖问题，特别是对彼此版本的依赖问题，折腾过两三次，一直没有特别好的解决办法。
 node 本质上仍然是脚本语言，不像编译型语言，实在不行，还可以把 package 一个一个打成 binary，逐个消除 package 的依赖问题。node 做不到。当两个以上的 package 声明的依赖相互冲突时，这个项目基本上也就废了。没法儿正常使用了。
 有人会问，怎么可能出现这样的情况？开发者发现不了吗？
@@ -29,10 +29,10 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
     
     <item>
       <title>固态硬盘和优盘不是稳健的数据存储介质</title>
-      <link>http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/</link>
+      <link>https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/</link>
       <pubDate>Wed, 26 Dec 2018 23:40:40 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/</guid>
+      <guid>https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/</guid>
       <description>说到固态硬盘（SSD）和优盘，恐怕很多人心里面有个潜在的印象，就是数据放在这里面，很安全，比在机械硬盘里面安全。最近两个朋友找我，帮找恢复数据的解决方案。两位都是数据放优盘或移动硬盘里面，遇到存储芯片故障。
 其实长期不用的数据，放在固态硬盘里面，真的不一定是安全的。固态硬盘的存储原理是往浮栅晶体管上加/放电子，使晶体管的通电性能发生变化，形成通路/闭路，对应数字 1/0，从而达到记录数据的目的。这里就有个问题，浮栅中的电子会存在泄漏的情况，也就是说，记录的数据会丢失。通常，这种数据的丢失受电压（包括静电）、环境温度、以及存储时间的影响。希捷曾经有工程师在报告中讲，温度每上升 5 摄氏度，数据存储的时间就短一半。不通电不读写的情况下，保存在 Nand Flash（SSD、SD Card、TF Card、U Disk……）介质中的数据最多也就两年的存储寿命。最糟糕的情况是像移动硬盘、优盘这样的设备，插入电脑 USB 口的一瞬间，假如遇到静电，Nand Flash 芯片被瞬间高电压击穿，那不管当时环境温度多少、你有没有经常使用，你的数据都完蛋了。
 记住，要保存数据，一定用机械硬盘。这是目前最稳妥的方法了。机械硬盘丢数据的风险，都是可以人为规避的。保存得当，存里面的数据，保存十年二十年没问题。不要再傻傻被 SSD、优盘骗了。等到数据都恢复不回来，再后悔。</description>
@@ -40,10 +40,10 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
     
     <item>
       <title>真正让你疲惫的，是脚底的砂石</title>
-      <link>http://i.am.simonkuang.com/post/the-gravel-but-not-a-peak-let-you-exhausted/</link>
+      <link>https://i.am.simonkuang.com/post/the-gravel-but-not-a-peak-let-you-exhausted/</link>
       <pubDate>Fri, 05 Aug 2016 20:15:31 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/the-gravel-but-not-a-peak-let-you-exhausted/</guid>
+      <guid>https://i.am.simonkuang.com/post/the-gravel-but-not-a-peak-let-you-exhausted/</guid>
       <description>很早以前听到过一个小故事，大意是说，一群人兴高采烈去登高山。爬山的过程中慢慢开始疲惫起来，这种疲惫和累不一样，是无论怎么休息都无法缓过劲来的。大家一步一捱往前挪着，一点儿没有了刚开始的高兴劲儿。后来在一处岩石边休息的时候，遇到另外一个有经验的登山人，告诉他们：脱下鞋子，抖掉鞋子里面的砂石。他们按照登山人的提示，再出发果然舒服多了，感觉整个人清爽起来，疲惫也散去很多。原来这座山留在山路上的砂石较多，很容易溅到鞋子里，溜到鞋底去。砂石小，虽然硌脚但是不太严重，总去抖鞋子砂石麻烦，一般人也就忽略了。小砂石硌脚时间长了，人就容易疲惫，爬山也不得劲。虽然都是一群爱好爬山的人，爬起山来却觉得没有什么意思似的。
 这个故事最后告诉我们：真正让人止步的，其实不是险峰，而是脚底的砂石。
 机械键盘 家里有黑轴和青轴两个机械键盘，因为是刚用机械键盘的新手，爱好青轴，噼哩吧啦，感觉挺带劲。但不知道为什么，用青轴的时候思维一旦出现停顿，很容易就分神。开始也没特别注意到这个问题，直到昨天晚上换了黑轴做事。忽然感觉思维的停顿在用黑轴的过程当中，是一件挺享受的过程，键盘就像不存在一样，你需要动手指头的时候，它在那里，你需要思考的时候，它也不吵你。不像青轴，连续打字的时候它的响应很及时很带劲，中间一旦有停顿，它的这种响应就成了吵吵。
@@ -58,10 +58,10 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
     
     <item>
       <title>致一位逝去的同事</title>
-      <link>http://i.am.simonkuang.com/post/cherish-an-ex-colleague/</link>
+      <link>https://i.am.simonkuang.com/post/cherish-an-ex-colleague/</link>
       <pubDate>Sun, 17 Jul 2016 23:52:29 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/cherish-an-ex-colleague/</guid>
+      <guid>https://i.am.simonkuang.com/post/cherish-an-ex-colleague/</guid>
       <description>刚在写点东西，整理关于创业这一年的收获和感悟。朋友圈里面忽然看到龙哥转发的消息《“在大陆互联网走得最远的台湾人”——胡同台妹去世》。
 讲真的，很惊讶。胡同台妹的称谓我是离职后很久才从网上知道，『哦，原来胡同台妹就是宫铃啊！』倒是她的本名我更熟悉一些。但也就是熟悉名字而已。
 零八年那会儿，我在凤凰网供职，农科院信息楼，工位在四楼格子间，封闭开发时经常占据二楼会议室。二楼的办公位因为不是凤凰网租用的，我们只在二楼有两间会议室和一间小小的编辑办公室。得因于此，二楼阳台是开放状态，直接与楼道连通，会议室和编辑办公室都直接与楼道相连。记得那会儿经常有抽烟的同事会在二楼的阳台上认识、聊天。
@@ -73,10 +73,10 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
     
     <item>
       <title>网易邮箱已死,有事请烧纸</title>
-      <link>http://i.am.simonkuang.com/post/netease-enterprises-email-end-up-itself/</link>
+      <link>https://i.am.simonkuang.com/post/netease-enterprises-email-end-up-itself/</link>
       <pubDate>Sat, 31 Oct 2015 09:15:22 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/netease-enterprises-email-end-up-itself/</guid>
+      <guid>https://i.am.simonkuang.com/post/netease-enterprises-email-end-up-itself/</guid>
       <description>有这么割裂和相互冲突的产品功能，有这么拙劣的安全事故应对机制，有这差的客户服务，还秉承了做安全『就是让你改不了密码和个人信息』的核心思想…… 就连想安安静静收发个邮件都不让了。网易邮箱已死，有事，请烧纸。
 前段时间传出网易邮箱被拖库以后（科普：什么是拖库），我咨询过网易邮箱内部的资深人士，结果发现他们也不知道具体什么情况。从一开始跟我说不可能骂乌云不厚道，到后来让我赶紧去改密码，他们在网易邮箱内部工作的，比我这个外人还警醒得晚。网易邮箱有些事情把上下里外都瞒得棒棒哒，实际怎么样没人能知道。
 当初为了所谓『安全』，网易邮箱引导我设置了生日及密码问题、保密邮箱、关联手机、安全码，还引导我申请了密保卡（8X8 矩阵那种），设置了身份信息、关联了手机，最近还申请了结果修改个密码都只能去走『申诉』途径。

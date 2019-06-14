@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>devops on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/devops/</link>
+    <link>https://i.am.simonkuang.com/tags/devops/</link>
     <description>Recent content in devops on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Thu, 29 Oct 2015 12:17:22 +0000</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Gitlab 备份时出现 Dumping MySQL FAILED 的错误</title>
-      <link>http://i.am.simonkuang.com/post/dumping-mysql-failed-while-backup-gitlab-datas/</link>
+      <link>https://i.am.simonkuang.com/post/dumping-mysql-failed-while-backup-gitlab-datas/</link>
       <pubDate>Thu, 29 Oct 2015 12:17:22 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/dumping-mysql-failed-while-backup-gitlab-datas/</guid>
+      <guid>https://i.am.simonkuang.com/post/dumping-mysql-failed-while-backup-gitlab-datas/</guid>
       <description>用 gitlab 很长一段时间了，从 2013 年开始，一直到现在，在每一个团队中都在推广使用 gitlab-ce 做版本管理和项目管理。本来一切好好的，一直到今天。
 今天我要做备份的时候。
 sudo -u git -H bundle exec rake gitlab:backup:create RAILS_ENV=production  命令不灵了。

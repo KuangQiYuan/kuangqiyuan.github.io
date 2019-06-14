@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>blog on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/blog/</link>
+    <link>https://i.am.simonkuang.com/tags/blog/</link>
     <description>Recent content in blog on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Mon, 10 Jun 2019 09:53:55 +0800</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>从 hexo 搬迁到 hugo</title>
-      <link>http://i.am.simonkuang.com/post/my-first-post/</link>
+      <link>https://i.am.simonkuang.com/post/my-first-post/</link>
       <pubDate>Mon, 10 Jun 2019 09:53:55 +0800</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/my-first-post/</guid>
+      <guid>https://i.am.simonkuang.com/post/my-first-post/</guid>
       <description>说是第一篇文章，其实是转到 Hugo 以后的第一篇文章。
 至于转到 hugo 的原因，见下面的两篇文章。
  hexo 又报 package 的依赖问题了 hexo 又成了技术流的玩具  总的来说，就是 npm 对 package 的依赖管理松散，再加上 hexo 社区对一些常用 plugins 惰于升级维护，导致 dependencies 经常冲突。升级不是，不升级也不是。最后干脆什么都用不了。

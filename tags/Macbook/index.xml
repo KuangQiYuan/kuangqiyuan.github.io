@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Macbook on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/macbook/</link>
+    <link>https://i.am.simonkuang.com/tags/macbook/</link>
     <description>Recent content in Macbook on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Thu, 06 Oct 2016 00:18:55 +0000</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/macbook/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/macbook/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MacOS Sierra 升级之后的坑</title>
-      <link>http://i.am.simonkuang.com/post/chrome-failed-on-opening-https-pages-after-upgraded-os-to-macos-sierra/</link>
+      <link>https://i.am.simonkuang.com/post/chrome-failed-on-opening-https-pages-after-upgraded-os-to-macos-sierra/</link>
       <pubDate>Thu, 06 Oct 2016 00:18:55 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/chrome-failed-on-opening-https-pages-after-upgraded-os-to-macos-sierra/</guid>
+      <guid>https://i.am.simonkuang.com/post/chrome-failed-on-opening-https-pages-after-upgraded-os-to-macos-sierra/</guid>
       <description>今年六月，Apple 宣布要把 MacBook 的 OS 名称从 OSX 改名为 MacOS。为了体验第一代的 MacOS Sierra，我也是第一时间选择了系统升级。2012 mid 的 MBP，升级到 MacOS，感觉我也有点拼了。
 升级完之后总体感觉还好，几乎都在预期内。却是在升级完成后大约第三天遇到 Chrome 报错，而且是反复的、随机的报错：『ERR_NETWORK_CHANGED』和『ERR_CERT_DATABASE_CHANGED』，就这两个。第一个出现的时候，页面 load 失败；第二个错误出现一般都是 js 或者 css 等页面资源 load 不下来（但是在新窗口打开这些资源又都没有问题）。
 找了一圈，国外的网友们普遍表示情绪很稳定，没有遇到过。难道只是我大兲朝人民会遇到？

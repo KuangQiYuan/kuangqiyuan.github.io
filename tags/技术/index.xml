@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术 on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/</link>
+    <link>https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/</link>
     <description>Recent content in 技术 on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Mon, 10 Jun 2019 17:14:05 +0800</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>『每个架构师都应该研究下康威定律』</title>
-      <link>http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</link>
+      <link>https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</link>
       <pubDate>Mon, 10 Jun 2019 17:14:05 +0800</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</guid>
+      <guid>https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</guid>
       <description>InfoQ 中国在 2016 年，发表过一篇文章，杨波的《每个架构师都应该研究下康威定律》。这篇文章对当时的我，触动是非常深刻的。一些说不清道不明的经验，被别人用浅显易懂的道理，讲得一清二楚。
 康威定律是很早就听说过的，后来陆续又有一些接触，每次时隔一段时间再做了解，就会有非常深的触动。我理解，原因无他，因为它聚焦在组织架构和系统设计的关系上，而这两者，一个是架构师目标，一个是架构师的手段/工具。文中用很简短的一句话，讲清楚了这中间的关系。
  系统架构的目标是解决利益相关者的关注点。
@@ -41,10 +41,10 @@
     
     <item>
       <title>Mac 下 VirtualBox 系统扩展不兼容的错误修复</title>
-      <link>http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/</link>
+      <link>https://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/</link>
       <pubDate>Mon, 27 May 2019 01:01:17 +0800</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/</guid>
+      <guid>https://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/</guid>
       <description>Mac 上升级 VirtualBox 6.0.8，遇到一个报错，一直搞不定。大意是 system extension incompatible。提示框不是 warning 或者 error 图标，就是普通的 performance 图标，而且只出现一次，再安装，不会出现。
 网络上没有结论，大多是说在 Performance 里面做安全授权。然后我遇到的并不是这个问题，Performance 里面没有授权提示。于是自己试着用降级的办法，安装 5.2.30，还是不行，同样的错误。再降级，到 5.2.28，终于行了，安装成功。
 打开 5.2.28，发现有个提示，说有磁盘镜像失效，打开管理工具，发现是之前装的 Nox，在 VirtualBox 的配置中写入了 Nox 自己的镜像。卸载 Nox 的时候，Nox 没有从 VirtualBox 的配置中删除 Nox 的磁盘镜像。于是手动确认删除 Nox 相关的两个镜像。再进入 VirtualBox 就好了。
@@ -54,10 +54,10 @@
     
     <item>
       <title>hexo 又成了技术流的玩具</title>
-      <link>http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/</link>
+      <link>https://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/</link>
       <pubDate>Thu, 28 Feb 2019 21:21:53 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/</guid>
+      <guid>https://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/</guid>
       <description>其实写这篇文章，心情不太痛快。hexo 是我找了好久才确定下来，能用 markdown 写 blog 的系统。之前试过的如 jekyll 太复杂，而且定制化程度太低，不灵活。刚开始用 hexo 的时候发现它简直是尤物，轻便简洁，扩展性还不错，官方收录了很多 plugins，足够码农用了。
 结果没过几年，hexo 也快成了技术流的玩具。
 问题一。npm 依赖存在缺陷 首先是 &amp;quot;hexo@3.8.0&amp;quot; 某个依赖 &amp;quot;hexo-fs@0.2.2&amp;quot;，后者依赖 &amp;quot;chokidar@1.2.7&amp;quot;，而 chokidar 又依赖 &amp;quot;fsevents@1.1.3&amp;quot;。好了，最后这个 &amp;quot;fsevents@1.1.3&amp;quot; 是被 deprecated 的版本，包含原生库，已经不存在 binary 下载，从源码编译也会报错。错误的大意是跟 node 的版本不兼容。
@@ -72,10 +72,10 @@ graph LR; A[&amp;quot;hexo@3.8.0&amp;quot;]--&amp;gt;B[&amp;quot;hexo-fs@0.2.2&a
     
     <item>
       <title>不过时的技术</title>
-      <link>http://i.am.simonkuang.com/post/timeless-technology/</link>
+      <link>https://i.am.simonkuang.com/post/timeless-technology/</link>
       <pubDate>Tue, 26 Feb 2019 21:23:58 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/timeless-technology/</guid>
+      <guid>https://i.am.simonkuang.com/post/timeless-technology/</guid>
       <description>最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内容千篇一律是推荐极客时间打新的课程，《Java 并发编程实战》。
 高并发哥又不是没做过，随手找了一下，发现陈皓在 2009 年的一篇文章就提到了正确的解法，以及背后的原因。《深入浅出单实例 SINGLETON 设计模式》。
 文中给出几种功能上正确的 singleton 写法。
@@ -85,10 +85,10 @@ graph LR; A[&amp;quot;hexo@3.8.0&amp;quot;]--&amp;gt;B[&amp;quot;hexo-fs@0.2.2&a
     
     <item>
       <title>固态硬盘和优盘不是稳健的数据存储介质</title>
-      <link>http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/</link>
+      <link>https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/</link>
       <pubDate>Wed, 26 Dec 2018 23:40:40 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/</guid>
+      <guid>https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/</guid>
       <description>说到固态硬盘（SSD）和优盘，恐怕很多人心里面有个潜在的印象，就是数据放在这里面，很安全，比在机械硬盘里面安全。最近两个朋友找我，帮找恢复数据的解决方案。两位都是数据放优盘或移动硬盘里面，遇到存储芯片故障。
 其实长期不用的数据，放在固态硬盘里面，真的不一定是安全的。固态硬盘的存储原理是往浮栅晶体管上加/放电子，使晶体管的通电性能发生变化，形成通路/闭路，对应数字 1/0，从而达到记录数据的目的。这里就有个问题，浮栅中的电子会存在泄漏的情况，也就是说，记录的数据会丢失。通常，这种数据的丢失受电压（包括静电）、环境温度、以及存储时间的影响。希捷曾经有工程师在报告中讲，温度每上升 5 摄氏度，数据存储的时间就短一半。不通电不读写的情况下，保存在 Nand Flash（SSD、SD Card、TF Card、U Disk……）介质中的数据最多也就两年的存储寿命。最糟糕的情况是像移动硬盘、优盘这样的设备，插入电脑 USB 口的一瞬间，假如遇到静电，Nand Flash 芯片被瞬间高电压击穿，那不管当时环境温度多少、你有没有经常使用，你的数据都完蛋了。
 记住，要保存数据，一定用机械硬盘。这是目前最稳妥的方法了。机械硬盘丢数据的风险，都是可以人为规避的。保存得当，存里面的数据，保存十年二十年没问题。不要再傻傻被 SSD、优盘骗了。等到数据都恢复不回来，再后悔。</description>
@@ -96,10 +96,10 @@ graph LR; A[&amp;quot;hexo@3.8.0&amp;quot;]--&amp;gt;B[&amp;quot;hexo-fs@0.2.2&a
     
     <item>
       <title>MacOS 下安装 flutter 遇到的一个依赖问题</title>
-      <link>http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/</link>
+      <link>https://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/</link>
       <pubDate>Fri, 19 Oct 2018 13:41:54 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/</guid>
+      <guid>https://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/</guid>
       <description>最近在 MacOSX 上安装 flutter 也遇到一些问题。不是 MacOS Mojave 的问题，而是 flutter 依赖的一个开源库，它的依赖树出现版本不兼容问题。
 运行 flutter doctor 出现如下提示。
  [!] iOS toolchain - develop for iOS devices (Xcode 10.0) ✗ libimobiledevice and ideviceinstaller are not installed. To install, run: brew install &amp;ndash;HEAD libimobiledevice brew install ideviceinstaller ✗ ios-deploy not installed. To install: brew install ios-deploy ✗ CocoaPods not installed. CocoaPods is used to retrieve the iOS platform side&amp;rsquo;s plugin code that responds to your plugin usage on the Dart side.</description>
@@ -107,10 +107,10 @@ graph LR; A[&amp;quot;hexo@3.8.0&amp;quot;]--&amp;gt;B[&amp;quot;hexo-fs@0.2.2&a
     
     <item>
       <title>CentOS7 下安装 DNF 的方法</title>
-      <link>http://i.am.simonkuang.com/post/install-dnf-on-centos-7/</link>
+      <link>https://i.am.simonkuang.com/post/install-dnf-on-centos-7/</link>
       <pubDate>Tue, 09 Oct 2018 13:39:35 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/install-dnf-on-centos-7/</guid>
+      <guid>https://i.am.simonkuang.com/post/install-dnf-on-centos-7/</guid>
       <description>NOTE(simon): 讲啰嗦一点，方便搜索引擎收录关键字。需要解决方案的同学，可以直接拖到后半部分。
  旧办法不灵 不知道什么原因，CentOS 7 下面安装 dnf 总是要出错，各种各样的问题与不兼容。CentOS 直到现在，还没有正式支持 dnf。相反，Fedora 22 开始就已经正式支持 dnf 作为默认的包管理工具了。差距啊。
 之前试过用一个半官方的 dnf repo(rpmsoftwaremanagement/dnf-nightly Copr) 在 CentOS 7 下面安装 dnf，一直都是可以的。也可以正常升级。以前通过这个办法安装过 dnf 的系统，已经升级到 2.8.5。用起来很顺。
@@ -120,10 +120,10 @@ graph LR; A[&amp;quot;hexo@3.8.0&amp;quot;]--&amp;gt;B[&amp;quot;hexo-fs@0.2.2&a
     
     <item>
       <title>MacOS 下 flutter run 遇到墙的问题</title>
-      <link>http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/</link>
+      <link>https://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/</link>
       <pubDate>Tue, 11 Sep 2018 20:10:03 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/</guid>
+      <guid>https://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/</guid>
       <description>最近调研 flutter，甚是大爱。
 虽然 flutter 非常友好提供了针对中国用户的镜像(Using Flutter in China · flutter/flutter Wiki · GitHub)，解决了一些不可说的难题，但偶尔还是会遇到类似的问题。比如我今天就遇到了，在 VS Code 调试编译的时候，遇到 “Download Failed” 的问题。Could not resolve all files for configuration &#39;:image_picker:lintClassPath&#39;. 具体原因是 Connect to d29vzk4ow07wi7.cloudfront.net:443 [d29vzk4ow07wi7.cloudfront.net/13.33.69.104, d29vzk4ow07wi7.cloudfront.net/13.33.69.3, d29vzk4ow07wi7.cloudfront.net/13.33.69.38, d29vzk4ow07wi7.cloudfront.net/13.33.69.111] failed: Read timed out 。
 原来是碰上了墙外面的老朋友，CDN 服务商 cloudflare 的域名。
@@ -134,10 +134,10 @@ $ proxychains4 curl ip.gs [proxychains] config file found: /usr/local/etc/proxyc
     
     <item>
       <title>CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</title>
-      <link>http://i.am.simonkuang.com/post/install-coredns-on-macos/</link>
+      <link>https://i.am.simonkuang.com/post/install-coredns-on-macos/</link>
       <pubDate>Fri, 04 May 2018 13:21:35 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/install-coredns-on-macos/</guid>
+      <guid>https://i.am.simonkuang.com/post/install-coredns-on-macos/</guid>
       <description>DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。
 我遇到的场景是这样的。
  公司有内网机房，研发用，研发环境和测试环境都在内网机房； 公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析； 研发/测试环境的服务器也用顶级域名指向，例如：test1.mod-a.company.com。这类解析都是通过 bind 实现的。公司外网解析不到这个地址； 我自己需要一个安全的 DNS 环境，对 DNS 服务器溯源这个细节，优选 TCP 协议； 对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind； 之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。  找了一圈，发现 CoreDNS 挺好的。推荐之。

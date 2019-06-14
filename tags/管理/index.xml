@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>管理 on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/</link>
+    <link>https://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/</link>
     <description>Recent content in 管理 on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Tue, 11 Jun 2019 00:27:34 +0800</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>工作中的期权思维（全）</title>
-      <link>http://i.am.simonkuang.com/post/option-thoughts-in-works/</link>
+      <link>https://i.am.simonkuang.com/post/option-thoughts-in-works/</link>
       <pubDate>Tue, 11 Jun 2019 00:27:34 +0800</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/option-thoughts-in-works/</guid>
+      <guid>https://i.am.simonkuang.com/post/option-thoughts-in-works/</guid>
       <description>最近在《得到》APP 听万维钢老师的《精英日课 III》收获挺多的。有一种『自己冥思苦想数载，还说不清道不明，别人轻描淡写数语，说得通透清晰』的感觉。
 先是关于博弈论的话题，其次是最近关于期权思维的话题，都讲得我恍然大悟。
 这两天讲一讲万维钢老师《期权的智慧》这个系列文章的读后感。
@@ -43,10 +43,10 @@ put option 的含义是，它允许你在约定的时间，以约定的价格，
     
     <item>
       <title>『每个架构师都应该研究下康威定律』</title>
-      <link>http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</link>
+      <link>https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</link>
       <pubDate>Mon, 10 Jun 2019 17:14:05 +0800</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</guid>
+      <guid>https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/</guid>
       <description>InfoQ 中国在 2016 年，发表过一篇文章，杨波的《每个架构师都应该研究下康威定律》。这篇文章对当时的我，触动是非常深刻的。一些说不清道不明的经验，被别人用浅显易懂的道理，讲得一清二楚。
 康威定律是很早就听说过的，后来陆续又有一些接触，每次时隔一段时间再做了解，就会有非常深的触动。我理解，原因无他，因为它聚焦在组织架构和系统设计的关系上，而这两者，一个是架构师目标，一个是架构师的手段/工具。文中用很简短的一句话，讲清楚了这中间的关系。
  系统架构的目标是解决利益相关者的关注点。
@@ -71,10 +71,10 @@ put option 的含义是，它允许你在约定的时间，以约定的价格，
     
     <item>
       <title>读评：小白兔和野狗的生路何在？</title>
-      <link>http://i.am.simonkuang.com/post/wild-dog-and-white-rabbit-are-both-necessary-for-a-company/</link>
+      <link>https://i.am.simonkuang.com/post/wild-dog-and-white-rabbit-are-both-necessary-for-a-company/</link>
       <pubDate>Wed, 28 Sep 2016 23:19:25 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/wild-dog-and-white-rabbit-are-both-necessary-for-a-company/</guid>
+      <guid>https://i.am.simonkuang.com/post/wild-dog-and-white-rabbit-are-both-necessary-for-a-company/</guid>
       <description>最近被徐新女士的《用人问题上，“野狗”和“小白兔”都要干掉》一文刷爆了朋友圈，有些很少转载鸡汤文的朋友也转发了这篇文章，且转载的朋友中几乎都是自己创业或做管理的朋友，看来此鸡汤很对大多数创业者、管理者的胃口。
 虽然大家普遍觉得这碗鸡汤营养很好，我还是觉得它鸡精放太多——鲜而犯腻，而在这个食材也就是观点上有偏颇。从篇幅上看，徐新女士演讲稿关于人才怎么用的篇幅并不大，演讲稿的书面内容与标题表达出来的笃定语气不太相符，猜想这个标题是标题党后来扣上去的。不过影响这么大的文章，我还是想忍不住说两句。
 首先要说的是分类的问题：什么是小白兔员工？什么是野狗员工？ 按照前导文给出的答案，野狗员工业绩好，但价值观不好（人品不好，吃回扣等），小白兔员工则兢兢业业，勤勤恳恳什么都好，价值观和勤奋都没有关系，就是人没有什么贡献。相对应的，价值观好、业绩好的是明星员工。

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>前端 on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/</link>
+    <link>https://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/</link>
     <description>Recent content in 前端 on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Sat, 04 Nov 2017 18:35:13 +0000</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>react-native@0.50.1 开始依赖于一个特定版本的 boost 库</title>
-      <link>http://i.am.simonkuang.com/post/react-native-depency-modified-boost-lib-from-0-50-1/</link>
+      <link>https://i.am.simonkuang.com/post/react-native-depency-modified-boost-lib-from-0-50-1/</link>
       <pubDate>Sat, 04 Nov 2017 18:35:13 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/react-native-depency-modified-boost-lib-from-0-50-1/</guid>
+      <guid>https://i.am.simonkuang.com/post/react-native-depency-modified-boost-lib-from-0-50-1/</guid>
       <description>react-native@0.50.1 依赖的是 facebook 精简之后的 boost_1_63_0 版本，而不是官方在 sourceforge 上发布的那个版本。
 官方发布的版本是这样的。
 curl -Lo boost_1_63_0.tar.gz \ https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz shasum -a1 boost_1_63_0.tar.gz # macOS, = 2cecf1848a813de55e5770f324f084c568abca0a sha1sum boost_1_63_00.tar.gz # Linux, = 2cecf1848a813de55e5770f324f084c568abca0a  而 Facebook 自己改过的版本是这样的。
@@ -29,10 +29,10 @@ react-native run-ios  在模拟器上运行 ios 版本的时候，脚本会首�
     
     <item>
       <title>吐槽被NodeJS用滥的软件设计哲学</title>
-      <link>http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/</link>
+      <link>https://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/</link>
       <pubDate>Sun, 27 Aug 2017 00:54:40 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/</guid>
+      <guid>https://i.am.simonkuang.com/post/nodejs-abuse-of-software-design-philosophy/</guid>
       <description>NodeJS 真的很火，一把大火带热了一直被轻视的、几乎要被认为不是编程语言的前端语言 javascript。火是不是 NodeJS 烧起来的已经不重要，反正它在大火里面烧得火红火红。
 NodeJS 的包管理工具 npm（Nodejs Package Management）在这其中功不可没。
 直到 2016 年初，有一个很硬的程序猿 Azer，非常不满自己的权益没有被 npm 这个平台正确对待——具体说，就是 npm 收到另外一个用户的律师信之后，擅自删除了前面这个 Azer 的 package，把 package 的名字直接转让给发律师信的用户管理——一气之下将自己创建并管理的所有 npm 上的项目全部 unpublish 了。这种行为在游戏里面叫自杀。关键人家还说挺对的：我解放了我所有的模块，因为我不会在一个某些人滥用特权的地方分享我的开源工作。结果就比较搞笑了，因为其中一个被删除的模块 left-pad 被大家广泛引用，导致 Babel、Ember、ReactNative 等等构建工具、框架，都不能正常使用。除了一些将 package 打包发布的应用，例如 Atom。这事儿在当时简直就是灾难，N 多前端程序猿被迫加班解决问题。
@@ -46,10 +46,10 @@ NodeJS 的包管理工具 npm（Nodejs Package Management）在这其中功不�
     
     <item>
       <title>angularjs 的设计文档及部分官方资料</title>
-      <link>http://i.am.simonkuang.com/post/angular-js-docs-for-the-users-in-the-wall/</link>
+      <link>https://i.am.simonkuang.com/post/angular-js-docs-for-the-users-in-the-wall/</link>
       <pubDate>Tue, 27 Oct 2015 10:19:12 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/angular-js-docs-for-the-users-in-the-wall/</guid>
+      <guid>https://i.am.simonkuang.com/post/angular-js-docs-for-the-users-in-the-wall/</guid>
       <description>Angularjs 是伟大的 Google 贡献的 JS 框架。自问世以来，angularjs 以其独特的开发思维方式鹤立于 web 前端开发的圈子，并且以其出众的实际效果赢得大家的喜爱。
 Angularjs 自己提供了一整套的学习文档、设计文档、会议材料等等资料，帮助大家逐步深入了解和学习。可惜这些资料存放在谷歌自己的云盘（Google Drive）中，因为一些众所周知的原因，很不方便下载。我在这里把这些资料打包放在这里，以备不时之需，希望对大家有用。
  Angular_Public_Design_Docs_And_Notes-2015-10-26（七牛空间失效）  PS：最爱 Google 系的一点就是不论是库、框架还是业务代码，文档总是有的，你能从中了解到工程师的初衷和思路，加以消化学习。哈哈！</description>

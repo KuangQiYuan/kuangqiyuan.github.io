@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>运维 on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/</link>
+    <link>https://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/</link>
     <description>Recent content in 运维 on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Mon, 31 Jul 2017 00:34:22 +0000</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>阿里云未备案云主机申请 letsencrypt ssl 证书</title>
-      <link>http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/</link>
+      <link>https://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/</link>
       <pubDate>Mon, 31 Jul 2017 00:34:22 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/</guid>
+      <guid>https://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/</guid>
       <description>用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。
 访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的*温馨提示*（如下图）。
 而一台不能提供 http 服务的阿里云 ECS 不是真正的服务器。解决这个问题的办法，将 http 换到 https 就可以了。
@@ -28,10 +28,10 @@ https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购�
     
     <item>
       <title>用 openresty 来做 app api 接口的验真</title>
-      <link>http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/</link>
+      <link>https://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/</link>
       <pubDate>Tue, 25 Jul 2017 12:37:04 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/</guid>
+      <guid>https://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/</guid>
       <description>app 服务器端的开发中，有一个百年不变的小东西：api 访问的验真问题。因为 http 协议是无状态的，每次 app 发起请求，我都需要验证这次请求的确是由真实的、授权的 app 发起，以此来阻止不诚实用户发起的攻击、数据爬取，确保产品的安全，和用户在产品上的信息安全。
 JWT（JSON Web Token）是一个 http 之上的不错的 api 验真协议，结合 https，几乎可以安全地传输各种数据。最关键是，它原理简单，没用到啥黑科技，新瓶装老酒，但实用。
 openresty 是春哥做的一款神器，在 nginx 上挂了个 lua 引擎，可以用 lua 脚本指挥 nginx 做很多事情。了解 lua 的童靴都知道，lua 的执行性能堪比 C++/Java 这些编译型语言，大家在一个量级。能做到这步，已经相当感人。用 openresty 来实现 jwt 协议，做 api 访问的验真，可以降低后台系统的复杂程度，同时还能提高系统鲁棒性，防止被恶意攻击时系统雪崩。
@@ -43,10 +43,10 @@ openresty 是春哥做的一款神器，在 nginx 上挂了个 lua 引擎，可�
     
     <item>
       <title>另一个包管理工具——DNF</title>
-      <link>http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/</link>
+      <link>https://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/</link>
       <pubDate>Mon, 17 Oct 2016 09:45:55 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/</guid>
+      <guid>https://i.am.simonkuang.com/post/another-package-management-tool-under-centos-named-dnf/</guid>
       <description>更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。
  DNF 起源于 YUM 的一个分支，最早用在 Fedora 18，在 Fedora 22 中默认安装，成为系统工具。现在更是被广泛看作 YUM 的接班人。虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 yum 和 dnf 混合着来——当然，新旧掺杂绝对不是好习惯，我就这么一说，证明 YUM 和 DNF 的关联之亲近。用惯了 YUM 的朋友们一定不会抗拒换到 DNF，它们的用法非常相似，而且 DNF 的更有现代语言风格。
 我常用的系统是 CentOS，虽然已经被 RedHat 收购，但是 CentOS 的品质和定位都没有变，这很难得。最新（截至 2016-10-16）的 CentOS 是 7.2.1511。下面的步骤在 CentOS 上尝试，对 Fedora/RHEL 理论上同样适用。Fedora 上应该还更加简单，下面的问题好多都不会遇到。
@@ -56,10 +56,10 @@ openresty 是春哥做的一款神器，在 nginx 上挂了个 lua 引擎，可�
     
     <item>
       <title>再次问候方校长：我们受够了功夫网</title>
-      <link>http://i.am.simonkuang.com/post/evil-headmaster-fang-binxing-and-his-gfw/</link>
+      <link>https://i.am.simonkuang.com/post/evil-headmaster-fang-binxing-and-his-gfw/</link>
       <pubDate>Thu, 25 Aug 2016 12:36:41 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/evil-headmaster-fang-binxing-and-his-gfw/</guid>
+      <guid>https://i.am.simonkuang.com/post/evil-headmaster-fang-binxing-and-his-gfw/</guid>
       <description>(UPDATED) 2017-08-17: ssserver 提供服务器端的支持；sslocal 转本地 socks5 服务；再用 privoxy 提供 http/https proxy。 经过试验，这样的解决方案是最全面的了。
 至于梯子哪家强，你问我，我不会不告诉你。O(∩_∩)O哈哈~
  对于功夫网不问青红皂白直接予以封杀的行为，程序猿的一贯态度是问候方校长。有些的确敏感的都不说了，facebook 旗下的工具网站 Nuclide 也被封，之前还有 Python 因为一个特定版本号被封的往事…… 各种搞笑和不能理解的规则，生活在兲朝的程序猿这种生物天生比国外的低矮一截——纯粹因为生存环境的关系，导致看世界不完整。
@@ -74,10 +74,10 @@ openresty 是春哥做的一款神器，在 nginx 上挂了个 lua 引擎，可�
     
     <item>
       <title>解决了一个 curl 库导致的 https 访问错误</title>
-      <link>http://i.am.simonkuang.com/post/resolved-a-https-handshake-problem-against-curl/</link>
+      <link>https://i.am.simonkuang.com/post/resolved-a-https-handshake-problem-against-curl/</link>
       <pubDate>Sat, 26 Mar 2016 15:21:04 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/resolved-a-https-handshake-problem-against-curl/</guid>
+      <guid>https://i.am.simonkuang.com/post/resolved-a-https-handshake-problem-against-curl/</guid>
       <description>使用 EasyWeChat 库调用微信服务的时候，在 laravel tinker 里面调试，发现每次进入 tinker 之后，第一次调用接口没有问题，第二次之后，就会报一个很诡异的错误。
 $app = app(&#39;wechat&#39;); // EasyWeChat\Foundation\Application {#628} $users = $app-&amp;gt;user-&amp;gt;lists(); // EasyWeChat\Support\Collection {#756} $user = $app-&amp;gt;user-&amp;gt;get(&#39;o7qrUviv1tkcDFMJ5wdXrpng9NNQ&#39;); // GuzzleHttp\Exception\ConnectException with message &#39;cURL error 35: A PKCS #11 module returned CKR_DEVICE_ERROR, indicating that a problem has occurred with the token or slot. (see http://curl.haxx.se/libcurl/c/libcurl-errors.html)&#39;  PKCS #11 返回的错误，好高端啊。
 中间的曲折就不说了。答案在一篇歪果仁的博客上找到，在 github 的评论上得到印证及解决问题的思路。
@@ -86,10 +86,10 @@ $app = app(&#39;wechat&#39;); // EasyWeChat\Foundation\Application {#628} $users
     
     <item>
       <title>redis &#43; supervisor 时苦大仇深的问题</title>
-      <link>http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/</link>
+      <link>https://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/</link>
       <pubDate>Fri, 04 Mar 2016 17:44:22 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/</guid>
+      <guid>https://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/</guid>
       <description>在我记忆中，CentOS 从很早开始，就没有和各种的问题挂钩过。得益于它保守的升级策略，它自己几乎从来不是问题专业户，我对它的印象更多是因为太过保守导致的库升级不及时问题。
 可是最近，CentOS7 某个版本发行之后，偶尔的，会出现 supervisor 拉 redis 失败的问题。从日志的内容来看，全是 Permission denied 相关的问题，bind socket 的时候权限不够，write log 的时候权限不够，dump snapshot 的时候权限不够，只要跟写磁盘相关的，都有这个问题。
 单独执行 /usr/bin/redis-server /etc/redis.conf，又一点儿问题没有，命令本身没有问题，一切正常。
@@ -100,10 +100,10 @@ supervisor 的配置如下：
     
     <item>
       <title>发现 Gitlab 的一个权限问题</title>
-      <link>http://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/</link>
+      <link>https://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/</link>
       <pubDate>Sat, 05 Dec 2015 17:28:07 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/</guid>
+      <guid>https://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/</guid>
       <description>用了好几年的 gitlab，前前后后搭建了好几次系统，解决了不少问题，还是非常熟悉了。昨天又遇到 gitlab 搭建中的一个新的问题。
 现象 gitlab 搭建好之后，建账号，加 ssh key，建项目，本地 push，然后就遇到 gitlab 问我要密码。
  git@some.domain.name password:
@@ -121,10 +121,10 @@ ssh -vvvT git@some.domain.name  …… 一串无关的日志我就省略了，�
     
     <item>
       <title>再学习 Linux 下的文件权限</title>
-      <link>http://i.am.simonkuang.com/post/sticky-bit-of-files-under-linux/</link>
+      <link>https://i.am.simonkuang.com/post/sticky-bit-of-files-under-linux/</link>
       <pubDate>Thu, 22 Oct 2015 10:37:23 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/sticky-bit-of-files-under-linux/</guid>
+      <guid>https://i.am.simonkuang.com/post/sticky-bit-of-files-under-linux/</guid>
       <description>最近遇到一个比较搞的问题，有关 linux 下的文件权限。因为发现解决问题之后的答案是我们很多工作多年的攻城狮以前都没有重视过的，所以特别写下来，帮助加深记忆。
 【背景】 同事学习 lnmp，搭好 CentOS 6.5 的环境之后，新建了一个用户组 test，在该组别下新建了一个用户 test，然后准备用这个用户模拟 nginx 和 php-fpm 进程的启动用户，跟着手册上做实践。
 【关键信息】  用户：test:test 目录：/www/test 目录权限：drwxrwxrwx. 2 root root 40 Oct 21 16:43 test 文件：/www/test/index.html 文件权限：-rw-r--r--. 1 root root 0 Oct 22 10:04 index.html  【现象】  先用 root 的身份 touch 了一个空文件 index.html； su test，然后以 test 用户的身份去删除这个空文件； WTF！！！ 竟然删除文件成功了？？？！！！  普通用户删除了 root 用户的文件，我保证，刚看到这个现象的时候，我内心绝对是崩溃的。

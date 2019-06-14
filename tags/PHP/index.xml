@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PHP on 旷氏淇元</title>
-    <link>http://i.am.simonkuang.com/tags/php/</link>
+    <link>https://i.am.simonkuang.com/tags/php/</link>
     <description>Recent content in PHP on 旷氏淇元</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cmn-Hans</language>
     <lastBuildDate>Wed, 31 Aug 2016 16:17:17 +0000</lastBuildDate>
     
-	<atom:link href="http://i.am.simonkuang.com/tags/php/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://i.am.simonkuang.com/tags/php/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PHP 的 GRPC 扩展的安装修复</title>
-      <link>http://i.am.simonkuang.com/post/grpc-for-php/</link>
+      <link>https://i.am.simonkuang.com/post/grpc-for-php/</link>
       <pubDate>Wed, 31 Aug 2016 16:17:17 +0000</pubDate>
       
-      <guid>http://i.am.simonkuang.com/post/grpc-for-php/</guid>
+      <guid>https://i.am.simonkuang.com/post/grpc-for-php/</guid>
       <description>php 的 grpc 扩展在八月十八日已经到了 1.0.0 stable。很高兴的，终于到了一个 stable 版本。这意味着，在 php 中将 grpc 应用到生产环境会安心许多。一些不太稳定的特性或功能，会被排除在发布版本之外，用起来顺很多。
 可惜的是，这个 stable 版本貌似在安装环节并不稳定，安装过程中分别会在 configure 和 make 环节报如下的警告与错误。
 在 configure 环节的警告：
