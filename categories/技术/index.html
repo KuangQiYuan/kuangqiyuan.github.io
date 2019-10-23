@@ -80,6 +80,33 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月23日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF">技术</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                发现最近基于 DNS 做访问优化的大企业越来越多。今天从 mirrors.aliyun.com 的 pypi 上更新 package，发现竟然速度只有几十 KB/s，太惊人了。反应了很久才想起来，可能是 DNS 解析的问题。aliyun 对从国外 DNS 服务器回溯的请求，给出的是国外 CDN 节点的 IP。我在国内，去连接国外的 CDN，当然慢了。有了设想，简单证实一下，分别从四个一和 dnspod 解析 mirrors.aliyun.com 这个域名，果然不一样。印证了我的猜想。
+不止阿里云，亚麻，azure，这些云服务商，甚至苹果这种做产品的企业，也都有类似基于 DNS 的全球网络优化。
+之前用 CoreDNS 做防毒的方案，并没有考虑到这一点，所以在这里补充一下更新后的配置。更新后的配置考虑到几个常用的服务，这几个服务会走国内的 DNS 服务器做解析，以便获取到厂商在国内的服务器 IP，加快访问的速度。
+PS：新版的 CoreDNS 新增了对 tls:// 协议的支持。tls:// 应该会默认走 tcp 可靠连接。对外连接的时候，用了 tls:// 协议，实现防毒的目标。
+aliyun.com apple.com github.com fastly.net githubusercontent.com binary.com amazonaws.com azk9s.com qcloud.com { forward . 223.5.5.5 119.29.29.29 114.114.114.114 223.6.6.6 { max_fails 3 expire 5s health_check 3s policy sequential } } company.com { hosts /etc/hosts { fallthrough } forward .……
+                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/">『每个架构师都应该研究下康威定律』</a>
                                 </h1>
                             </header>
@@ -174,6 +201,10 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
 <ul class="widget-list">
     
     <li>
+        <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/" title="针对 DNS 全球优化做的 CoreDNS 额外配置">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
+    </li>
+    
+    <li>
         <a href="https://i.am.simonkuang.com/post/option-thoughts-in-works/" title="工作中的期权思维（全）">工作中的期权思维（全）</a>
     </li>
     
@@ -209,10 +240,6 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
         <a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
     </li>
     
-    <li>
-        <a href="https://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -227,7 +254,7 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
     </li>
     
     <li>
-        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(2)</a>
+        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(3)</a>
     </li>
     
     <li>
@@ -242,6 +269,8 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
 <div class="tagcloud">
     
     <a href="https://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="https://i.am.simonkuang.com/tags/coredns/">coredns</a>
     
     <a href="https://i.am.simonkuang.com/tags/devops/">devops</a>
     

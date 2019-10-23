@@ -70,6 +70,31 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://i.am.simonkuang.com/post/evil-headmaster-fang-binxing-and-his-gfw/" title="再次问候方校长：我们受够了功夫网" >再次问候方校长：我们受够了功夫网</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年8月25日
+                            </date>
+                            
+                            <div class="post-content">
+                                (UPDATED) 2017-08-17: ssserver 提供服务器端的支持；sslocal 转本地 socks5 服务；再用 privoxy 提供 http/https proxy。 经过试验，这样的解决方案是最全面的了。
+至于梯子哪家强，你问我，我不会不告诉你。O(∩_∩)O哈哈~
+ 对于功夫网不问青红皂白直接予以封杀的行为，程序猿的一贯态度是问候方校长。有些的确敏感的都不说了，facebook 旗下的工具网站 Nuclide 也被封，之前还有 Python 因为一个特定版本号被封的往事…… 各种搞笑和不能理解的规则，生活在兲朝的程序猿这种生物天生比国外的低矮一截——纯粹因为生存环境的关系，导致看世界不完整。
+前两天做 grpc 的调研，为了简洁，安装 php-grpc 时准备就直接用 homebrew 搞定。brew install homebrew/php/php56-grpc，一句命令安装，升级维护也省心。
+可是安装 php-grpc 的依赖却出了问题。protobuf 在 homebrew 中是从源码开始安装，用的是 protobuf 自带的 autogen.sh 脚本，脚本中正好从 googlemock.googlecode.com 域下载 googlemock 一个特定版本的发布包，因为 shell 默认不会走系统代理（我用 shadowsocks 科学上网，这是我的梯子，这是下面所列方法的前提。如果你连梯子都没有，可以不用往下看，没戏），会导致下载失败。
+英雄汉不能被一泡尿憋死。折腾一会儿，终于找到办法。
+后来想想，自动化脚本里面其实挺多这种应用场景的，没谁写个脚本还要兼顾其它国家特色网络，那技术宅成天别干别的事儿，光跟堂吉诃德战斗好了。因此，记一下吧，以后用得着。
+下面提供两种办法供选用。两种都简洁，改动都不大，主要看应用场景和个人的习惯吧。
+方法一：修改下载程序配置 protobuf 安装脚本中的下载程序使用的是 curl，因此先得配置它。新增或修改 ~/.curlrc 这个文件，加入 socks5 这个选项（因为 shadowsocks 是用的 socks5）。
+# 我用的是影梭，所以设置 socks5 选项 socks5 = 127.……
+                            </div>
+                            <p class="readmore"><a href="https://i.am.simonkuang.com/post/evil-headmaster-fang-binxing-and-his-gfw/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://i.am.simonkuang.com/post/a-patent-for-perianal-abscess/" title="一种治疗疖肿的药剂专利" >一种治疗疖肿的药剂专利</a>
                                 </h1>
                             </header>
@@ -268,29 +293,6 @@ supervisor 的配置如下：
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/a-way-to-accelerate-creating-a-new-laravel-project/" title="加速 Laravel 新建项目的办法" >加速 Laravel 新建项目的办法</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2015年12月19日
-                            </date>
-                            
-                            <div class="post-content">
-                                2017-08-17 更新：因为服务器到期，下述方法已经失效。加速的方法请参照这里的方法设置 composer 镜像源，并使用下面的方式创建项目。
-composer create-project --prefer-dist laravel/laravel [project_name]
-这样创建项目时，将使用镜像源下载框架，而不会从墙外的 cabinet.laravel.com 下载。
- 前段时间有个项目用到了 laravel 框架。laravel 本身是个很优秀的框架，OOP 的思想贯穿始终，大量使用已经开源的第三方类库，用反向控制（IoC）的思想对服务进行抽象和隔离，帮助程序员完成对服务的分治，大大提高了架构效率和开发效率、后期维护效率。
-laravel 目前最新的稳定版是 laravel 5.1。因为我是从 5.1 开始使用 laravel 的，对 5.0 及 4.x 版本并不熟悉。但从网上大家的反馈来看，laravel 4.x 的使用方法和 5.x 相差较多，甚至 5.0 和 5.1 在细节处也有很多大的改进。我这里针对的主要是使用 laravel 5.1 的朋友，下面如果未明确提及版本，也默认指代 laravel ^5.1。
-laravel 中新建项目的方法如下：
-laravel new [project_name]  但是这个命令很慢，原因在于每次执行这个命令，laravel installer 都会从 http://cabinet.laravel.com/latest.zip 下载最新的稳定版 laravel 空项目代码，用以创新新项目。
-# ~/.composer/vendor/laravel/installer/src/NewCommand.php (Line.97) // ...... /** * Download the temporary Zip to the given file.……
-                            </div>
-                            <p class="readmore"><a href="https://i.am.simonkuang.com/post/a-way-to-accelerate-creating-a-new-laravel-project/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -351,6 +353,10 @@ laravel new [project_name]  但是这个命令很慢，原因在于每次执行�
 <ul class="widget-list">
     
     <li>
+        <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/" title="针对 DNS 全球优化做的 CoreDNS 额外配置">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
+    </li>
+    
+    <li>
         <a href="https://i.am.simonkuang.com/post/option-thoughts-in-works/" title="工作中的期权思维（全）">工作中的期权思维（全）</a>
     </li>
     
@@ -386,10 +392,6 @@ laravel new [project_name]  但是这个命令很慢，原因在于每次执行�
         <a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
     </li>
     
-    <li>
-        <a href="https://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题">MacOS 下安装 flutter 遇到的一个依赖问题</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -404,7 +406,7 @@ laravel new [project_name]  但是这个命令很慢，原因在于每次执行�
     </li>
     
     <li>
-        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(2)</a>
+        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(3)</a>
     </li>
     
     <li>
@@ -419,6 +421,8 @@ laravel new [project_name]  但是这个命令很慢，原因在于每次执行�
 <div class="tagcloud">
     
     <a href="https://i.am.simonkuang.com/tags/blog/">blog</a>
+    
+    <a href="https://i.am.simonkuang.com/tags/coredns/">coredns</a>
     
     <a href="https://i.am.simonkuang.com/tags/devops/">devops</a>
     
