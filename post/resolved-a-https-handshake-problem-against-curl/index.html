@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,137 +84,115 @@
                         
                         <div class="post-content">
                             <p>使用 <a href="https://easywechat.org/"><code>EasyWeChat</code></a> 库调用微信服务的时候，在 laravel tinker 里面调试，发现每次进入 tinker 之后，第一次调用接口没有问题，第二次之后，就会报一个很诡异的错误。</p>
-
-<pre><code class="language-php">$app = app('wechat');
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$app = app(&#39;wechat&#39;);
 // EasyWeChat\Foundation\Application {#628}
 
 $users = $app-&gt;user-&gt;lists();
 // EasyWeChat\Support\Collection {#756}
 
-$user = $app-&gt;user-&gt;get('o7qrUviv1tkcDFMJ5wdXrpng9NNQ');
-// GuzzleHttp\Exception\ConnectException with message 'cURL error 35: A PKCS #11 module returned CKR_DEVICE_ERROR, indicating that a problem has occurred with the token or slot. (see http://curl.haxx.se/libcurl/c/libcurl-errors.html)'
-</code></pre>
-
-<p><code>PKCS #11</code> 返回的错误，好高端啊。</p>
-
+$user = $app-&gt;user-&gt;get(&#39;o7qrUviv1tkcDFMJ5wdXrpng9NNQ&#39;);
+// GuzzleHttp\Exception\ConnectException with message &#39;cURL error 35: A PKCS #11 module returned CKR_DEVICE_ERROR, indicating that a problem has occurred with the token or slot. (see http://curl.haxx.se/libcurl/c/libcurl-errors.html)&#39;
+</code></pre></div><p><code>PKCS #11</code> 返回的错误，好高端啊。</p>
 <p>中间的曲折就不说了。答案在一篇歪果仁的博客上找到，在 github 的评论上得到印证及解决问题的思路。</p>
-
 <ul>
 <li><a href="http://www.sebdangerfield.me.uk/2012/10/nss-error-8023-using-aws-sdk-for-php/">NSS error -8023 using AWS SDK for PHP</a></li>
 <li><a href="https://github.com/aws/aws-sdk-php/issues/202#issuecomment-76384680">Consecutive API calls return curl error code 35 on CentOS 6.5</a> - github</li>
 </ul>
-
 <p>很明显的，两篇在遇到跟我相同问题的同时，都提到了一个关键词 <code>NSS</code>，因此，我又看了一下我自己的 curl 库信息。</p>
-
-<pre><code class="language-php">curl -V
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">curl -V
 // curl 7.48.0 (x86_64-pc-linux-gnu) libcurl/7.29.0 NSS/3.19.1 Basic ECC zlib/1.2.7 libidn/1.28 libssh2/1.4.3
 // Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtsp scp sftp smtp smtps telnet tftp
 // Features: AsynchDNS IDN IPv6 Largefile NTLM NTLM_WB SSL libz
-</code></pre>
-
-<p>果然我本地的 curl 是带 <code>NSS</code> 的。</p>
-
+</code></pre></div><p>果然我本地的 curl 是带 <code>NSS</code> 的。</p>
 <p>于是，用一个不带 <code>NSS</code> 的 curl 库来重新编译 php 吧。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p /data/soft
 
-<pre><code class="language-bash">mkdir -p /data/soft
-
-# 编译并安装不带 nss 的 curl
+<span style="color:#75715e"># 编译并安装不带 nss 的 curl</span>
 cd /data/soft
-wget &quot;https://curl.haxx.se/download/curl-7.48.0.tar.bz2&quot;
+wget <span style="color:#e6db74">&#34;https://curl.haxx.se/download/curl-7.48.0.tar.bz2&#34;</span>
 tar zxf curl-7.48.0.tar.bz2
 cd curl-7.48.0
-./configure --prefix=/usr --without-nss
-make &amp;&amp; make install
+./configure --prefix<span style="color:#f92672">=</span>/usr --without-nss
+make <span style="color:#f92672">&amp;&amp;</span> make install
 
-# 重新编译 php
+<span style="color:#75715e"># 重新编译 php</span>
 cd /data/soft
-wget -O &quot;php-5.6.19.tar.bz2&quot; &quot;http://cn2.php.net/get/php-5.6.19.tar.bz2/from/this/mirror&quot;
+wget -O <span style="color:#e6db74">&#34;php-5.6.19.tar.bz2&#34;</span> <span style="color:#e6db74">&#34;http://cn2.php.net/get/php-5.6.19.tar.bz2/from/this/mirror&#34;</span>
 tar jxf php-5.6.19.tar.bz2
 cd php-5.6.19
-'./configure' \
-  '--prefix=/usr/local/php-5.6.19' \
-  '--with-libdir=lib64' \
-  '--with-config-file-path=/usr/local/php-5.6.19/lib' \
-  '--with-fpm-user=nobody' \
-  '--with-fpm-group=nobody' \
-  '--with-libxml-dir=/usr' \
-  '--with-openssl=/usr' \
-  '--with-openssl-dir=/usr' \
-  '--with-zlib' \
-  '--enable-bcmath' \
-  '--with-bz2=/usr' \
-  '--enable-calendar' \
-  '--with-curl=/usr' \
-  '--enable-dba' \
-  '--with-gdbm=/usr' \
-  '--enable-exif' \
-  '--enable-ftp' \
-  '--with-gd' \
-  '--with-vpx-dir=/usr' \
-  '--with-jpeg-dir=/usr' \
-  '--with-png-dir=/usr' \
-  '--with-xpm-dir=/usr' \
-  '--with-zlib-dir=/usr' \
-  '--with-freetype-dir=/usr' \
-  '--with-gettext=/usr' \
-  '--with-gmp=/usr' \
-  '--with-mhash=/usr' \
-  '--enable-intl' \
-  '--enable-mbstring' \
-  '--with-mcrypt=/usr' \
-  '--with-mysql=/usr/local/mysql' \
-  '--with-mysql-sock=/tmp/mysql.sock' \
-  '--with-mysqli=/usr/local/mysql/bin/mysql_config' \
-  '--enable-embedded-mysqli' \
-  '--enable-pcntl' \
-  '--enable-opcache' \
-  '--with-pdo-mysql' \
-  '--with-libedit=/usr' \
-  '--with-readline=/usr' \
-  '--enable-soap' \
-  '--enable-mysqlnd' \
-  '--enable-sockets' \
-  '--enable-sysvmsg' \
-  '--enable-sysvsem' \
-  '--enable-sysvshm' \
-  '--with-tidy=/usr' \
-  '--enable-wddx' \
-  '--with-xsl=/usr' \
-  '--enable-fpm'
-make &amp;&amp; make install
+<span style="color:#e6db74">&#39;./configure&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--prefix=/usr/local/php-5.6.19&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-libdir=lib64&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-config-file-path=/usr/local/php-5.6.19/lib&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-fpm-user=nobody&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-fpm-group=nobody&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-libxml-dir=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-openssl=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-openssl-dir=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-zlib&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-bcmath&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-bz2=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-calendar&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-curl=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-dba&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-gdbm=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-exif&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-ftp&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-gd&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-vpx-dir=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-jpeg-dir=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-png-dir=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-xpm-dir=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-zlib-dir=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-freetype-dir=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-gettext=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-gmp=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-mhash=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-intl&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-mbstring&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-mcrypt=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-mysql=/usr/local/mysql&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-mysql-sock=/tmp/mysql.sock&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-mysqli=/usr/local/mysql/bin/mysql_config&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-embedded-mysqli&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-pcntl&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-opcache&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-pdo-mysql&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-libedit=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-readline=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-soap&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-mysqlnd&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-sockets&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-sysvmsg&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-sysvsem&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-sysvshm&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-tidy=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-wddx&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--with-xsl=/usr&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;--enable-fpm&#39;</span>
+make <span style="color:#f92672">&amp;&amp;</span> make install
 
-# 重新启动由 supervisor 管理的 php-fpm（非必须）
+<span style="color:#75715e"># 重新启动由 supervisor 管理的 php-fpm（非必须）</span>
 supervisorctl restart php-fpm
-</code></pre>
-
-<p>检查 curl 的信息。</p>
-
-<pre><code class="language-bash">curl -V
-// curl 7.48.0 (x86_64-pc-linux-gnu) libcurl/7.48.0 OpenSSL/1.0.1e zlib/1.2.7
+</code></pre></div><p>检查 curl 的信息。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -V
+// curl 7.48.0 <span style="color:#f92672">(</span>x86_64-pc-linux-gnu<span style="color:#f92672">)</span> libcurl/7.48.0 OpenSSL/1.0.1e zlib/1.2.7
 // Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp
 // Features: IPv6 Largefile NTLM NTLM_WB SSL libz UnixSockets
-</code></pre>
-
-<p>欧耶！<code>NSS</code> 不见了！</p>
-
+</code></pre></div><p>欧耶！<code>NSS</code> 不见了！</p>
 <p>再进 tinker 试试代码能否正常。</p>
-
-<pre><code class="language-php">$app = app('wechat');
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$app = app(&#39;wechat&#39;);
 // EasyWeChat\Foundation\Application {#628}
 
 $users = $app-&gt;user-&gt;lists();
 // EasyWeChat\Support\Collection {#741}
 
-$user = $app-&gt;user-&gt;get('o7qrUvryjgQlQti0Cw1XeVw2PJKk');
+$user = $app-&gt;user-&gt;get(&#39;o7qrUvryjgQlQti0Cw1XeVw2PJKk&#39;);
 // EasyWeChat\Support\Collection {#722}
 
 // 世界终于和平了！
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <p>PS：一些心得</p>
-
 <ul>
 <li>原来 CURL 之前一直有这个问题，见<a href="http://stackoverflow.com/questions/26452755/php-curl-with-nss-is-probably-using-sslv3-insted-of-tls-when-connecting-to-htt#answer-26453701">这则 stackoverflow 上面的答复</a>；</li>
 <li>一个基础库的小问题，会因为依赖树的关系，被无限放大；</li>
@@ -423,7 +401,7 @@ $user = $app-&gt;user-&gt;get('o7qrUvryjgQlQti0Cw1XeVw2PJKk');
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

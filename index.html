@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -203,8 +203,8 @@ put option 的含义是，它允许你在约定的时间，以约定的价格，
 以前是重新安装一个 hexo 环境，还有几率能解决依赖的问题（部分 plugins 会降级安装）。但既然已经不是第一次遇到这种情况，问题的根源解决不了，没准儿以后还会遇到，干脆下定决心弃坑 hexo。
 hugo 早就听说大名，golang 也是我喜欢的。基本上没调研其它 blog service，直接开始研究起 hugo 来。
 1. 安装 hugo 我用 MacBook Pro，装了 HomeBrew，安装 hugo 相对简单。
-brew install hugo  2. 建立站点 hugo new site my-blog  完成以后，my-blog 目录下会有以下子目录。
- archetypes: 下面有一个 default.md 的模板，是新建文章的时候，会用到的模板。 config.toml: TOML 格式的配置文件。 content: 放文章源文件，.……
+brew install hugo 2. 建立站点 hugo new site my-blog 完成以后，my-blog 目录下会有以下子目录。
+ archetypes: 下面有一个 default.md 的模板，是新建文章的时候，会用到的模板。 config.toml: TOML 格式的配置文件。 content: 放文章源文件，.md 文件的地方。 themes: 主题目录。具体用哪个主题，参照 config.……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/my-first-post/">阅读全文</a></p>
                         </article>
@@ -233,7 +233,7 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
 开发者可能还真发现不了。首先，开发者的环境是既有的，是缓慢生长起来的，不是什么问题都能发现的。其次，CI 也不一定能发现问题。有些基础的 package 为了自身兼容性，对不同 node 环境做了兼容处理，在不同版本的 node 下，逻辑代码不同。再次，npm 的 peerDependencies 对 package 之间的依赖关系进行了解耦，有些依赖关系非强制，实际上是允许了冲突的存在。最后，node 的环境隔离方案，类似 pyenv 这样的，也有，非主流，而且治标不治本，仍然解决不了 package 之间的冲突。
 之前我遇到的问题是 peerDependencies 导致的。今天遇到的问题，则是对 node 版本的声明导致的。
  error nunjucks@3.1.3: The engine &ldquo;node&rdquo; is incompatible with this module. Expected version &ldquo;&gt;= 6.9.0 &lt;= 11.0.0-0&rdquo;. Got &ldquo;12.4.0&rdquo; error Found incompatible module
- 我的 node 是通过 HomeBrew 安装的，latest，当前版本 *v12.4.0*。
+ 我的 node 是通过 HomeBrew 安装的，latest，当前版本 v12.4.0。
 对 node 一直有一点担心，然后这种担心在 2016 年左右，逐渐成了现实。那就是 npm 对 package 的依赖管理策略。越松散，越自由，就越极客，越小众；越独裁，越限制，就越方便，越大众。npm 很明显走前者的路线，而且偏向极端。我知道稍微有点能力的公司，用 RN/Vue/Angular…… 都是自己搭 package server，自己造 package。包括一些基础的 package。没别的，就为一条，质量可控。……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/">阅读全文</a></p>
@@ -292,12 +292,12 @@ Vultr 最近有一个活动，第一次注册、付费超过 $25 的新用户，
 结果没过几年，hexo 也快成了技术流的玩具。
 问题一。npm 依赖存在缺陷 首先是 &quot;hexo@3.8.0&quot; 某个依赖 &quot;hexo-fs@0.2.2&quot;，后者依赖 &quot;chokidar@1.2.7&quot;，而 chokidar 又依赖 &quot;fsevents@1.1.3&quot;。好了，最后这个 &quot;fsevents@1.1.3&quot; 是被 deprecated 的版本，包含原生库，已经不存在 binary 下载，从源码编译也会报错。错误的大意是跟 node 的版本不兼容。
 下面我把这个关系链重新理一下。
-graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[&quot;chokidar@1.2.7&quot;]; C--&gt;D[&quot;fsevents@1.1.3&quot;]; D--&gt;E[&quot;(HELL)&quot;];  除了上面的问题以外，大量已经停更的 plugins 依赖的 &quot;hexo-cli@1.0.3&quot; 等旧库，也多对 &quot;fsevents@1.1.3&quot; 存在间接依赖。
+graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[&quot;chokidar@1.2.7&quot;]; C--&gt;D[&quot;fsevents@1.1.3&quot;]; D--&gt;E[&quot;(HELL)&quot;]; 除了上面的问题以外，大量已经停更的 plugins 依赖的 &quot;hexo-cli@1.0.3&quot; 等旧库，也多对 &quot;fsevents@1.1.3&quot; 存在间接依赖。
 用一句话来说后果，在 MacOS 下，用 hexo-cli new + npm i 的方式，根本安装不上 hexo。
 问题二。插件的停更、老化 像上面提到的，停更的插件，其间接依赖的第三方库若是被废弃，插件本身也就不可用了。这是一种情况。
 第二种情况，hexo 本身在发展，某些停更的第三方插件没有跟着做适配，结果是 hexo 的使用体验受到了影响。
 第三种情况，最常见的。哪怕是官网列表中的插件，质量也是有高有低，对那些技术不灵光的用户实在麻烦。
-解决方法 针对安装不上的问题。我也不知道怎么解决 :( 我用撞大运的办法，hexo-cli new 一个项目以后，手动修改 package.……
+解决方法 针对安装不上的问题。我也不知道怎么解决 :( 我用撞大运的办法，hexo-cli new 一个项目以后，手动修改 package.json，将 &quot;hexo@3.8.0&quot; 这个依赖指向自己 fork 的 hexo repo，这个 forked repo 里面已经修改了 hexo-fs 是指向一个 forked hexo-cli repo。最后在这个 forked hero-cli repo 里面，把对 chokidar 的引用上升到 &quot;chokidar@1.……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/">阅读全文</a></p>
                         </article>
@@ -316,8 +316,8 @@ graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[
                                 最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内容千篇一律是推荐极客时间打新的课程，《Java 并发编程实战》。
 高并发哥又不是没做过，随手找了一下，发现陈皓在 2009 年的一篇文章就提到了正确的解法，以及背后的原因。《深入浅出单实例 SINGLETON 设计模式》。
 文中给出几种功能上正确的 singleton 写法。
-// version 1.4 public class Singleton { private volatile static Singleton singleton = null; private Singleton() {} public static Singleton getInstance() { if (singleton == null) { synchronized (Singleton.class) { if (singleton== null) { singleton= new Singleton(); } } } return singleton; } }  请留意私有变量的描述词 volatile，目的是不让编译器对指令进行重排序优化。
-// version 1.5 public class Singleton { private volatile static Singleton singleton = new Singleton(); private Singleton() {} public static Singleton getInstance() { return singleton; } }  这是自动加载版本。每次加载类的时候，实例就生成了。所以加载类的过程可能会很慢（特别是有很多继承、引用的情况）。……
+// version 1.4 public class Singleton { private volatile static Singleton singleton = null; private Singleton() {} public static Singleton getInstance() { if (singleton == null) { synchronized (Singleton.class) { if (singleton== null) { singleton= new Singleton(); } } } return singleton; } } 请留意私有变量的描述词 volatile，目的是不让编译器对指令进行重排序优化。
+// version 1.5 public class Singleton { private volatile static Singleton singleton = new Singleton(); private Singleton() {} public static Singleton getInstance() { return singleton; } } 这是自动加载版本。每次加载类的时候，实例就生成了。所以加载类的过程可能会很慢（特别是有很多继承、引用的情况）。……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/timeless-technology/">阅读全文</a></p>
                         </article>
@@ -541,7 +541,7 @@ graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

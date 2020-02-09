@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -83,12 +83,8 @@
                         
                         
                         <div class="post-content">
-                            
-
-<p>DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。</p>
-
+                            <p>DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。</p>
 <p>我遇到的场景是这样的。</p>
-
 <ol>
 <li>公司有内网机房，研发用，研发环境和测试环境都在内网机房；</li>
 <li>公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析；</li>
@@ -97,67 +93,53 @@
 <li>对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind；</li>
 <li>之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。</li>
 </ol>
-
 <p>找了一圈，发现 <a href="https://coredns.io/">CoreDNS</a> 挺好的。推荐之。</p>
-
-<h3 id="一-安装">一、安装</h3>
-
+<h3 id="一安装">一、安装</h3>
 <p>CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。</p>
-
 <p>下面统统以 MacOS 为例作讲解。</p>
-
-<pre><code class="language-bash">cd ~/Downloads
-curl -LO &quot;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&quot; &amp;&amp; \
-tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \
-mv ./coredns /usr/local/bin/
-</code></pre>
-
-<p>这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。</p>
-
-<h3 id="二-配置">二、配置</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/Downloads
+curl -LO <span style="color:#e6db74">&#34;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>tar zxf coredns_1.1.2_darwin_amd64.tgz <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>mv ./coredns /usr/local/bin/
+</code></pre></div><p>这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。</p>
+<h3 id="二配置">二、配置</h3>
 <p>要深入了解 CoreDNS，请查看其<a href="https://coredns.io/manual/toc">文档</a>，及 <a href="https://coredns.io/plugins/">plugins 的介绍</a>。</p>
-
-<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /usr/local/etc/Corefile
-. {
-  hosts {
-    fallthrough
-  }
-
-  forward . 1.1.1.1 8.8.8.8 119.29.29.29 223.5.5.5 {
-    force_tcp
-    max_fails 3
-    expire 10s
-    health_check 5s
-    policy sequential
-    except company.com
-  }
-
-  cache 120
-  reload 6s
-  log
-  errors
-}
-
-company.com {
-  hosts {
-    fallthrough
-  }
-
-  forward . 192.168.88.101 119.29.29.29 114.114.114.114 {
-    max_fails 3
-    expire 5s
-    health_check 3s
-    policy sequential
-  }
-}
-EOF
-</code></pre>
-
-<p>其中 <code>192.168.88.101</code> 是公司内网 DNS 服务器（bind）的 IP 地址。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#e6db74">&lt;&lt;EOF &gt; /usr/local/etc/Corefile
+</span><span style="color:#e6db74">. {
+</span><span style="color:#e6db74">  hosts {
+</span><span style="color:#e6db74">    fallthrough
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  forward . 1.1.1.1 8.8.8.8 119.29.29.29 223.5.5.5 {
+</span><span style="color:#e6db74">    force_tcp
+</span><span style="color:#e6db74">    max_fails 3
+</span><span style="color:#e6db74">    expire 10s
+</span><span style="color:#e6db74">    health_check 5s
+</span><span style="color:#e6db74">    policy sequential
+</span><span style="color:#e6db74">    except company.com
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  cache 120
+</span><span style="color:#e6db74">  reload 6s
+</span><span style="color:#e6db74">  log
+</span><span style="color:#e6db74">  errors
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">company.com {
+</span><span style="color:#e6db74">  hosts {
+</span><span style="color:#e6db74">    fallthrough
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  forward . 192.168.88.101 119.29.29.29 114.114.114.114 {
+</span><span style="color:#e6db74">    max_fails 3
+</span><span style="color:#e6db74">    expire 5s
+</span><span style="color:#e6db74">    health_check 3s
+</span><span style="color:#e6db74">    policy sequential
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div><p>其中 <code>192.168.88.101</code> 是公司内网 DNS 服务器（bind）的 IP 地址。</p>
 <p>对配置中的一些选项稍作解释。</p>
-
 <ul>
 <li><code>hosts</code>：<code>hosts</code> 是 CoreDNS 的一个 plugin，这一节的意思是加载 <code>/etc/hosts</code> 文件里面的解析信息。<code>hosts</code> 在最前面，则如果一个域名在 hosts 文件中存在，则优先使用这个信息返回；</li>
 <li><code>fallthrough</code>：如果 <code>hosts</code> 中找不到，则进入下一个 plugin 继续。缺少这一个指令，后面的 plugins 配置就无意义了；</li>
@@ -170,9 +152,7 @@ EOF
 <li><code>errors</code>：打印/存储错误日志；</li>
 <li><code>company.com { }</code>：另外一个『服务』，只服务针对『company.com』的域名解析；</li>
 </ul>
-
 <p>我讲一下我自己的理解。</p>
-
 <ol>
 <li>配置文件类似于 nginx 配置文件的格式；</li>
 <li>最外面一级的大括号，对应『服务』的概念。多个服务可以共用一个端口；</li>
@@ -182,46 +162,31 @@ EOF
 <li>从 <a href="https://coredns.io/plugins/">plugins</a> 页面的介绍看，CoreDNS 的功能还是很强的，既能轻松从 bind 迁移，还能兼容 old-style dns server 的运维习惯；</li>
 <li>从 CoreDNS 的性能指标看，适合做大型服务。</li>
 </ol>
-
-<h3 id="三-运行">三、运行</h3>
-
-<pre><code class="language-bash"># 前台运行方式
+<h3 id="三运行">三、运行</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 前台运行方式</span>
 /usr/local/bin/coredns -conf /usr/local/etc/Corefile
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p><del>NOTE(simon): 新增 <code>-log</code> 参数，将日志打到 stdout，日志集中处理。</del></p>
-
+</blockquote>
+<blockquote>
 <p>UPDATE(simon): 更新 coredns 到最新的 1.2.2 版本，已经没有 -log 这个参数了。日志默认也是直接打到 stdout 上面。</p>
 </blockquote>
-
 <p>如果没有问题，这时候应该看到 CoreDNS 持续运行。</p>
-
-<h3 id="四-部署">四、部署</h3>
-
+<h3 id="四部署">四、部署</h3>
 <p>在用 chinadns 的时候，遇到过 chinadns 崩掉的情况。作为基础服务，DNS 还是要能稳定持续提供服务的。此外，开机自动启动也是个必要的功能。</p>
-
 <p><del>综合考虑，熟悉的 <code>supervisor</code> 是个好的选择。</del></p>
-
-<p><strike></p>
-
-<pre><code class="language-bash">~~# 安装 supervisor
-brew install supervisor
-
-# 设置服务配置目录
-mkdir -p /usr/local/etc/supervisord.ini.d
-
-# 修改 supervisor 配置
-sed -i .bak 's@files = .*@files = /usr/local/etc/supervisord.ini.d/*.ini@g' /usr/local/etc/supervisord.ini
-
-# 为 supervisorctl 做映射
-alias supervisorctl='/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'
-cat &lt;&lt;EOF &gt;&gt; ~/.bash_profile
-alias supervisorctl='/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini'
-EOF
-
-# 为 CoreDNS 写配置文件
-cat &lt;&lt;EOF &gt; /usr/local/etc/supervisord.ini.d/coredns.ini
+<!-- raw HTML omitted -->
+<h1 id="设置服务配置目录">设置服务配置目录</h1>
+<p>mkdir -p /usr/local/etc/supervisord.ini.d</p>
+<h1 id="修改-supervisor-配置">修改 supervisor 配置</h1>
+<p>sed -i .bak &lsquo;s@files = .<em>@files = /usr/local/etc/supervisord.ini.d/</em>.ini@g&rsquo; /usr/local/etc/supervisord.ini</p>
+<h1 id="为-supervisorctl-做映射">为 supervisorctl 做映射</h1>
+<p>alias supervisorctl=&rsquo;/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini&rsquo;
+cat &laquo;EOF &raquo; ~/.bash_profile
+alias supervisorctl=&rsquo;/usr/local/bin/supervisorctl -c /usr/local/etc/supervisord.ini&rsquo;
+EOF</p>
+<h1 id="为-coredns-写配置文件">为 CoreDNS 写配置文件</h1>
+<p>cat &laquo;EOF &gt; /usr/local/etc/supervisord.ini.d/coredns.ini
 [program:coredns]
 command=/usr/bin/sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile
 ;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
@@ -233,7 +198,7 @@ autostart=true                ; start at supervisord start (default: true)
 autorestart=unexpected        ; whether/when to restart (default: unexpected)
 startsecs=1                   ; number of secs prog must stay running (def. 1)
 startretries=9999              ; max # of serial start failures (default 3)
-;exitcodes=0,2                 ; 'expected' exit codes for process (default 0,2)
+;exitcodes=0,2                 ; &lsquo;expected&rsquo; exit codes for process (default 0,2)
 stopsignal=QUIT               ; signal used to kill process (default TERM)
 ;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
 ;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
@@ -243,71 +208,54 @@ stopsignal=QUIT               ; signal used to kill process (default TERM)
 stdout_logfile=/usr/local/var/log/supervisor/coredns.stdout.log        ; stdout log path, NONE for none; default AUTO
 stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
 stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)
-stdout_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+stdout_capture_maxbytes=1MB   ; number of bytes in &lsquo;capturemode&rsquo; (default 0)
 stdout_events_enabled=false   ; emit events on stdout writes (default false)
 stderr_logfile=/usr/local/var/log/supervisor/coredns.stderr.log       ; stderr log path, NONE for none; default AUTO
 stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
 stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)
-stderr_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+stderr_capture_maxbytes=1MB   ; number of bytes in &lsquo;capturemode&rsquo; (default 0)
 stderr_events_enabled=false   ; emit events on stderr writes (default false)
-;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions (def no adds)
-;serverurl=AUTO                ; override serverurl computation (childutils)
+;environment=A=&quot;1&rdquo;,B=&quot;2&rdquo;       ; process environment additions (def no adds)
+;serverurl=AUTO                ; override serverurl computation (childutils)</p>
+<p>EOF</p>
+<h1 id="设置-supervisord-开机自启动">设置 supervisord 开机自启动</h1>
+<p>brew service start supervisor</p>
+<h1 id="查看-coredns-是否正常运行">查看 CoreDNS 是否正常运行</h1>
+<p>supervisorctl status</p>
+<pre><code>&lt;/strike&gt;
 
-EOF
+&gt; NOTE(simon, 2018-05-30):
+&gt;   放弃使用 supervisor 的原因是，MacOS 作为生产力工具，supervisor 最友好方式的安装还是通过 brew。而 brew 安装的 supervisor 启动时，是当前用户权限，不是 root 身份。试了下，也没办法通过配置，提权到 root。再则，supervisor 的配置中，大量文件写到 `/usr/local` 目录下，如果以 root 身份启动 supervisord 进程，这些文件势必也是 root 权限的。而按照 brew 的指导意见，`/usr/local` 下还是要保留当前用户权限的，否则 brew 可能会挂。
+&gt;   所以兜兜转换，又用回到老的土办法。毕竟，稳定就好。
 
-# 设置 supervisord 开机自启动
-brew service start supervisor
-
-# 查看 CoreDNS 是否正常运行
-supervisorctl status
-</code></pre>
-
-<p></strike></p>
-
-<blockquote>
-<p>NOTE(simon, 2018-05-30):
-  放弃使用 supervisor 的原因是，MacOS 作为生产力工具，supervisor 最友好方式的安装还是通过 brew。而 brew 安装的 supervisor 启动时，是当前用户权限，不是 root 身份。试了下，也没办法通过配置，提权到 root。再则，supervisor 的配置中，大量文件写到 <code>/usr/local</code> 目录下，如果以 root 身份启动 supervisord 进程，这些文件势必也是 root 权限的。而按照 brew 的指导意见，<code>/usr/local</code> 下还是要保留当前用户权限的，否则 brew 可能会挂。
-  所以兜兜转换，又用回到老的土办法。毕竟，稳定就好。</p>
-</blockquote>
-
-<p><strike></p>
-
-<pre><code class="language-bash">cat &lt;&lt;EOF &gt; ~/.bash_profile
+&lt;strike&gt;
+```bash
+cat &lt;&lt;EOF &gt; ~/.bash_profile
 # CoreDNS
 COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)
 [ ${COREDNS_PROCESS_COUNT} -lt 1 ] &amp;&amp; \
     nohup sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile &amp;
 EOF
-</code></pre>
-
-<p></strike></p>
-
+</code></pre><!-- raw HTML omitted -->
 <blockquote>
 <p>NOTE(simon, 2018-11-20):
-  更新一下脚本，实现下面几个功能：
-  1. coredns 进程的 stderr 输出转到 stdout；
-  2. coredns 进程不绑定到当前 tty 上，运行 <code>jobs</code> 命令不显示 coredns 进程；
-  3. 显式指定 nohup 将 coredns 进程的 stdout 输出打到 ~/nohup.out 文件；</p>
+更新一下脚本，实现下面几个功能：</p>
+<ol>
+<li>coredns 进程的 stderr 输出转到 stdout；</li>
+<li>coredns 进程不绑定到当前 tty 上，运行 <code>jobs</code> 命令不显示 coredns 进程；</li>
+<li>显式指定 nohup 将 coredns 进程的 stdout 输出打到 ~/nohup.out 文件；</li>
+</ol>
 </blockquote>
-
-<pre><code class="language-bash">COREDNS_PROCESS_COUNT=$(ps aux | grep coredns | grep -v grep | wc -l)
-[ ${COREDNS_PROCESS_COUNT} -lt 1 ] &amp;&amp; \
-  (2&gt;&amp;1 nohup sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile &gt;&gt; ~/nohup.out &amp;)
-</code></pre>
-
-<h3 id="五-验证">五、验证</h3>
-
-<pre><code class="language-bash">nslookup www.qq.com 127.0.0.1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">COREDNS_PROCESS_COUNT<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ps aux | grep coredns | grep -v grep | wc -l<span style="color:#66d9ef">)</span>
+<span style="color:#f92672">[</span> <span style="color:#e6db74">${</span>COREDNS_PROCESS_COUNT<span style="color:#e6db74">}</span> -lt <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#f92672">(</span>2&gt;&amp;<span style="color:#ae81ff">1</span> nohup sudo /usr/local/bin/coredns -conf /usr/local/etc/Corefile &gt;&gt; ~/nohup.out &amp;<span style="color:#f92672">)</span>
+</code></pre></div><h3 id="五验证">五、验证</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nslookup www.qq.com 127.0.0.1
 nslookup www.facebook.com 127.0.0.1
 nslookup test1.mod-a.company.com 127.0.0.1
-</code></pre>
-
-<p>公司内网 IP 几乎秒出。非死不可也能出。</p>
-
+</code></pre></div><p>公司内网 IP 几乎秒出。非死不可也能出。</p>
 <p>搞定。</p>
-
-<h3 id="六-系统设置">六、系统设置</h3>
-
+<h3 id="六系统设置">六、系统设置</h3>
 <p>在『系统偏好设置』-&gt;『网络』中，把 DNS 里面添加一行，127.0.0.1，并把新增这项移动到最前面，即可。</p>
 
                         </div>
@@ -512,7 +460,7 @@ nslookup test1.mod-a.company.com 127.0.0.1
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -83,59 +83,33 @@
                         
                         
                         <div class="post-content">
-                            
-
-<p>其实写这篇文章，心情不太痛快。hexo 是我找了好久才确定下来，能用 markdown 写 blog 的系统。之前试过的如 jekyll 太复杂，而且定制化程度太低，不灵活。刚开始用 hexo 的时候发现它简直是尤物，轻便简洁，扩展性还不错，官方收录了<a href="https://hexo.io/plugins/index.html">很多 plugins</a>，足够码农用了。</p>
-
+                            <p>其实写这篇文章，心情不太痛快。hexo 是我找了好久才确定下来，能用 markdown 写 blog 的系统。之前试过的如 jekyll 太复杂，而且定制化程度太低，不灵活。刚开始用 hexo 的时候发现它简直是尤物，轻便简洁，扩展性还不错，官方收录了<a href="https://hexo.io/plugins/index.html">很多 plugins</a>，足够码农用了。</p>
 <p>结果没过几年，hexo 也快成了技术流的玩具。</p>
-
-<h2 id="问题一-npm-依赖存在缺陷">问题一。npm 依赖存在缺陷</h2>
-
+<h2 id="问题一npm-依赖存在缺陷">问题一。npm 依赖存在缺陷</h2>
 <p>首先是 <code>&quot;hexo@3.8.0&quot;</code> 某个依赖 <code>&quot;hexo-fs@0.2.2&quot;</code>，后者依赖 <code>&quot;chokidar@1.2.7&quot;</code>，而 chokidar 又依赖 <code>&quot;fsevents@1.1.3&quot;</code>。好了，最后这个 <code>&quot;fsevents@1.1.3&quot;</code> 是被 <em>deprecated</em> 的版本，包含原生库，已经不存在 binary 下载，从源码编译也会报错。错误的大意是跟 node 的版本不兼容。</p>
-
 <p>下面我把这个关系链重新理一下。</p>
-
-<pre><code class="language-mermaid">graph LR;
+<pre><code class="language-mermaid" data-lang="mermaid">graph LR;
     A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;];
     B--&gt;C[&quot;chokidar@1.2.7&quot;];
     C--&gt;D[&quot;fsevents@1.1.3&quot;];
     D--&gt;E[&quot;(HELL)&quot;];
-</code></pre>
-
-<p>除了上面的问题以外，大量已经停更的 plugins 依赖的 <code>&quot;hexo-cli@1.0.3&quot;</code> 等旧库，也多对 <code>&quot;fsevents@1.1.3&quot;</code> 存在间接依赖。</p>
-
+</code></pre><p>除了上面的问题以外，大量已经停更的 plugins 依赖的 <code>&quot;hexo-cli@1.0.3&quot;</code> 等旧库，也多对 <code>&quot;fsevents@1.1.3&quot;</code> 存在间接依赖。</p>
 <p>用一句话来说后果，<strong>在 MacOS 下，用 <code>hexo-cli new</code> + <code>npm i</code> 的方式，根本安装不上 hexo。</strong></p>
-
-<h2 id="问题二-插件的停更-老化">问题二。插件的停更、老化</h2>
-
+<h2 id="问题二插件的停更老化">问题二。插件的停更、老化</h2>
 <p>像上面提到的，停更的插件，其间接依赖的第三方库若是被废弃，插件本身也就不可用了。这是一种情况。</p>
-
 <p>第二种情况，hexo 本身在发展，某些停更的第三方插件没有跟着做适配，结果是 hexo 的使用体验受到了影响。</p>
-
 <p>第三种情况，最常见的。哪怕是官网列表中的插件，质量也是有高有低，对那些技术不灵光的用户实在麻烦。</p>
-
 <h2 id="解决方法">解决方法</h2>
-
 <p>针对安装不上的问题。我也不知道怎么解决 :( 我用撞大运的办法，<code>hexo-cli new</code> 一个项目以后，手动修改 <code>package.json</code>，将 <code>&quot;hexo@3.8.0&quot;</code> 这个依赖指向自己 fork 的 <code>hexo</code> repo，这个 forked repo 里面已经修改了 <code>hexo-fs</code> 是指向一个 forked <code>hexo-cli</code> repo。最后在这个 forked hero-cli repo 里面，把对 <code>chokidar</code> 的引用上升到 <code>&quot;chokidar@1.7.0&quot;</code> 以后。</p>
-
 <p>挺复杂的，对吧。不懂点开发，还真办不了。</p>
-
 <p>针对插件停更、老化的问题，只有一个办法，就是自己 fork 做二次开发。项目的依赖中直接写上自己的 git repo。</p>
-
 <p>别问我有没有现成的。我也很无奈。</p>
-
 <p>PS：这就是 npm 生态带来的问题。left_pad 事件发生后，有人说 nodejs 程序员懒到『 连最简单的代码都不想写』，只想引用。我不太赞同这个评论的态度，不过 npm 社区的程序员的确是把代码复用做到比较极致的地步。</p>
-
-<hr />
-
+<hr>
 <p><em>UPDATE(2019-02-28)</em></p>
-
 <p>发现在新 new 的项目里面，<code>&quot;hexo@3.8.0&quot;</code> 的发布版好像是依赖的 <code>&quot;hexo-fs@0.2.3&quot;</code>，已经升级到间接依赖 <code>&quot;fsevents@1.2.7&quot;</code>。</p>
-
 <p>挺无语的。真的。还有点懵圈，没太搞懂。</p>
-
 <p>昨天我可是 <code>rm -rf ./node_modules/* &amp;&amp; npm i</code> 操作的，按说缓存应该没影响才对。如果是 npm 自己的 cache（我设置到了 ~/.npm/cache 目录），新 new 出来的项目应该也会受影响才对啊。</p>
-
 <p>好吧，不折腾了。下次再遇到，所有缓存，全部清理得了。</p>
 
                         </div>
@@ -340,7 +314,7 @@
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

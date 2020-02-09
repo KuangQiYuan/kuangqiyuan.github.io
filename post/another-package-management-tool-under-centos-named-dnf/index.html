@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -83,113 +83,57 @@
                         
                         
                         <div class="post-content">
-                            
-
-<blockquote>
+                            <blockquote>
 <p>更新（2017-06-01）：repo 的 url 有变化，更新之。后附更新脚本。</p>
 </blockquote>
-
-<hr />
-
+<hr>
 <p><a href="http://rpm-software-management.github.io/dnf/">DNF</a> 起源于 YUM 的一个分支，最早用在 <a href="https://fedoraproject.org/">Fedora</a> 18，在 Fedora 22 中默认安装，成为系统工具。<a href="http://www.tecmint.com/dnf-next-generation-package-management-utility-for-linux/">现在更是被广泛看作 YUM 的接班人。</a>虽然 DNF 号称自己不错，但是幸好，至少从目前来看，都可以看做是对 YUM 的小修补。整体来说，DNF 对 YUM 的兼容做得很好，甚至于部分操作可以 <code>yum</code> 和 <code>dnf</code> 混合着来——当然，新旧掺杂绝对不是好习惯，我就这么一说，证明 YUM 和 DNF 的关联之亲近。用惯了 YUM 的朋友们一定不会抗拒换到 DNF，它们的<a href="https://linuxstory.org/dnf-commands-for-fedora-rpm-package-management/">用法非常相似</a>，而且 DNF 的更有现代语言风格。</p>
-
 <p>我常用的系统是 <a href="https://www.centos.org/">CentOS</a>，虽然已经被 RedHat 收购，但是 CentOS 的品质和定位都没有变，这很难得。最新（截至 2016-10-16）的 CentOS 是 7.2.1511。下面的步骤在 CentOS 上尝试，对 Fedora/RHEL 理论上同样适用。Fedora 上应该还更加简单，下面的问题好多都不会遇到。</p>
-
 <p>闲话不说，安装步骤如下。</p>
-
-<h3 id="一-手动安装全新的-yum-repo">一、手动安装全新的 yum repo</h3>
-
+<h3 id="一手动安装全新的-yum-repo">一、手动安装全新的 yum repo</h3>
 <p>新增一个 repo，从这个 repo 中用 <code>yum</code> 安装 DNF。这是因为 CentOS Base repo 中的 DNF 版本太低，只有 0.6.x，而最新的稳定版已经到 1.1.9。0.6.x 中的 libsolv 太低，<a href="https://gist.github.com/makeittotop/d83f53c5354f0e12fdc3cc394af9d1c5">导致不能处理 <code>.bz2</code> 压缩包</a>，所以只能采用<a href="http://dnf.baseurl.org/2016/07/01/fresh-dnf-for-rhel-7-and-centos-7/">引入新 repo</a> 来安装 DNF 的办法。</p>
-
-<p><strike></p>
-
-<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo
-[dnf-stack-el7]
-name=Copr repo for dnf-stack-el7 owned by @rpm-software-management
-baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/epel-7-\$basearch/
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/pubkey.gpg
-enabled=1
-enabled_metadata=1
-EOF
-</code></pre>
-
-<p></strike></p>
-
+<!-- raw HTML omitted -->
 <blockquote>
 <p>Update (2017-06-03):
 因为 rpm-software-management 提供的 repo 变更了 url，因此上述脚本也做了相应更新。如下。</p>
 </blockquote>
-
-<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo
-[dnf-stack-el7]
-name=Copr repo for dnf-stack-el7 owned by @rpm-software-management
-baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/epel-7-\$basearch/
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/pubkey.gpg
-enabled=1
-enabled_metadata=1
-EOF
-</code></pre>
-
-<p>对于已经用旧的脚本安装过 dnf repo 的系统，可以使用下面的命令 fix。</p>
-
-<pre><code class="language-bash">[[ -f /etc/yum.repos.d/dnf-stack-el7.repo ]] &amp;&amp; \
-  sed -i 's@/dnf-stack-el7/@/dnf-centos/@g' /etc/yum.repos.d/dnf-stack-el7.repo
-</code></pre>
-
-<h3 id="二-安装-dnf">二、安装 DNF</h3>
-
-<pre><code class="language-bash">yum install dnf dnf-conf dnf-automatic
-</code></pre>
-
-<h3 id="三-验证及状态检查">三、验证及状态检查</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#e6db74">&lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo
+</span><span style="color:#e6db74">[dnf-stack-el7]
+</span><span style="color:#e6db74">name=Copr repo for dnf-stack-el7 owned by @rpm-software-management
+</span><span style="color:#e6db74">baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/epel-7-\$basearch/
+</span><span style="color:#e6db74">skip_if_unavailable=True
+</span><span style="color:#e6db74">gpgcheck=1
+</span><span style="color:#e6db74">gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-centos/pubkey.gpg
+</span><span style="color:#e6db74">enabled=1
+</span><span style="color:#e6db74">enabled_metadata=1
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div><p>对于已经用旧的脚本安装过 dnf repo 的系统，可以使用下面的命令 fix。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span><span style="color:#f92672">[</span> -f /etc/yum.repos.d/dnf-stack-el7.repo <span style="color:#f92672">]</span><span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sed -i <span style="color:#e6db74">&#39;s@/dnf-stack-el7/@/dnf-centos/@g&#39;</span> /etc/yum.repos.d/dnf-stack-el7.repo
+</code></pre></div><h3 id="二安装-dnf">二、安装 DNF</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install dnf dnf-conf dnf-automatic
+</code></pre></div><h3 id="三验证及状态检查">三、验证及状态检查</h3>
 <p>安装完成后检查 DNF 的版本（如果报错，请看下一节）。</p>
-
-<pre><code class="language-bash">dnf --version
-</code></pre>
-
-<p>截至现在（2016-10-16），通过 <code>yum</code> 安装的 DNF 最新的版本号是 <code>1.1.9</code>，也就是说，你安装的 DNF 不应该低于这个版本号，才是对了。</p>
-
-<pre><code class="language-bash">dnf repolist all
-</code></pre>
-
-<p>这可以查看当前 DNF 用到那些软件库的资源。按照使用 YUM 的习惯，最重要的无非 Base、EPEL、Updates 这三个。</p>
-
-<pre><code class="language-bash">dnf list installed
-</code></pre>
-
-<p>查看已经安装的应用。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dnf --version
+</code></pre></div><p>截至现在（2016-10-16），通过 <code>yum</code> 安装的 DNF 最新的版本号是 <code>1.1.9</code>，也就是说，你安装的 DNF 不应该低于这个版本号，才是对了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dnf repolist all
+</code></pre></div><p>这可以查看当前 DNF 用到那些软件库的资源。按照使用 YUM 的习惯，最重要的无非 Base、EPEL、Updates 这三个。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dnf list installed
+</code></pre></div><p>查看已经安装的应用。
 PS：从第三列很容易看出，以前通过 YUM 安装的应用，都被划为 <code>@System</code>，即系统模块类别。这应该是为了能从 YUM 平滑过渡的一个折衷办法。</p>
-
-<h3 id="四-部分问题的解决-更新中">四、部分问题的解决（更新中）</h3>
-
-<h4 id="1-failed-to-open-updateinfo-xml-bz2-错误">1. 『Failed to open: &hellip;..updateinfo.xml.bz2』错误</h4>
-
+<h3 id="四部分问题的解决更新中">四、部分问题的解决（更新中）</h3>
+<h4 id="1-failed-to-open-updateinfoxmlbz2错误">1. 『Failed to open: &hellip;..updateinfo.xml.bz2』错误</h4>
 <p>这是由于<a href="http://unix.stackexchange.com/questions/250249/error-after-installing-dnf-on-centos-7#answer-273487">低版本的 libsolv 库无法处理 bzip 压缩包形式的依赖关系造成的</a>，解决的办法不是升级 libsolv 库，貌似库文件一起被封装成 python package，做到 rpm 里面了。所以正确的方法是，按照上面的步骤一、二重新安装 dnf。重新安装之前，必要的话应该删除旧的 DNF 及其依赖。</p>
-
-<pre><code class="language-bash">yum erase dnf dnf-conf dnf-automatic python-dnf &amp;&amp; \
-yum install dnf dnf-conf dnf-automatic
-# python-dnf 会作为 dnf 的依赖自动被安装
-</code></pre>
-
-<h4 id="2-dnf-无法使用-epel-库">2. DNF 无法使用 epel 库</h4>
-
-<pre><code class="language-bash">yum erase -y epel-release &amp;&amp; dnf install -y epel-release
-</code></pre>
-
-<p>通俗来讲就是让 DNF 来维护索引。</p>
-
-<h4 id="3-no-such-command-xxx-please-use-usr-bin-dnf-help">3. 『No such command: xxx. Please use /usr/bin/dnf &ndash;help』</h4>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum erase dnf dnf-conf dnf-automatic python-dnf <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>yum install dnf dnf-conf dnf-automatic
+<span style="color:#75715e"># python-dnf 会作为 dnf 的依赖自动被安装</span>
+</code></pre></div><h4 id="2-dnf-无法使用-epel-库">2. DNF 无法使用 epel 库</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum erase -y epel-release <span style="color:#f92672">&amp;&amp;</span> dnf install -y epel-release
+</code></pre></div><p>通俗来讲就是让 DNF 来维护索引。</p>
+<h4 id="3-no-such-command-xxx-please-use-usrbindnf---help">3. 『No such command: xxx. Please use /usr/bin/dnf &ndash;help』</h4>
 <p>通常遇到这种情况，是没有安装 DNF 扩展导致的。用下面的命令安装上 DNF 扩展之后，问题就能顺利解决。</p>
-
-<pre><code class="language-bash">dnf install -y dnf-plugins-core
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dnf install -y dnf-plugins-core
+</code></pre></div>
                         </div>
 
                         
@@ -392,7 +336,7 @@ yum install dnf dnf-conf dnf-automatic
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

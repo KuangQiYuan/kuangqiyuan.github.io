@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,7 +84,7 @@ composer create-project --prefer-dist laravel/laravel [project_name]
  前段时间有个项目用到了 laravel 框架。laravel 本身是个很优秀的框架，OOP 的思想贯穿始终，大量使用已经开源的第三方类库，用反向控制（IoC）的思想对服务进行抽象和隔离，帮助程序员完成对服务的分治，大大提高了架构效率和开发效率、后期维护效率。
 laravel 目前最新的稳定版是 laravel 5.1。因为我是从 5.1 开始使用 laravel 的，对 5.0 及 4.x 版本并不熟悉。但从网上大家的反馈来看，laravel 4.x 的使用方法和 5.x 相差较多，甚至 5.0 和 5.1 在细节处也有很多大的改进。我这里针对的主要是使用 laravel 5.1 的朋友，下面如果未明确提及版本，也默认指代 laravel ^5.1。
 laravel 中新建项目的方法如下：
-laravel new [project_name]  但是这个命令很慢，原因在于每次执行这个命令，laravel installer 都会从 http://cabinet.laravel.com/latest.zip 下载最新的稳定版 laravel 空项目代码，用以创新新项目。
+laravel new [project_name] 但是这个命令很慢，原因在于每次执行这个命令，laravel installer 都会从 http://cabinet.laravel.com/latest.zip 下载最新的稳定版 laravel 空项目代码，用以创新新项目。
 # ~/.composer/vendor/laravel/installer/src/NewCommand.php (Line.97) // ...... /** * Download the temporary Zip to the given file.……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/a-way-to-accelerate-creating-a-new-laravel-project/">阅读全文</a></p>
@@ -125,13 +125,13 @@ laravel new [project_name]  但是这个命令很慢，原因在于每次执行�
  git@some.domain.name password:
  项目是我创建的，ssh key 也有添加，还找我要密码，明显不科学。
 尝试解决 首先，检查了服务器的 sshd 设定，确认启用了 ssh 登录。
-cat /etc/ssh/sshd_config | grep PubkeyAuthentication   PubkeyAuthentication yes
+cat /etc/ssh/sshd_config | grep PubkeyAuthentication  PubkeyAuthentication yes
  以为是缓存，分别重启了 redis 和 gitlab。（PS：我的 redis 用 supervisor 管理起来的）
-supervisorctl restart redis service gitlab restart  然后等了五分钟再试（其实没有必要），还是不行。
+supervisorctl restart redis service gitlab restart 然后等了五分钟再试（其实没有必要），还是不行。
 上网查，stackoverflow 上有一个非推荐答案说，重启服务器之后就好了。于是，又重启了服务器。
-shutdown -r now  还是不行……
+shutdown -r now 还是不行……
 用 ssh -T 命令测试一下，看看结果。
-ssh -vvvT git@some.domain.name  …… 一串无关的日志我就省略了，只说重点。
+ssh -vvvT git@some.domain.name …… 一串无关的日志我就省略了，只说重点。
  …… debug3: send_pubkey_test debug2: we sent a publickey packet, wait for reply debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password debug2: we did not send a packet, disable method debug3: authmethod_lookup password debug3: remaining preferred: ,password debug3: authmethod_is_enabled password debug1: Next authentication method: password git@some.……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/a-permission-problem-with-gitlab-and-linux-user/">阅读全文</a></p>
@@ -171,10 +171,10 @@ ssh -vvvT git@some.domain.name  …… 一串无关的日志我就省略了，�
                             <div class="post-content">
                                 用 gitlab 很长一段时间了，从 2013 年开始，一直到现在，在每一个团队中都在推广使用 gitlab-ce 做版本管理和项目管理。本来一切好好的，一直到今天。
 今天我要做备份的时候。
-sudo -u git -H bundle exec rake gitlab:backup:create RAILS_ENV=production  命令不灵了。
+sudo -u git -H bundle exec rake gitlab:backup:create RAILS_ENV=production 命令不灵了。
  Dumping database &hellip; Dumping MySQL database gitlabhq_production &hellip; [FAILED] Backup failed
  谷歌了解决办法，无非下面几个情况：
- 没有装 mysql client library。  解决办法：安装一个 mysql client library 就好。  git 用户没有写入 config/gitlab.yml 中设定的备份目录的权限  解决办法：修改备份目录所有者为 git 用户就好。  官网上有 issue 是关于 PostgreSQL 的，没有结论，参考价值不大  我挨个排查了一下，上面几种情况都排除了。
+ 没有装 mysql client library。   解决办法：安装一个 mysql client library 就好。  git 用户没有写入 config/gitlab.yml 中设定的备份目录的权限   解决办法：修改备份目录所有者为 git 用户就好。  官网上有 issue 是关于 PostgreSQL 的，没有结论，参考价值不大  我挨个排查了一下，上面几种情况都排除了。
 首先，我的 gitlab 站点完全正常访问， 所以第一种情况可以排除。
 其次，tmp/backups/db/ 目录下还有一个空文件 database.sql，我删除之后再试，它还能生成，证明备份 DB 的效果是有的，就是不知道为什么，没有取到 DB 里面的内容，备份成空文件了。顺便检查了下备份目录的磁盘空间，完全充足，用下面的命令证明 git 写入文件到备份目录是完全没有问题的。……
                             </div>
@@ -468,7 +468,7 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

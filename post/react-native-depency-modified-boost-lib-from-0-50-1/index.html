@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,44 +84,27 @@
                         
                         <div class="post-content">
                             <p><code>react-native@0.50.1</code> 依赖的是 facebook 精简之后的 boost_1_63_0 版本，而不是官方在 sourceforge 上发布的那个版本。</p>
-
 <p>官方发布的版本是这样的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Lo boost_1_63_0.tar.gz <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz
 
-<pre><code class="language-bash">curl -Lo boost_1_63_0.tar.gz \
-    https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz
+shasum -a1 boost_1_63_0.tar.gz   <span style="color:#75715e"># macOS, = 2cecf1848a813de55e5770f324f084c568abca0a</span>
+sha1sum boost_1_63_00.tar.gz     <span style="color:#75715e"># Linux, = 2cecf1848a813de55e5770f324f084c568abca0a</span>
+</code></pre></div><p>而 Facebook 自己改过的版本是这样的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Lo boost_1_63_0.tar.gz <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    https://github.com/react-native-community/boost-for-react-native/releases/download/v1.63.0-0/boost_1_63_0.tar.gz
 
-shasum -a1 boost_1_63_0.tar.gz   # macOS, = 2cecf1848a813de55e5770f324f084c568abca0a
-sha1sum boost_1_63_00.tar.gz     # Linux, = 2cecf1848a813de55e5770f324f084c568abca0a
-</code></pre>
-
-<p>而 Facebook 自己改过的版本是这样的。</p>
-
-<pre><code class="language-bash">curl -Lo boost_1_63_0.tar.gz \
-    https://github.com/react-native-community/boost-for-react-native/releases/download/v1.63.0-0/boost_1_63_0.tar.gz
-
-shasum -a1 boost_1_63_0.tar.gz   # macOS, = c3f57e1d22a995e608983effbb752b54b6eab741
-sha1sum boost_1_63_00.tar.gz     # Linux, = c3f57e1d22a995e608983effbb752b54b6eab741
-</code></pre>
-
-<p>这是个比较大的坑。</p>
-
+shasum -a1 boost_1_63_0.tar.gz   <span style="color:#75715e"># macOS, = c3f57e1d22a995e608983effbb752b54b6eab741</span>
+sha1sum boost_1_63_00.tar.gz     <span style="color:#75715e"># Linux, = c3f57e1d22a995e608983effbb752b54b6eab741</span>
+</code></pre></div><p>这是个比较大的坑。</p>
 <p>依赖第三方开源 lib，文件名与第三方官方 release 的文件名一致，内容却是自己修改过的。稍不注意就会上当。</p>
-
 <p>因为之前有习惯先通过别的途径下载这个大文件，手动放置到 <code>~/.rncache</code> 缓存目录下，所以发现了这个问题。</p>
-
-<hr />
-
+<hr>
 <p>补充说明，为什么说这是一个坑。</p>
-
-<pre><code class="language-bash">react-native run-ios
-</code></pre>
-
-<p>在模拟器上运行 ios 版本的时候，脚本会首先编译 ios 版本的 app 出来。从安装脚本 <code>node_modules/react-native/scripts/ios-install-third-party.sh</code> 文件最后部分可以看到，会下载编译 ios 版本所需要的几个第三方库并编译。其中就包括了 boost_1_63_0.tar.gz 这个第三方库。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">react-native run-ios
+</code></pre></div><p>在模拟器上运行 ios 版本的时候，脚本会首先编译 ios 版本的 app 出来。从安装脚本 <code>node_modules/react-native/scripts/ios-install-third-party.sh</code> 文件最后部分可以看到，会下载编译 ios 版本所需要的几个第三方库并编译。其中就包括了 boost_1_63_0.tar.gz 这个第三方库。</p>
 <p>在一个多月前，大约 <code>react-native@0.48.x</code> 版本的时候，facebook 还是依赖的官版 boost_1_63_0，可能是发现某些国家的码农反映比较强烈，因此转成依赖自己精简过后的 boost_1_63_0。官版的 boost_1_63_0.tar.gz 文件有 93MB 之大，某些国家的码农无论访问 sourceforge（boost 官版的发版平台）还是 github 都很慢，几乎所有要在新环境运行项目（包括想要尝鲜）的码农们都遇到过下载这个大文件失败的情况。一个第三方依赖库下载失败，错误信息常常隐藏在大段大段的日志中，尝鲜的人容易漏掉，并且造成一种『ReactNative 不成熟，「Hello World」都不容易跑起来』的第一印象。有经验的码农们能发现这个问题，也不容易解决。即便有能力找到快速的源预先下载好依赖，自动化构建的过程被破坏了，也是一种非常糟糕的体验，对一个开源的框架来说，不能容忍。</p>
-
 <p>所以，从前段时间开始，大约是 react-native@0.50.x，Facebook 开始使用一个精简版的 boost 库。就像 google 自己的 <a href="https://boringssl.googlesource.com/boringssl/">boringssl</a> 库 一样，facebook 以社区的名义为了这事儿维护了一个自己的版本。好在，目前来看，仅仅是一个精简官版的工作，还不涉及到修改。</p>
-
 <p>出发点是一个好事儿，但是这么一来，增加了项目管理和维护风险。起步的小伙伴们，要小心一点。</p>
 
                         </div>
@@ -326,7 +309,7 @@ sha1sum boost_1_63_00.tar.gz     # Linux, = c3f57e1d22a995e608983effbb752b54b
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

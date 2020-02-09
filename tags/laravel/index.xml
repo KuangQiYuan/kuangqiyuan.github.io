@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>laravel on 旷氏淇元</title>
@@ -23,7 +23,7 @@ composer create-project --prefer-dist laravel/laravel [project_name]
  前段时间有个项目用到了 laravel 框架。laravel 本身是个很优秀的框架，OOP 的思想贯穿始终，大量使用已经开源的第三方类库，用反向控制（IoC）的思想对服务进行抽象和隔离，帮助程序员完成对服务的分治，大大提高了架构效率和开发效率、后期维护效率。
 laravel 目前最新的稳定版是 laravel 5.1。因为我是从 5.1 开始使用 laravel 的，对 5.0 及 4.x 版本并不熟悉。但从网上大家的反馈来看，laravel 4.x 的使用方法和 5.x 相差较多，甚至 5.0 和 5.1 在细节处也有很多大的改进。我这里针对的主要是使用 laravel 5.1 的朋友，下面如果未明确提及版本，也默认指代 laravel ^5.1。
 laravel 中新建项目的方法如下：
-laravel new [project_name]  但是这个命令很慢，原因在于每次执行这个命令，laravel installer 都会从 http://cabinet.laravel.com/latest.zip 下载最新的稳定版 laravel 空项目代码，用以创新新项目。
+laravel new [project_name] 但是这个命令很慢，原因在于每次执行这个命令，laravel installer 都会从 http://cabinet.laravel.com/latest.zip 下载最新的稳定版 laravel 空项目代码，用以创新新项目。
 # ~/.composer/vendor/laravel/installer/src/NewCommand.php (Line.97) // ...... /** * Download the temporary Zip to the given file.</description>
     </item>
     

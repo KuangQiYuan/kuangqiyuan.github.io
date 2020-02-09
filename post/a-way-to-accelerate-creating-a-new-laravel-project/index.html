@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -85,24 +85,15 @@
                         <div class="post-content">
                             <blockquote>
 <p>2017-08-17 更新：因为服务器到期，下述方法已经失效。加速的方法<a href="https://pkg.phpcomposer.com/#-composer-">请参照这里的方法</a>设置 composer 镜像源，并使用下面的方式创建项目。</p>
-
 <p><code>composer create-project --prefer-dist laravel/laravel [project_name]</code></p>
-
 <p>这样创建项目时，将使用镜像源下载框架，而不会从墙外的 <code>cabinet.laravel.com</code> 下载。</p>
 </blockquote>
-
 <p>前段时间有个项目用到了 <a href="http://laravel.com/">laravel</a> 框架。laravel 本身是个很优秀的框架，OOP 的思想贯穿始终，大量使用已经开源的第三方类库，用反向控制（IoC）的思想对服务进行抽象和隔离，帮助程序员完成对服务的分治，大大提高了架构效率和开发效率、后期维护效率。</p>
-
 <p>laravel 目前最新的稳定版是 <a href="http://laravel.com/docs/5.1">laravel 5.1</a>。因为我是从 5.1 开始使用 laravel 的，对 5.0 及 4.x 版本并不熟悉。但从网上大家的反馈来看，laravel 4.x 的使用方法和 5.x 相差较多，甚至 5.0 和 5.1 在细节处也有很多大的改进。<strong>我这里针对的主要是使用 laravel 5.1 的朋友</strong>，下面如果未明确提及版本，也默认指代 laravel ^5.1。</p>
-
 <p>laravel 中新建项目的方法如下：</p>
-
-<pre><code class="language-bash">laravel new [project_name]
-</code></pre>
-
-<p>但是这个命令很慢，原因在于每次执行这个命令，laravel installer 都会从 <code>http://cabinet.laravel.com/latest.zip</code> 下载最新的稳定版 laravel 空项目代码，用以创新新项目。</p>
-
-<pre><code class="language-php"># ~/.composer/vendor/laravel/installer/src/NewCommand.php  (Line.97)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">laravel new <span style="color:#f92672">[</span>project_name<span style="color:#f92672">]</span>
+</code></pre></div><p>但是这个命令很慢，原因在于每次执行这个命令，laravel installer 都会从 <code>http://cabinet.laravel.com/latest.zip</code> 下载最新的稳定版 laravel 空项目代码，用以创新新项目。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"># ~/.composer/vendor/laravel/installer/src/NewCommand.php  (Line.97)
 
 // ......
     /**
@@ -113,25 +104,18 @@
      */
     protected function download($zipFile)
     {
-        $response = (new Client)-&gt;get('http://cabinet.laravel.com/latest.zip');
+        $response = (new Client)-&gt;get(&#39;http://cabinet.laravel.com/latest.zip&#39;);
 
         file_put_contents($zipFile, $response-&gt;getBody());
 
         return $this;
     }
 // .......
-</code></pre>
-
-<p>恰好因为『你懂的』原因，我们访问 <code>cabinet.laravel.com</code> 这个站点的时候会比较慢，由此造成了新建项目的时候很慢。</p>
-
+</code></pre></div><p>恰好因为『你懂的』原因，我们访问 <code>cabinet.laravel.com</code> 这个站点的时候会比较慢，由此造成了新建项目的时候很慢。</p>
 <p>我们自己做了一个 mirror 来解决这个问题。</p>
-
 <p>修改 <code>/etc/hosts</code>（*nux / Mac OSX）或 <code>%SYSTEMROOT%\System32\drivers\etc\hosts</code>（Windows） 文件，新增下面一行：</p>
-
 <pre><code>123.59.41.89    cabinet.laravel.com
-</code></pre>
-
-<p>这样新建项目的时候，就可以直接从我们的 mirror 上拉取最新的 laravel 发布版，很快完成新项目创建。</p>
+</code></pre><p>这样新建项目的时候，就可以直接从我们的 mirror 上拉取最新的 laravel 发布版，很快完成新项目创建。</p>
 
                         </div>
 
@@ -335,7 +319,7 @@
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -83,21 +83,14 @@
                         
                         
                         <div class="post-content">
-                            
-
-<blockquote>
+                            <blockquote>
 <p>NOTE(simon): 讲啰嗦一点，方便搜索引擎收录关键字。需要解决方案的同学，可以直接拖到后半部分。</p>
 </blockquote>
-
 <h2 id="旧办法不灵">旧办法不灵</h2>
-
 <p>不知道什么原因，CentOS 7 下面安装 dnf 总是要出错，各种各样的问题与不兼容。CentOS 直到现在，还没有正式支持 dnf。相反，Fedora 22 开始就已经正式支持 dnf 作为默认的包管理工具了。差距啊。</p>
-
 <p>之前试过用一个半官方的 dnf repo(<a href="https://copr.fedorainfracloud.org/coprs/rpmsoftwaremanagement/dnf-nightly/">rpmsoftwaremanagement/dnf-nightly Copr</a>) 在 CentOS 7 下面安装 dnf，一直都是可以的。也可以正常升级。以前通过这个办法安装过 dnf 的系统，已经升级到 2.8.5。用起来很顺。</p>
-
 <p>但是不知道为什么，最近用这个库，在全新的 CentOS 7 下面安装 dnf，遇到一个麻烦，就是包版本有冲突。类似的错误信息如下。</p>
-
-<pre><code class="language-bash"># yum install -y dnf-2.8.5-0.101g0f20917d.el7.centos
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># yum install -y dnf-2.8.5-0.101g0f20917d.el7.centos</span>
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile
  * base: mirrors.shu.edu.cn
@@ -107,10 +100,10 @@ Loading mirror speeds from cached hostfile
 Resolving Dependencies
 --&gt; Running transaction check
 ---&gt; Package dnf.noarch 0:2.8.5-0.101g0f20917d.el7.centos will be installed
---&gt; Processing Dependency: python2-dnf = 2.8.5-0.101g0f20917d.el7.centos for package: dnf-2.8.5-0.101g0f20917d.el7.centos.noarch
+--&gt; Processing Dependency: python2-dnf <span style="color:#f92672">=</span> 2.8.5-0.101g0f20917d.el7.centos <span style="color:#66d9ef">for</span> package: dnf-2.8.5-0.101g0f20917d.el7.centos.noarch
 --&gt; Running transaction check
 ---&gt; Package python2-dnf.noarch 0:2.8.5-0.101g0f20917d.el7.centos will be installed
---&gt; Processing Dependency: rpm-plugin-systemd-inhibit for package: python2-dnf-2.8.5-0.101g0f20917d.el7.centos.noarch
+--&gt; Processing Dependency: rpm-plugin-systemd-inhibit <span style="color:#66d9ef">for</span> package: python2-dnf-2.8.5-0.101g0f20917d.el7.centos.noarch
 --&gt; Running transaction check
 ---&gt; Package rpm-plugin-systemd-inhibit.x86_64 0:4.11.3-32.el7 will be installed
 --&gt; Processing Conflict: python2-librepo-1.9.2-2gc670c6b.el7.x86_64 conflicts python2-dnf &lt; 2.8.8
@@ -118,51 +111,36 @@ Resolving Dependencies
 Error: python2-librepo conflicts with python2-dnf-2.8.5-0.101g0f20917d.el7.centos.noarch
  You could try using --skip-broken to work around the problem
  You could try running: rpm -Va --nofiles --nodigest
-</code></pre>
-
-<p>重点在这句，<code>librepo-1.9.2-2gc670c6b.el7.x86_64 conflicts python2-dnf &lt; 2.8.8</code>。</p>
-
+</code></pre></div><p>重点在这句，<code>librepo-1.9.2-2gc670c6b.el7.x86_64 conflicts python2-dnf &lt; 2.8.8</code>。</p>
 <p>版本依赖关系树中提到的 <code>python2-dnf 2.8.8</code>，在 repo 中尚未发布。很明显的，dnf 2.8.5 依赖 python2-dnf 2.8.5 才对。事实也是，python2-dnf 最新的版本号是 2.8.5。</p>
-
 <p>无论如何也解决不了这个难题。毕竟人家是 nightly，夹带一点私货也正常。</p>
-
 <p>难道只能 build from source？不科学。dnf 是自展的，编译 dnf 需要用到 dnf。可手里是全新 CentOS 7。</p>
-
 <ul>
 <li>半官方的 dnf nightly repo。FAILED</li>
 <li>build from source。FAILED</li>
 </ul>
-
 <h2 id="解决办法">解决办法</h2>
-
 <p>然后，在找 dnf 2.7.5 rpm 的时候，被我发现一个隐藏的 repo。也算是半官方的吧。亲测可用。完美。用法如下。</p>
-
 <blockquote>
 <p>NOTE(simon): 2018-10-09 亲测有效</p>
 </blockquote>
-
-<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /etc/yum.repo.d/another-dnf.repo
-[another-dnf]
-name=Another DNF Repo by CentOS.
-baseurl=https://cbs.centos.org/repos/configmanagement7-dnf-common-release/\$basearch/os/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=0
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-EOF
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#e6db74">&lt;&lt;EOF &gt; /etc/yum.repo.d/another-dnf.repo
+</span><span style="color:#e6db74">[another-dnf]
+</span><span style="color:#e6db74">name=Another DNF Repo by CentOS.
+</span><span style="color:#e6db74">baseurl=https://cbs.centos.org/repos/configmanagement7-dnf-common-release/\$basearch/os/
+</span><span style="color:#e6db74">type=rpm-md
+</span><span style="color:#e6db74">skip_if_unavailable=True
+</span><span style="color:#e6db74">gpgcheck=0
+</span><span style="color:#e6db74">repo_gpgcheck=0
+</span><span style="color:#e6db74">enabled=1
+</span><span style="color:#e6db74">enabled_metadata=1
+</span><span style="color:#e6db74">EOF</span>
 yum clean all
 yum makecache fast
 yum install -y dnf dnf-conf dnf-automatic dnf-plugins-core
-</code></pre>
-
-<p>这是个 ConfigManagement SIG 的社区项目，但是没有用 ConfigManagement SIG 的 GPG 证书签名，也没有出现在社区 wiki (<a href="https://wiki.centos.org/SpecialInterestGroup/ConfigManagementSIG">SpecialInterestGroup/ConfigManagementSIG - CentOS Wiki</a>) 中，我理解属于边缘项目。不过依赖有效，能直接安装。</p>
-
+</code></pre></div><p>这是个 ConfigManagement SIG 的社区项目，但是没有用 ConfigManagement SIG 的 GPG 证书签名，也没有出现在社区 wiki (<a href="https://wiki.centos.org/SpecialInterestGroup/ConfigManagementSIG">SpecialInterestGroup/ConfigManagementSIG - CentOS Wiki</a>) 中，我理解属于边缘项目。不过依赖有效，能直接安装。</p>
 <p>啥都不说了，只希望这次这个 dnf 的 repo 坚持久一点。</p>
-
 <h2 id="思考">思考</h2>
-
 <p>为什么 dnf 这么棒的工具在 Fedora 里面有，在 CentOS 里面就没有？我猜测，主要还是考虑稳定性。毕竟 CentOS 一直的策略都是以降级保稳定。dnf 还没过官方的考验期，所以一直没予以替换。既往所有的 repo 都是非官方的，最多也只能算是半官方的。</p>
 
                         </div>
@@ -367,7 +345,7 @@ yum install -y dnf dnf-conf dnf-automatic dnf-plugins-core
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

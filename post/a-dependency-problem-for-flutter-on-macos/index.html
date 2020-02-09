@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,59 +84,43 @@
                         
                         <div class="post-content">
                             <p>最近在 MacOSX 上安装 flutter 也遇到一些问题。不是 MacOS Mojave 的问题，而是 flutter 依赖的一个开源库，它的依赖树出现版本不兼容问题。</p>
-
 <p>运行 <code>flutter doctor</code> 出现如下提示。</p>
-
 <blockquote>
 <p>[!] iOS toolchain - develop for iOS devices (Xcode 10.0)
-   ✗ libimobiledevice and ideviceinstaller are not installed. To install, run:
-       brew install &ndash;HEAD libimobiledevice
-       brew install ideviceinstaller
-   ✗ ios-deploy not installed. To install:
-       brew install ios-deploy
-   ✗ CocoaPods not installed.
-       CocoaPods is used to retrieve the iOS platform side&rsquo;s plugin code that responds to your plugin usage on the Dart side.
-       Without resolving iOS dependencies with CocoaPods, plugins will not work on iOS.
-       For more info, see <a href="https://flutter.io/platform-plugins">https://flutter.io/platform-plugins</a>
-     To install:
-       brew install cocoapods
-       pod setup</p>
+✗ libimobiledevice and ideviceinstaller are not installed. To install, run:
+brew install &ndash;HEAD libimobiledevice
+brew install ideviceinstaller
+✗ ios-deploy not installed. To install:
+brew install ios-deploy
+✗ CocoaPods not installed.
+CocoaPods is used to retrieve the iOS platform side&rsquo;s plugin code that responds to your plugin usage on the Dart side.
+Without resolving iOS dependencies with CocoaPods, plugins will not work on iOS.
+For more info, see <a href="https://flutter.io/platform-plugins">https://flutter.io/platform-plugins</a>
+To install:
+brew install cocoapods
+pod setup</p>
 </blockquote>
-
 <p>按照提示，运行 <code>brew install --HEAD libimobiledevice</code> 出现如下提示。</p>
-
 <blockquote>
 <p>checking for libusbmuxd &gt;= 1.1.0&hellip; no
 configure: error: Package requirements (libusbmuxd &gt;= 1.1.0) were not met:</p>
-
 <p>Requested &lsquo;libusbmuxd &gt;= 1.1.0&rsquo; but version of libusbmuxd is 1.0.10</p>
-
 <p>Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.</p>
-
 <p>Alternatively, you may set the environment variables libusbmuxd_CFLAGS
 and libusbmuxd_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.</p>
-
 <p>READ THIS: <a href="https://docs.brew.sh/Troubleshooting">https://docs.brew.sh/Troubleshooting</a></p>
 </blockquote>
-
 <p>brew 发现 usbmuxd 这个库最高版本就是 1.0.10，github 上最新 release 版本也是 1.0.10。压根儿就没有 1.1.0 这个版本存在。</p>
-
 <p>不过细看，发现 usbmuxd 这个库的最新版本，就是这个 1.0.10 是 2014 年发布的，算是老古董了。</p>
-
 <p>所以安装 usbmuxd 的 head 版本试试。</p>
-
-<pre><code class="language-bash">brew unlink usbmuxd  # 否则会 reinstall 失败
-brew reinstall --HEAD usbmuxd  # 直接从 github 的 master HEAD 安装
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew unlink usbmuxd  <span style="color:#75715e"># 否则会 reinstall 失败</span>
+brew reinstall --HEAD usbmuxd  <span style="color:#75715e"># 直接从 github 的 master HEAD 安装</span>
 
 brew install --HEAD libimobiledevice
-</code></pre>
-
-<p>然后，就成了。囧rz&hellip;</p>
-
+</code></pre></div><p>然后，就成了。囧rz&hellip;</p>
 <p>依赖树的问题，万一遇到，还是得手动一个一个解决。没办法。</p>
-
 <p>一个结论就是，要用 <code>brew install —HEAD</code>，就要忍受 nightly 的不稳定，这是必然付出的代价。flutter 现在还是 beta 版本，依赖 nightly 的开源库也情有可原。遇到问题，就自己撸起手解决吧。</p>
 
                         </div>
@@ -341,7 +325,7 @@ brew install --HEAD libimobiledevice
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

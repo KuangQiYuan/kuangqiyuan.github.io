@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,78 +84,57 @@
                         
                         <div class="post-content">
                             <p>最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内容千篇一律是推荐极客时间打新的课程，《Java 并发编程实战》。</p>
-
 <p>高并发哥又不是没做过，随手找了一下，发现陈皓在 2009 年的一篇文章就提到了正确的解法，以及背后的原因。《<a href="https://coolshell.cn/articles/265.html">深入浅出单实例 SINGLETON 设计模式</a>》。</p>
-
 <p>文中给出几种功能上正确的 singleton 写法。</p>
-
-<pre><code class="language-java">// version 1.4
-public class Singleton {
-    private volatile static Singleton singleton = null;
-    private Singleton() {}
-    public static Singleton getInstance() {
-        if (singleton == null) {
-            synchronized (Singleton.class) {
-                if (singleton== null) {
-                    singleton= new Singleton();
-                }
-            }
-        }
-        return singleton;
-    }
-}
-</code></pre>
-
-<p>请留意私有变量的描述词 <code>volatile</code>，目的是不让编译器对指令进行重排序优化。</p>
-
-<pre><code class="language-java">// version 1.5
-public class Singleton {
-    private volatile static Singleton singleton = new Singleton();
-    private Singleton()  {}
-    public static Singleton getInstance() {
-        return singleton;
-    }
-}
-</code></pre>
-
-<p>这是自动加载版本。每次加载类的时候，实例就生成了。所以加载类的过程可能会很慢（特别是有很多继承、引用的情况）。</p>
-
-<pre><code class="language-java">// version 1.6
-public class Singleton {
-    private static class SingletonHolder {
-        private static final Singleton INSTANCE = new Singleton();
-    }
-    private Singleton() {}
-    public static final Singleton getInstance() {
-        return SingletonHolder.INSTANCE;
-    }
-}
-</code></pre>
-
-<p>这是对上面 1.5 版本的修正。<code>SingletonHolder</code> 是个私有类，并且在 <code>Singleton</code> 加载的时候才会被调用，<code>INSTANCE</code> 才会被真正创建。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// version 1.4
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">static</span> Singleton singleton <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span><span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Singleton <span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>singleton <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span>Singleton<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>singleton<span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    singleton<span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> singleton<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>请留意私有变量的描述词 <code>volatile</code>，目的是不让编译器对指令进行重排序优化。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// version 1.5
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">static</span> Singleton singleton <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>  <span style="color:#f92672">{</span><span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Singleton <span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> singleton<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>这是自动加载版本。每次加载类的时候，实例就生成了。所以加载类的过程可能会很慢（特别是有很多继承、引用的情况）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// version 1.6
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SingletonHolder</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Singleton INSTANCE <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span><span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Singleton <span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> SingletonHolder<span style="color:#f92672">.</span><span style="color:#a6e22e">INSTANCE</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>这是对上面 1.5 版本的修正。<code>SingletonHolder</code> 是个私有类，并且在 <code>Singleton</code> 加载的时候才会被调用，<code>INSTANCE</code> 才会被真正创建。</p>
 <p>这段代码是即确保了线程安全，又实现了懒加载的较优办法。</p>
-
 <p>还有一个所谓最优（优雅？代码最少？）的办法，不过不建议大家使用，可读性实在不太高。有点奇技淫巧的意思，大大牺牲了代码的可读性。</p>
-
-<pre><code class="language-java">public enum Singleton{
-   INSTANCE;
-}
-</code></pre>
-
-<p>利用了 <code>enum</code> 的创建是线程安全这一特性。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> Singleton<span style="color:#f92672">{</span>
+   INSTANCE<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>利用了 <code>enum</code> 的创建是线程安全这一特性。</p>
 <p>PS：PHP 中没有 singleton 的困扰，因为 php 语言特点决定的。php-fpm 本身就是 accepter-worker 并发模式，程序员写的 PHP 程序其实只是 worker，worker 与 worker 之间由 fpm 完成资源隔离和协调，PHP 程序员并不需要从内存数据的层面考虑并发的情况。所以有句话讲得不错，<strong>singleton 在 PHP 语言中不是一个好实践（practice）</strong>。PHP 的 singleton 用简单的工厂模式就够了。</p>
-
-<hr />
-
+<hr>
 <p>今天抽空找了下 MQTT 的 QoS2 实现方式，记录如下。原科普文链接《<a href="https://www.jianshu.com/p/8b0291e8ee02">MQTT QoS 深度解读</a>》。</p>
-
 <blockquote>
 <p>无论是 QoS2 还是 transaction，原理都是一样的：<strong>通过一次代价非常小、成功概率足够高的操作，作为最后确认的依据</strong>。这样做并不是说绝对不出错，而是出错的概率足够低，实践中可以忽略。</p>
 </blockquote>
-
-<pre><code class="language-mermaid">sequenceDiagram
+<pre><code class="language-mermaid" data-lang="mermaid">sequenceDiagram
   participant Publisher
   participant Broker
   participant Subscriber
@@ -174,11 +153,8 @@ public class Singleton {
   Subscriber-&gt;&gt;Broker: PUBCOMP
   Broker-&gt;&gt;Broker: Delete(Msg)
   Subscriber-&gt;&gt;Subscriber: Delete(Msg)
-</code></pre>
-
-<p>简单一点的模型，如果不需要中间的 broker，则流程如下。</p>
-
-<pre><code class="language-mermaid">sequenceDiagram
+</code></pre><p>简单一点的模型，如果不需要中间的 broker，则流程如下。</p>
+<pre><code class="language-mermaid" data-lang="mermaid">sequenceDiagram
   participant Publisher
   participant Subscriber
   Publisher-&gt;&gt;Publisher: Store(Msg)
@@ -190,14 +166,9 @@ public class Singleton {
   Subscriber-&gt;&gt;Publisher: (4) PUBCOMP
   Subscriber-&gt;&gt;Subscriber: Delete(Msg)
   Publisher-&gt;&gt;Publisher: Delete(Msg)
-</code></pre>
-
-<p>从简化以后的模型可以看到，publisher 和 subscriber 有两次交互。第一次，publisher 把 msg 推送给 subscriber，对应 <code>PUBLISH</code>/<code>PUBREC</code> 指令。第二次，publisher 等于是询问 subscriber，“你是不是收到一次”，对应 <code>PUBREL</code>/<code>PUBCOMP</code> 指令。</p>
-
-<p>如果没有第 (3)/(4)步，<code>PUBREL</code>/<code>PUBCOMP</code> 指令，实际就是 QoS1，*至少收到一次*。</p>
-
-<p>再少一点，如果没有 (2)/(3)/(4) 步，只剩第 (1) 步，实际就是 QoS0，*至多只发送一次*。</p>
-
+</code></pre><p>从简化以后的模型可以看到，publisher 和 subscriber 有两次交互。第一次，publisher 把 msg 推送给 subscriber，对应 <code>PUBLISH</code>/<code>PUBREC</code> 指令。第二次，publisher 等于是询问 subscriber，“你是不是收到一次”，对应 <code>PUBREL</code>/<code>PUBCOMP</code> 指令。</p>
+<p>如果没有第 (3)/(4)步，<code>PUBREL</code>/<code>PUBCOMP</code> 指令，实际就是 QoS1，<em>至少收到一次</em>。</p>
+<p>再少一点，如果没有 (2)/(3)/(4) 步，只剩第 (1) 步，实际就是 QoS0，<em>至多只发送一次</em>。</p>
 <p>科普文里面提问，为什么 MQTT QoS2 是两次“握手”，而不是像 TCP 一样，三次握手。我觉得这个问题太教条了。为什么 negotiate 就一定要想到 TCP 呢？当然，如果一定要回答，最本质的区别就是，MQTT QoS2 通讯是单向的，而 TCP 连接的通讯是双向的。单向的只需要一方取信于另外一方即可，而双向通讯需要两方都取信于对方。</p>
 
                         </div>
@@ -402,7 +373,7 @@ public class Singleton {
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

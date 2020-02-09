@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,41 +84,28 @@
                         
                         <div class="post-content">
                             <p>今年六月，Apple 宣布要<a href="http://cn.engadget.com/2016/06/13/os-x-is-now-macos/">把 MacBook 的 OS 名称从 OSX 改名为 MacOS</a>。为了体验第一代的 <a href="http://www.apple.com/macos/sierra/">MacOS Sierra</a>，我也是第一时间选择了系统升级。2012 mid 的 MBP，升级到 MacOS，感觉我也有点拼了。</p>
-
 <p>升级完之后总体感觉还好，几乎都在预期内。却是在升级完成后大约第三天遇到 Chrome 报错，而且是反复的、随机的报错：『ERR_NETWORK_CHANGED』和『ERR_CERT_DATABASE_CHANGED』，就这两个。第一个出现的时候，页面 load 失败；第二个错误出现一般都是 js 或者 css 等页面资源 load 不下来（但是在新窗口打开这些资源又都没有问题）。</p>
-
 <p>找了一圈，国外的网友们普遍表示情绪很稳定，没有遇到过。难道只是我大兲朝人民会遇到？</p>
-
 <p>一开始考虑过是最近倡导的 HTTP =&gt; HTTPS 运动，有部分网站匆忙升级，可能在主站和资源站（相当一部分网站会把静态资源放到 CDN 上）之间的 key chains 路径有冲突所致。<code>CERT_DATABASE_CHANGED</code> 应该也是差不多的意思——原谅我懒癌发作，没去挖 chromium 代码。</p>
-
 <p>不过网站的配置有错，我也没辙。问题却总是要解决的，哪怕用什么讨巧的办法。于是，今天找到了 <a href="https://www.v2ex.com/">V2EX</a> 上面的这个 issue<a href="https://www.v2ex.com/t/307911">《MacOS Sierra 升级 CHROME 用 HTTPS 访问间歇性失败》</a>。原来已经有朋友<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=649253">发现了罪魁祸首</a>，就是 Alipay 的安全控件。从评论区盆友们的反馈看，问题是已经解决了。</p>
-
 <p>评论区给出手动解决的办法。</p>
-
-<pre><code class="language-bash"># 第一种办法：停用支付宝的安全控件
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 第一种办法：停用支付宝的安全控件</span>
 sudo launchctl remove com.alipay.DispatcherService
 
-# 第二种办法：彻底删除（手动卸载）支付宝安全控件
-sudo rm -rf /Library/Application\ Support/Alipay &amp;&amp; \
-sudo rm -rf /Library/LaunchDaemons/com.alipay.DispatcherService.plist &amp;&amp; \
-sudo rm -rf ~/Library/LaunchAgents/com.alipay.adaptor.plist &amp;&amp; \
-sudo rm -rf ~/Library/LaunchAgents/com.alipay.refresher.plist &amp;&amp; \
-sudo rm -rf ~/Library/Internet\ Plug-Ins/aliedit.plugin &amp;&amp; \
-sudo rm -rf ~/Library/Internet\ Plug-Ins/npalicdo.plugin
-</code></pre>
-
-<p>停用或者删除支付宝安全控件带来的安全隐患是，支付宝不能帮你『防止账户密码被木马程序或病毒窃取』。不过就像评论区里面另外一位朋友说的：</p>
-
+<span style="color:#75715e"># 第二种办法：彻底删除（手动卸载）支付宝安全控件</span>
+sudo rm -rf /Library/Application<span style="color:#ae81ff">\ </span>Support/Alipay <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>sudo rm -rf /Library/LaunchDaemons/com.alipay.DispatcherService.plist <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>sudo rm -rf ~/Library/LaunchAgents/com.alipay.adaptor.plist <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>sudo rm -rf ~/Library/LaunchAgents/com.alipay.refresher.plist <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>sudo rm -rf ~/Library/Internet<span style="color:#ae81ff">\ </span>Plug-Ins/aliedit.plugin <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>sudo rm -rf ~/Library/Internet<span style="color:#ae81ff">\ </span>Plug-Ins/npalicdo.plugin
+</code></pre></div><p>停用或者删除支付宝安全控件带来的安全隐患是，支付宝不能帮你『防止账户密码被木马程序或病毒窃取』。不过就像评论区里面另外一位朋友说的：</p>
 <blockquote>
 <p>现在支付宝都在手机上用，我碰上这个问题估计是历史遗留问题，否则我也不会中 alipay 的插件，我记得 macos sierra 禁用了一些低安全协议，估计插件还在用这些协议，就体现到这个上来了。</p>
 </blockquote>
-
 <p>支付宝产品安全策略的变化可以很清晰看出来，手机支付的方式越来越成为主流，而且相对也更为安全可靠。PC 端支付的机会越来越少，MacOS 上装不装、用不用支付宝安全控件，影响不大。跟 Chrome 抽风比起来，我更愿意卸载它。</p>
-
 <p>持续观察一段时间之后，再做评论。</p>
-
-<hr />
-
+<hr>
 <p>PS：忽然好担心 https 还能不能用 proxy 方式的做 sniffer？开发调试怎么办？囧</p>
 
                         </div>
@@ -323,7 +310,7 @@ sudo rm -rf ~/Library/Internet\ Plug-Ins/npalicdo.plugin
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

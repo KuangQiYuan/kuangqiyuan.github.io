@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,74 +84,48 @@
                         
                         <div class="post-content">
                             <p>用 <a href="https://gitlab.com/">gitlab</a> 很长一段时间了，从 2013 年开始，一直到现在，在每一个团队中都在推广使用 <a href="https://gitlab.com/gitlab-org/gitlab-ce">gitlab-ce</a> 做版本管理和项目管理。本来一切好好的，一直到今天。</p>
-
 <p>今天我要做备份的时候。</p>
-
-<pre><code class="language-bash">sudo -u git -H bundle exec rake gitlab:backup:create RAILS_ENV=production
-</code></pre>
-
-<p>命令不灵了。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo -u git -H bundle exec rake gitlab:backup:create RAILS_ENV<span style="color:#f92672">=</span>production
+</code></pre></div><p>命令不灵了。</p>
 <blockquote>
 <p>Dumping database &hellip;
 Dumping MySQL database gitlabhq_production &hellip; [FAILED]
 Backup failed</p>
 </blockquote>
-
 <p><a href="http://guge.link">谷歌</a>了解决办法，无非下面几个情况：</p>
-
 <ol>
-<li>没有装 mysql client library。
-
+<li>没有装 mysql client library。</li>
+</ol>
 <ul>
 <li>解决办法：安装一个 mysql client library 就好。</li>
-</ul></li>
-<li><code>git</code> 用户没有写入 <code>config/gitlab.yml</code> 中设定的备份目录的权限
-
+</ul>
+<ol start="2">
+<li><code>git</code> 用户没有写入 <code>config/gitlab.yml</code> 中设定的备份目录的权限</li>
+</ol>
 <ul>
 <li>解决办法：修改备份目录所有者为 <code>git</code> 用户就好。</li>
-</ul></li>
+</ul>
+<ol start="3">
 <li>官网上有 issue 是关于 <code>PostgreSQL</code> 的，没有结论，参考价值不大</li>
 </ol>
-
 <p>我挨个排查了一下，上面几种情况都排除了。</p>
-
 <p>首先，我的 <code>gitlab</code> 站点完全正常访问， 所以第一种情况可以排除。</p>
-
 <p>其次，<code>tmp/backups/db/</code> 目录下还有一个空文件 <code>database.sql</code>，我删除之后再试，它还能生成，证明备份 DB 的效果是有的，就是不知道为什么，没有取到 DB 里面的内容，备份成空文件了。顺便检查了下备份目录的磁盘空间，完全充足，用下面的命令证明 <code>git</code> 写入文件到备份目录是完全没有问题的。</p>
-
-<pre><code class="language-bash">sudo -u git -H cat VERSION &gt; tmp/backups/db/test_VERSION
-</code></pre>
-
-<p>最后，运行 <code>check</code> 命令检查了 <code>gitlab</code> 的环境，一点儿问题都没有。</p>
-
-<pre><code class="language-bash">sudo -u git -H bundle exec rake gitlab:check RAILS_ENV=production
-</code></pre>
-
-<p>很奇怪对吧？仔细看了遍文档，没有答案。很明显几乎没人会遇到这种问题，因为大家提的 issue 就上面那几个，不是已经被证明与我遇到的情况不符，就是与我的实际情况无关。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo -u git -H cat VERSION &gt; tmp/backups/db/test_VERSION
+</code></pre></div><p>最后，运行 <code>check</code> 命令检查了 <code>gitlab</code> 的环境，一点儿问题都没有。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo -u git -H bundle exec rake gitlab:check RAILS_ENV<span style="color:#f92672">=</span>production
+</code></pre></div><p>很奇怪对吧？仔细看了遍文档，没有答案。很明显几乎没人会遇到这种问题，因为大家提的 issue 就上面那几个，不是已经被证明与我遇到的情况不符，就是与我的实际情况无关。</p>
 <p>然后，开动大脑，仔细想。。。</p>
-
-<pre><code class="language-bash">sudo -u git -H echo `which mysqldump`
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo -u git -H echo <span style="color:#e6db74">`</span>which mysqldump<span style="color:#e6db74">`</span>
+</code></pre></div><blockquote>
 <p>/usr/bin/which: no mysqldump in (<em>blabla&hellip;</em>)</p>
 </blockquote>
-
 <p>不知道对不对，试了下这个。</p>
-
-<pre><code class="language-bash">ln -s /usr/local/mysql/bin/mysqldump /usr/bin/mysqldump
-</code></pre>
-
-<p><strong>OK了！</strong></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ln -s /usr/local/mysql/bin/mysqldump /usr/bin/mysqldump
+</code></pre></div><p><strong>OK了！</strong></p>
 <p>我就特别不喜欢那种假设各种工具都可以不需要指定路径直接调用的产品。特别是 gitlab 你都要我在配置文件里面指定 <code>git</code> 的全路径了，会用到 <code>mysqldump</code> 你也不说一声，悄悄咪咪地调用，出错也不直接出提示，只说『FAILED』。我去！</p>
-
-<hr />
-
+<hr>
 <p>后记：</p>
-
 <ul>
 <li>一开始还仔细检查了 <code>mysql</code> 的账号权限，才确信排除了数据库的问题；</li>
 <li>对 <code>mysqldump</code> 的设置一开始是通过修改 <code>.bashrc</code> + 添加 <code>PATH</code> 到 <code>visudo</code> 的 <code>env_keep</code> 变量的方法来实现，最终确认问题的根源。建立软链接的方式从安全性上不太可取，不过实现成本最低，性价比高；</li>
@@ -360,7 +334,7 @@ Backup failed</p>
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

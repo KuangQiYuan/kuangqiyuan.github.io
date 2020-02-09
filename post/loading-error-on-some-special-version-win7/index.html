@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,29 +84,20 @@
                         
                         <div class="post-content">
                             <p>前段时间重装系统 Windows7 之后，在其上安装 VirtualBox 却总是无法启动虚拟机。最初是根据经验对 VirtualBox 版本进行降级，但是没有效果。后来问谷子哥问到了答案，修复之。</p>
-
 <p>因为网上的各种答案均需要重启进安全系统或者 PE 系统，还需要自行搜原版的系统文件覆盖系统中现有的，一个不小心用了不恰当版本的文件替换，导致无法进入系统才是杯具。大家都知道 windows 各种 SP 众多，各 SP 之间的文件不一定是通用的，这个问题还是需要小心的。</p>
-
 <p>而我的办法很简单，一句命令，一次重启，搞定（前提，你的系统没有被『优化 C 盘空间』，否则你还是折腾替换文件去吧）。</p>
-
 <p>先说错误的提示。关键是下面这一句</p>
-
 <blockquote>
 <p>Unable to load R3 Module</p>
 </blockquote>
-
 <p>原因是：某些 Windows 的改良版本为了解决 Win7 第三方主题装不上的问题，把 uxtheme.dll 进行了『破解』，这种破解导致 VirtualBox 调用 WinAPI 失败。</p>
-
 <p>解决思路：将 uxtheme.dll 恢复成原版的即可。网上的思路是利用重启到安全模式或者 PE 系统中进行文件替换，我的办法是用 windows 自身的 system file scan 工具来完成（只需正常重启一次）。</p>
-
 <p>解决办法：</p>
-
 <blockquote>
 <p>1、打开『命令提示符』，执行下面的命令：
 2、sfc /scanfile=%systemroot%\system32\uxtheme.dll
 3、正常重启，启动虚拟机，搞定。</p>
 </blockquote>
-
 <p>当然，第三方主题应该是用不了。这个得失你得自己权衡。按说能玩儿虚拟机的主，对个把不产生生产力的主题，应该是可以放弃的。哈哈~~~</p>
 
                         </div>
@@ -307,7 +298,7 @@
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

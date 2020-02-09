@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -154,12 +154,12 @@
 结果没过几年，hexo 也快成了技术流的玩具。
 问题一。npm 依赖存在缺陷 首先是 &quot;hexo@3.8.0&quot; 某个依赖 &quot;hexo-fs@0.2.2&quot;，后者依赖 &quot;chokidar@1.2.7&quot;，而 chokidar 又依赖 &quot;fsevents@1.1.3&quot;。好了，最后这个 &quot;fsevents@1.1.3&quot; 是被 deprecated 的版本，包含原生库，已经不存在 binary 下载，从源码编译也会报错。错误的大意是跟 node 的版本不兼容。
 下面我把这个关系链重新理一下。
-graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[&quot;chokidar@1.2.7&quot;]; C--&gt;D[&quot;fsevents@1.1.3&quot;]; D--&gt;E[&quot;(HELL)&quot;];  除了上面的问题以外，大量已经停更的 plugins 依赖的 &quot;hexo-cli@1.0.3&quot; 等旧库，也多对 &quot;fsevents@1.1.3&quot; 存在间接依赖。
+graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[&quot;chokidar@1.2.7&quot;]; C--&gt;D[&quot;fsevents@1.1.3&quot;]; D--&gt;E[&quot;(HELL)&quot;]; 除了上面的问题以外，大量已经停更的 plugins 依赖的 &quot;hexo-cli@1.0.3&quot; 等旧库，也多对 &quot;fsevents@1.1.3&quot; 存在间接依赖。
 用一句话来说后果，在 MacOS 下，用 hexo-cli new + npm i 的方式，根本安装不上 hexo。
 问题二。插件的停更、老化 像上面提到的，停更的插件，其间接依赖的第三方库若是被废弃，插件本身也就不可用了。这是一种情况。
 第二种情况，hexo 本身在发展，某些停更的第三方插件没有跟着做适配，结果是 hexo 的使用体验受到了影响。
 第三种情况，最常见的。哪怕是官网列表中的插件，质量也是有高有低，对那些技术不灵光的用户实在麻烦。
-解决方法 针对安装不上的问题。我也不知道怎么解决 :( 我用撞大运的办法，hexo-cli new 一个项目以后，手动修改 package.……
+解决方法 针对安装不上的问题。我也不知道怎么解决 :( 我用撞大运的办法，hexo-cli new 一个项目以后，手动修改 package.json，将 &quot;hexo@3.8.0&quot; 这个依赖指向自己 fork 的 hexo repo，这个 forked repo 里面已经修改了 hexo-fs 是指向一个 forked hexo-cli repo。最后在这个 forked hero-cli repo 里面，把对 chokidar 的引用上升到 &quot;chokidar@1.……
                                 <p class="readmore"><a href="https://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/">阅读全文</a></p>
                             </div>
                         </article>
@@ -178,8 +178,8 @@ graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[
                                 最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内容千篇一律是推荐极客时间打新的课程，《Java 并发编程实战》。
 高并发哥又不是没做过，随手找了一下，发现陈皓在 2009 年的一篇文章就提到了正确的解法，以及背后的原因。《深入浅出单实例 SINGLETON 设计模式》。
 文中给出几种功能上正确的 singleton 写法。
-// version 1.4 public class Singleton { private volatile static Singleton singleton = null; private Singleton() {} public static Singleton getInstance() { if (singleton == null) { synchronized (Singleton.class) { if (singleton== null) { singleton= new Singleton(); } } } return singleton; } }  请留意私有变量的描述词 volatile，目的是不让编译器对指令进行重排序优化。
-// version 1.5 public class Singleton { private volatile static Singleton singleton = new Singleton(); private Singleton() {} public static Singleton getInstance() { return singleton; } }  这是自动加载版本。每次加载类的时候，实例就生成了。所以加载类的过程可能会很慢（特别是有很多继承、引用的情况）。……
+// version 1.4 public class Singleton { private volatile static Singleton singleton = null; private Singleton() {} public static Singleton getInstance() { if (singleton == null) { synchronized (Singleton.class) { if (singleton== null) { singleton= new Singleton(); } } } return singleton; } } 请留意私有变量的描述词 volatile，目的是不让编译器对指令进行重排序优化。
+// version 1.5 public class Singleton { private volatile static Singleton singleton = new Singleton(); private Singleton() {} public static Singleton getInstance() { return singleton; } } 这是自动加载版本。每次加载类的时候，实例就生成了。所以加载类的过程可能会很慢（特别是有很多继承、引用的情况）。……
                                 <p class="readmore"><a href="https://i.am.simonkuang.com/post/timeless-technology/">阅读全文</a></p>
                             </div>
                         </article>
@@ -255,7 +255,7 @@ graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[
 虽然 flutter 非常友好提供了针对中国用户的镜像(Using Flutter in China · flutter/flutter Wiki · GitHub)，解决了一些不可说的难题，但偶尔还是会遇到类似的问题。比如我今天就遇到了，在 VS Code 调试编译的时候，遇到 “Download Failed” 的问题。Could not resolve all files for configuration ':image_picker:lintClassPath'. 具体原因是 Connect to d29vzk4ow07wi7.cloudfront.net:443 [d29vzk4ow07wi7.cloudfront.net/13.33.69.104, d29vzk4ow07wi7.cloudfront.net/13.33.69.3, d29vzk4ow07wi7.cloudfront.net/13.33.69.38, d29vzk4ow07wi7.cloudfront.net/13.33.69.111] failed: Read timed out 。
 原来是碰上了墙外面的老朋友，CDN 服务商 cloudflare 的域名。
 中间还是比较曲折，最后解决的办法是用 proxychain4 解决问题。
-brew install proxychains-ng sed -i '.bak' 's@^\(socks4.*\)@#\1@g' /usr/local/etc/proxychains.conf echo -e &quot;socks5\t127.0.0.1 1080&quot; &gt;&gt; /usr/local/etc/proxychains.conf proxychains4 curl ip.gs  等等，好像不对，IP 是本市的。
+brew install proxychains-ng sed -i &#39;.bak&#39; &#39;s@^\(socks4.*\)@#\1@g&#39; /usr/local/etc/proxychains.conf echo -e &#34;socks5\t127.0.0.1 1080&#34; &gt;&gt; /usr/local/etc/proxychains.conf proxychains4 curl ip.gs 等等，好像不对，IP 是本市的。
 $ proxychains4 curl ip.gs [proxychains] config file found: /usr/local/etc/proxychains.……
                                 <p class="readmore"><a href="https://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/">阅读全文</a></p>
                             </div>
@@ -277,7 +277,7 @@ $ proxychains4 curl ip.gs [proxychains] config file found: /usr/local/etc/proxyc
  公司有内网机房，研发用，研发环境和测试环境都在内网机房； 公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析； 研发/测试环境的服务器也用顶级域名指向，例如：test1.mod-a.company.com。这类解析都是通过 bind 实现的。公司外网解析不到这个地址； 我自己需要一个安全的 DNS 环境，对 DNS 服务器溯源这个细节，优选 TCP 协议； 对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind； 之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。  找了一圈，发现 CoreDNS 挺好的。推荐之。
 一、安装 CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。
 下面统统以 MacOS 为例作讲解。
-cd ~/Downloads curl -LO &quot;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&quot; &amp;&amp; \ tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \ mv ./coredns /usr/local/bin/  这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。
+cd ~/Downloads curl -LO &#34;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&#34; &amp;&amp; \ tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \ mv ./coredns /usr/local/bin/ 这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。
 二、配置 要深入了解 CoreDNS，请查看其文档，及 plugins 的介绍。……
                                 <p class="readmore"><a href="https://i.am.simonkuang.com/post/install-coredns-on-macos/">阅读全文</a></p>
                             </div>
@@ -453,7 +453,7 @@ cd ~/Downloads curl -LO &quot;https://github.com/coredns/coredns/releases/downlo
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

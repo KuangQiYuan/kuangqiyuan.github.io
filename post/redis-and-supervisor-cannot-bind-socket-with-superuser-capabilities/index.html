@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,16 +84,11 @@
                         
                         <div class="post-content">
                             <p>在我记忆中，CentOS 从很早开始，就没有和各种的问题挂钩过。得益于它保守的升级策略，它自己几乎从来不是问题专业户，我对它的印象更多是因为太过保守导致的库升级不及时问题。</p>
-
 <p>可是最近，CentOS7 某个版本发行之后，偶尔的，会出现 supervisor 拉 redis 失败的问题。从日志的内容来看，全是 <code>Permission denied</code> 相关的问题，bind socket 的时候权限不够，write log 的时候权限不够，dump snapshot 的时候权限不够，只要跟写磁盘相关的，都有这个问题。</p>
-
 <p>单独执行 <code>/usr/bin/redis-server /etc/redis.conf</code>，又一点儿问题没有，命令本身没有问题，一切正常。</p>
-
 <p>关键，supervisor 是以 root 去拉 redis 的啊！表示很无辜 (o´・ェ・｀o)</p>
-
 <p>supervisor 的配置如下：</p>
-
-<pre><code class="language-conf">[program:redis]
+<pre><code class="language-conf" data-lang="conf">[program:redis]
 command = /usr/bin/redis-server /etc/redis.conf
 ;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
 numprocs=1                    ; number of processes copies to start (def 1)
@@ -123,11 +118,8 @@ stderr_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
 stderr_events_enabled=false   ; emit events on stderr writes (default false)
 ;environment=A=1,B=2           ; process environment additions (def no adds)
 ;serverurl=AUTO                ; override serverurl computation (childutils)
-</code></pre>
-
-<p>redis 的配置中，相关的配置选项如下：</p>
-
-<pre><code class="language-conf">daemonize no
+</code></pre><p>redis 的配置中，相关的配置选项如下：</p>
+<pre><code class="language-conf" data-lang="conf">daemonize no
 # 实际上，在出现问题的服务器上，pid 貌似一直没有落地成功，但所幸 redis 没有报错
 pidfile /data/log/redis/redis.pid
 port 6379
@@ -151,11 +143,8 @@ rdbchecksum yes
 # 出现问题时，dump 文件也没有落地成功，不过不影响 redis 继续执行
 dbfilename dump.rdb
 dir /data/log/redis/
-</code></pre>
-
-<p>因为 redis 的报错是通过 <code>redis.stdout.log</code> 来暴露，我们只用关注这个日志文件就可以了。下面我截几段。</p>
-
-<pre><code class="language-log">10640:M 01 Mar 18:04:10.932 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+</code></pre><p>因为 redis 的报错是通过 <code>redis.stdout.log</code> 来暴露，我们只用关注这个日志文件就可以了。下面我截几段。</p>
+<pre><code class="language-log" data-lang="log">10640:M 01 Mar 18:04:10.932 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
 10640:M 01 Mar 18:04:10.932 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
 10640:M 01 Mar 18:04:10.932 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
 10640:M 01 Mar 18:04:10.932 # Opening Unix socket: bind: Permission denied
@@ -163,9 +152,7 @@ dir /data/log/redis/
 10641:M 01 Mar 18:04:41.023 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
 10641:M 01 Mar 18:04:41.023 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
 10641:M 01 Mar 18:04:41.023 # Opening Unix socket: bind: Permission denied
-</code></pre>
-
-<pre><code class="language-log">                _._
+</code></pre><pre><code class="language-log" data-lang="log">                _._
            _.-``__ ''-._
       _.-``    `.  `_.  ''-._           Redis 3.0.7 (00000000/0) 64 bit
   .-`` .-```.  ```\/    _.,_ ''-._
@@ -190,9 +177,7 @@ dir /data/log/redis/
 11580:M 01 Mar 23:55:44.691 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
 11580:M 01 Mar 23:55:44.692 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
 11580:M 01 Mar 23:55:44.692 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied
-</code></pre>
-
-<pre><code class="language-log">3321:M 04 Mar 10:49:40.192 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+</code></pre><pre><code class="language-log" data-lang="log">3321:M 04 Mar 10:49:40.192 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
 3321:M 04 Mar 10:49:40.192 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
 3321:M 04 Mar 10:49:40.192 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
 3321:M 04 Mar 10:49:40.193 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied. | uid: 0 | gid: 0 | sock family: 1 | sock path: /dev/shm/redis.sock | eno: 101
@@ -200,32 +185,21 @@ dir /data/log/redis/
 3322:M 04 Mar 10:50:10.264 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
 3322:M 04 Mar 10:50:10.264 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
 3322:M 04 Mar 10:50:10.264 # Opening Unix socket (/dev/shm/redis.sock) and uid/gid (0/0): bind: Permission denied. | uid: 0 | gid: 0 | sock family: 1 | sock path: /dev/shm/redis.sock | eno: 101
-</code></pre>
-
-<p>第二段日志中，socket 具体的路径和 uid/gid 是我修改源码之后打印出来的，用来证实 supervisor 确实是在指定的位置拉起 redis
+</code></pre><p>第二段日志中，socket 具体的路径和 uid/gid 是我修改源码之后打印出来的，用来证实 supervisor 确实是在指定的位置拉起 redis
 socket，并且确实使用的是指定的用户（root）身份。</p>
-
 <p>实际上，无论是用 <a href="http://man7.org/linux/man-pages/man2/getuid.2.html"><code>getuid</code></a> 还是 <a href="http://man7.org/linux/man-pages/man2/geteuid.2.html"><code>geteuid</code></a> 都是一样的结果，确定 redis 的用户 ID 是 root（uid == 0）。</p>
-
 <p>因为不是每台电脑都能重现这个问题，而且有时候重做系统，两台服务器同时重做，一台 OK ，另外一台能重现此问题。只要重现一次，就能反复重现，100% 概率。</p>
-
 <p>此外还有一点需要注意的是，第二段和第三段都提示说需要用 <code>ulimit -n</code> 重新设置 file descriptors limit，可实际情况是，<code>/etc/profile</code> 里面已经设置了该值到 <code>102400</code>，而且肯定是已经生效的。</p>
-
-<pre><code class="language-bash">ulimit -n  # 1024000
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ulimit -n  <span style="color:#75715e"># 1024000</span>
+</code></pre></div><ul>
 <li>supervisord 是 root 身份启动的，而且的确是以 root 身份拉 redis；</li>
 <li>redis 本身没有问题，shell 里面启动是 OK 的；</li>
 <li>supervisord + redis 就会在磁盘落地时报权限问题；</li>
 <li>redis 报错时，似乎还取到不合实际情况的系统变量；</li>
 <li>并不是每个 CentOS7 环境都报错，但报错的都是 CentOS7。服务器的差异点还没找到，有时候两台同时重做的服务器，一台不行一台行；</li>
 </ul>
-
 <p>直到现在还没找到问题根源以及解决办法。</p>
-
 <p>大写的囧……</p>
-
 <blockquote>
 <p>(UPDATED) 2017-08-17: 还没找到原因。不过相信大概率和 supervisor 的配置有关。
 supervisor 拉起来的进程，系统环境不再是 euid 对应的环境，这点已经确认。
@@ -434,7 +408,7 @@ supervisor 拉起来的进程，系统环境不再是 euid 对应的环境，这
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

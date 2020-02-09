@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -120,7 +120,7 @@
 虽然 flutter 非常友好提供了针对中国用户的镜像(Using Flutter in China · flutter/flutter Wiki · GitHub)，解决了一些不可说的难题，但偶尔还是会遇到类似的问题。比如我今天就遇到了，在 VS Code 调试编译的时候，遇到 “Download Failed” 的问题。Could not resolve all files for configuration ':image_picker:lintClassPath'. 具体原因是 Connect to d29vzk4ow07wi7.cloudfront.net:443 [d29vzk4ow07wi7.cloudfront.net/13.33.69.104, d29vzk4ow07wi7.cloudfront.net/13.33.69.3, d29vzk4ow07wi7.cloudfront.net/13.33.69.38, d29vzk4ow07wi7.cloudfront.net/13.33.69.111] failed: Read timed out 。
 原来是碰上了墙外面的老朋友，CDN 服务商 cloudflare 的域名。
 中间还是比较曲折，最后解决的办法是用 proxychain4 解决问题。
-brew install proxychains-ng sed -i '.bak' 's@^\(socks4.*\)@#\1@g' /usr/local/etc/proxychains.conf echo -e &quot;socks5\t127.0.0.1 1080&quot; &gt;&gt; /usr/local/etc/proxychains.conf proxychains4 curl ip.gs  等等，好像不对，IP 是本市的。
+brew install proxychains-ng sed -i &#39;.bak&#39; &#39;s@^\(socks4.*\)@#\1@g&#39; /usr/local/etc/proxychains.conf echo -e &#34;socks5\t127.0.0.1 1080&#34; &gt;&gt; /usr/local/etc/proxychains.conf proxychains4 curl ip.gs 等等，好像不对，IP 是本市的。
 $ proxychains4 curl ip.gs [proxychains] config file found: /usr/local/etc/proxychains.……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/">阅读全文</a></p>
@@ -142,7 +142,7 @@ $ proxychains4 curl ip.gs [proxychains] config file found: /usr/local/etc/proxyc
  公司有内网机房，研发用，研发环境和测试环境都在内网机房； 公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析； 研发/测试环境的服务器也用顶级域名指向，例如：test1.mod-a.company.com。这类解析都是通过 bind 实现的。公司外网解析不到这个地址； 我自己需要一个安全的 DNS 环境，对 DNS 服务器溯源这个细节，优选 TCP 协议； 对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind； 之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。  找了一圈，发现 CoreDNS 挺好的。推荐之。
 一、安装 CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。
 下面统统以 MacOS 为例作讲解。
-cd ~/Downloads curl -LO &quot;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&quot; &amp;&amp; \ tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \ mv ./coredns /usr/local/bin/  这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。
+cd ~/Downloads curl -LO &#34;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&#34; &amp;&amp; \ tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \ mv ./coredns /usr/local/bin/ 这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。
 二、配置 要深入了解 CoreDNS，请查看其文档，及 plugins 的介绍。……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/install-coredns-on-macos/">阅读全文</a></p>
@@ -161,12 +161,12 @@ cd ~/Downloads curl -LO &quot;https://github.com/coredns/coredns/releases/downlo
                             <div class="post-content">
                                 react-native@0.50.1 依赖的是 facebook 精简之后的 boost_1_63_0 版本，而不是官方在 sourceforge 上发布的那个版本。
 官方发布的版本是这样的。
-curl -Lo boost_1_63_0.tar.gz \ https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz shasum -a1 boost_1_63_0.tar.gz # macOS, = 2cecf1848a813de55e5770f324f084c568abca0a sha1sum boost_1_63_00.tar.gz # Linux, = 2cecf1848a813de55e5770f324f084c568abca0a  而 Facebook 自己改过的版本是这样的。
-curl -Lo boost_1_63_0.tar.gz \ https://github.com/react-native-community/boost-for-react-native/releases/download/v1.63.0-0/boost_1_63_0.tar.gz shasum -a1 boost_1_63_0.tar.gz # macOS, = c3f57e1d22a995e608983effbb752b54b6eab741 sha1sum boost_1_63_00.tar.gz # Linux, = c3f57e1d22a995e608983effbb752b54b6eab741  这是个比较大的坑。
+curl -Lo boost_1_63_0.tar.gz \  https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz shasum -a1 boost_1_63_0.tar.gz # macOS, = 2cecf1848a813de55e5770f324f084c568abca0a sha1sum boost_1_63_00.tar.gz # Linux, = 2cecf1848a813de55e5770f324f084c568abca0a 而 Facebook 自己改过的版本是这样的。
+curl -Lo boost_1_63_0.tar.gz \  https://github.com/react-native-community/boost-for-react-native/releases/download/v1.63.0-0/boost_1_63_0.tar.gz shasum -a1 boost_1_63_0.tar.gz # macOS, = c3f57e1d22a995e608983effbb752b54b6eab741 sha1sum boost_1_63_00.tar.gz # Linux, = c3f57e1d22a995e608983effbb752b54b6eab741 这是个比较大的坑。
 依赖第三方开源 lib，文件名与第三方官方 release 的文件名一致，内容却是自己修改过的。稍不注意就会上当。
 因为之前有习惯先通过别的途径下载这个大文件，手动放置到 ~/.rncache 缓存目录下，所以发现了这个问题。
-补充说明，为什么说这是一个坑。
-react-native run-ios  在模拟器上运行 ios 版本的时候，脚本会首先编译 ios 版本的 app 出来。从安装脚本 node_modules/react-native/scripts/ios-install-third-party.sh 文件最后部分可以看到，会下载编译 ios 版本所需要的几个第三方库并编译。其中就包括了 boost_1_63_0.……
+ 补充说明，为什么说这是一个坑。
+react-native run-ios 在模拟器上运行 ios 版本的时候，脚本会首先编译 ios 版本的 app 出来。从安装脚本 node_modules/react-native/scripts/ios-install-third-party.sh 文件最后部分可以看到，会下载编译 ios 版本所需要的几个第三方库并编译。其中就包括了 boost_1_63_0.……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/react-native-depency-modified-boost-lib-from-0-50-1/">阅读全文</a></p>
                         </article>
@@ -183,7 +183,7 @@ react-native run-ios  在模拟器上运行 ios 版本的时候，脚本会首�
                             
                             <div class="post-content">
                                 Coding Pages 是我的博客承载平台。我的博客是用 Hexo 做的，Markdown 语法书写，编译成静态 html 后上传到 Coding Pages 和 Github Pages 上面去，供大家访问。之所以用两个不同的 Pages 服务，是因为之前 Github 被 GFW 墙了，包括 Pages 在内的服务都访问不顺畅，彼时正好 gitcafe pages（后来被 Coding 收购）也提供 Pages 服务，所以在国内做了个镜像。这样墙里面的网友不仅不用看 GFW 的心情，还因为服务器在国内，国内网友访问时更快一些。谷歌上一搜『hexo github coding』就能有很多结果，例如这篇『将hexo博客同时托管到github和coding』。
-但是好像从上个月（八月）开始，coding pages 开始劫持我的博客访问，穿插进他们自己的企业版 coding 的广告，播放五秒之后，再跳转进入我的博客。这很优酷、很爱奇艺，很 APP。广告页面上甚至连一个倒计时的控件都看不到，就右上角（好像是）一行很小的字，跟你讲：*你没访问错，这个页面只是广告*。
+但是好像从上个月（八月）开始，coding pages 开始劫持我的博客访问，穿插进他们自己的企业版 coding 的广告，播放五秒之后，再跳转进入我的博客。这很优酷、很爱奇艺，很 APP。广告页面上甚至连一个倒计时的控件都看不到，就右上角（好像是）一行很小的字，跟你讲：你没访问错，这个页面只是广告。
 看了 coding 的解释，你要不花钱买它的会员（金牌会员），就要在你的博客页脚上加『hosted by coding pages』的字样。如下图。
 大家注意截屏上方的绿色警示框：这是我的 pages 通过审核之后的状态。下面标红的复选框需要你在添加脚标之后自行选中，之后就会有专人给你审核开通免广告插入。
 我猜测这是 coding 为了给自己网站做 SEO 的小伎俩。考虑到用了 coding 免费服务有一年多两年，人家要求也不过分，虽然网上很多人吵着要离开 coding 转 github，我还是决定给人加一个脚标。做人要懂感恩嘛。
@@ -207,19 +207,19 @@ react-native run-ios  在模拟器上运行 ios 版本的时候，脚本会首�
                             
                             <div class="post-content">
                                 从程序员到架构师的成长，变化就像从小学生到高中生一样巨大。
-不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，*培养培养*，就可以成为架构师了。架构师都是摔打出来的。
-看到过对*做架构*有一个不错的定义：系统架构的目标是解决利益相关者的关注点。
+不仅是对能力有要求，更重要是对视野的要求，对认知能力的要求，对沟通能力的要求，对组织能力的要求，对适应能力的要求，对执行力和韧性的要求…… 远不是说技术能力成长了，就达到了架构师的要求。更加不是说技术能力有了，培养培养，就可以成为架构师了。架构师都是摔打出来的。
+看到过对做架构有一个不错的定义：系统架构的目标是解决利益相关者的关注点。
 所以你看，做架构的架构师，其实是解决人的利益问题，目标是让各方利益尽可能达成一致，做 trade off 的工作，权衡。技术只是实现这个目标的一种手段，一种重要的手段，手段之一，不是全部，甚至于不是最重要的。执行层面成长起来的、技术能力过关的工程师，想要成长为架构师，首先考验的是你听 + 说的能力，也就是沟通表达的能力。沟通能力才是一个合格的架构师最重要的能力。
 一、听的能力 这个很有学问。
 我们常常假设与我们沟通的都是理性人，他们清楚自己说的是什么意思，他们也确实想要表达这个意思。实际上，几乎不存在这样的理性人。为了避免尴尬、隐藏真实想法，大家说的往往是加以润色的话。即便死党之间畅无不言，潜意识也会偷偷在话里打掩护，顾左右而言他。若是拿别人告诉你的话当个准，九成九会遇到『当初我怎么知道』的情况。
 工作中也是如此，系统架构牵扯利益，各方都希望架构师做出有利于己方的设计，所以表达己方利益关切的时候，明明可以『关注』的，他可能用『严重关切』来表达。你没法儿指责他说谎，也许他的表达习惯就是如此，也许是大家对轻重缓急的表达方式不同。但作为架构师，你自己心里就得有个判断：他的话我到底该不该信？信几分？可信的部分在我的架构中轻重缓急怎么判断？
 所以，听的能力非常重要。
-首先，学会听别人的话外音。 职场上，大部分人是理性的，他们对自己手头的事情能有理性的判断。大多数时候，他们也能清楚知道自己想要什么。只是，他们往往会*委婉*地表达自己的目的。旁推侧击、敲山震虎、隔山打牛、杀鸡儆猴…… 就是不会直来直去。
+首先，学会听别人的话外音。 职场上，大部分人是理性的，他们对自己手头的事情能有理性的判断。大多数时候，他们也能清楚知道自己想要什么。只是，他们往往会委婉地表达自己的目的。旁推侧击、敲山震虎、隔山打牛、杀鸡儆猴…… 就是不会直来直去。
 作为架构师，你得学会听懂别人背后表达的意思，这是最基本的功力了。
 其次，听懂别人背后的意图。 再聪明的人也有犯糊涂的时候。有些时候，跟你沟通的某人，会忽然卡壳，不知道接下来要怎么表达/表达什么。他隐约觉得自己想要个小功能，但就是不知道怎么表达出来。这时候如果架构师对这个人有一定了解，知道他关心的点，知道他的风格，就有可能顺着他的思路去提醒他。
 倒不是让架构师去做别人肚子里面的蛔虫。这样做至少有两点好处。
  架构师主动提，比一个有明确利益偏向的人来提，提出来的方案合适得多。他讲不清楚的时候，你能讲清楚，还照顾到他的关切，他接受你的方案的概率也很高； 如果架构师对利益方能达到这种程度的了解，可以把利益方的偏好尽可能纳入架构设计的考量中去，就可以做好预埋，防止无谓的需求变更。  最后，听懂别人没说出口的话。 有些话，不一定要说出口，就像上面提到的。另外有些话，说的时候还没想到，或者，说的时候就没怎么想，反正可以以后想到再说。
-对架构师，后面两种情况真的够呛。你遇到的是一个*职场 baby*，一个不能为自己的行为负完全责任的人。这种情况下，最好的解决办法是，你能帮他想好，反过来引导他，通过他的嘴讲出来。避免在系统评审会之后，频繁变更带来的成本开销。评审会之后变更架构设计的开销是客观的，成本存在压缩极限；而考虑提前量的开销是可控的，通过人为努力可以使成本逼近零。因此在系统架构设计阶段，尽可能多考虑一些未来的变化，从长远来看，是相当划算的。
+对架构师，后面两种情况真的够呛。你遇到的是一个职场 baby，一个不能为自己的行为负完全责任的人。这种情况下，最好的解决办法是，你能帮他想好，反过来引导他，通过他的嘴讲出来。避免在系统评审会之后，频繁变更带来的成本开销。评审会之后变更架构设计的开销是客观的，成本存在压缩极限；而考虑提前量的开销是可控的，通过人为努力可以使成本逼近零。因此在系统架构设计阶段，尽可能多考虑一些未来的变化，从长远来看，是相当划算的。
 这种场景下，考验的是架构师的业务能力、经验和宽泛的倾听技巧。这种能力通过练习可以培养，但成长不会很快。属于二八原理中要花 80% 精力去积累的 20% 那部分。锻炼的时候，要有耐心和信心。
 说的能力 说，或者说表达，也是沟通中重要的一部分。对于架构师而言，架构设计就是最好的表达。相对的，就工程师成长起来的架构师，我更提倡学会倾听，而不是表达。
 如果硬要说在表达方面有什么建议或者窍门，就下面几句话。
@@ -246,7 +246,7 @@ NodeJS 的包管理工具 npm（Nodejs Package Management）在这其中功不�
 从这件事情之后，有些人也开始反思，于是知乎上有人问『如何看待 Azer Koçulu 删除了自己的所有 npm 库？』这一类的问题。直到后来终于有人问：难道一个只有十一行代码的功能你们都不能自己写了么？（PS：left-pad 只有十一行有效代码）问题才逐渐回归本源上。
 要我说，从我了解 npm 开始，就一直觉得它是 DRY（Donot Repeat Yourself）和 KISS（Keep It Simple, Stupid）的极端实践者。极端到什么地步呢，就像上面提到的，连一个十一行代码的功能都要找 npm 上面的 package 来实现，而不是自己写一份。层层叠叠，相互之间的引用关系堪比用 DNA 图谱勾勒人类进化史和迁移史。
 现在看来，哲学是好的，但做得有点儿过。
-这两天被 npm 搞得够呛。
+ 这两天被 npm 搞得够呛。
 一直用 hexo 写博客，好好的。手贱升级了 node 到 7.4.x，完了，发现不正常了，报类似下面的错误。
  Fatal error in .……
                             </div>
@@ -269,7 +269,7 @@ NodeJS 的包管理工具 npm（Nodejs Package Management）在这其中功不�
 开源可持续的其中一个前提是：大多数贡献者积极向善。就像最近很火的区块链，确保账本正确、资金安全的前提是，不诚实节点掌握不了超过全网 50% 的运算力。否则，保存在全网区块链中的账本，被人篡改的几率就大大增加，账本不可信，资金不安全，你账户里面躺着的钱有一天会突然变成 TA 的。随着这些年技术门槛降低，互联网开始普及，互联网经济不再神秘，趋金的商人也越来越多走进来，捞钱。他们在互联网经济中所占的比例会越来越大，最后他们的影响力一定会超过作为『互联网原住民』的工程师。趋金不是个贬义词，由它引发的故事却往往是贬义的。这些故事，最终可能会毁了开源，或者说『进化』开源。
 阳光下的 M$ 这么多金，届时 M$ 会不会趁虚而入要了这只企鹅的命，还真不好说。
 看开点，随个缘咯。
-selinux 也是可怜的孩子，生不逢时。网上的小白教程讨论的都是『怎么关闭 selinux』，知乎上也只有『为什么要关闭 selinux』这一类的问题。
+ selinux 也是可怜的孩子，生不逢时。网上的小白教程讨论的都是『怎么关闭 selinux』，知乎上也只有『为什么要关闭 selinux』这一类的问题。
 在技术发展水平不变的前提下，安全和方便是一体的两面，要想安全，一定会比较麻烦；想不麻烦，就会不安全。可以选择权衡，本质不会变。没有环境倒逼，恐怕很多企业都不会对安全太上心，这就是现状。安全是非功能需求，往往也是次要需求，安全对应的麻烦则被视为成本，追求『绝对安全』的动力不足，只要相对安全就好。而且，这种『相对』的标准，往往还是领导/客户心理上的相对，跟事实差好远。……
                             </div>
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/">阅读全文</a></p>
@@ -287,7 +287,7 @@ selinux 也是可怜的孩子，生不逢时。网上的小白教程讨论的都
                             
                             <div class="post-content">
                                 用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。
-访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的*温馨提示*（如下图）。
+访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的温馨提示（如下图）。
 而一台不能提供 http 服务的阿里云 ECS 不是真正的服务器。解决这个问题的办法，将 http 换到 https 就可以了。
 https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购之后，颇多周折，跟同袍兄弟 StarSSL 一起被业界良心 chrome 拉黑。现在使用 WoSign 签发的 ssl 证书会被 chrome 直接判定为证书无效。
 最近连商务范儿最重的 Symantec 都被 chrome 一再警告之后拉黑。除了认为 chrome 真任性之外，也提醒我们选择 ssl 服务商时一定要慎重。
@@ -502,7 +502,7 @@ https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购�
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

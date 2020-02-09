@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,111 +84,85 @@
                         
                         <div class="post-content">
                             <p>最近调研 flutter，甚是大爱。</p>
-
 <p>虽然 flutter 非常友好提供了针对中国用户的镜像(<a href="https://github.com/flutter/flutter/wiki/Using-Flutter-in-China">Using Flutter in China · flutter/flutter Wiki · GitHub</a>)，解决了一些不可说的难题，但偶尔还是会遇到类似的问题。比如我今天就遇到了，在 VS Code 调试编译的时候，遇到 “Download Failed” 的问题。<code>Could not resolve all files for configuration ':image_picker:lintClassPath'.</code> 具体原因是 <code>Connect to d29vzk4ow07wi7.cloudfront.net:443 [d29vzk4ow07wi7.cloudfront.net/13.33.69.104, d29vzk4ow07wi7.cloudfront.net/13.33.69.3, d29vzk4ow07wi7.cloudfront.net/13.33.69.38, d29vzk4ow07wi7.cloudfront.net/13.33.69.111] failed: Read timed out</code> 。</p>
-
 <p>原来是碰上了墙外面的老朋友，CDN 服务商 cloudflare 的域名。</p>
-
 <p>中间还是比较曲折，最后解决的办法是用 <a href="https://github.com/rofl0r/proxychains-ng">proxychain4</a> 解决问题。</p>
-
-<pre><code class="language-bash">brew install proxychains-ng
-sed -i '.bak' 's@^\(socks4.*\)@#\1@g' /usr/local/etc/proxychains.conf
-echo -e &quot;socks5\t127.0.0.1 1080&quot; &gt;&gt; /usr/local/etc/proxychains.conf
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install proxychains-ng
+sed -i <span style="color:#e6db74">&#39;.bak&#39;</span> <span style="color:#e6db74">&#39;s@^\(socks4.*\)@#\1@g&#39;</span> /usr/local/etc/proxychains.conf
+echo -e <span style="color:#e6db74">&#34;socks5\t127.0.0.1 1080&#34;</span> &gt;&gt; /usr/local/etc/proxychains.conf
 
 proxychains4 curl ip.gs
-</code></pre>
-
-<p>等等，好像不对，IP 是本市的。</p>
-
-<pre><code class="language-bash">$ proxychains4 curl ip.gs
-[proxychains] config file found: /usr/local/etc/proxychains.conf
-[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib
+</code></pre></div><p>等等，好像不对，IP 是本市的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ proxychains4 curl ip.gs
+<span style="color:#f92672">[</span>proxychains<span style="color:#f92672">]</span> config file found: /usr/local/etc/proxychains.conf
+<span style="color:#f92672">[</span>proxychains<span style="color:#f92672">]</span> preloading /usr/local/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib
 Current IP / 当前 IP: 118.XXX.XXX.XXX
 ISP / 运营商:  ChinaTelecom
 City / 城市: Chengdu Sichuan
 Country / 国家: China
-IP.GS is now IP.SB, please visit https://ip.sb/ for more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！
-Please join Telegram group https://t.me/sbfans if you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans
+IP.GS is now IP.SB, please visit https://ip.sb/ <span style="color:#66d9ef">for</span> more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！
+Please join Telegram group https://t.me/sbfans <span style="color:#66d9ef">if</span> you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans
 
-  /\_/\
-=( °w° )=
-  )   (  //
- (__ __)//
+  /<span style="color:#ae81ff">\_</span>/<span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span><span style="color:#f92672">=</span><span style="color:#f92672">(</span> °w° <span style="color:#f92672">)</span><span style="color:#f92672">=</span>
+  <span style="color:#f92672">)</span>   <span style="color:#f92672">(</span>  //
+ <span style="color:#f92672">(</span>__ __<span style="color:#f92672">)</span>//
 
-</code></pre>
-
-<p>哪里不对？</p>
-
+</code></pre></div><p>哪里不对？</p>
 <p>原来 MacOS X 10.11 以后的版本，还需要禁用 SIP，proxychains 才能正常工作。因为它会修改可执行文件本身，而位于 <code>/usr/bin</code> 下面的 curl 并不能被修改。见这里——<a href="https://www.v2ex.com/t/204725">Proxychains 是不是不支持 10.11 了？ - V2EX</a>。</p>
-
 <p>我不想禁用 SIP。安全方面，我还是比较强迫症的。所以用了另外一种方式，就是把可执行文件，从受系统保护的目录里面移出来。</p>
-
-<pre><code class="language-bash">cd /Volumes/RamDisk
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd /Volumes/RamDisk
 cp /usr/bin/curl ./
 proxychains4 ./curl ip.gs
-</code></pre>
-
-<p>这下终于行了。</p>
-
-<pre><code class="language-bash">$ proxychains4 ./curl ip.gs
-[proxychains] config file found: /usr/local/etc/proxychains.conf
-[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib
+</code></pre></div><p>这下终于行了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ proxychains4 ./curl ip.gs
+<span style="color:#f92672">[</span>proxychains<span style="color:#f92672">]</span> config file found: /usr/local/etc/proxychains.conf
+<span style="color:#f92672">[</span>proxychains<span style="color:#f92672">]</span> preloading /usr/local/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib
 Current IP / 当前 IP: XXX.XX.XXX.XX
 ISP / 运营商:  xxxxx
 City / 城市: Osaka Osaka
 Country / 国家: Japan
-IP.GS is now IP.SB, please visit https://ip.sb/ for more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！
-Please join Telegram group https://t.me/sbfans if you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans
+IP.GS is now IP.SB, please visit https://ip.sb/ <span style="color:#66d9ef">for</span> more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！
+Please join Telegram group https://t.me/sbfans <span style="color:#66d9ef">if</span> you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans
 
-  /\_/\
-=( °w° )=
-  )   (  //
- (__ __)//
+  /<span style="color:#ae81ff">\_</span>/<span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span><span style="color:#f92672">=</span><span style="color:#f92672">(</span> °w° <span style="color:#f92672">)</span><span style="color:#f92672">=</span>
+  <span style="color:#f92672">)</span>   <span style="color:#f92672">(</span>  //
+ <span style="color:#f92672">(</span>__ __<span style="color:#f92672">)</span>//
 
-</code></pre>
-
-<p>用在 flutter 上面试试看。</p>
-
-<pre><code class="language-bash">$ proxychains4 flutter run
-[proxychains] config file found: /usr/local/etc/proxychains.conf
-[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib
+</code></pre></div><p>用在 flutter 上面试试看。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ proxychains4 flutter run
+<span style="color:#f92672">[</span>proxychains<span style="color:#f92672">]</span> config file found: /usr/local/etc/proxychains.conf
+<span style="color:#f92672">[</span>proxychains<span style="color:#f92672">]</span> preloading /usr/local/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib
 Launching lib/main.dart on BLN AL10 in debug mode...
 Initializing gradle...                                       0.8s
 Resolving dependencies...                                    0.8s
-Running 'gradlew assembleDebug'...
+Running <span style="color:#e6db74">&#39;gradlew assembleDebug&#39;</span>...
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Could not resolve all files for configuration ':image_picker:lintClassPath'.
+Could not resolve all files <span style="color:#66d9ef">for</span> configuration <span style="color:#e6db74">&#39;:image_picker:lintClassPath&#39;</span>.
 
 ............
 
 BUILD FAILED in 2m 3s
 123.9s
-Gradle build failed: 1
-</code></pre>
-
-<p>还是不行？</p>
-
+Gradle build failed: <span style="color:#ae81ff">1</span>
+</code></pre></div><p>还是不行？</p>
 <p>考虑到上面 curl 遇到的问题，确认 flutter 可执行文件权限和路径没问题，试试用绝对路径。</p>
-
-<pre><code class="language-bash">$ proxychains4 ~/workspace/flutter_development/flutter/bin/flutter run
-[proxychains] config file found: /usr/local/etc/proxychains.conf
-[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ proxychains4 ~/workspace/flutter_development/flutter/bin/flutter run
+<span style="color:#f92672">[</span>proxychains<span style="color:#f92672">]</span> config file found: /usr/local/etc/proxychains.conf
+<span style="color:#f92672">[</span>proxychains<span style="color:#f92672">]</span> preloading /usr/local/Cellar/proxychains-ng/4.13/lib/libproxychains4.dylib
 Launching lib/main.dart on BLN AL10 in debug mode...
 Initializing gradle...                                       0.8s
 Resolving dependencies...                                    0.8s
-Running 'gradlew assembleDebug'...                          11.8s
+Running <span style="color:#e6db74">&#39;gradlew assembleDebug&#39;</span>...                          11.8s
 Built build/app/outputs/apk/debug/app-debug.apk.
 Installing build/app/outputs/apk/app.apk...                  3.8s
 ^C
-</code></pre>
-
-<p>欧耶！终于成了。</p>
-
+</code></pre></div><p>欧耶！终于成了。</p>
 <p><em>PS：^C 是我终止了 flutter build 的过程。</em></p>
-
 <p>看得出来，proxychains 通过独特的方式来让 command 程序走代理。虽然不是很方便，但总归解决了问题。还是值得点赞。</p>
 
                         </div>
@@ -393,7 +367,7 @@ Installing build/app/outputs/apk/app.apk...                  3.8s
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>blog on 旷氏淇元</title>
@@ -23,8 +23,8 @@
 以前是重新安装一个 hexo 环境，还有几率能解决依赖的问题（部分 plugins 会降级安装）。但既然已经不是第一次遇到这种情况，问题的根源解决不了，没准儿以后还会遇到，干脆下定决心弃坑 hexo。
 hugo 早就听说大名，golang 也是我喜欢的。基本上没调研其它 blog service，直接开始研究起 hugo 来。
 1. 安装 hugo 我用 MacBook Pro，装了 HomeBrew，安装 hugo 相对简单。
-brew install hugo  2. 建立站点 hugo new site my-blog  完成以后，my-blog 目录下会有以下子目录。
- archetypes: 下面有一个 default.md 的模板，是新建文章的时候，会用到的模板。 config.toml: TOML 格式的配置文件。 content: 放文章源文件，.</description>
+brew install hugo 2. 建立站点 hugo new site my-blog 完成以后，my-blog 目录下会有以下子目录。
+ archetypes: 下面有一个 default.md 的模板，是新建文章的时候，会用到的模板。 config.toml: TOML 格式的配置文件。 content: 放文章源文件，.md 文件的地方。 themes: 主题目录。具体用哪个主题，参照 config.</description>
     </item>
     
   </channel>

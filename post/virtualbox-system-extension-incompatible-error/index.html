@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -83,18 +83,11 @@
                         
                         
                         <div class="post-content">
-                            
-
-<p>Mac 上升级 VirtualBox 6.0.8，遇到一个报错，一直搞不定。大意是 <code>system extension incompatible</code>。提示框不是 warning 或者 error 图标，就是普通的 performance 图标，而且只出现一次，再安装，不会出现。</p>
-
+                            <p>Mac 上升级 VirtualBox 6.0.8，遇到一个报错，一直搞不定。大意是 <code>system extension incompatible</code>。提示框不是 warning 或者 error 图标，就是普通的 performance 图标，而且只出现一次，再安装，不会出现。</p>
 <p>网络上没有结论，大多是说在 Performance 里面做安全授权。然后我遇到的并不是这个问题，Performance 里面没有授权提示。于是自己试着用降级的办法，安装 5.2.30，还是不行，同样的错误。再降级，到 5.2.28，终于行了，安装成功。</p>
-
 <p>打开 5.2.28，发现有个提示，说有磁盘镜像失效，打开管理工具，发现是之前装的 Nox，在 VirtualBox 的配置中写入了 Nox 自己的镜像。卸载 Nox 的时候，Nox 没有从 VirtualBox 的配置中删除 Nox 的磁盘镜像。于是手动确认删除 Nox 相关的两个镜像。再进入 VirtualBox 就好了。</p>
-
 <p>今天忽然想起来，也许就是因为失效镜像，导致升级失败呢。于是再安装 VirtualBox 试试。果然，就行了。</p>
-
 <h3 id="结论">结论</h3>
-
 <p>对 VirtualBox 的失效镜像，一定要自行观察，手动清除，不能听之任之，容易造成潜在的问题。有一些模拟器啥的，安装的时候容易，卸载的时候麻烦，只能靠自己多留个心眼。</p>
 
                         </div>
@@ -299,7 +292,7 @@
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

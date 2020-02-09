@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -83,87 +83,61 @@
                         
                         
                         <div class="post-content">
-                            
-
-<blockquote>
+                            <blockquote>
 <p>(UPDATED) 2017-08-17:
 ssserver 提供服务器端的支持；sslocal 转本地 socks5 服务；再用 privoxy 提供 http/https proxy。
 经过试验，这样的解决方案是最全面的了。</p>
-
 <p>至于梯子哪家强，你问我，我不会不告诉你。O(∩_∩)O哈哈~</p>
 </blockquote>
-
 <p>对于功夫网不问青红皂白直接予以封杀的行为，程序猿的一贯态度是问候方校长。有些的确敏感的都不说了，facebook 旗下的工具网站 <a href="http://nuclide.io/">Nuclide</a> 也被封，之前还有 <a href="http://python.org/">Python</a> 因为一个特定版本号被封的往事…… 各种搞笑和不能理解的规则，生活在兲朝的程序猿这种生物天生比国外的低矮一截——纯粹因为生存环境的关系，导致看世界不完整。</p>
-
 <p>前两天做 <a href="https://grpc.io/">grpc</a> 的调研，为了简洁，安装 <a href="https://pecl.php.net/package/gRPC">php-grpc</a> 时准备就直接用 <a href="https://brew.sh/">homebrew</a> 搞定。<code>brew install homebrew/php/php56-grpc</code>，一句命令安装，升级维护也省心。</p>
-
 <p>可是安装 php-grpc 的依赖却出了问题。<a href="https://github.com/google/protobuf">protobuf</a> 在 homebrew 中是从源码开始安装，用的是 protobuf 自带的 <code>autogen.sh</code> 脚本，脚本中正好从 <code>googlemock.googlecode.com</code> 域下载 <code>googlemock</code> 一个特定版本的发布包，因为 shell 默认不会走系统代理（我用 shadowsocks 科学上网，这是我的梯子，这是下面所列方法的前提。如果你连梯子都没有，可以不用往下看，没戏），会导致下载失败。</p>
-
 <p>英雄汉不能被一泡尿憋死。折腾一会儿，终于找到办法。</p>
-
 <p>后来想想，自动化脚本里面其实挺多这种应用场景的，没谁写个脚本还要兼顾其它国家特色网络，那技术宅成天别干别的事儿，光跟堂吉诃德战斗好了。因此，记一下吧，以后用得着。</p>
-
 <p>下面提供两种办法供选用。两种都简洁，改动都不大，主要看应用场景和个人的习惯吧。</p>
-
-<h3 id="方法一-修改下载程序配置">方法一：修改下载程序配置</h3>
-
+<h3 id="方法一修改下载程序配置">方法一：修改下载程序配置</h3>
 <p>protobuf 安装脚本中的下载程序使用的是 <code>curl</code>，因此先得配置它。新增或修改 <code>~/.curlrc</code> 这个文件，加入 <code>socks5</code> 这个选项（因为 shadowsocks 是用的 socks5）。</p>
-
-<pre><code class="language-conf"># 我用的是影梭，所以设置 socks5 选项
+<pre><code class="language-conf" data-lang="conf"># 我用的是影梭，所以设置 socks5 选项
 socks5 = 127.0.0.1:1080
 
 # 如果用的是 http，设置 proxy 选项
 proxy = 127.0.0.1:8080
-</code></pre>
-
-<p>如果有用到 <code>wget</code> 的话，需要修改 <code>~/.wgetrc</code> 这个配置文件。</p>
-
-<pre><code class="language-conf"># proxy 配置按照类型设置。为了避免冲突，保留你需要的那个就好
+</code></pre><p>如果有用到 <code>wget</code> 的话，需要修改 <code>~/.wgetrc</code> 这个配置文件。</p>
+<pre><code class="language-conf" data-lang="conf"># proxy 配置按照类型设置。为了避免冲突，保留你需要的那个就好
 https_proxy = http://proxy.yoyodyne.com:18023/
 http_proxy = http://proxy.yoyodyne.com:18023/
 ftp_proxy = http://proxy.yoyodyne.com:18023/
 
 # 确保 proxy 生效
 use_proxy = on
-</code></pre>
-
-<h3 id="方法二-一次性方式">方法二：一次性方式</h3>
-
+</code></pre><h3 id="方法二一次性方式">方法二：一次性方式</h3>
 <p>一次性方式有个好处是，能够让设置仅仅在当前 shell 中生效，既不影响别的 shell，退出当前 shell 之后设置自动清除，自动还原的无害小精灵。</p>
-
 <p>这是 curl 的。按照实际情况修改配置，然后直接在 shell 中运行即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># socks5 proxy</span>
+alias curl<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;curl --socks5=127.0.0.1:1080&#39;</span>
 
-<pre><code class="language-bash"># socks5 proxy
-alias curl='curl --socks5=127.0.0.1:1080'
+<span style="color:#75715e"># http proxy</span>
+alias curl<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;curl -x 127.0.0.1:8080&#39;</span>
+alias curl<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;curl -x username:password@127.0.0.1:8080&#39;</span>
+</code></pre></div><p>下面是 wget 的。wget 用 socks5 的话要麻烦一点，因为 wget 本身不支持 socks5，需要使用一个工具做基础环境的转换，<a href="http://tsocks.sourceforge.net/">tsocks</a>。我们假设用户解决了 tsocks 的安装问题。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 配置 tsocks 先</span>
+<span style="color:#75715e">#cat /dev/null &gt; /etc/tsocks.conf   # 清空 tsocks 配置</span>
+echo <span style="color:#e6db74">&#39;server = 127.0.0.1
+</span><span style="color:#e6db74">server_type = 5
+</span><span style="color:#e6db74">server_port = 1080
+</span><span style="color:#e6db74">&#39;</span> &gt; /etc/tsocks.conf
 
-# http proxy
-alias curl='curl -x 127.0.0.1:8080'
-alias curl='curl -x username:password@127.0.0.1:8080'
-</code></pre>
+<span style="color:#75715e"># socks5 proxy。根据 tsocks 的使用方式做设置。</span>
+alias wget<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;tsocks wget&#39;</span>
 
-<p>下面是 wget 的。wget 用 socks5 的话要麻烦一点，因为 wget 本身不支持 socks5，需要使用一个工具做基础环境的转换，<a href="http://tsocks.sourceforge.net/">tsocks</a>。我们假设用户解决了 tsocks 的安装问题。</p>
+<span style="color:#75715e"># https/http/ftp proxy。根据需要选择其中一种</span>
+export https_proxy <span style="color:#f92672">=</span> http://proxy.yoyodyne.com:18023/
+export http_proxy <span style="color:#f92672">=</span> http://proxy.yoyodyne.com:18023/
+export ftp_proxy <span style="color:#f92672">=</span> http://proxy.yoyodyne.com:18023/
 
-<pre><code class="language-bash"># 配置 tsocks 先
-#cat /dev/null &gt; /etc/tsocks.conf   # 清空 tsocks 配置
-echo 'server = 127.0.0.1
-server_type = 5
-server_port = 1080
-' &gt; /etc/tsocks.conf
-
-# socks5 proxy。根据 tsocks 的使用方式做设置。
-alias wget='tsocks wget'
-
-# https/http/ftp proxy。根据需要选择其中一种
-export https_proxy = http://proxy.yoyodyne.com:18023/
-export http_proxy = http://proxy.yoyodyne.com:18023/
-export ftp_proxy = http://proxy.yoyodyne.com:18023/
-
-# 显式使用 proxy
-alias wget='wget --proxy=on'
-</code></pre>
-
-<hr />
-
+<span style="color:#75715e"># 显式使用 proxy</span>
+alias wget<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;wget --proxy=on&#39;</span>
+</code></pre></div><hr>
 <p>PS：搞定功夫网，发现 php-grpc 会在编译环节出问题，引用 grpc 的函数报参数数量有误，应该是 grpc 版本不对。也许是我之前为了省事不想翻墙，在 homebrew 之外自己安装了别的版本的 grpc 造成的。还没来得及追。功夫网害人呐！</p>
 
                         </div>
@@ -368,7 +342,7 @@ alias wget='wget --proxy=on'
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

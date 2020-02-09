@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.64.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -83,53 +83,29 @@
                         
                         
                         <div class="post-content">
-                            
-
-<p>用了好几年的 <a href="https://gitlab.com/">gitlab</a>，前前后后搭建了好几次系统，解决了不少问题，还是非常熟悉了。昨天又遇到 gitlab 搭建中的一个新的问题。</p>
-
+                            <p>用了好几年的 <a href="https://gitlab.com/">gitlab</a>，前前后后搭建了好几次系统，解决了不少问题，还是非常熟悉了。昨天又遇到 gitlab 搭建中的一个新的问题。</p>
 <h3 id="现象">现象</h3>
-
 <p>gitlab 搭建好之后，建账号，加 ssh key，建项目，本地 push，然后就遇到 gitlab 问我要密码。</p>
-
 <blockquote>
-<p>git@some.domain.name password:</p>
+<p><a href="mailto:git@some.domain.name">git@some.domain.name</a> password:</p>
 </blockquote>
-
 <p>项目是我创建的，ssh key 也有添加，还找我要密码，明显不科学。</p>
-
 <h3 id="尝试解决">尝试解决</h3>
-
 <p>首先，检查了服务器的 sshd 设定，确认启用了 ssh 登录。</p>
-
-<pre><code class="language-bash">cat /etc/ssh/sshd_config | grep PubkeyAuthentication
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/ssh/sshd_config | grep PubkeyAuthentication
+</code></pre></div><blockquote>
 <p>PubkeyAuthentication yes</p>
 </blockquote>
-
 <p>以为是缓存，分别重启了 redis 和 gitlab。（PS：我的 redis 用 supervisor 管理起来的）</p>
-
-<pre><code class="language-bash">supervisorctl restart redis
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">supervisorctl restart redis
 service gitlab restart
-</code></pre>
-
-<p>然后等了五分钟再试（其实没有必要），还是不行。</p>
-
+</code></pre></div><p>然后等了五分钟再试（其实没有必要），还是不行。</p>
 <p>上网查，stackoverflow 上有一个非推荐答案说，重启服务器之后就好了。于是，又重启了服务器。</p>
-
-<pre><code class="language-bash">shutdown -r now
-</code></pre>
-
-<p>还是不行……</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">shutdown -r now
+</code></pre></div><p>还是不行……</p>
 <p>用 <code>ssh -T</code> 命令测试一下，看看结果。</p>
-
-<pre><code class="language-bash">ssh -vvvT git@some.domain.name
-</code></pre>
-
-<p>…… 一串无关的日志我就省略了，只说重点。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -vvvT git@some.domain.name
+</code></pre></div><p>…… 一串无关的日志我就省略了，只说重点。</p>
 <blockquote>
 <p>……
 debug3: send_pubkey_test
@@ -140,11 +116,9 @@ debug3: authmethod_lookup password
 debug3: remaining preferred: ,password
 debug3: authmethod_is_enabled password
 debug1: Next authentication method: password
-git@some.domain.name&rsquo;s password:</p>
+<a href="mailto:git@some.domain.name">git@some.domain.name</a>&rsquo;s password:</p>
 </blockquote>
-
 <p>请注意省略号下面第四行，以 <code>debug2</code> 打头的那行。一次正确的、以 ssh publickey 方式登录的行为，应该是下面这样的：</p>
-
 <blockquote>
 <p>……
 debug3: send_pubkey_test
@@ -157,25 +131,16 @@ debug1: read PEM private key done: type RSA
 debug1: Authentication succeeded (publickey).
 Authenticated to some.domain.name ([XXX.XX.XX.69]:XXXX).</p>
 </blockquote>
-
 <p>很明显，还是 ssh publickey 方式过程中出了问题。</p>
-
 <p>那就上服务器看看吧，到底能有什么问题。</p>
-
 <h3 id="找到问题">找到问题</h3>
-
 <p>登录服务器，<code>tail /var/log/secure</code> 查看 ssh 的登录情况，果然发现一些情况。</p>
-
 <blockquote>
 <p>Dec  5 15:41:54 dev sshd[9417]: Authentication refused: bad ownership or modes for directory /home/git</p>
 </blockquote>
-
 <p><code>/home/git</code> 目录是按照 manually installation 里面 step by step 安装生成的，所有里面的内容都是原装，不可能出现意外啊。<code>/home/git</code> 也很委屈——『怪我咯』。</p>
-
-<pre><code class="language-bash">ls -la /home/git
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls -la /home/git
+</code></pre></div><blockquote>
 <p>total 84
 drwxrwx&mdash;  13 git  git  4096 Dec  5 16:03 .
 drwxr-xr-x.  3 root root 4096 Nov 28 23:38 ..
@@ -198,51 +163,29 @@ drwxrwx&mdash;  12 git  git  4096 Nov 30 19:49 repositories
 drwx&mdash;&mdash;   2 git  git  4096 Dec  5 16:13 .ssh
 -rw&mdash;&mdash;-   1 git  git  4938 Dec  5 16:03 .viminfo</p>
 </blockquote>
-
 <p><code>/home/git</code> 目录是 <code>0770</code>，不是应该是 <code>0700</code> 吗？</p>
-
 <h3 id="解决办法">解决办法</h3>
-
 <p>想一想，gitlab 和它附属的组件都是以 <code>git</code> 用户的身份启动的吧，<code>git</code> 用户组除了 <code>git</code> 用户之外，没有别的用户了。于是，动手将 <code>/home/git</code> 的权限修改为 <code>0700</code></p>
-
-<pre><code class="language-bash">chmod g-rwx /home/git
-</code></pre>
-
-<p>结果还是悲剧了，<code>ssh -T</code> 通过，但是 <code>git push</code> 的时候报错了。</p>
-
-<pre><code class="language-bash">git push -u origin master
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod g-rwx /home/git
+</code></pre></div><p>结果还是悲剧了，<code>ssh -T</code> 通过，但是 <code>git push</code> 的时候报错了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push -u origin master
+</code></pre></div><blockquote>
 <p>GitLab: API is not accessible
 fatal: Could not read from remote repository.</p>
-
 <p>Please make sure you have the correct access rights and the repository exists.</p>
 </blockquote>
-
 <p>看来 <code>/home/git</code> 的权限还是修改不得，虽然是非安全的权限，但是非它不可。gitlab 这点太 low 了，竟然依赖于非安全的权限配置。</p>
-
 <p>最后还是万能的 stackoverflow 提点，帮忙解决了 sshd 安全限制的问题。</p>
-
-<pre><code class="language-bash">vim /etc/ssh/sshd_config
-</code></pre>
-
-<p>查找 <code>StrictModes</code>，修改。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /etc/ssh/sshd_config
+</code></pre></div><p>查找 <code>StrictModes</code>，修改。</p>
 <blockquote>
 <p>StrictModes no</p>
 </blockquote>
-
 <p>保存，退出，重启 sshd，<code>service sshd restart</code>。再试，Ok。</p>
-
 <h3 id="后记">后记</h3>
-
 <p>为了能用 gitlab，将 sshd 的权限修改为不推荐的安全配置，实在是不情愿。考虑到服务器目前只有我一个人操作，因此暂时接受了这种方案。但在生产环境，这点应该是不能允许的吧。</p>
-
 <p>因为时间问题没有仔细去跟修改 home 目录权限后报错的原因，不知道是哪个 gitlab 的组件需要这个目录下的权限。跟踪之后也许可以不依赖 gitlab 完成修正。有兴趣的同学可以试一下。</p>
-
 <p>PS：补充各部分的版本号</p>
-
 <ul>
 <li>CentOS=<em>7.2</em></li>
 <li>Gitlab=<em>8.2.1</em></li>
@@ -451,7 +394,7 @@ fatal: Could not read from remote repository.</p>
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
+        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         
