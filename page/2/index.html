@@ -70,6 +70,24 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质" >固态硬盘和优盘不是稳健的数据存储介质</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年12月26日
+                            </date>
+                            
+                            <div class="post-content">
+                                说到固态硬盘（SSD）和优盘，恐怕很多人心里面有个潜在的印象，就是数据放在这里面，很安全，比在机械硬盘里面安全。最近两个朋友找我，帮找恢复数据的解决方案。两位都是数据放优盘或移动硬盘里面，遇到存储芯片故障。
+其实长期不用的数据，放在固态硬盘里面，真的不一定是安全的。固态硬盘的存储原理是往浮栅晶体管上加/放电子，使晶体管的通电性能发生变化，形成通路/闭路，对应数字 1/0，从而达到记录数据的目的。这里就有个问题，浮栅中的电子会存在泄漏的情况，也就是说，记录的数据会丢失。通常，这种数据的丢失受电压（包括静电）、环境温度、以及存储时间的影响。希捷曾经有工程师在报告中讲，温度每上升 5 摄氏度，数据存储的时间就短一半。不通电不读写的情况下，保存在 Nand Flash（SSD、SD Card、TF Card、U Disk……）介质中的数据最多也就两年的存储寿命。最糟糕的情况是像移动硬盘、优盘这样的设备，插入电脑 USB 口的一瞬间，假如遇到静电，Nand Flash 芯片被瞬间高电压击穿，那不管当时环境温度多少、你有没有经常使用，你的数据都完蛋了。
+记住，要保存数据，一定用机械硬盘。这是目前最稳妥的方法了。机械硬盘丢数据的风险，都是可以人为规避的。保存得当，存里面的数据，保存十年二十年没问题。不要再傻傻被 SSD、优盘骗了。等到数据都恢复不回来，再后悔。……
+                            </div>
+                            <p class="readmore"><a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/" title="MacOS 下安装 flutter 遇到的一个依赖问题" >MacOS 下安装 flutter 遇到的一个依赖问题</a>
                                 </h1>
                             </header>
@@ -275,28 +293,6 @@ NodeJS 的包管理工具 npm（Nodejs Package Management）在这其中功不�
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/all-the-ssl-providers-controlled-by-qihoo-are-loser-now/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/" title="阿里云未备案云主机申请 letsencrypt ssl 证书" >阿里云未备案云主机申请 letsencrypt ssl 证书</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2017年7月31日
-                            </date>
-                            
-                            <div class="post-content">
-                                用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。
-访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的温馨提示（如下图）。
-而一台不能提供 http 服务的阿里云 ECS 不是真正的服务器。解决这个问题的办法，将 http 换到 https 就可以了。
-https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购之后，颇多周折，跟同袍兄弟 StarSSL 一起被业界良心 chrome 拉黑。现在使用 WoSign 签发的 ssl 证书会被 chrome 直接判定为证书无效。
-最近连商务范儿最重的 Symantec 都被 chrome 一再警告之后拉黑。除了认为 chrome 真任性之外，也提醒我们选择 ssl 服务商时一定要慎重。
-目前来看，从个人到中小企业，最佳选择是 google 投资的 Let&rsquo;s Encrypt。运用 ACME 协议自动签发、自动续期，技术宅最爱，不是技术宅也有现成工具简单操作即可。
-怎么生成 http ssl 证书 首先注明，申请 Let&rsquo;s Encrypt 家的 http ssl 证书，不需要提前准备啥资料，不需要书面申请，这跟国内的『管理』方法不一样。你只需要证明这个域名归你所有，http ssl 的证书就可以签发给你使用。但是为了防止域名到期易主、中途转让等等原因，发生域名新主人拿不到 http ssl 证书的情况，所以 Let&rsquo;s Encrypt 规定了每次签发的 http ssl 证书有效期只有三个月，证书生成一个月之后可以免费重签/续期，不用等到临近有效期再续签。……
-                            </div>
-                            <p class="readmore"><a href="https://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -329,6 +325,10 @@ https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购�
         <a href="https://i.am.simonkuang.com/page/5/">5</a>
     </li>
     
+    <li >
+        <a href="https://i.am.simonkuang.com/page/6/">6</a>
+    </li>
+    
 
     
     <li class="next">
@@ -355,6 +355,10 @@ https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购�
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/" title="在 MacOS 中用 launchd 管理进程">在 MacOS 中用 launchd 管理进程</a>
+    </li>
     
     <li>
         <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/" title="针对 DNS 全球优化做的 CoreDNS 额外配置">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
@@ -392,10 +396,6 @@ https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购�
         <a href="https://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
     </li>
     
-    <li>
-        <a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -410,7 +410,7 @@ https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购�
     </li>
     
     <li>
-        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(3)</a>
+        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(4)</a>
     </li>
     
     <li>
@@ -436,7 +436,11 @@ https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购�
     
     <a href="https://i.am.simonkuang.com/tags/laravel/">laravel</a>
     
+    <a href="https://i.am.simonkuang.com/tags/launchd/">launchd</a>
+    
     <a href="https://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="https://i.am.simonkuang.com/tags/macos/">macos</a>
     
     <a href="https://i.am.simonkuang.com/tags/php/">php</a>
     

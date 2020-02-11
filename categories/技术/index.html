@@ -80,6 +80,34 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/">在 MacOS 中用 launchd 管理进程</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年2月9日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF">技术</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                在 Linux 上有一个大家用惯的 systemd，在 MacOS 上有一个与之相对应的工具，launchd。
+Linux 下，systemd 的 pid 是 1，系统启动后，它是第一个被拉起来的，其它进程都是它的子进程。所以在 Linux 下，用 systemd 来做 supervisor 是最稳妥的办法。因为如果 systemd 挂掉了，整个系统都 crash 了。
+MacOS 下面也有一个这样的超级进程，所有的其它进程都是它产生的，挂为它的子进程、孙子进程…… 它就是 launchd。launchd 对应的管理工具就是 launchctl。
+1. 原理 通过后缀名为 .plist 的配置文件追加 launchd 的管理项。添加和删除，都是用 .plist 文件来完成的。
+.plist 文件存在于下面的文件夹中，分别是。
+   类型 路径 说明     User Agents ~/Library/LaunchAgents 为当前登录用户启动   Global Agents /Library/LaunchAgents 为当前登录用户启动   Global Daemons /Library/LaunchDaemons root 或者通过 UserName 配置指定的用户   System Agents /System/Library/LaunchAgents 当前登录用户   System Daemons /System/Library/LaunchDaemons root 或者通过 UserName 配置指定的用户    按照需要将你要监控的程序放到不同等级的目录中。……
+                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
                                 </h1>
                             </header>
@@ -201,6 +229,10 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
 <ul class="widget-list">
     
     <li>
+        <a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/" title="在 MacOS 中用 launchd 管理进程">在 MacOS 中用 launchd 管理进程</a>
+    </li>
+    
+    <li>
         <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/" title="针对 DNS 全球优化做的 CoreDNS 额外配置">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
     </li>
     
@@ -236,10 +268,6 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
         <a href="https://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
     </li>
     
-    <li>
-        <a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -254,7 +282,7 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
     </li>
     
     <li>
-        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(3)</a>
+        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(4)</a>
     </li>
     
     <li>
@@ -280,7 +308,11 @@ node 本质上仍然是脚本语言，不像编译型语言，实在不行，还
     
     <a href="https://i.am.simonkuang.com/tags/laravel/">laravel</a>
     
+    <a href="https://i.am.simonkuang.com/tags/launchd/">launchd</a>
+    
     <a href="https://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="https://i.am.simonkuang.com/tags/macos/">macos</a>
     
     <a href="https://i.am.simonkuang.com/tags/php/">php</a>
     

@@ -70,6 +70,28 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/" title="阿里云未备案云主机申请 letsencrypt ssl 证书" >阿里云未备案云主机申请 letsencrypt ssl 证书</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年7月31日
+                            </date>
+                            
+                            <div class="post-content">
+                                用阿里云国内机房的主机有个『小问题』，备案。下面说的，一种情况是没有备案，另外一种情况是备案中，但是业务急于对外发布，等不及以周为单位的备案进程。
+访问绑定到阿里云 ECS 上的、没有备案的域名，阿里云机房会劫持你的 http（80 端口）上行流量，无视你实际的返回内容，将之篡改成一个页面 title 为『TestPage』的温馨提示（如下图）。
+而一台不能提供 http 服务的阿里云 ECS 不是真正的服务器。解决这个问题的办法，将 http 换到 https 就可以了。
+https 选哪家 总所周知，自从 WoSign 被我大天朝数字公司收购之后，颇多周折，跟同袍兄弟 StarSSL 一起被业界良心 chrome 拉黑。现在使用 WoSign 签发的 ssl 证书会被 chrome 直接判定为证书无效。
+最近连商务范儿最重的 Symantec 都被 chrome 一再警告之后拉黑。除了认为 chrome 真任性之外，也提醒我们选择 ssl 服务商时一定要慎重。
+目前来看，从个人到中小企业，最佳选择是 google 投资的 Let&rsquo;s Encrypt。运用 ACME 协议自动签发、自动续期，技术宅最爱，不是技术宅也有现成工具简单操作即可。
+怎么生成 http ssl 证书 首先注明，申请 Let&rsquo;s Encrypt 家的 http ssl 证书，不需要提前准备啥资料，不需要书面申请，这跟国内的『管理』方法不一样。你只需要证明这个域名归你所有，http ssl 的证书就可以签发给你使用。但是为了防止域名到期易主、中途转让等等原因，发生域名新主人拿不到 http ssl 证书的情况，所以 Let&rsquo;s Encrypt 规定了每次签发的 http ssl 证书有效期只有三个月，证书生成一个月之后可以免费重签/续期，不用等到临近有效期再续签。……
+                            </div>
+                            <p class="readmore"><a href="https://i.am.simonkuang.com/post/apply-http-ssl-cert-file-from-a-non-beian-aliyun-ecs/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://i.am.simonkuang.com/post/check-in-app-accessing-with-openresty/" title="用 openresty 来做 app api 接口的验真" >用 openresty 来做 app api 接口的验真</a>
                                 </h1>
                             </header>
@@ -319,25 +341,6 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
                             <p class="readmore"><a href="https://i.am.simonkuang.com/post/fuss-about-life-on-20160831/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/grpc-for-php/" title="PHP 的 GRPC 扩展的安装修复" >PHP 的 GRPC 扩展的安装修复</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年8月31日
-                            </date>
-                            
-                            <div class="post-content">
-                                php 的 grpc 扩展在八月十八日已经到了 1.0.0 stable。很高兴的，终于到了一个 stable 版本。这意味着，在 php 中将 grpc 应用到生产环境会安心许多。一些不太稳定的特性或功能，会被排除在发布版本之外，用起来顺很多。
-可惜的是，这个 stable 版本貌似在安装环节并不稳定，安装过程中分别会在 configure 和 make 环节报如下的警告与错误。
-在 configure 环节的警告：
-... checking whether to enable grpc support... yes, shared ./configure: line 4107: cd: ../../grpc: No such file or directory ./configure: line 4138: cd: ../../grpc/src/php/ext: No such file or directory ./configure: line 4169: cd: ../../grpc/third_party/boringssl: No such file or directory checking for ld used by cc... /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld ...  在 make 环节就直接报错退出：……
-                            </div>
-                            <p class="readmore"><a href="https://i.am.simonkuang.com/post/grpc-for-php/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -370,6 +373,10 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
         <a href="https://i.am.simonkuang.com/page/5/">5</a>
     </li>
     
+    <li >
+        <a href="https://i.am.simonkuang.com/page/6/">6</a>
+    </li>
+    
 
     
     <li class="next">
@@ -396,6 +403,10 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/" title="在 MacOS 中用 launchd 管理进程">在 MacOS 中用 launchd 管理进程</a>
+    </li>
     
     <li>
         <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/" title="针对 DNS 全球优化做的 CoreDNS 额外配置">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
@@ -433,10 +444,6 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
         <a href="https://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
     </li>
     
-    <li>
-        <a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -451,7 +458,7 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
     </li>
     
     <li>
-        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(3)</a>
+        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(4)</a>
     </li>
     
     <li>
@@ -477,7 +484,11 @@ PFD PFD，直译过来就是『主飞行显示屏』，主要用来显示飞机�
     
     <a href="https://i.am.simonkuang.com/tags/laravel/">laravel</a>
     
+    <a href="https://i.am.simonkuang.com/tags/launchd/">launchd</a>
+    
     <a href="https://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="https://i.am.simonkuang.com/tags/macos/">macos</a>
     
     <a href="https://i.am.simonkuang.com/tags/php/">php</a>
     

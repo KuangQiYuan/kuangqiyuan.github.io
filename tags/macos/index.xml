@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MacOS on 旷氏淇元</title>
+    <link>https://i.am.simonkuang.com/tags/macos/</link>
+    <description>Recent content in MacOS on 旷氏淇元</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cmn-Hans</language>
+    <lastBuildDate>Sun, 09 Feb 2020 15:04:04 +0800</lastBuildDate>
+    
+	<atom:link href="https://i.am.simonkuang.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在 MacOS 中用 launchd 管理进程</title>
+      <link>https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/</link>
+      <pubDate>Sun, 09 Feb 2020 15:04:04 +0800</pubDate>
+      
+      <guid>https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/</guid>
+      <description>在 Linux 上有一个大家用惯的 systemd，在 MacOS 上有一个与之相对应的工具，launchd。
+Linux 下，systemd 的 pid 是 1，系统启动后，它是第一个被拉起来的，其它进程都是它的子进程。所以在 Linux 下，用 systemd 来做 supervisor 是最稳妥的办法。因为如果 systemd 挂掉了，整个系统都 crash 了。
+MacOS 下面也有一个这样的超级进程，所有的其它进程都是它产生的，挂为它的子进程、孙子进程…… 它就是 launchd。launchd 对应的管理工具就是 launchctl。
+1. 原理 通过后缀名为 .plist 的配置文件追加 launchd 的管理项。添加和删除，都是用 .plist 文件来完成的。
+.plist 文件存在于下面的文件夹中，分别是。
+   类型 路径 说明     User Agents ~/Library/LaunchAgents 为当前登录用户启动   Global Agents /Library/LaunchAgents 为当前登录用户启动   Global Daemons /Library/LaunchDaemons root 或者通过 UserName 配置指定的用户   System Agents /System/Library/LaunchAgents 当前登录用户   System Daemons /System/Library/LaunchDaemons root 或者通过 UserName 配置指定的用户    按照需要将你要监控的程序放到不同等级的目录中。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -70,6 +70,27 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/" title="redis &#43; supervisor 时苦大仇深的问题" >redis &#43; supervisor 时苦大仇深的问题</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年3月4日
+                            </date>
+                            
+                            <div class="post-content">
+                                在我记忆中，CentOS 从很早开始，就没有和各种的问题挂钩过。得益于它保守的升级策略，它自己几乎从来不是问题专业户，我对它的印象更多是因为太过保守导致的库升级不及时问题。
+可是最近，CentOS7 某个版本发行之后，偶尔的，会出现 supervisor 拉 redis 失败的问题。从日志的内容来看，全是 Permission denied 相关的问题，bind socket 的时候权限不够，write log 的时候权限不够，dump snapshot 的时候权限不够，只要跟写磁盘相关的，都有这个问题。
+单独执行 /usr/bin/redis-server /etc/redis.conf，又一点儿问题没有，命令本身没有问题，一切正常。
+关键，supervisor 是以 root 去拉 redis 的啊！表示很无辜 (o´・ェ・｀o)
+supervisor 的配置如下：
+[program:redis] command = /usr/bin/redis-server /etc/redis.conf ;process_name=%(program_name)s ; process_name expr (default %(program_name)s) numprocs=1 ; number of processes copies to start (def 1) directory=/data ; directory to cwd to before exec (def no cwd) ;umask=022 ; umask for process (default None) ;priority=999 ; the relative start priority (default 999) autostart=true ; start at supervisord start (default: true) autorestart=true ; whether/when to restart (default: unexpected) startsecs=1 ; number of secs prog must stay running (def.……
+                            </div>
+                            <p class="readmore"><a href="https://i.am.simonkuang.com/post/redis-and-supervisor-cannot-bind-socket-with-superuser-capabilities/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://i.am.simonkuang.com/post/a-way-to-accelerate-creating-a-new-laravel-project/" title="加速 Laravel 新建项目的办法" >加速 Laravel 新建项目的办法</a>
                                 </h1>
                             </header>
@@ -251,22 +272,6 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
                             <p class="readmore"><a href="https://i.am.simonkuang.com/about/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/archives/" title="归档" >归档</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                1年1月1日
-                            </date>
-                            
-                            <div class="post-content">
-                                ……
-                            </div>
-                            <p class="readmore"><a href="https://i.am.simonkuang.com/archives/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -299,7 +304,15 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
         <a href="https://i.am.simonkuang.com/page/5/">5</a>
     </li>
     
+    <li >
+        <a href="https://i.am.simonkuang.com/page/6/">6</a>
+    </li>
+    
 
+    
+    <li class="next">
+        <a href="https://i.am.simonkuang.com/page/6/">下一页</a>
+    </li>
     
 </ol>
 
@@ -321,6 +334,10 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/" title="在 MacOS 中用 launchd 管理进程">在 MacOS 中用 launchd 管理进程</a>
+    </li>
     
     <li>
         <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/" title="针对 DNS 全球优化做的 CoreDNS 额外配置">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
@@ -358,10 +375,6 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
         <a href="https://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
     </li>
     
-    <li>
-        <a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/" title="固态硬盘和优盘不是稳健的数据存储介质">固态硬盘和优盘不是稳健的数据存储介质</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -376,7 +389,7 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
     </li>
     
     <li>
-        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(3)</a>
+        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(4)</a>
     </li>
     
     <li>
@@ -402,7 +415,11 @@ Angularjs 自己提供了一整套的学习文档、设计文档、会议材料�
     
     <a href="https://i.am.simonkuang.com/tags/laravel/">laravel</a>
     
+    <a href="https://i.am.simonkuang.com/tags/launchd/">launchd</a>
+    
     <a href="https://i.am.simonkuang.com/tags/macbook/">macbook</a>
+    
+    <a href="https://i.am.simonkuang.com/tags/macos/">macos</a>
     
     <a href="https://i.am.simonkuang.com/tags/php/">php</a>
     
