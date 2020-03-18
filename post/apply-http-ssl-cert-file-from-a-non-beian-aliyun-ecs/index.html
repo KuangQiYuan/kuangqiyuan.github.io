@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.64.0" />
+    <meta name="generator" content="Hugo 0.67.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -152,12 +152,12 @@ ssl_session_cache shared:SSL:50m;
 ssl_dhparam ssl/dhparams.pem;
 ssl_prefer_server_ciphers on;
 </code></pre><p>其中，<code>ssl/letsencrypt_full_chained.pem</code> 是让 ISRG ROOT X1 给 letsencrypt X3 做一个交叉认证的认证链，这是 CA 之间经常使用的一种提高自身兼容性的办法。这个交叉认证证书用如下办法生成。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Lo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span><span style="color:#e6db74">/lets-encrypt-x3-cross-signed.pem</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -Lo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span><span style="color:#e6db74">/lets-encrypt-x3-cross-signed.pem&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#e6db74">&#34;https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem&#34;</span>
-curl -Lo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span><span style="color:#e6db74">/isrgrootx1.pem</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+curl -Lo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span><span style="color:#e6db74">/isrgrootx1.pem&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#e6db74">&#34;https://letsencrypt.org/certs/isrgrootx1.pem&#34;</span>
 
-sed -i <span style="color:#e6db74">&#39;s@\s*$@@g&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span><span style="color:#e6db74">/isrgrootx1.pem</span><span style="color:#e6db74">&#34;</span>   <span style="color:#75715e"># trip the carrige at the end of every line.</span>
+sed -i <span style="color:#e6db74">&#39;s@\s*$@@g&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span><span style="color:#e6db74">/isrgrootx1.pem&#34;</span>   <span style="color:#75715e"># trip the carrige at the end of every line.</span>
 cat <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>/lets-encrypt-x3-cross-signed.pem <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>/isrgrootx1.pem &gt; <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    letsencrypt_full_chained.pem
 </code></pre></div><blockquote>

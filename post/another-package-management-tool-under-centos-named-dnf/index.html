@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.64.0" />
+    <meta name="generator" content="Hugo 0.67.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -108,7 +108,7 @@
 </span><span style="color:#e6db74">enabled_metadata=1
 </span><span style="color:#e6db74">EOF</span>
 </code></pre></div><p>对于已经用旧的脚本安装过 dnf repo 的系统，可以使用下面的命令 fix。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span><span style="color:#f92672">[</span> -f /etc/yum.repos.d/dnf-stack-el7.repo <span style="color:#f92672">]</span><span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[[</span> -f /etc/yum.repos.d/dnf-stack-el7.repo <span style="color:#f92672">]]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  sed -i <span style="color:#e6db74">&#39;s@/dnf-stack-el7/@/dnf-centos/@g&#39;</span> /etc/yum.repos.d/dnf-stack-el7.repo
 </code></pre></div><h3 id="二安装-dnf">二、安装 DNF</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install dnf dnf-conf dnf-automatic

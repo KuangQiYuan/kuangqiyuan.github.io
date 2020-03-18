@@ -38,11 +38,6 @@
   </url>
   
   <url>
-    <loc>https://i.am.simonkuang.com/</loc>
-    <lastmod>2020-02-09T15:04:04+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://i.am.simonkuang.com/tags/coredns/</loc>
     <lastmod>2019-10-23T15:16:10+08:00</lastmod>
   </url>
@@ -394,6 +389,11 @@
   
   <url>
     <loc>https://i.am.simonkuang.com/books/</loc>
+    <lastmod>2000-06-10T11:41:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://i.am.simonkuang.com/</loc>
     <lastmod>2000-06-10T11:41:46+08:00</lastmod>
   </url>
   
