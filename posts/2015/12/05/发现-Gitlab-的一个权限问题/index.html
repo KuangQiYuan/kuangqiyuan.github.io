@@ -1,0 +1,58 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.80.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="用了好几年的 gitlab，前前后后搭建了好几次系统，解决了不少问题，还是非常熟悉了。昨天又遇到 gitlab 搭建中的一个新的问题。 现象 # gitlab 搭建好之后，建"><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="发现 Gitlab 的一个权限问题"><meta property="og:description" content="用了好几年的 gitlab，前前后后搭建了好几次系统，解决了不少问题，还是非常熟悉了。昨天又遇到 gitlab 搭建中的一个新的问题。 现象 # gitlab 搭建好之后，建"><meta property="og:type" content="article"><meta property="og:url" content="http://i.am.simonkuang.org/posts/2015/12/05/%E5%8F%91%E7%8E%B0-Gitlab-%E7%9A%84%E4%B8%80%E4%B8%AA%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/"><meta property="article:published_time" content="2015-12-05T17:28:07+00:00"><meta property="article:modified_time" content="2015-12-05T17:28:07+00:00"><title>发现 Gitlab 的一个权限问题 | 流沙书斋</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.ce74a2661479d34141b5c018b4f25ba8292b5adeca6de5d7a1b5c4de41c8f25d.css integrity="sha256-znSiZhR500FBtcAYtPJbqCkrWt7KbeXXobXE3kHI8l0="><script defer src=/en.search.min.f43f864b87654ca005f7c22196b917bd947f349395341988d8c026de238f3eaf.js integrity="sha256-9D+GS4dlTKAF98IhlrkXvZR/NJOVNBmI2MAm3iOPPq8="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script defer src=/custom.min.85e1dbc39b23671ffbf52bcb831b12735ade63896b28278cfb69b35d2c870ee9.js integrity="sha256-heHbw5sjZx/79SvLgxsSc1reY4lrKCeM+2mzXSyHDuk="></script><script src=//kit.fontawesome.com/e81509d074.js crossorigin=anonymous></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>流沙书斋</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/><i class="menu-item-icon fa fa-fw fa-home"></i>首页</a></li><li><a href=/posts/><i class="menu-item-icon fa fa-fw fa-blog"></i>博客</a></li><li><a href=/topics/><i class="menu-item-icon fa fa-fw fa-book"></i>专栏</a></li></ul><ul><li><a href=https://github.com/simonkuang target=_blank rel=noopener><i class="menu-item-icon fa fa-fw fa-github"></i>Github</a></li><li><a href=https://www.zhihu.com/people/simonkuang target=_blank rel=noopener><i class="menu-item-icon fab fa-fw fa-zhihu"></i>知乎</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>发现 Gitlab 的一个权限问题</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#现象>现象</a></li><li><a href=#尝试解决>尝试解决</a></li><li><a href=#找到问题>找到问题</a></li><li><a href=#解决办法>解决办法</a></li><li><a href=#后记>后记</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1><a href=/posts/2015/12/05/%E5%8F%91%E7%8E%B0-Gitlab-%E7%9A%84%E4%B8%80%E4%B8%AA%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/>发现 Gitlab 的一个权限问题</a></h1><h5>2015-12-05</h5><div><a href=/tags/%E8%BF%90%E7%BB%B4/ class=tags>运维</a></div><p><p>用了好几年的
+<a href=https://gitlab.com/>gitlab</a>，前前后后搭建了好几次系统，解决了不少问题，还是非常熟悉了。昨天又遇到 gitlab 搭建中的一个新的问题。</p><h3 id=现象>现象
+<a class=anchor href=#%e7%8e%b0%e8%b1%a1>#</a></h3><p>gitlab 搭建好之后，建账号，加 ssh key，建项目，本地 push，然后就遇到 gitlab 问我要密码。</p><blockquote><p><a href=mailto:git@some.domain.name>git@some.domain.name</a> password:</p></blockquote><p>项目是我创建的，ssh key 也有添加，还找我要密码，明显不科学。</p><h3 id=尝试解决>尝试解决
+<a class=anchor href=#%e5%b0%9d%e8%af%95%e8%a7%a3%e5%86%b3>#</a></h3><p>首先，检查了服务器的 sshd 设定，确认启用了 ssh 登录。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cat /etc/ssh/sshd_config | grep PubkeyAuthentication
+</code></pre></div><blockquote><p>PubkeyAuthentication yes</p></blockquote><p>以为是缓存，分别重启了 redis 和 gitlab。（PS：我的 redis 用 supervisor 管理起来的）</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>supervisorctl restart redis
+service gitlab restart
+</code></pre></div><p>然后等了五分钟再试（其实没有必要），还是不行。</p><p>上网查，stackoverflow 上有一个非推荐答案说，重启服务器之后就好了。于是，又重启了服务器。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>shutdown -r now
+</code></pre></div><p>还是不行……</p><p>用 <code>ssh -T</code> 命令测试一下，看看结果。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ssh -vvvT git@some.domain.name
+</code></pre></div><p>…… 一串无关的日志我就省略了，只说重点。</p><blockquote><p>……
+debug3: send_pubkey_test
+debug2: we sent a publickey packet, wait for reply
+debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password
+debug2: we did not send a packet, disable method
+debug3: authmethod_lookup password
+debug3: remaining preferred: ,password
+debug3: authmethod_is_enabled password
+debug1: Next authentication method: password
+<a href=mailto:git@some.domain.name>git@some.domain.name</a>&rsquo;s password:</p></blockquote><p>请注意省略号下面第四行，以 <code>debug2</code> 打头的那行。一次正确的、以 ssh publickey 方式登录的行为，应该是下面这样的：</p><blockquote><p>……
+debug3: send_pubkey_test
+debug2: we sent a publickey packet, wait for reply
+debug1: Server accepts key: pkalg ssh-rsa blen 279
+debug2: input_userauth_pk_ok: fp 14:8a:99:ec:b4:XX:XX:XX:XX:XX:67:1d:31:bb:fe
+debug3: sign_and_send_pubkey: RSA 14:8a:99:ec:b4:XX:XX:XX:XX:XX:67:1d:31:bb:fe
+debug1: key_parse_private2: missing begin marker
+debug1: read PEM private key done: type RSA
+debug1: Authentication succeeded (publickey).
+Authenticated to some.domain.name ([XXX.XX.XX.69]:XXXX).</p></blockquote><p>很明显，还是 ssh publickey 方式过程中出了问题。</p><p>那就上服务器看看吧，到底能有什么问题。</p><h3 id=找到问题>找到问题
+<a class=anchor href=#%e6%89%be%e5%88%b0%e9%97%ae%e9%a2%98>#</a></h3><p>登录服务器，<code>tail /var/log/secure</code> 查看 ssh 的登录情况，果然发现一些情况。</p><blockquote><p>Dec 5 15:41:54 dev sshd[9417]: Authentication refused: bad ownership or modes for directory /home/git</p></blockquote><p><code>/home/git</code> 目录是按照 manually installation 里面 step by step 安装生成的，所有里面的内容都是原装，不可能出现意外啊。<code>/home/git</code> 也很委屈——『怪我咯』。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ls -la /home/git
+</code></pre></div><blockquote><p>total 84
+drwxrwx&mdash; 13 git git 4096 Dec 5 16:03 .
+drwxr-xr-x. 3 root root 4096 Nov 28 23:38 ..
+-rw&mdash;&mdash;- 1 git git 2239 Dec 5 15:57 .bash_history
+-rw-r&ndash;r&ndash; 1 git git 18 Mar 6 2015 .bash_logout
+-rw-r&ndash;r&ndash; 1 git git 193 Mar 6 2015 .bash_profile
+-rw-r&ndash;r&ndash; 1 git git 537 Nov 29 13:03 .bashrc
+drwxrwxr-x 2 git git 4096 Nov 29 09:35 bin
+drwxrwxr-x 2 git git 4096 Nov 29 01:01 .bundle
+drwxrwxr-x 3 git git 4096 Nov 28 23:38 .cache
+drwxrwxr-x 3 git git 4096 Nov 28 23:38 .config
+-rw-r&ndash;r&ndash; 1 git git 25 Nov 29 00:34 .gitconfig
+drwxrwxr-x 20 git git 4096 Nov 29 09:44 gitlab
+drwxrwxr-x 8 git git 4096 Dec 5 16:34 gitlab-shell
+drwxrwxr-x 5 git git 4096 Nov 29 09:48 gitlab-workhorse
+-rw&mdash;&mdash;- 1 git git 13 Nov 29 09:53 .mysql_history
+drwxr-xr-x 8 git git 4096 Nov 29 09:39 n
+drwxrw&mdash;- 3 git git 4096 Nov 28 23:38 .pki
+drwxrwx&mdash; 12 git git 4096 Nov 30 19:49 repositories
+drwx&mdash;&mdash; 2 git git 4096 Dec 5 16:13 .ssh
+-rw&mdash;&mdash;- 1 git git 4938 Dec 5 16:03 .viminfo</p></blockquote><p><code>/home/git</code> 目录是 <code>0770</code>，不是应该是 <code>0700</code> 吗？</p><h3 id=解决办法>解决办法
+<a class=anchor href=#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95>#</a></h3><p>想一想，gitlab 和它附属的组件都是以 <code>git</code> 用户的身份启动的吧，<code>git</code> 用户组除了 <code>git</code> 用户之外，没有别的用户了。于是，动手将 <code>/home/git</code> 的权限修改为 <code>0700</code></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>chmod g-rwx /home/git
+</code></pre></div><p>结果还是悲剧了，<code>ssh -T</code> 通过，但是 <code>git push</code> 的时候报错了。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>git push -u origin master
+</code></pre></div><blockquote><p>GitLab: API is not accessible
+fatal: Could not read from remote repository.</p><p>Please make sure you have the correct access rights and the repository exists.</p></blockquote><p>看来 <code>/home/git</code> 的权限还是修改不得，虽然是非安全的权限，但是非它不可。gitlab 这点太 low 了，竟然依赖于非安全的权限配置。</p><p>最后还是万能的 stackoverflow 提点，帮忙解决了 sshd 安全限制的问题。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/ssh/sshd_config
+</code></pre></div><p>查找 <code>StrictModes</code>，修改。</p><blockquote><p>StrictModes no</p></blockquote><p>保存，退出，重启 sshd，<code>service sshd restart</code>。再试，Ok。</p><h3 id=后记>后记
+<a class=anchor href=#%e5%90%8e%e8%ae%b0>#</a></h3><p>为了能用 gitlab，将 sshd 的权限修改为不推荐的安全配置，实在是不情愿。考虑到服务器目前只有我一个人操作，因此暂时接受了这种方案。但在生产环境，这点应该是不能允许的吧。</p><p>因为时间问题没有仔细去跟修改 home 目录权限后报错的原因，不知道是哪个 gitlab 的组件需要这个目录下的权限。跟踪之后也许可以不依赖 gitlab 完成修正。有兴趣的同学可以试一下。</p><p>PS：补充各部分的版本号</p><ul><li>CentOS=<em>7.2</em></li><li>Gitlab=<em>8.2.1</em></li><li>Redis=<em>2.8.19</em></li></ul></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#现象>现象</a></li><li><a href=#尝试解决>尝试解决</a></li><li><a href=#找到问题>找到问题</a></li><li><a href=#解决办法>解决办法</a></li><li><a href=#后记>后记</a></li></ul></li></ul></li></ul></nav></aside></main></body></html>

@@ -1,315 +1,58 @@
-<!doctype html>
-<html lang="cmn-Hans">
-<head>
-
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.67.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>MacOS | 旷氏淇元</title>
-    <meta property="og:title" content="MacOS - 旷氏淇元">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="MacOS">
-        
-    <meta name="author" content="Simon">
-    <meta property="og:url" content="https://i.am.simonkuang.com/tags/macos/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="https://i.am.simonkuang.com/tags/macos/index.xml" title="旷氏淇元" />
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://i.am.simonkuang.com/">
-                        旷氏淇元
-                    </a>
-                
-                <p class="description">旷淇元的个人博客</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="https://i.am.simonkuang.com/">首页</a>
-                    
-                    <a  href="https://i.am.simonkuang.com/books/" title="新书">新书</a>
-                    
-                    <a  href="https://i.am.simonkuang.com/archives/" title="归档">归档</a>
-                    
-                    <a  href="https://i.am.simonkuang.com/about/" title="关于">关于</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-
-<div id="body">
-    <div class="container">
-        <div class="col-group">
-
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    
-                    <h3 class="archive-title">
-                        包含标签
-                        <span class="keyword">MacOS</span>
-                        的文章
-                    </h3>
-                    
-
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/">在 MacOS 中用 launchd 管理进程</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2020年2月9日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF">技术</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                在 Linux 上有一个大家用惯的 systemd，在 MacOS 上有一个与之相对应的工具，launchd。
-Linux 下，systemd 的 pid 是 1，系统启动后，它是第一个被拉起来的，其它进程都是它的子进程。所以在 Linux 下，用 systemd 来做 supervisor 是最稳妥的办法。因为如果 systemd 挂掉了，整个系统都 crash 了。
-MacOS 下面也有一个这样的超级进程，所有的其它进程都是它产生的，挂为它的子进程、孙子进程…… 它就是 launchd。launchd 对应的管理工具就是 launchctl。
-1. 原理 通过后缀名为 .plist 的配置文件追加 launchd 的管理项。添加和删除，都是用 .plist 文件来完成的。
-.plist 文件存在于下面的文件夹中，分别是。
-   类型 路径 说明     User Agents ~/Library/LaunchAgents 为当前登录用户启动   Global Agents /Library/LaunchAgents 为当前登录用户启动   Global Daemons /Library/LaunchDaemons root 或者通过 UserName 配置指定的用户   System Agents /System/Library/LaunchAgents 当前登录用户   System Daemons /System/Library/LaunchDaemons root 或者通过 UserName 配置指定的用户    按照需要将你要监控的程序放到不同等级的目录中。……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-
-                    
-
-
-
-
-
-                </div>
-            </div>
-
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://i.am.simonkuang.com/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/" title="在 MacOS 中用 launchd 管理进程">在 MacOS 中用 launchd 管理进程</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/" title="针对 DNS 全球优化做的 CoreDNS 额外配置">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/option-thoughts-in-works/" title="工作中的期权思维（全）">工作中的期权思维（全）</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/" title="『每个架构师都应该研究下康威定律』">『每个架构师都应该研究下康威定律』</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/" title="hexo 又报 package 的依赖问题了">hexo 又报 package 的依赖问题了</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/categories/%E5%B7%A5%E4%BD%9C/">工作(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(4)</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://i.am.simonkuang.com/tags/blog/">blog</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/coredns/">coredns</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/devops/">devops</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/hexo/">hexo</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/hugo/">hugo</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/laravel/">laravel</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/launchd/">launchd</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/macbook/">macbook</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/macos/">macos</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/php/">php</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%BB%8F%E6%B5%8E/">经济</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-        </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-45245769-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-  <script src="/js/baidu.js"></script>
-
-  <script src="/js/mermaid.js"></script>
-
-
-</body>
-</html>
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.80.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="MacOS"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="http://i.am.simonkuang.org/tags/MacOS/"><meta property="og:updated_time" content="2020-02-09T15:04:04+08:00"><title>MacOS | 流沙书斋</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.ce74a2661479d34141b5c018b4f25ba8292b5adeca6de5d7a1b5c4de41c8f25d.css integrity="sha256-znSiZhR500FBtcAYtPJbqCkrWt7KbeXXobXE3kHI8l0="><script defer src=/en.search.min.f43f864b87654ca005f7c22196b917bd947f349395341988d8c026de238f3eaf.js integrity="sha256-9D+GS4dlTKAF98IhlrkXvZR/NJOVNBmI2MAm3iOPPq8="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script defer src=/custom.min.85e1dbc39b23671ffbf52bcb831b12735ade63896b28278cfb69b35d2c870ee9.js integrity="sha256-heHbw5sjZx/79SvLgxsSc1reY4lrKCeM+2mzXSyHDuk="></script><script src=//kit.fontawesome.com/e81509d074.js crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=http://i.am.simonkuang.org/tags/MacOS/index.xml title=流沙书斋></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>流沙书斋</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/><i class="menu-item-icon fa fa-fw fa-home"></i>首页</a></li><li><a href=/posts/><i class="menu-item-icon fa fa-fw fa-blog"></i>博客</a></li><li><a href=/topics/><i class="menu-item-icon fa fa-fw fa-book"></i>专栏</a></li></ul><ul><li><a href=https://github.com/simonkuang target=_blank rel=noopener><i class="menu-item-icon fa fa-fw fa-github"></i>Github</a></li><li><a href=https://www.zhihu.com/people/simonkuang target=_blank rel=noopener><i class="menu-item-icon fab fa-fw fa-zhihu"></i>知乎</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>MacOS</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/%E6%8A%80%E6%9C%AF/>技术</a>
+<span>4</span></li><li class="flex justify-between"><a href=/categories/%E5%B7%A5%E4%BD%9C/>工作</a>
+<span>1</span></li><li class="flex justify-between"><a href=/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/>碎碎念</a>
+<span>1</span></li></ul></li><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/launchd/>launchd</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/MacOS/>MacOS</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/CoreDNS/>CoreDNS</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%AE%A1%E7%90%86/>管理</a>
+<span>3</span></li><li class="flex justify-between"><a href=/tags/%E7%BB%8F%E6%B5%8E/>经济</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<span>9</span></li><li class="flex justify-between"><a href=/tags/%E6%9E%B6%E6%9E%84/>架构</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/blog/>blog</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/hexo/>hexo</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/hugo/>hugo</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/>碎碎念</a>
+<span>5</span></li><li class="flex justify-between"><a href=/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<span>3</span></li><li class="flex justify-between"><a href=/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>技术人生</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/Macbook/>Macbook</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/>读后感</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/PHP/>PHP</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E5%81%A5%E5%BA%B7/>健康</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E9%B8%A1%E6%B1%A4/>鸡汤</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/>研发管理</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/laravel/>laravel</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/devops/>devops</a>
+<span>1</span></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h2><a href=/posts/2020/02/09/%E5%9C%A8-MacOS-%E4%B8%AD%E7%94%A8-launchd-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/>在 MacOS 中用 launchd 管理进程</a></h2><h5>2020-02-09</h5><div><a href=/categories/%E6%8A%80%E6%9C%AF/ class=categories>技术</a></div><div><a href=/tags/MacOS/ class=tags>MacOS</a>,
+<a href=/tags/launchd/ class=tags>launchd</a></div><p>在 Linux 上有一个大家用惯的 systemd，在 MacOS 上有一个与之相对应的工具，launchd。 Linux 下，systemd 的 pid 是 1，系统启动后，它是第一个被拉
+<a href=/posts/2020/02/09/%E5%9C%A8-MacOS-%E4%B8%AD%E7%94%A8-launchd-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/ class=read-more-link>阅读更多 ...</a></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/%E6%8A%80%E6%9C%AF/>技术</a>
+<span>4</span></li><li class="flex justify-between"><a href=/categories/%E5%B7%A5%E4%BD%9C/>工作</a>
+<span>1</span></li><li class="flex justify-between"><a href=/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/>碎碎念</a>
+<span>1</span></li></ul></li><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/launchd/>launchd</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/MacOS/>MacOS</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/CoreDNS/>CoreDNS</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%AE%A1%E7%90%86/>管理</a>
+<span>3</span></li><li class="flex justify-between"><a href=/tags/%E7%BB%8F%E6%B5%8E/>经济</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<span>9</span></li><li class="flex justify-between"><a href=/tags/%E6%9E%B6%E6%9E%84/>架构</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/blog/>blog</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/hexo/>hexo</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/hugo/>hugo</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/>碎碎念</a>
+<span>5</span></li><li class="flex justify-between"><a href=/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<span>3</span></li><li class="flex justify-between"><a href=/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>技术人生</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/Macbook/>Macbook</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/>读后感</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/PHP/>PHP</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E5%81%A5%E5%BA%B7/>健康</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E9%B8%A1%E6%B1%A4/>鸡汤</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/>研发管理</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/laravel/>laravel</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/devops/>devops</a>
+<span>1</span></li></ul></li></ul></nav></aside></main></body></html>

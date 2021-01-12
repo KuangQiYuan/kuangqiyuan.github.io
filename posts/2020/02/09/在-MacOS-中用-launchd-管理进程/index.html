@@ -1,0 +1,60 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.80.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="在 Linux 上有一个大家用惯的 systemd，在 MacOS 上有一个与之相对应的工具，launchd。 Linux 下，systemd 的 pid 是 1，系统启动后，它是第一个被拉"><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="在 MacOS 中用 launchd 管理进程"><meta property="og:description" content="在 Linux 上有一个大家用惯的 systemd，在 MacOS 上有一个与之相对应的工具，launchd。 Linux 下，systemd 的 pid 是 1，系统启动后，它是第一个被拉"><meta property="og:type" content="article"><meta property="og:url" content="http://i.am.simonkuang.org/posts/2020/02/09/%E5%9C%A8-MacOS-%E4%B8%AD%E7%94%A8-launchd-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/"><meta property="article:published_time" content="2020-02-09T15:04:04+08:00"><meta property="article:modified_time" content="2020-02-09T15:04:04+08:00"><title>在 MacOS 中用 launchd 管理进程 | 流沙书斋</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.ce74a2661479d34141b5c018b4f25ba8292b5adeca6de5d7a1b5c4de41c8f25d.css integrity="sha256-znSiZhR500FBtcAYtPJbqCkrWt7KbeXXobXE3kHI8l0="><script defer src=/en.search.min.f43f864b87654ca005f7c22196b917bd947f349395341988d8c026de238f3eaf.js integrity="sha256-9D+GS4dlTKAF98IhlrkXvZR/NJOVNBmI2MAm3iOPPq8="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script defer src=/custom.min.85e1dbc39b23671ffbf52bcb831b12735ade63896b28278cfb69b35d2c870ee9.js integrity="sha256-heHbw5sjZx/79SvLgxsSc1reY4lrKCeM+2mzXSyHDuk="></script><script src=//kit.fontawesome.com/e81509d074.js crossorigin=anonymous></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>流沙书斋</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/><i class="menu-item-icon fa fa-fw fa-home"></i>首页</a></li><li><a href=/posts/><i class="menu-item-icon fa fa-fw fa-blog"></i>博客</a></li><li><a href=/topics/><i class="menu-item-icon fa fa-fw fa-book"></i>专栏</a></li></ul><ul><li><a href=https://github.com/simonkuang target=_blank rel=noopener><i class="menu-item-icon fa fa-fw fa-github"></i>Github</a></li><li><a href=https://www.zhihu.com/people/simonkuang target=_blank rel=noopener><i class="menu-item-icon fab fa-fw fa-zhihu"></i>知乎</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>在 MacOS 中用 launchd 管理进程</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#1-原理>1. 原理</a></li><li><a href=#2-配置>2. 配置</a></li><li><a href=#3-操作>3. 操作</a></li><li><a href=#4-更多>4. 更多</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1><a href=/posts/2020/02/09/%E5%9C%A8-MacOS-%E4%B8%AD%E7%94%A8-launchd-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/>在 MacOS 中用 launchd 管理进程</a></h1><h5>2020-02-09</h5><div><a href=/categories/%E6%8A%80%E6%9C%AF/ class=categories>技术</a></div><div><a href=/tags/MacOS/ class=tags>MacOS</a>,
+<a href=/tags/launchd/ class=tags>launchd</a></div><p><p>在 Linux 上有一个大家用惯的 systemd，在 MacOS 上有一个与之相对应的工具，launchd。</p><p>Linux 下，systemd 的 pid 是 1，系统启动后，它是第一个被拉起来的，其它进程都是它的子进程。所以在 Linux 下，用 systemd 来做 supervisor 是最稳妥的办法。因为如果 systemd 挂掉了，整个系统都 crash 了。</p><p>MacOS 下面也有一个这样的超级进程，所有的其它进程都是它产生的，挂为它的子进程、孙子进程…… 它就是 launchd。launchd 对应的管理工具就是 launchctl。</p><h2 id=1-原理>1. 原理
+<a class=anchor href=#1-%e5%8e%9f%e7%90%86>#</a></h2><p>通过后缀名为 <code>.plist</code> 的配置文件追加 launchd 的管理项。添加和删除，都是用 <code>.plist</code> 文件来完成的。</p><p><code>.plist</code> 文件存在于下面的文件夹中，分别是。</p><table><thead><tr><th style=text-align:left>类型</th><th style=text-align:left>路径</th><th style=text-align:left>说明</th></tr></thead><tbody><tr><td style=text-align:left>User Agents</td><td style=text-align:left><code>~/Library/LaunchAgents</code></td><td style=text-align:left>为当前登录用户启动</td></tr><tr><td style=text-align:left>Global Agents</td><td style=text-align:left><code>/Library/LaunchAgents</code></td><td style=text-align:left>为当前登录用户启动</td></tr><tr><td style=text-align:left>Global Daemons</td><td style=text-align:left><code>/Library/LaunchDaemons</code></td><td style=text-align:left>root 或者通过 <code>UserName</code> 配置指定的用户</td></tr><tr><td style=text-align:left>System Agents</td><td style=text-align:left><code>/System/Library/LaunchAgents</code></td><td style=text-align:left>当前登录用户</td></tr><tr><td style=text-align:left>System Daemons</td><td style=text-align:left><code>/System/Library/LaunchDaemons</code></td><td style=text-align:left>root 或者通过 <code>UserName</code> 配置指定的用户</td></tr></tbody></table><p>按照需要将你要监控的程序放到不同等级的目录中。</p><h2 id=2-配置>2. 配置
+<a class=anchor href=#2-%e9%85%8d%e7%bd%ae>#</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#75715e>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style=color:#75715e>&lt;!DOCTYPE plist PUBLIC &#34;-//Apple Computer//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
+<span style=color:#f92672>&lt;plist</span> <span style=color:#a6e22e>version=</span><span style=color:#e6db74>&#34;1.0&#34;</span><span style=color:#f92672>&gt;</span>
+  <span style=color:#f92672>&lt;dict&gt;</span>
+    <span style=color:#f92672>&lt;key&gt;</span>Label<span style=color:#f92672>&lt;/key&gt;</span>
+    <span style=color:#f92672>&lt;string&gt;</span>com.simonkuang.macos.coredns<span style=color:#f92672>&lt;/string&gt;</span>
+    <span style=color:#f92672>&lt;key&gt;</span>Disabled<span style=color:#f92672>&lt;/key&gt;</span>
+    <span style=color:#f92672>&lt;false/&gt;</span>
+    <span style=color:#f92672>&lt;key&gt;</span>KeepAlive<span style=color:#f92672>&lt;/key&gt;</span>
+    <span style=color:#f92672>&lt;true/&gt;</span>
+    <span style=color:#f92672>&lt;key&gt;</span>ProcessType<span style=color:#f92672>&lt;/key&gt;</span>
+    <span style=color:#f92672>&lt;string&gt;</span>Background<span style=color:#f92672>&lt;/string&gt;</span>
+    <span style=color:#f92672>&lt;key&gt;</span>ProgramArguments<span style=color:#f92672>&lt;/key&gt;</span>
+    <span style=color:#f92672>&lt;array&gt;</span>
+      <span style=color:#f92672>&lt;string&gt;</span>/usr/local/bin/coredns<span style=color:#f92672>&lt;/string&gt;</span>
+      <span style=color:#f92672>&lt;string&gt;</span>-conf<span style=color:#f92672>&lt;/string&gt;</span>
+      <span style=color:#f92672>&lt;string&gt;</span>/usr/local/etc/Corefile<span style=color:#f92672>&lt;/string&gt;</span>
+    <span style=color:#f92672>&lt;/array&gt;</span>
+    <span style=color:#f92672>&lt;key&gt;</span>UserName<span style=color:#f92672>&lt;/key&gt;</span>
+    <span style=color:#f92672>&lt;string&gt;</span>root<span style=color:#f92672>&lt;/string&gt;</span>
+    <span style=color:#f92672>&lt;key&gt;</span>GroupName<span style=color:#f92672>&lt;/key&gt;</span>
+    <span style=color:#f92672>&lt;string&gt;</span>wheel<span style=color:#f92672>&lt;/string&gt;</span>
+  <span style=color:#f92672>&lt;/dict&gt;</span>
+<span style=color:#f92672>&lt;/plist&gt;</span>
+</code></pre></div><p>上面的例子是启动一个
+<a href=https://coredns.io>coredns</a> 进程。启动的命令如下。</p><p><code>/usr/local/bin/coredns -conf /usr/local/etc/Corefile</code></p><p>配置中的项目包括。</p><ul><li><code>Label</code>: 应该是唯一的 package name。</li><li><code>Disabled</code>: 是否不生效（launchd 忽略，不执行）</li><li><code>KeepAlive</code>: 意外挂掉的话，是否由 launchd 重新拉起。</li><li><code>ProcessType</code>: 进程类型。</li><li><code>ProgramArguments</code>: 程序参数。</li><li><code>UserName</code>: 启动进程的用户。</li><li><code>GroupName</code>: 启动进程的用户组。</li></ul><p>因为 coredns 会启动 53/udp 端口的监听，53 &lt; 1024，因此我们需要给它 root 用户的权限。因为 dns 是基础网络服务，因此以系统进程的方式启动。所以该配置文件按下面的路径保存。</p><p><code>/Library/LaunchDaemons/com.simonkuang.macos.coredns.plist</code></p><p>请注意，文件名和 Label 保持一致。</p><h2 id=3-操作>3. 操作
+<a class=anchor href=#3-%e6%93%8d%e4%bd%9c>#</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 加载配置</span>
+launchctl load -w /Library/LaunchDaemons/com.simonkuang.macos.coredns.plist
+
+<span style=color:#75715e># 卸载配置</span>
+launchctl unload /Library/LaunchDaemons/com.simonkuang.macos.coredns.plist
+
+<span style=color:#75715e># 修改配置后重载配置</span>
+launchctl unload /Library/LaunchDaemons/com.simonkuang.macos.coredns.plist <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>launchctl load -w /Library/LaunchDaemons/com.simonkuang.macos.coredns.plist
+</code></pre></div><p><code>-w</code> 参数的意思是，无论配置中 <code>Disabled</code> 项是 true 还是 false，都启动进程。这个参数对调试配置和进程特别有效。</p><p>加载成功的服务，系统重启后会按照配置运行，达到 supervisor 的目的。</p><h2 id=4-更多>4. 更多
+<a class=anchor href=#4-%e6%9b%b4%e5%a4%9a>#</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 查看所有的 plist 服务</span>
+launchctl list
+
+<span style=color:#75715e># 禁用服务</span>
+launchctl disable /Library/LaunchDaemons/com.simonkuang.macos.coredns.plist
+
+<span style=color:#75715e># 启用服务</span>
+launchctl disable /Library/LaunchDaemons/com.simonkuang.macos.coredns.plist
+
+<span style=color:#75715e># 杀死进程（不优雅地杀，直接杀进程）并重启服务。对一些停止响应的服务有效。</span>
+launchctl kickstart -k /Library/LaunchDaemons/com.simonkuang.macos.coredns.plist
+
+<span style=color:#75715e># 在不修改 Disabled 配置的前提下启动服务</span>
+launchctl start /Library/LaunchDaemons/com.simonkuang.macos.coredns.plist
+
+<span style=color:#75715e># 在不修改 Disabled 配置的前提下停止服务</span>
+launchctl stop /Library/LaunchDaemons/com.simonkuang.macos.coredns.plist
+</code></pre></div></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><ul><li><a href=#1-原理>1. 原理</a></li><li><a href=#2-配置>2. 配置</a></li><li><a href=#3-操作>3. 操作</a></li><li><a href=#4-更多>4. 更多</a></li></ul></li></ul></nav></aside></main></body></html>

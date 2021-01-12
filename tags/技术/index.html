@@ -1,493 +1,68 @@
-<!doctype html>
-<html lang="cmn-Hans">
-<head>
-
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.67.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>技术 | 旷氏淇元</title>
-    <meta property="og:title" content="技术 - 旷氏淇元">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="技术">
-        
-    <meta name="author" content="Simon">
-    <meta property="og:url" content="https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/index.xml" title="旷氏淇元" />
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://i.am.simonkuang.com/">
-                        旷氏淇元
-                    </a>
-                
-                <p class="description">旷淇元的个人博客</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="https://i.am.simonkuang.com/">首页</a>
-                    
-                    <a  href="https://i.am.simonkuang.com/books/" title="新书">新书</a>
-                    
-                    <a  href="https://i.am.simonkuang.com/archives/" title="归档">归档</a>
-                    
-                    <a  href="https://i.am.simonkuang.com/about/" title="关于">关于</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-
-<div id="body">
-    <div class="container">
-        <div class="col-group">
-
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    
-                    <h3 class="archive-title">
-                        包含标签
-                        <span class="keyword">技术</span>
-                        的文章
-                    </h3>
-                    
-
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/">『每个架构师都应该研究下康威定律』</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年6月10日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF">技术</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                InfoQ 中国在 2016 年，发表过一篇文章，杨波的《每个架构师都应该研究下康威定律》。这篇文章对当时的我，触动是非常深刻的。一些说不清道不明的经验，被别人用浅显易懂的道理，讲得一清二楚。
-康威定律是很早就听说过的，后来陆续又有一些接触，每次时隔一段时间再做了解，就会有非常深的触动。我理解，原因无他，因为它聚焦在组织架构和系统设计的关系上，而这两者，一个是架构师目标，一个是架构师的手段/工具。文中用很简短的一句话，讲清楚了这中间的关系。
- 系统架构的目标是解决利益相关者的关注点。
- 这句话简直太重要，太精妙了。
-1. 架构师的目标，是各个利益相关者的关注点 很多人对架构师的误解，都以为是架构师是技术执行，是 top-level coder，对 coding 的结果负责。这就犯了以表象取人的问题。为什么？我后面再提。
-架构师首先应该关注的，是项目中，各个角色，各个利益相关者，他们的利益诉求，他们在项目中的焦点。根据这些焦点，得到一个权衡的方案，并取得最大限度的支持。
-2. 架构是权衡的艺术 权衡的英文表述比较准确一些。trade-off 。利益交易和平衡。
-权衡的方法是博弈，无论是纳什均衡还是帕累托最优，权衡目标是达成一个相对稳定的博弈结果。这个结果，就是架构的目标需求。
-所以你看，脱离实际场景谈『架构』，本来就是虚空的。
-3. 架构首先是业务架构，其次才是技术架构 道理很简单，业务架构往往涉及最直接的利益分配，从市场到产品到后勤保障，通常都对业务指标虎视眈眈。产品技术指标他们并不关心。
-从工作流程上来讲，业务架构决定产品设计，产品设计决定技术设计。说业务架构是技术架构的前置步骤，一点不为过。
-唯一的例外，可能就是大厂里面做平台产品研发的案例了。从无到有形成一个平台，比如阿里 IaaS 云。商业模式不清晰，业务架构反而受制于技术架构。不过这种机会今后出现的可能性，越来越小。
-4. 技术架构是工具/手段 确定了各个 stakeholder 的 key points，剩下就是怎么做的事情了。技术手段、技术架构，不过是实现平衡的工具而已。通过技术架构，将权衡的方案，表达出来，这是一个称职的架构师，秀于外的工作。
-我个人对架构师的定义是，以权衡项目中各个利益相关方的利益关注点为目标，以技术设计为工具和手段，以持续的产品技术服务为交付物的产品研发决策者。
-所以回过头去看，架构师的工作中，技术架构的部分，优先级排不到前列，称得上是最基础、最『本分』的技能。技术好，技术设计灵活，不是一名架构师值得炫耀的资本。架构师值得炫耀的，是他能够在复杂纷扰的环境中，仍然可以理出线头，正确判断形势，做出合理的架构设计。
-比方说，一名做 ToB 业务的 SaaS 平台架构师，既往工作中，以项目经理/甲方的利益诉求为主，以己方销售的利益诉求为辅，养成了习惯。一个需求做不做，怎么做，第一问己方销售/甲方，其次问项目经理，总可以得到答案。有一天，他去到一家做 toC 产品的公司任架构师，他面临的 stakeholders 发生了翻天覆地的变化，『甲方』成了成千上万的个体，怎么去问每个个体，他们的 key points 是什么？所以这位架构师的转变是，以直接上级的利益诉求为主，以产品经理的利益诉求为辅。那么，这个架构师，很明显就犯了最低级的失职。即便他的技术实力再强，首先目标就错了，谈何取得胜利？
-雷军讲的，以战术上的勤奋，掩盖战略上的懒惰，大概也是说这个意思。
-啰嗦一句。无论是 toC 产品还是 toB 产品，架构师首先应该予以重视的 stakeholder，都应该是财务上销项对应的一方。也就是为公司提供入账的一方。有人可能会觉得奇怪，toC 产品不应该是用户为首要的 stakeholder 吗？真不一定。如果是付费用户，那么他们是公司账上销项对应的一方，他们算首要的 stackholder。如果用户是免费使用公司服务，那么应该把他们看做产品/服务的一部分，把他们看做产品/服务的资源，而不是 stackholder。既然是资源，能为己所用就可以；既然是产品的一部分，只要产品不散就可以。不需要过多考虑免费用户的诉求和偏好。
-有些免费产品讲情怀，前提是他们活着不成问题。没干爹可抱的企业，先把自己的财务账算清楚，努力维持公司现金流为正，先有资本活下去，才是正道。别人在山顶为踏足云顶做赋，那是情怀，你在山底谈云，那是浮云。
-5. 架构不止『偏技术』，不是每一名架构师都需要『偏管理』的搭档 架构师的责任，是交付能够让至少大多数 stakeholder 满意的架构方案，并且落地执行，交付一个 predictable 的结果。……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年5月27日
-                            </date>
-                            
-                            <div class="post-content">
-                                Mac 上升级 VirtualBox 6.0.8，遇到一个报错，一直搞不定。大意是 system extension incompatible。提示框不是 warning 或者 error 图标，就是普通的 performance 图标，而且只出现一次，再安装，不会出现。
-网络上没有结论，大多是说在 Performance 里面做安全授权。然后我遇到的并不是这个问题，Performance 里面没有授权提示。于是自己试着用降级的办法，安装 5.2.30，还是不行，同样的错误。再降级，到 5.2.28，终于行了，安装成功。
-打开 5.2.28，发现有个提示，说有磁盘镜像失效，打开管理工具，发现是之前装的 Nox，在 VirtualBox 的配置中写入了 Nox 自己的镜像。卸载 Nox 的时候，Nox 没有从 VirtualBox 的配置中删除 Nox 的磁盘镜像。于是手动确认删除 Nox 相关的两个镜像。再进入 VirtualBox 就好了。
-今天忽然想起来，也许就是因为失效镜像，导致升级失败呢。于是再安装 VirtualBox 试试。果然，就行了。
-结论 对 VirtualBox 的失效镜像，一定要自行观察，手动清除，不能听之任之，容易造成潜在的问题。有一些模拟器啥的，安装的时候容易，卸载的时候麻烦，只能靠自己多留个心眼。……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/">hexo 又成了技术流的玩具</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年2月28日
-                            </date>
-                            
-                            <div class="post-content">
-                                其实写这篇文章，心情不太痛快。hexo 是我找了好久才确定下来，能用 markdown 写 blog 的系统。之前试过的如 jekyll 太复杂，而且定制化程度太低，不灵活。刚开始用 hexo 的时候发现它简直是尤物，轻便简洁，扩展性还不错，官方收录了很多 plugins，足够码农用了。
-结果没过几年，hexo 也快成了技术流的玩具。
-问题一。npm 依赖存在缺陷 首先是 &quot;hexo@3.8.0&quot; 某个依赖 &quot;hexo-fs@0.2.2&quot;，后者依赖 &quot;chokidar@1.2.7&quot;，而 chokidar 又依赖 &quot;fsevents@1.1.3&quot;。好了，最后这个 &quot;fsevents@1.1.3&quot; 是被 deprecated 的版本，包含原生库，已经不存在 binary 下载，从源码编译也会报错。错误的大意是跟 node 的版本不兼容。
-下面我把这个关系链重新理一下。
-graph LR; A[&quot;hexo@3.8.0&quot;]--&gt;B[&quot;hexo-fs@0.2.2&quot;]; B--&gt;C[&quot;chokidar@1.2.7&quot;]; C--&gt;D[&quot;fsevents@1.1.3&quot;]; D--&gt;E[&quot;(HELL)&quot;]; 除了上面的问题以外，大量已经停更的 plugins 依赖的 &quot;hexo-cli@1.0.3&quot; 等旧库，也多对 &quot;fsevents@1.1.3&quot; 存在间接依赖。
-用一句话来说后果，在 MacOS 下，用 hexo-cli new + npm i 的方式，根本安装不上 hexo。
-问题二。插件的停更、老化 像上面提到的，停更的插件，其间接依赖的第三方库若是被废弃，插件本身也就不可用了。这是一种情况。
-第二种情况，hexo 本身在发展，某些停更的第三方插件没有跟着做适配，结果是 hexo 的使用体验受到了影响。
-第三种情况，最常见的。哪怕是官网列表中的插件，质量也是有高有低，对那些技术不灵光的用户实在麻烦。
-解决方法 针对安装不上的问题。我也不知道怎么解决 :( 我用撞大运的办法，hexo-cli new 一个项目以后，手动修改 package.json，将 &quot;hexo@3.8.0&quot; 这个依赖指向自己 fork 的 hexo repo，这个 forked repo 里面已经修改了 hexo-fs 是指向一个 forked hexo-cli repo。最后在这个 forked hero-cli repo 里面，把对 chokidar 的引用上升到 &quot;chokidar@1.……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/timeless-technology/">不过时的技术</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年2月26日
-                            </date>
-                            
-                            <div class="post-content">
-                                最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内容千篇一律是推荐极客时间打新的课程，《Java 并发编程实战》。
-高并发哥又不是没做过，随手找了一下，发现陈皓在 2009 年的一篇文章就提到了正确的解法，以及背后的原因。《深入浅出单实例 SINGLETON 设计模式》。
-文中给出几种功能上正确的 singleton 写法。
-// version 1.4 public class Singleton { private volatile static Singleton singleton = null; private Singleton() {} public static Singleton getInstance() { if (singleton == null) { synchronized (Singleton.class) { if (singleton== null) { singleton= new Singleton(); } } } return singleton; } } 请留意私有变量的描述词 volatile，目的是不让编译器对指令进行重排序优化。
-// version 1.5 public class Singleton { private volatile static Singleton singleton = new Singleton(); private Singleton() {} public static Singleton getInstance() { return singleton; } } 这是自动加载版本。每次加载类的时候，实例就生成了。所以加载类的过程可能会很慢（特别是有很多继承、引用的情况）。……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/timeless-technology/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/">固态硬盘和优盘不是稳健的数据存储介质</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2018年12月26日
-                            </date>
-                            
-                            <div class="post-content">
-                                说到固态硬盘（SSD）和优盘，恐怕很多人心里面有个潜在的印象，就是数据放在这里面，很安全，比在机械硬盘里面安全。最近两个朋友找我，帮找恢复数据的解决方案。两位都是数据放优盘或移动硬盘里面，遇到存储芯片故障。
-其实长期不用的数据，放在固态硬盘里面，真的不一定是安全的。固态硬盘的存储原理是往浮栅晶体管上加/放电子，使晶体管的通电性能发生变化，形成通路/闭路，对应数字 1/0，从而达到记录数据的目的。这里就有个问题，浮栅中的电子会存在泄漏的情况，也就是说，记录的数据会丢失。通常，这种数据的丢失受电压（包括静电）、环境温度、以及存储时间的影响。希捷曾经有工程师在报告中讲，温度每上升 5 摄氏度，数据存储的时间就短一半。不通电不读写的情况下，保存在 Nand Flash（SSD、SD Card、TF Card、U Disk……）介质中的数据最多也就两年的存储寿命。最糟糕的情况是像移动硬盘、优盘这样的设备，插入电脑 USB 口的一瞬间，假如遇到静电，Nand Flash 芯片被瞬间高电压击穿，那不管当时环境温度多少、你有没有经常使用，你的数据都完蛋了。
-记住，要保存数据，一定用机械硬盘。这是目前最稳妥的方法了。机械硬盘丢数据的风险，都是可以人为规避的。保存得当，存里面的数据，保存十年二十年没问题。不要再傻傻被 SSD、优盘骗了。等到数据都恢复不回来，再后悔。……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/ssd-and-udisk-is-not-stable-enough-for-data-storage/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/">MacOS 下安装 flutter 遇到的一个依赖问题</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2018年10月19日
-                            </date>
-                            
-                            <div class="post-content">
-                                最近在 MacOSX 上安装 flutter 也遇到一些问题。不是 MacOS Mojave 的问题，而是 flutter 依赖的一个开源库，它的依赖树出现版本不兼容问题。
-运行 flutter doctor 出现如下提示。
- [!] iOS toolchain - develop for iOS devices (Xcode 10.0) ✗ libimobiledevice and ideviceinstaller are not installed. To install, run: brew install &ndash;HEAD libimobiledevice brew install ideviceinstaller ✗ ios-deploy not installed. To install: brew install ios-deploy ✗ CocoaPods not installed. CocoaPods is used to retrieve the iOS platform side&rsquo;s plugin code that responds to your plugin usage on the Dart side.……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/a-dependency-problem-for-flutter-on-macos/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/install-dnf-on-centos-7/">CentOS7 下安装 DNF 的方法</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2018年10月9日
-                            </date>
-                            
-                            <div class="post-content">
-                                NOTE(simon): 讲啰嗦一点，方便搜索引擎收录关键字。需要解决方案的同学，可以直接拖到后半部分。
- 旧办法不灵 不知道什么原因，CentOS 7 下面安装 dnf 总是要出错，各种各样的问题与不兼容。CentOS 直到现在，还没有正式支持 dnf。相反，Fedora 22 开始就已经正式支持 dnf 作为默认的包管理工具了。差距啊。
-之前试过用一个半官方的 dnf repo(rpmsoftwaremanagement/dnf-nightly Copr) 在 CentOS 7 下面安装 dnf，一直都是可以的。也可以正常升级。以前通过这个办法安装过 dnf 的系统，已经升级到 2.8.5。用起来很顺。
-但是不知道为什么，最近用这个库，在全新的 CentOS 7 下面安装 dnf，遇到一个麻烦，就是包版本有冲突。类似的错误信息如下。
-# yum install -y dnf-2.8.5-0.101g0f20917d.el7.centos Loaded plugins: fastestmirror Loading mirror speeds from cached hostfile * base: mirrors.shu.edu.cn * epel: mirrors.yun-idc.com * extras: mirrors.163.com * updates: mirrors.163.com Resolving Dependencies --&gt; Running transaction check ---&gt; Package dnf.noarch 0:2.8.5-0.101g0f20917d.el7.centos will be installed --&gt; Processing Dependency: python2-dnf = 2.……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/install-dnf-on-centos-7/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/">MacOS 下 flutter run 遇到墙的问题</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2018年9月11日
-                            </date>
-                            
-                            <div class="post-content">
-                                最近调研 flutter，甚是大爱。
-虽然 flutter 非常友好提供了针对中国用户的镜像(Using Flutter in China · flutter/flutter Wiki · GitHub)，解决了一些不可说的难题，但偶尔还是会遇到类似的问题。比如我今天就遇到了，在 VS Code 调试编译的时候，遇到 “Download Failed” 的问题。Could not resolve all files for configuration ':image_picker:lintClassPath'. 具体原因是 Connect to d29vzk4ow07wi7.cloudfront.net:443 [d29vzk4ow07wi7.cloudfront.net/13.33.69.104, d29vzk4ow07wi7.cloudfront.net/13.33.69.3, d29vzk4ow07wi7.cloudfront.net/13.33.69.38, d29vzk4ow07wi7.cloudfront.net/13.33.69.111] failed: Read timed out 。
-原来是碰上了墙外面的老朋友，CDN 服务商 cloudflare 的域名。
-中间还是比较曲折，最后解决的办法是用 proxychain4 解决问题。
-brew install proxychains-ng sed -i &#39;.bak&#39; &#39;s@^\(socks4.*\)@#\1@g&#39; /usr/local/etc/proxychains.conf echo -e &#34;socks5\t127.0.0.1 1080&#34; &gt;&gt; /usr/local/etc/proxychains.conf proxychains4 curl ip.gs 等等，好像不对，IP 是本市的。
-$ proxychains4 curl ip.gs [proxychains] config file found: /usr/local/etc/proxychains.……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/macos-flutter-run-using-proxy/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://i.am.simonkuang.com/post/install-coredns-on-macos/">CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2018年5月4日
-                            </date>
-                            
-                            <div class="post-content">
-                                DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。
-我遇到的场景是这样的。
- 公司有内网机房，研发用，研发环境和测试环境都在内网机房； 公司的域名是『company.com』，在公司内网有专门的 DNS（bind 搭建）做解析； 研发/测试环境的服务器也用顶级域名指向，例如：test1.mod-a.company.com。这类解析都是通过 bind 实现的。公司外网解析不到这个地址； 我自己需要一个安全的 DNS 环境，对 DNS 服务器溯源这个细节，优选 TCP 协议； 对『company.com』顶级域名的解析还是走公司内部的 DNS 服务器，即 bind； 之前用 ss 的 chinadns，可以实现第 4 条，但是无法实现第 5 条。  找了一圈，发现 CoreDNS 挺好的。推荐之。
-一、安装 CoreDNS 是 golang 写的，所以只需要下载对应操作系统的二进制文件，到处拷贝，就可以运行了。
-下面统统以 MacOS 为例作讲解。
-cd ~/Downloads curl -LO &#34;https://github.com/coredns/coredns/releases/download/v1.1.2/coredns_1.1.2_darwin_amd64.tgz&#34; &amp;&amp; \ tar zxf coredns_1.1.2_darwin_amd64.tgz &amp;&amp; \ mv ./coredns /usr/local/bin/ 这里补充一句，CoreDNS 的二进制版本已经安装了所有的插件（plugins），不需要你自己编译。推荐下载二进制版本。
-二、配置 要深入了解 CoreDNS，请查看其文档，及 plugins 的介绍。……
-                                <p class="readmore"><a href="https://i.am.simonkuang.com/post/install-coredns-on-macos/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-
-                    
-
-
-
-
-
-                </div>
-            </div>
-
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://i.am.simonkuang.com/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/using-launchd-on-macos-to-supervisor-processes/" title="在 MacOS 中用 launchd 管理进程">在 MacOS 中用 launchd 管理进程</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/coredns-excluding-domains-with-global-load-balance-dns/" title="针对 DNS 全球优化做的 CoreDNS 额外配置">针对 DNS 全球优化做的 CoreDNS 额外配置</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/option-thoughts-in-works/" title="工作中的期权思维（全）">工作中的期权思维（全）</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/architect-need-to-know-about-the-conway-law/" title="『每个架构师都应该研究下康威定律』">『每个架构师都应该研究下康威定律』</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/my-first-post/" title="从 hexo 搬迁到 hugo">从 hexo 搬迁到 hugo</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/hexo-dependencies-goes-wrong-again/" title="hexo 又报 package 的依赖问题了">hexo 又报 package 的依赖问题了</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/virtualbox-system-extension-incompatible-error/" title="Mac 下 VirtualBox 系统扩展不兼容的错误修复">Mac 下 VirtualBox 系统扩展不兼容的错误修复</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/vultr-vps-affiliate-code/" title="外贸/跨境电商/代购/全球购/海淘适用的优惠">外贸/跨境电商/代购/全球购/海淘适用的优惠</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/hexo-also-a-toy-for-geeker/" title="hexo 又成了技术流的玩具">hexo 又成了技术流的玩具</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/post/timeless-technology/" title="不过时的技术">不过时的技术</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/categories/%E5%B7%A5%E4%BD%9C/">工作(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/categories/%E6%8A%80%E6%9C%AF/">技术(4)</a>
-    </li>
-    
-    <li>
-        <a href="https://i.am.simonkuang.com/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念(1)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://i.am.simonkuang.com/tags/blog/">blog</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/coredns/">coredns</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/devops/">devops</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/hexo/">hexo</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/hugo/">hugo</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/laravel/">laravel</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/launchd/">launchd</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/macbook/">macbook</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/macos/">macos</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/php/">php</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E5%81%A5%E5%BA%B7/">健康</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/">技术人生</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E6%9E%B6%E6%9E%84/">架构</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/">研发管理</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%AE%A1%E7%90%86/">管理</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E7%BB%8F%E6%B5%8E/">经济</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="https://i.am.simonkuang.com/tags/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="http://openresty.org/download/agentzh-nginx-tutorials-zhcn.html" title="agentzh 的 Nginx 教程">agentzh 的 Nginx 教程</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" title="gitflow-cheatsheet">gitflow-cheatsheet</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.laruence.com/" title="Laruence">Laruence</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://i.am.simonkuang.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-        </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="https://i.am.simonkuang.com/">旷氏淇元 By Simon</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-45245769-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-  <script src="/js/baidu.js"></script>
-
-  <script src="/js/mermaid.js"></script>
-
-
-</body>
-</html>
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.80.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="技术"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="http://i.am.simonkuang.org/tags/%E6%8A%80%E6%9C%AF/"><meta property="og:updated_time" content="2019-06-10T17:14:05+08:00"><title>技术 | 流沙书斋</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.ce74a2661479d34141b5c018b4f25ba8292b5adeca6de5d7a1b5c4de41c8f25d.css integrity="sha256-znSiZhR500FBtcAYtPJbqCkrWt7KbeXXobXE3kHI8l0="><script defer src=/en.search.min.f43f864b87654ca005f7c22196b917bd947f349395341988d8c026de238f3eaf.js integrity="sha256-9D+GS4dlTKAF98IhlrkXvZR/NJOVNBmI2MAm3iOPPq8="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script defer src=/custom.min.85e1dbc39b23671ffbf52bcb831b12735ade63896b28278cfb69b35d2c870ee9.js integrity="sha256-heHbw5sjZx/79SvLgxsSc1reY4lrKCeM+2mzXSyHDuk="></script><script src=//kit.fontawesome.com/e81509d074.js crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=http://i.am.simonkuang.org/tags/%E6%8A%80%E6%9C%AF/index.xml title=流沙书斋></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>流沙书斋</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/><i class="menu-item-icon fa fa-fw fa-home"></i>首页</a></li><li><a href=/posts/><i class="menu-item-icon fa fa-fw fa-blog"></i>博客</a></li><li><a href=/topics/><i class="menu-item-icon fa fa-fw fa-book"></i>专栏</a></li></ul><ul><li><a href=https://github.com/simonkuang target=_blank rel=noopener><i class="menu-item-icon fa fa-fw fa-github"></i>Github</a></li><li><a href=https://www.zhihu.com/people/simonkuang target=_blank rel=noopener><i class="menu-item-icon fab fa-fw fa-zhihu"></i>知乎</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>技术</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/%E6%8A%80%E6%9C%AF/>技术</a>
+<span>4</span></li><li class="flex justify-between"><a href=/categories/%E5%B7%A5%E4%BD%9C/>工作</a>
+<span>1</span></li><li class="flex justify-between"><a href=/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/>碎碎念</a>
+<span>1</span></li></ul></li><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/launchd/>launchd</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/MacOS/>MacOS</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/CoreDNS/>CoreDNS</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%AE%A1%E7%90%86/>管理</a>
+<span>3</span></li><li class="flex justify-between"><a href=/tags/%E7%BB%8F%E6%B5%8E/>经济</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<span>9</span></li><li class="flex justify-between"><a href=/tags/%E6%9E%B6%E6%9E%84/>架构</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/blog/>blog</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/hexo/>hexo</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/hugo/>hugo</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/>碎碎念</a>
+<span>5</span></li><li class="flex justify-between"><a href=/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<span>3</span></li><li class="flex justify-between"><a href=/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>技术人生</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/Macbook/>Macbook</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/>读后感</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/PHP/>PHP</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E5%81%A5%E5%BA%B7/>健康</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E9%B8%A1%E6%B1%A4/>鸡汤</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/>研发管理</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/laravel/>laravel</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/devops/>devops</a>
+<span>1</span></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h2><a href=/posts/2019/06/10/%E6%AF%8F%E4%B8%AA%E6%9E%B6%E6%9E%84%E5%B8%88%E9%83%BD%E5%BA%94%E8%AF%A5%E7%A0%94%E7%A9%B6%E4%B8%8B%E5%BA%B7%E5%A8%81%E5%AE%9A%E5%BE%8B/>『每个架构师都应该研究下康威定律』</a></h2><h5>2019-06-10</h5><div><a href=/categories/%E6%8A%80%E6%9C%AF/ class=categories>技术</a></div><div><a href=/tags/%E6%8A%80%E6%9C%AF/ class=tags>技术</a>,
+<a href=/tags/%E6%9E%B6%E6%9E%84/ class=tags>架构</a>,
+<a href=/tags/%E7%AE%A1%E7%90%86/ class=tags>管理</a></div><p>InfoQ 中国在 2016 年，发表过一篇文章， 杨波的《 每个架构师都应该研究下康威定律》。这篇文章对当时的我，触动是非常深刻的。一些说不清道不明的经验，被别人
+<a href=/posts/2019/06/10/%E6%AF%8F%E4%B8%AA%E6%9E%B6%E6%9E%84%E5%B8%88%E9%83%BD%E5%BA%94%E8%AF%A5%E7%A0%94%E7%A9%B6%E4%B8%8B%E5%BA%B7%E5%A8%81%E5%AE%9A%E5%BE%8B/ class=read-more-link>阅读更多 ...</a></p></article><article class="markdown book-post"><h2><a href=/posts/2019/05/27/Mac-%E4%B8%8B-VirtualBox-%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E4%B8%8D%E5%85%BC%E5%AE%B9%E7%9A%84%E9%94%99%E8%AF%AF%E4%BF%AE%E5%A4%8D/>Mac 下 VirtualBox 系统扩展不兼容的错误修复</a></h2><h5>2019-05-27</h5><div><a href=/tags/%E6%8A%80%E6%9C%AF/ class=tags>技术</a></div><p>Mac 上升级 VirtualBox 6.0.8，遇到一个报错，一直搞不定。大意是 system extension incompatible。提示框不是 warning 或者 error 图标，就是普通的 performance 图标，而且只出现一次
+<a href=/posts/2019/05/27/Mac-%E4%B8%8B-VirtualBox-%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E4%B8%8D%E5%85%BC%E5%AE%B9%E7%9A%84%E9%94%99%E8%AF%AF%E4%BF%AE%E5%A4%8D/ class=read-more-link>阅读更多 ...</a></p></article><article class="markdown book-post"><h2><a href=/posts/2019/02/28/hexo-%E5%8F%88%E6%88%90%E4%BA%86%E6%8A%80%E6%9C%AF%E6%B5%81%E7%9A%84%E7%8E%A9%E5%85%B7/>hexo 又成了技术流的玩具</a></h2><h5>2019-02-28</h5><div><a href=/tags/%E6%8A%80%E6%9C%AF/ class=tags>技术</a></div><p>其实写这篇文章，心情不太痛快。hexo 是我找了好久才确定下来，能用 markdown 写 blog 的系统。之前试过的如 jekyll 太复杂，而且定制化程度太低，不灵活。刚开始用 hexo
+<a href=/posts/2019/02/28/hexo-%E5%8F%88%E6%88%90%E4%BA%86%E6%8A%80%E6%9C%AF%E6%B5%81%E7%9A%84%E7%8E%A9%E5%85%B7/ class=read-more-link>阅读更多 ...</a></p></article><article class="markdown book-post"><h2><a href=/posts/2019/02/26/%E4%B8%8D%E8%BF%87%E6%97%B6%E7%9A%84%E6%8A%80%E6%9C%AF/>不过时的技术</a></h2><h5>2019-02-26</h5><div><a href=/tags/%E6%8A%80%E6%9C%AF/ class=tags>技术</a></div><p>最近两天被极客时间的新课刷群刷屏。刷屏的标题大多是“学了这么多年 Java，却连 singleton 都不会用”、“面试总被问高并发，你真的会么”这一类标题党。内
+<a href=/posts/2019/02/26/%E4%B8%8D%E8%BF%87%E6%97%B6%E7%9A%84%E6%8A%80%E6%9C%AF/ class=read-more-link>阅读更多 ...</a></p></article><article class="markdown book-post"><h2><a href=/posts/2018/12/26/%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E5%92%8C%E4%BC%98%E7%9B%98%E4%B8%8D%E6%98%AF%E7%A8%B3%E5%81%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8/>固态硬盘和优盘不是稳健的数据存储介质</a></h2><h5>2018-12-26</h5><div><a href=/tags/%E6%8A%80%E6%9C%AF/ class=tags>技术</a>,
+<a href=/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/ class=tags>碎碎念</a></div><p>说到固态硬盘（SSD）和优盘，恐怕很多人心里面有个潜在的印象，就是数据放在这里面，很安全，比在机械硬盘里面安全。最近两个朋友找我，帮找恢复数
+<a href=/posts/2018/12/26/%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E5%92%8C%E4%BC%98%E7%9B%98%E4%B8%8D%E6%98%AF%E7%A8%B3%E5%81%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8/ class=read-more-link>阅读更多 ...</a></p></article><article class="markdown book-post"><h2><a href=/posts/2018/10/19/MacOS-%E4%B8%8B%E5%AE%89%E8%A3%85-flutter-%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98/>MacOS 下安装 flutter 遇到的一个依赖问题</a></h2><h5>2018-10-19</h5><div><a href=/tags/%E6%8A%80%E6%9C%AF/ class=tags>技术</a></div><p>最近在 MacOSX 上安装 flutter 也遇到一些问题。不是 MacOS Mojave 的问题，而是 flutter 依赖的一个开源库，它的依赖树出现版本不兼容问题。 运行 flutter doctor 出现如下提示。 [!] iOS toolchain - develop for iOS devices
+<a href=/posts/2018/10/19/MacOS-%E4%B8%8B%E5%AE%89%E8%A3%85-flutter-%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98/ class=read-more-link>阅读更多 ...</a></p></article><article class="markdown book-post"><h2><a href=/posts/2018/10/09/CentOS7-%E4%B8%8B%E5%AE%89%E8%A3%85-DNF-%E7%9A%84%E6%96%B9%E6%B3%95/>CentOS7 下安装 DNF 的方法</a></h2><h5>2018-10-09</h5><div><a href=/tags/%E6%8A%80%E6%9C%AF/ class=tags>技术</a></div><p>NOTE(simon): 讲啰嗦一点，方便搜索引擎收录关键字。需要解决方案的同学，可以直接拖到后半部分。 旧办法不灵 # 不知道什么原因，CentOS 7 下面安装 dnf 总是要出
+<a href=/posts/2018/10/09/CentOS7-%E4%B8%8B%E5%AE%89%E8%A3%85-DNF-%E7%9A%84%E6%96%B9%E6%B3%95/ class=read-more-link>阅读更多 ...</a></p></article><article class="markdown book-post"><h2><a href=/posts/2018/09/11/MacOS-%E4%B8%8B-flutter-run-%E9%81%87%E5%88%B0%E5%A2%99%E7%9A%84%E9%97%AE%E9%A2%98/>MacOS 下 flutter run 遇到墙的问题</a></h2><h5>2018-09-11</h5><div><a href=/tags/%E6%8A%80%E6%9C%AF/ class=tags>技术</a></div><p>最近调研 flutter，甚是大爱。 虽然 flutter 非常友好提供了针对中国用户的镜像( Using Flutter in China · flutter/flutter Wiki · GitHub)，解决了一些不可说的难题，但偶尔还是
+<a href=/posts/2018/09/11/MacOS-%E4%B8%8B-flutter-run-%E9%81%87%E5%88%B0%E5%A2%99%E7%9A%84%E9%97%AE%E9%A2%98/ class=read-more-link>阅读更多 ...</a></p></article><article class="markdown book-post"><h2><a href=/posts/2018/05/04/CoreDNS-%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84-DNS-%E6%9C%8D%E5%8A%A1%E5%9C%A8-MacOS-%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/>CoreDNS - 轻量级高性能的 DNS 服务在 MacOS 下的安装部署</a></h2><h5>2018-05-04</h5><div><a href=/tags/%E6%8A%80%E6%9C%AF/ class=tags>技术</a></div><p>DNS 的原理相信大家都了解。树形结构，根服务器，递归溯源，UDP 协议（现在也有 TCP 协议甚至 http 协议的）。搭建一台自己的 DNS 也是稀松平常的事情。 我遇到的
+<a href=/posts/2018/05/04/CoreDNS-%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84-DNS-%E6%9C%8D%E5%8A%A1%E5%9C%A8-MacOS-%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/ class=read-more-link>阅读更多 ...</a></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/%E6%8A%80%E6%9C%AF/>技术</a>
+<span>4</span></li><li class="flex justify-between"><a href=/categories/%E5%B7%A5%E4%BD%9C/>工作</a>
+<span>1</span></li><li class="flex justify-between"><a href=/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/>碎碎念</a>
+<span>1</span></li></ul></li><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/launchd/>launchd</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/MacOS/>MacOS</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/CoreDNS/>CoreDNS</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%AE%A1%E7%90%86/>管理</a>
+<span>3</span></li><li class="flex justify-between"><a href=/tags/%E7%BB%8F%E6%B5%8E/>经济</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<span>9</span></li><li class="flex justify-between"><a href=/tags/%E6%9E%B6%E6%9E%84/>架构</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/blog/>blog</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/hexo/>hexo</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/hugo/>hugo</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/>碎碎念</a>
+<span>5</span></li><li class="flex justify-between"><a href=/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<span>3</span></li><li class="flex justify-between"><a href=/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>技术人生</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/Macbook/>Macbook</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/>读后感</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/PHP/>PHP</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E5%81%A5%E5%BA%B7/>健康</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E9%B8%A1%E6%B1%A4/>鸡汤</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86/>研发管理</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/laravel/>laravel</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/devops/>devops</a>
+<span>1</span></li></ul></li></ul></nav></aside></main></body></html>

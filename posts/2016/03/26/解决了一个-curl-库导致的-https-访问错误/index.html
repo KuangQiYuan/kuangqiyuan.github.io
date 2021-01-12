@@ -1,0 +1,101 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.80.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="使用 EasyWeChat 库调用微信服务的时候，在 laravel tinker 里面调试，发现每次进入 tinker 之后，第一次调用接口没有问题，第二次之后，就会报一个很诡异的错误。 $app = app('wechat'); // EasyWeChat\Foundation\Application {#628} $users ="><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="解决了一个 curl 库导致的 https 访问错误"><meta property="og:description" content="使用 EasyWeChat 库调用微信服务的时候，在 laravel tinker 里面调试，发现每次进入 tinker 之后，第一次调用接口没有问题，第二次之后，就会报一个很诡异的错误。 $app = app('wechat'); // EasyWeChat\Foundation\Application {#628} $users ="><meta property="og:type" content="article"><meta property="og:url" content="http://i.am.simonkuang.org/posts/2016/03/26/%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA-curl-%E5%BA%93%E5%AF%BC%E8%87%B4%E7%9A%84-https-%E8%AE%BF%E9%97%AE%E9%94%99%E8%AF%AF/"><meta property="article:published_time" content="2016-03-26T15:21:04+00:00"><meta property="article:modified_time" content="2016-03-26T15:21:04+00:00"><title>解决了一个 curl 库导致的 https 访问错误 | 流沙书斋</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.ce74a2661479d34141b5c018b4f25ba8292b5adeca6de5d7a1b5c4de41c8f25d.css integrity="sha256-znSiZhR500FBtcAYtPJbqCkrWt7KbeXXobXE3kHI8l0="><script defer src=/en.search.min.f43f864b87654ca005f7c22196b917bd947f349395341988d8c026de238f3eaf.js integrity="sha256-9D+GS4dlTKAF98IhlrkXvZR/NJOVNBmI2MAm3iOPPq8="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script defer src=/custom.min.85e1dbc39b23671ffbf52bcb831b12735ade63896b28278cfb69b35d2c870ee9.js integrity="sha256-heHbw5sjZx/79SvLgxsSc1reY4lrKCeM+2mzXSyHDuk="></script><script src=//kit.fontawesome.com/e81509d074.js crossorigin=anonymous></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>流沙书斋</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/><i class="menu-item-icon fa fa-fw fa-home"></i>首页</a></li><li><a href=/posts/><i class="menu-item-icon fa fa-fw fa-blog"></i>博客</a></li><li><a href=/topics/><i class="menu-item-icon fa fa-fw fa-book"></i>专栏</a></li></ul><ul><li><a href=https://github.com/simonkuang target=_blank rel=noopener><i class="menu-item-icon fa fa-fw fa-github"></i>Github</a></li><li><a href=https://www.zhihu.com/people/simonkuang target=_blank rel=noopener><i class="menu-item-icon fab fa-fw fa-zhihu"></i>知乎</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>解决了一个 curl 库导致的 https 访问错误</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents></nav></aside></header><article class=markdown><h1><a href=/posts/2016/03/26/%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA-curl-%E5%BA%93%E5%AF%BC%E8%87%B4%E7%9A%84-https-%E8%AE%BF%E9%97%AE%E9%94%99%E8%AF%AF/>解决了一个 curl 库导致的 https 访问错误</a></h1><h5>2016-03-26</h5><div><a href=/tags/%E8%BF%90%E7%BB%B4/ class=tags>运维</a></div><p><p>使用
+<a href=https://easywechat.org/><code>EasyWeChat</code></a> 库调用微信服务的时候，在 laravel tinker 里面调试，发现每次进入 tinker 之后，第一次调用接口没有问题，第二次之后，就会报一个很诡异的错误。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>$app <span style=color:#f92672>=</span> <span style=color:#a6e22e>app</span>(<span style=color:#e6db74>&#39;wechat&#39;</span>);
+<span style=color:#75715e>// EasyWeChat\Foundation\Application {#628}
+</span><span style=color:#75715e></span>
+$users <span style=color:#f92672>=</span> $app<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>user</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>lists</span>();
+<span style=color:#75715e>// EasyWeChat\Support\Collection {#756}
+</span><span style=color:#75715e></span>
+$user <span style=color:#f92672>=</span> $app<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>user</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#39;o7qrUviv1tkcDFMJ5wdXrpng9NNQ&#39;</span>);
+<span style=color:#75715e>// GuzzleHttp\Exception\ConnectException with message &#39;cURL error 35: A PKCS #11 module returned CKR_DEVICE_ERROR, indicating that a problem has occurred with the token or slot. (see http://curl.haxx.se/libcurl/c/libcurl-errors.html)&#39;
+</span></code></pre></div><p><code>PKCS #11</code> 返回的错误，好高端啊。</p><p>中间的曲折就不说了。答案在一篇歪果仁的博客上找到，在 github 的评论上得到印证及解决问题的思路。</p><ul><li><a href=http://www.sebdangerfield.me.uk/2012/10/nss-error-8023-using-aws-sdk-for-php/>NSS error -8023 using AWS SDK for PHP</a></li><li><a href=https://github.com/aws/aws-sdk-php/issues/202#issuecomment-76384680>Consecutive API calls return curl error code 35 on CentOS 6.5</a> - github</li></ul><p>很明显的，两篇在遇到跟我相同问题的同时，都提到了一个关键词 <code>NSS</code>，因此，我又看了一下我自己的 curl 库信息。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#a6e22e>curl</span> <span style=color:#f92672>-</span><span style=color:#a6e22e>V</span>
+<span style=color:#75715e>// curl 7.48.0 (x86_64-pc-linux-gnu) libcurl/7.29.0 NSS/3.19.1 Basic ECC zlib/1.2.7 libidn/1.28 libssh2/1.4.3
+</span><span style=color:#75715e>// Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtsp scp sftp smtp smtps telnet tftp
+</span><span style=color:#75715e>// Features: AsynchDNS IDN IPv6 Largefile NTLM NTLM_WB SSL libz
+</span></code></pre></div><p>果然我本地的 curl 是带 <code>NSS</code> 的。</p><p>于是，用一个不带 <code>NSS</code> 的 curl 库来重新编译 php 吧。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mkdir -p /data/soft
+
+<span style=color:#75715e># 编译并安装不带 nss 的 curl</span>
+cd /data/soft
+wget <span style=color:#e6db74>&#34;https://curl.haxx.se/download/curl-7.48.0.tar.bz2&#34;</span>
+tar zxf curl-7.48.0.tar.bz2
+cd curl-7.48.0
+./configure --prefix<span style=color:#f92672>=</span>/usr --without-nss
+make <span style=color:#f92672>&amp;&amp;</span> make install
+
+<span style=color:#75715e># 重新编译 php</span>
+cd /data/soft
+wget -O <span style=color:#e6db74>&#34;php-5.6.19.tar.bz2&#34;</span> <span style=color:#e6db74>&#34;http://cn2.php.net/get/php-5.6.19.tar.bz2/from/this/mirror&#34;</span>
+tar jxf php-5.6.19.tar.bz2
+cd php-5.6.19
+<span style=color:#e6db74>&#39;./configure&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--prefix=/usr/local/php-5.6.19&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-libdir=lib64&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-config-file-path=/usr/local/php-5.6.19/lib&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-fpm-user=nobody&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-fpm-group=nobody&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-libxml-dir=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-openssl=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-openssl-dir=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-zlib&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-bcmath&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-bz2=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-calendar&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-curl=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-dba&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-gdbm=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-exif&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-ftp&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-gd&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-vpx-dir=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-jpeg-dir=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-png-dir=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-xpm-dir=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-zlib-dir=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-freetype-dir=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-gettext=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-gmp=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-mhash=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-intl&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-mbstring&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-mcrypt=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-mysql=/usr/local/mysql&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-mysql-sock=/tmp/mysql.sock&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-mysqli=/usr/local/mysql/bin/mysql_config&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-embedded-mysqli&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-pcntl&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-opcache&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-pdo-mysql&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-libedit=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-readline=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-soap&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-mysqlnd&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-sockets&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-sysvmsg&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-sysvsem&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-sysvshm&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-tidy=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-wddx&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--with-xsl=/usr&#39;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  <span style=color:#e6db74>&#39;--enable-fpm&#39;</span>
+make <span style=color:#f92672>&amp;&amp;</span> make install
+
+<span style=color:#75715e># 重新启动由 supervisor 管理的 php-fpm（非必须）</span>
+supervisorctl restart php-fpm
+</code></pre></div><p>检查 curl 的信息。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>curl -V
+// curl 7.48.0 <span style=color:#f92672>(</span>x86_64-pc-linux-gnu<span style=color:#f92672>)</span> libcurl/7.48.0 OpenSSL/1.0.1e zlib/1.2.7
+// Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp
+// Features: IPv6 Largefile NTLM NTLM_WB SSL libz UnixSockets
+</code></pre></div><p>欧耶！<code>NSS</code> 不见了！</p><p>再进 tinker 试试代码能否正常。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>$app <span style=color:#f92672>=</span> <span style=color:#a6e22e>app</span>(<span style=color:#e6db74>&#39;wechat&#39;</span>);
+<span style=color:#75715e>// EasyWeChat\Foundation\Application {#628}
+</span><span style=color:#75715e></span>
+$users <span style=color:#f92672>=</span> $app<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>user</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>lists</span>();
+<span style=color:#75715e>// EasyWeChat\Support\Collection {#741}
+</span><span style=color:#75715e></span>
+$user <span style=color:#f92672>=</span> $app<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>user</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#39;o7qrUvryjgQlQti0Cw1XeVw2PJKk&#39;</span>);
+<span style=color:#75715e>// EasyWeChat\Support\Collection {#722}
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// 世界终于和平了！
+</span></code></pre></div><hr><p>PS：一些心得</p><ul><li>原来 CURL 之前一直有这个问题，见
+<a href=http://stackoverflow.com/questions/26452755/php-curl-with-nss-is-probably-using-sslv3-insted-of-tls-when-connecting-to-htt#answer-26453701>这则 stackoverflow 上面的答复</a>；</li><li>一个基础库的小问题，会因为依赖树的关系，被无限放大；</li><li>AWS 在其它国家的普及程度还是相当高的啊。</li></ul></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents></nav></aside></main></body></html>

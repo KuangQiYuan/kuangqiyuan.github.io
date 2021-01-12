@@ -1,0 +1,50 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.80.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="发现最近基于 DNS 做访问优化的大企业越来越多。今天从 mirrors.aliyun.com 的 pypi 上更新 package，发现竟然速度只有几十 KB/s，太惊人了。反应了很久才想起来，可能"><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="针对 DNS 全球优化做的 CoreDNS 额外配置"><meta property="og:description" content="发现最近基于 DNS 做访问优化的大企业越来越多。今天从 mirrors.aliyun.com 的 pypi 上更新 package，发现竟然速度只有几十 KB/s，太惊人了。反应了很久才想起来，可能"><meta property="og:type" content="article"><meta property="og:url" content="http://i.am.simonkuang.org/posts/2019/10/23/%E9%92%88%E5%AF%B9-DNS-%E5%85%A8%E7%90%83%E4%BC%98%E5%8C%96%E5%81%9A%E7%9A%84-CoreDNS-%E9%A2%9D%E5%A4%96%E9%85%8D%E7%BD%AE/"><meta property="article:published_time" content="2019-10-23T15:16:10+08:00"><meta property="article:modified_time" content="2019-10-23T15:16:10+08:00"><title>针对 DNS 全球优化做的 CoreDNS 额外配置 | 流沙书斋</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.ce74a2661479d34141b5c018b4f25ba8292b5adeca6de5d7a1b5c4de41c8f25d.css integrity="sha256-znSiZhR500FBtcAYtPJbqCkrWt7KbeXXobXE3kHI8l0="><script defer src=/en.search.min.f43f864b87654ca005f7c22196b917bd947f349395341988d8c026de238f3eaf.js integrity="sha256-9D+GS4dlTKAF98IhlrkXvZR/NJOVNBmI2MAm3iOPPq8="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script defer src=/custom.min.85e1dbc39b23671ffbf52bcb831b12735ade63896b28278cfb69b35d2c870ee9.js integrity="sha256-heHbw5sjZx/79SvLgxsSc1reY4lrKCeM+2mzXSyHDuk="></script><script src=//kit.fontawesome.com/e81509d074.js crossorigin=anonymous></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>流沙书斋</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/><i class="menu-item-icon fa fa-fw fa-home"></i>首页</a></li><li><a href=/posts/><i class="menu-item-icon fa fa-fw fa-blog"></i>博客</a></li><li><a href=/topics/><i class="menu-item-icon fa fa-fw fa-book"></i>专栏</a></li></ul><ul><li><a href=https://github.com/simonkuang target=_blank rel=noopener><i class="menu-item-icon fa fa-fw fa-github"></i>Github</a></li><li><a href=https://www.zhihu.com/people/simonkuang target=_blank rel=noopener><i class="menu-item-icon fab fa-fw fa-zhihu"></i>知乎</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>针对 DNS 全球优化做的 CoreDNS 额外配置</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents></nav></aside></header><article class=markdown><h1><a href=/posts/2019/10/23/%E9%92%88%E5%AF%B9-DNS-%E5%85%A8%E7%90%83%E4%BC%98%E5%8C%96%E5%81%9A%E7%9A%84-CoreDNS-%E9%A2%9D%E5%A4%96%E9%85%8D%E7%BD%AE/>针对 DNS 全球优化做的 CoreDNS 额外配置</a></h1><h5>2019-10-23</h5><div><a href=/categories/%E6%8A%80%E6%9C%AF/ class=categories>技术</a></div><div><a href=/tags/CoreDNS/ class=tags>CoreDNS</a></div><p><p>发现最近基于 DNS 做访问优化的大企业越来越多。今天从 mirrors.aliyun.com 的 pypi 上更新 package，发现竟然速度只有几十 KB/s，太惊人了。反应了很久才想起来，可能是 DNS 解析的问题。aliyun 对从国外 DNS 服务器回溯的请求，给出的是国外 CDN 节点的 IP。我在国内，去连接国外的 CDN，当然慢了。有了设想，简单证实一下，分别从四个一和 dnspod 解析 <code>mirrors.aliyun.com</code> 这个域名，果然不一样。印证了我的猜想。</p><p>不止阿里云，亚麻，azure，这些云服务商，甚至苹果这种做产品的企业，也都有类似基于 DNS 的全球网络优化。</p><p>之前
+<a href=https://i.am.simonkuang.com/post/install-coredns-on-macos/>用 CoreDNS 做防毒的方案</a>，并没有考虑到这一点，所以在这里补充一下更新后的配置。更新后的配置考虑到几个常用的服务，这几个服务会走国内的 DNS 服务器做解析，以便获取到厂商在国内的服务器 IP，加快访问的速度。</p><p>PS：新版的 CoreDNS 新增了对 <code>tls://</code> 协议的支持。<code>tls://</code> 应该会默认走 tcp 可靠连接。对外连接的时候，用了 <code>tls://</code> 协议，实现防毒的目标。</p><pre><code>aliyun.com apple.com github.com fastly.net githubusercontent.com binary.com amazonaws.com azk9s.com qcloud.com {
+  forward . 223.5.5.5 119.29.29.29 114.114.114.114 223.6.6.6 {
+    max_fails 3
+    expire 5s
+    health_check 3s
+    policy sequential
+  }
+}
+
+company.com {
+  hosts /etc/hosts {
+    fallthrough
+  }
+
+  forward . 192.168.1.103 119.29.29.29 114.114.114.114 {
+    max_fails 3
+    expire 5s
+    health_check 3s
+    policy sequential
+  }
+}
+
+# ---- global conf
+
+.:53 {
+  hosts /etc/hosts {
+    #127.0.0.1  a.com
+    fallthrough
+  }
+
+  forward . tls://8.8.8.8 tls://9.9.9.9 tls://1.1.1.1 119.29.29.29 223.5.5.5 {
+    force_tcp
+    max_fails 3
+    expire 10s
+    health_check 5s
+    policy sequential
+    except company.com
+  }
+
+  prometheus
+  cache 120
+  reload 6s
+  log
+  errors
+}
+</code></pre><p>更新配置后要重启 CoreDNS。试验了一下，阿里云下载 pypi，能达到 3-5 MB/s 的速度。瞬间回血。</p></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents></nav></aside></main></body></html>
